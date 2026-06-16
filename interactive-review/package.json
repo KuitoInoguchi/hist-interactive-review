@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "generate:quiz": "node scripts/build-quiz-data.mjs",
+    "generate:reference": "node scripts/build-reference-index.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
