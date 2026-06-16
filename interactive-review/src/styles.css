@@ -39,9 +39,17 @@ input:disabled {
   padding: 24px;
 }
 
-.quiz-pane {
-  width: min(1120px, 100%);
+.learning-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 0.68fr);
+  gap: 18px;
+  width: min(1480px, 100%);
   margin: 0 auto;
+  align-items: start;
+}
+
+.quiz-pane {
+  min-width: 0;
 }
 
 .app-header {
@@ -239,6 +247,11 @@ h1 {
   margin-bottom: 0;
 }
 
+.source-hint {
+  color: #356baa;
+  font-weight: 700;
+}
+
 .feedback-title {
   display: flex;
   align-items: center;
@@ -288,9 +301,114 @@ h1 {
   background: #bf4e4e;
 }
 
+.reference-shell {
+  position: sticky;
+  top: 18px;
+  min-width: 0;
+}
+
+.reference-toggle {
+  display: none;
+  width: 100%;
+  min-height: 42px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #c7d4e7;
+  background: #ffffff;
+  color: #18395f;
+  font-weight: 700;
+}
+
+.reference-pane {
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+  border: 1px solid #d9e1ee;
+  background: #ffffff;
+  box-shadow: 0 16px 44px rgba(24, 34, 53, 0.08);
+  scroll-behavior: smooth;
+}
+
+.reference-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid #d9e1ee;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+}
+
+.reference-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.reference-content {
+  padding: 20px 24px 32px;
+}
+
+.reference-content h1,
+.reference-content h2,
+.reference-content h3 {
+  color: #18395f;
+  line-height: 1.45;
+}
+
+.reference-content h1 {
+  font-size: 26px;
+}
+
+.reference-content h2 {
+  margin-top: 26px;
+  padding-top: 12px;
+  border-top: 1px solid #e1e7f0;
+  font-size: 21px;
+}
+
+.reference-content p,
+.reference-content li {
+  line-height: 1.8;
+}
+
+.reference-content li {
+  margin: 6px 0;
+  padding: 2px 4px;
+  border-left: 3px solid transparent;
+}
+
+.reference-content [data-source-id] {
+  scroll-margin: 110px;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.reference-content .active-source {
+  border-left-color: #1f5f99;
+  background: #fff4bf;
+  box-shadow: 0 0 0 4px rgba(255, 225, 100, 0.35);
+  animation: source-pulse 1.8s ease;
+}
+
+@keyframes source-pulse {
+  0% {
+    background: #ffe178;
+  }
+  100% {
+    background: #fff4bf;
+  }
+}
+
 @media (max-width: 760px) {
   .app-shell {
     padding: 12px;
+  }
+
+  .learning-layout {
+    grid-template-columns: 1fr;
   }
 
   .app-header,
@@ -310,5 +428,21 @@ h1 {
   .primary-button,
   .secondary-button {
     width: 100%;
+  }
+
+  .reference-shell {
+    position: static;
+  }
+
+  .reference-toggle {
+    display: inline-flex;
+  }
+
+  .reference-pane {
+    max-height: 62vh;
+  }
+
+  .reference-pane.is-collapsed {
+    display: none;
   }
 }

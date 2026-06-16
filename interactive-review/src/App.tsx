@@ -1,5 +1,6 @@
-import { ChevronLeft, ChevronRight, RotateCcw, Send, Trophy } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, RotateCcw, Send, Trophy } from "lucide-react";
 import { useMemo, useState } from "react";
+import { ReferencePane } from "./components/ReferencePane";
 import questionsData from "./generated/questions.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
 import type { Question, QuizAttempt } from "./types";
@@ -21,6 +22,8 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedByQuestion, setSelectedByQuestion] = useState<Record<number, string[]>>({});
   const [attempts, setAttempts] = useState<Record<number, QuizAttempt>>({});
+  const [activeSourceIds, setActiveSourceIds] = useState<string[]>([]);
+  const [referenceCollapsed, setReferenceCollapsed] = useState(false);
 
   const currentQuestion = questions[currentIndex];
   const currentAttempt = attempts[currentQuestion.id];
@@ -65,16 +68,19 @@ export default function App() {
         submittedAt: new Date().toISOString(),
       },
     }));
+    setActiveSourceIds(currentQuestion.sourceIds);
   }
 
   function resetQuiz() {
     setCurrentIndex(0);
     setSelectedByQuestion({});
     setAttempts({});
+    setActiveSourceIds([]);
   }
 
   return (
     <main className="app-shell">
+      <div className="learning-layout">
       <section className="quiz-pane">
         <header className="app-header">
           <div>
@@ -179,6 +185,9 @@ export default function App() {
               <p>你的答案：{answerListLabel(currentAttempt.selectedAnswers)}</p>
               <p>正确答案：{answerListLabel(currentQuestion.correctAnswers)}</p>
               <p>{currentQuestion.explanation}</p>
+              <p className="source-hint">
+                已在右侧资料中高亮 {currentQuestion.sourceIds.length} 处对应知识点。
+              </p>
             </aside>
           ) : null}
         </section>
@@ -196,6 +205,18 @@ export default function App() {
           ))}
         </nav>
       </section>
+      <section className="reference-shell">
+        <button
+          className="reference-toggle"
+          onClick={() => setReferenceCollapsed((collapsed) => !collapsed)}
+          type="button"
+        >
+          <BookOpen size={18} />
+          {referenceCollapsed ? "展开资料" : "折叠资料"}
+        </button>
+        <ReferencePane activeSourceIds={activeSourceIds} collapsed={referenceCollapsed} />
+      </section>
+      </div>
     </main>
   );
 }
