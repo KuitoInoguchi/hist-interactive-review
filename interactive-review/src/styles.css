@@ -1,0 +1,58 @@
+:root {
+  color: #182235;
+  font-family:
+    "Noto Serif SC", "Source Han Serif SC", "Songti SC", "Times New Roman",
+    serif;
+  background: #f5f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.welcome-panel {
+  max-width: 720px;
+  padding: 32px;
+  border: 1px solid #d9e1ee;
+  background: #ffffff;
+  box-shadow: 0 18px 50px rgba(24, 34, 53, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #356baa;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 36px;
+  line-height: 1.15;
+}
+
+p {
+  line-height: 1.7;
+}
