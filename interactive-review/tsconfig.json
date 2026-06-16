@@ -16,6 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "scripts", "tests", "playwright.config.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "scripts", "tests", "playwright.config.ts", "vite.config.ts"]
 }
