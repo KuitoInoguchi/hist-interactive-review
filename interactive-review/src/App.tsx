@@ -1,11 +1,31 @@
 import { BookOpen, ChevronLeft, ChevronRight, RotateCcw, Send, Trophy } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ReferencePane } from "./components/ReferencePane";
 import questionsData from "./generated/questions.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
 import type { Question, QuizAttempt } from "./types";
 
 const questions = questionsData as Question[];
+const STORAGE_KEY = "interactive-review:first-chapter-progress";
+
+type SavedQuizState = {
+  currentIndex: number;
+  selectedByQuestion: Record<number, string[]>;
+  attempts: Record<number, QuizAttempt>;
+  activeSourceIds: string[];
+  referenceCollapsed: boolean;
+};
+
+function readSavedState(): Partial<SavedQuizState> {
+  if (typeof window === "undefined") return {};
+  const raw = window.localStorage.getItem(STORAGE_KEY);
+  if (!raw) return {};
+  try {
+    return JSON.parse(raw) as Partial<SavedQuizState>;
+  } catch {
+    return {};
+  }
+}
 
 function typeLabel(type: Question["type"]) {
   if (type === "single") return "单选题";
@@ -19,11 +39,14 @@ function questionStatusClass(attempt?: QuizAttempt) {
 }
 
 export default function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedByQuestion, setSelectedByQuestion] = useState<Record<number, string[]>>({});
-  const [attempts, setAttempts] = useState<Record<number, QuizAttempt>>({});
-  const [activeSourceIds, setActiveSourceIds] = useState<string[]>([]);
-  const [referenceCollapsed, setReferenceCollapsed] = useState(false);
+  const savedState = useMemo(readSavedState, []);
+  const [currentIndex, setCurrentIndex] = useState(savedState.currentIndex ?? 0);
+  const [selectedByQuestion, setSelectedByQuestion] = useState<Record<number, string[]>>(
+    savedState.selectedByQuestion ?? {},
+  );
+  const [attempts, setAttempts] = useState<Record<number, QuizAttempt>>(savedState.attempts ?? {});
+  const [activeSourceIds, setActiveSourceIds] = useState<string[]>(savedState.activeSourceIds ?? []);
+  const [referenceCollapsed, setReferenceCollapsed] = useState(savedState.referenceCollapsed ?? false);
 
   const currentQuestion = questions[currentIndex];
   const currentAttempt = attempts[currentQuestion.id];
@@ -40,6 +63,17 @@ export default function App() {
       { single: 0, multiple: 0, judge: 0 },
     );
   }, []);
+
+  useEffect(() => {
+    const state: SavedQuizState = {
+      currentIndex,
+      selectedByQuestion,
+      attempts,
+      activeSourceIds,
+      referenceCollapsed,
+    };
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }, [activeSourceIds, attempts, currentIndex, referenceCollapsed, selectedByQuestion]);
 
   function setSelected(question: Question, optionId: string) {
     if (attempts[question.id]) return;
@@ -76,6 +110,7 @@ export default function App() {
     setSelectedByQuestion({});
     setAttempts({});
     setActiveSourceIds([]);
+    window.localStorage.removeItem(STORAGE_KEY);
   }
 
   return (
