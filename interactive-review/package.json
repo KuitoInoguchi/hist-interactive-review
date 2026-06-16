@@ -11,7 +11,7 @@
     "generate": "npm run generate:reference && npm run generate:quiz && npm run validate:source-map",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "vitest run tests/*.test.ts",
     "test:watch": "vitest",
     "test:e2e": "playwright test"
   },
