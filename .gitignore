@@ -1,0 +1,19 @@
+.DS_Store
+
+# Dependencies and build outputs
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# Generated render artifacts from document QA
+render_exam*/
+
+# Local document artifacts
+*.docx
+*.pdf
+
+# Environment files
+.env
+.env.*
