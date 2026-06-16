@@ -1,9 +1,10 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 const rootDir = resolve(import.meta.dirname, "..", "..");
 const inputPath = resolve(rootDir, "中国近现代史纲要 复习指导.md");
 const outputPath = resolve(import.meta.dirname, "..", "src", "generated", "questions.json");
+const sourceMapPath = resolve(import.meta.dirname, "..", "src", "data", "sourceMap.json");
 
 const sectionTypeByTitle = new Map([
   ["一、单选题", "single"],
@@ -163,7 +164,11 @@ function withAnswers(questions, answerEntries) {
 }
 
 const markdown = readFileSync(inputPath, "utf8");
-const questions = withAnswers(parseQuestions(markdown), parseAnswerEntries(markdown));
+const sourceMap = existsSync(sourceMapPath) ? JSON.parse(readFileSync(sourceMapPath, "utf8")) : {};
+const questions = withAnswers(parseQuestions(markdown), parseAnswerEntries(markdown)).map((question) => ({
+  ...question,
+  sourceIds: sourceMap[String(question.id)] ?? [],
+}));
 
 mkdirSync(dirname(outputPath), { recursive: true });
 writeFileSync(outputPath, `${JSON.stringify(questions, null, 2)}\n`);
