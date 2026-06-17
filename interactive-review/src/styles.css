@@ -161,17 +161,65 @@ h1 {
   color: #8190a5;
 }
 
+.chapter-selector-panel {
+  margin-top: 14px;
+  border: 1px solid #d9e1ee;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(24, 34, 53, 0.05);
+}
+
+.chapter-selector-panel > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 56px;
+  padding: 14px 16px;
+  color: #18395f;
+  cursor: pointer;
+  list-style: none;
+}
+
+.chapter-selector-panel > summary::-webkit-details-marker {
+  display: none;
+}
+
+.chapter-selector-panel > summary::after {
+  content: "展开";
+  flex: 0 0 auto;
+  color: #356baa;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.chapter-selector-panel[open] > summary {
+  border-bottom: 1px solid #d9e1ee;
+}
+
+.chapter-selector-panel[open] > summary::after {
+  content: "收起";
+}
+
+.chapter-selector-panel summary span {
+  color: #63718a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.chapter-selector-panel summary strong {
+  font-size: 17px;
+}
+
 .chapter-selector {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 10px;
-  margin-top: 14px;
+  padding: 12px;
 }
 
 .chapter-option {
   display: grid;
-  gap: 4px;
-  min-height: 78px;
+  min-height: 68px;
   padding: 14px 16px;
   border: 1px solid #d9e1ee;
   background: #ffffff;
@@ -202,11 +250,6 @@ h1 {
 .chapter-option span {
   font-size: 15px;
   font-weight: 800;
-}
-
-.chapter-option strong {
-  font-size: 13px;
-  line-height: 1.4;
 }
 
 .summary-grid {

@@ -7,7 +7,10 @@ import type { Question } from "../src/types";
 
 const typedQuestions = questions as Question[];
 const chapters = chaptersPayload.chapters as Array<{
-  id: number;
+  id: string;
+  kind: "regular" | "xuetong";
+  chapterNo: number;
+  title: string;
   available: boolean;
   questions: Question[];
   downloads: { markdown: string | null; pdf: string | null };
@@ -45,21 +48,49 @@ describe("generated quiz data", () => {
     }
   });
 
-  it("contains seven chapter entries with the first two available", () => {
-    expect(chapters.map((chapter) => chapter.id)).toEqual([1, 2, 3, 4, 5, 6, 7]);
-    expect(chapters.map((chapter) => chapter.available)).toEqual([
-      true,
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
+  it("contains fourteen quiz entries with regular and xuetong groups", () => {
+    expect(chapters.map((chapter) => chapter.id)).toEqual([
+      "regular-1",
+      "regular-2",
+      "regular-3",
+      "regular-4",
+      "regular-5",
+      "regular-6",
+      "regular-7",
+      "xuetong-1",
+      "xuetong-2",
+      "xuetong-3",
+      "xuetong-4",
+      "xuetong-5",
+      "xuetong-6",
+      "xuetong-7",
+    ]);
+    expect(chapters.map((chapter) => chapter.title)).toEqual([
+      "第一章习题",
+      "第二章习题",
+      "第三章习题",
+      "第四章习题",
+      "第五章习题",
+      "第六章习题",
+      "第七章习题",
+      "（学习通）第一章客观题练习题",
+      "（学习通）第二章客观题练习题",
+      "（学习通）第三章客观题练习题",
+      "（学习通）第四章客观题练习题",
+      "（学习通）第五章客观题练习题",
+      "（学习通）第六章客观题练习题",
+      "（学习通）第七章客观题练习题",
+    ]);
+    expect(chapters.filter((chapter) => chapter.available).map((chapter) => chapter.id)).toEqual([
+      "regular-1",
+      "regular-2",
+      "xuetong-1",
+      "xuetong-2",
     ]);
   });
 
   it("contains the expected second-chapter question counts and source links", () => {
-    const chapterTwo = chapters.find((chapter) => chapter.id === 2);
+    const chapterTwo = chapters.find((chapter) => chapter.id === "regular-2");
     expect(chapterTwo).toBeDefined();
     const chapterTwoQuestions = chapterTwo?.questions ?? [];
     const counts = chapterTwoQuestions.reduce(
@@ -91,9 +122,13 @@ describe("generated quiz data", () => {
       markdown: "/downloads/quizzes/chapter-2.md",
       pdf: "/downloads/quizzes/chapter-2.pdf",
     });
-    expect(chapters.slice(2).every((chapter) => chapter.downloads.markdown === null && chapter.downloads.pdf === null)).toBe(
-      true,
-    );
+    expect(chapters[7].downloads).toEqual(chapters[0].downloads);
+    expect(chapters[8].downloads).toEqual(chapters[1].downloads);
+    expect(
+      chapters
+        .filter((chapter) => !chapter.available)
+        .every((chapter) => chapter.downloads.markdown === null && chapter.downloads.pdf === null),
+    ).toBe(true);
     expect(chaptersPayload.referenceDownloads.markdown).toMatch(/\/downloads\/reference\/.+\.md$/);
     expect(chaptersPayload.referenceDownloads.pdf).toMatch(/\/downloads\/reference\/.+\.pdf$/);
   });

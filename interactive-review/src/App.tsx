@@ -7,10 +7,11 @@ import type { Question, QuizAttempt } from "./types";
 
 const chaptersPayload = chaptersData as {
   chapters: Array<{
-    id: number;
+    id: string;
+    kind: "regular" | "xuetong";
+    chapterNo: number;
     numeral: string;
     title: string;
-    longTitle: string;
     available: boolean;
     questions: Question[];
     downloads: { markdown: string | null; pdf: string | null };
@@ -18,7 +19,7 @@ const chaptersPayload = chaptersData as {
   referenceDownloads: { markdown: string | null; pdf: string | null };
 };
 const chapters = chaptersPayload.chapters;
-const defaultChapterId = chapters[0]?.id ?? 1;
+const defaultChapterId = chapters[0]?.id ?? "regular-1";
 const STORAGE_KEY = "interactive-review:multi-chapter-progress";
 
 type ChapterProgress = {
@@ -29,8 +30,8 @@ type ChapterProgress = {
 };
 
 type SavedQuizState = {
-  selectedChapterId: number;
-  progressByChapter: Record<number, ChapterProgress>;
+  selectedChapterId: string;
+  progressByChapter: Record<string, ChapterProgress>;
   referenceCollapsed: boolean;
 };
 
@@ -105,11 +106,11 @@ function DownloadMenu({
 export default function App() {
   const savedState = useMemo(readSavedState, []);
   const initialChapterId = chapters.some((chapter) => chapter.id === savedState.selectedChapterId)
-    ? (savedState.selectedChapterId as number)
+    ? (savedState.selectedChapterId as string)
     : defaultChapterId;
   const [selectedChapterId, setSelectedChapterId] = useState(initialChapterId);
-  const [progressByChapter, setProgressByChapter] = useState<Record<number, ChapterProgress>>(
-    savedState.progressByChapter ?? { 1: emptyProgress() },
+  const [progressByChapter, setProgressByChapter] = useState<Record<string, ChapterProgress>>(
+    savedState.progressByChapter ?? { [defaultChapterId]: emptyProgress() },
   );
   const [referenceCollapsed, setReferenceCollapsed] = useState(savedState.referenceCollapsed ?? false);
 
@@ -156,7 +157,7 @@ export default function App() {
     });
   }
 
-  function chooseChapter(chapterId: number) {
+  function chooseChapter(chapterId: string) {
     setSelectedChapterId(chapterId);
     const chapter = chapters.find((item) => item.id === chapterId);
     if (!chapter?.available) {
@@ -234,21 +235,26 @@ export default function App() {
           </div>
         </header>
 
-        <section className="chapter-selector" aria-label="章节习题选择">
-          {chapters.map((chapter) => (
-            <button
-              className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""} ${
-                chapter.available ? "" : "is-disabled"
-              }`}
-              key={chapter.id}
-              onClick={() => chooseChapter(chapter.id)}
-              type="button"
-            >
-              <span>{chapter.title}</span>
-              <strong>{chapter.longTitle}</strong>
-            </button>
-          ))}
-        </section>
+        <details className="chapter-selector-panel">
+          <summary>
+            <span>题库选择</span>
+            <strong>{currentChapter.title}</strong>
+          </summary>
+          <section className="chapter-selector" aria-label="章节习题选择">
+            {chapters.map((chapter) => (
+              <button
+                className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""} ${
+                  chapter.available ? "" : "is-disabled"
+                }`}
+                key={chapter.id}
+                onClick={() => chooseChapter(chapter.id)}
+                type="button"
+              >
+                <span>{chapter.title}</span>
+              </button>
+            ))}
+          </section>
+        </details>
 
         <section className="summary-grid" aria-label="练习统计">
           <div>

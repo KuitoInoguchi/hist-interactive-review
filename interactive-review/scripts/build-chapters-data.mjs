@@ -333,43 +333,50 @@ const chapterTwoPdf = copyIfExists(
   resolve(quizDownloadsDir, "chapter-2.pdf"),
 );
 
+const numerals = ["", "一", "二", "三", "四", "五", "六", "七"];
+const completedByChapter = new Map([
+  [
+    1,
+    {
+      questions: chapterOneQuestions,
+      downloads: {
+        markdown: "/downloads/quizzes/chapter-1.md",
+        pdf: chapterOnePdf ? "/downloads/quizzes/chapter-1.pdf" : null,
+      },
+    },
+  ],
+  [
+    2,
+    {
+      questions: chapterTwo.questions,
+      downloads: {
+        markdown: "/downloads/quizzes/chapter-2.md",
+        pdf: chapterTwoPdf ? "/downloads/quizzes/chapter-2.pdf" : null,
+      },
+    },
+  ],
+]);
+
+function createQuizEntry(kind, chapterNo) {
+  const completed = completedByChapter.get(chapterNo);
+  const isXuetong = kind === "xuetong";
+  return {
+    id: `${kind}-${chapterNo}`,
+    kind,
+    chapterNo,
+    numeral: numerals[chapterNo],
+    title: isXuetong
+      ? `（学习通）第${numerals[chapterNo]}章客观题练习题`
+      : `第${numerals[chapterNo]}章习题`,
+    available: Boolean(completed),
+    questions: completed?.questions ?? [],
+    downloads: completed?.downloads ?? { markdown: null, pdf: null },
+  };
+}
+
 const chapters = [
-  {
-    id: 1,
-    numeral: "一",
-    title: "第一章习题",
-    longTitle: "（学习通）第一章客观题练习题",
-    available: true,
-    questions: chapterOneQuestions,
-    downloads: {
-      markdown: "/downloads/quizzes/chapter-1.md",
-      pdf: chapterOnePdf ? "/downloads/quizzes/chapter-1.pdf" : null,
-    },
-  },
-  {
-    id: 2,
-    numeral: "二",
-    title: "第二章习题",
-    longTitle: "（学习通）第二章客观题练习题",
-    available: true,
-    questions: chapterTwo.questions,
-    downloads: {
-      markdown: "/downloads/quizzes/chapter-2.md",
-      pdf: chapterTwoPdf ? "/downloads/quizzes/chapter-2.pdf" : null,
-    },
-  },
-  ...[3, 4, 5, 6, 7].map((id) => {
-    const numerals = ["", "一", "二", "三", "四", "五", "六", "七"];
-    return {
-      id,
-      numeral: numerals[id],
-      title: `第${numerals[id]}章习题`,
-      longTitle: `（学习通）第${numerals[id]}章客观题练习题`,
-      available: false,
-      questions: [],
-      downloads: { markdown: null, pdf: null },
-    };
-  }),
+  ...[1, 2, 3, 4, 5, 6, 7].map((chapterNo) => createQuizEntry("regular", chapterNo)),
+  ...[1, 2, 3, 4, 5, 6, 7].map((chapterNo) => createQuizEntry("xuetong", chapterNo)),
 ];
 
 writeFileSync(

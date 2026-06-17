@@ -1,10 +1,11 @@
 {
   "chapters": [
     {
-      "id": 1,
+      "id": "regular-1",
+      "kind": "regular",
+      "chapterNo": 1,
       "numeral": "一",
       "title": "第一章习题",
-      "longTitle": "（学习通）第一章客观题练习题",
       "available": true,
       "questions": [
         {
@@ -2639,10 +2640,11 @@
       }
     },
     {
-      "id": 2,
+      "id": "regular-2",
+      "kind": "regular",
+      "chapterNo": 2,
       "numeral": "二",
       "title": "第二章习题",
-      "longTitle": "（学习通）第二章客观题练习题",
       "available": true,
       "questions": [
         {
@@ -6541,10 +6543,11 @@
       }
     },
     {
-      "id": 3,
+      "id": "regular-3",
+      "kind": "regular",
+      "chapterNo": 3,
       "numeral": "三",
       "title": "第三章习题",
-      "longTitle": "（学习通）第三章客观题练习题",
       "available": false,
       "questions": [],
       "downloads": {
@@ -6553,10 +6556,11 @@
       }
     },
     {
-      "id": 4,
+      "id": "regular-4",
+      "kind": "regular",
+      "chapterNo": 4,
       "numeral": "四",
       "title": "第四章习题",
-      "longTitle": "（学习通）第四章客观题练习题",
       "available": false,
       "questions": [],
       "downloads": {
@@ -6565,10 +6569,11 @@
       }
     },
     {
-      "id": 5,
+      "id": "regular-5",
+      "kind": "regular",
+      "chapterNo": 5,
       "numeral": "五",
       "title": "第五章习题",
-      "longTitle": "（学习通）第五章客观题练习题",
       "available": false,
       "questions": [],
       "downloads": {
@@ -6577,10 +6582,11 @@
       }
     },
     {
-      "id": 6,
+      "id": "regular-6",
+      "kind": "regular",
+      "chapterNo": 6,
       "numeral": "六",
       "title": "第六章习题",
-      "longTitle": "（学习通）第六章客观题练习题",
       "available": false,
       "questions": [],
       "downloads": {
@@ -6589,10 +6595,6618 @@
       }
     },
     {
-      "id": 7,
+      "id": "regular-7",
+      "kind": "regular",
+      "chapterNo": 7,
       "numeral": "七",
       "title": "第七章习题",
-      "longTitle": "（学习通）第七章客观题练习题",
+      "available": false,
+      "questions": [],
+      "downloads": {
+        "markdown": null,
+        "pdf": null
+      }
+    },
+    {
+      "id": "xuetong-1",
+      "kind": "xuetong",
+      "chapterNo": 1,
+      "numeral": "一",
+      "title": "（学习通）第一章客观题练习题",
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "type": "single",
+          "stem": "近代中国半殖民地半封建社会中，日益成为支配中国的“决定性力量”的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "官僚买办资产阶级"
+            },
+            {
+              "id": "B",
+              "label": "中国的封建势力"
+            },
+            {
+              "id": "C",
+              "label": "资本-帝国主义侵略势力"
+            },
+            {
+              "id": "D",
+              "label": "民族资产阶级"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C（错选B的要注意：“决定性力量”是帝国主义，“统治支柱”才是封建势力）",
+          "sourceIds": [
+            "ref-c1-s6-l46-list"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "single",
+          "stem": "帝国主义压迫、奴役中国人民的“社会基础和统治支柱”是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中国的封建势力"
+            },
+            {
+              "id": "B",
+              "label": "买办资本家"
+            },
+            {
+              "id": "C",
+              "label": "外国公使馆"
+            },
+            {
+              "id": "D",
+              "label": "军阀势力"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A（中国的封建势力日益衰败并同外国侵略势力勾结，成为了统治支柱）",
+          "sourceIds": [
+            "ref-c1-s6-l47-list"
+          ]
+        },
+        {
+          "id": 3,
+          "type": "single",
+          "stem": "中国自然经济的基础虽然遭到破坏，但成为中国发展进步严重障碍的“封建剥削制度的根基”依然在广大地区保持着，这个根基指的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "宗族家长制"
+            },
+            {
+              "id": "B",
+              "label": "封建地主的土地所有制"
+            },
+            {
+              "id": "C",
+              "label": "封建君主专制制度"
+            },
+            {
+              "id": "D",
+              "label": "小农经济"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B（封建地主的土地所有制是剥削制度的根基）",
+          "sourceIds": [
+            "ref-c1-s6-l48-list"
+          ]
+        },
+        {
+          "id": 4,
+          "type": "single",
+          "stem": "由于近代中国处于资本-帝国主义列强的争夺和间接统治之下，加上地域广大和地方割据势力的存在，近代中国各地区经济、政治和文化的发展呈现的特征是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "沿海与内陆平衡发展"
+            },
+            {
+              "id": "B",
+              "label": "呈现完全的统一状态"
+            },
+            {
+              "id": "C",
+              "label": "逐渐趋于同质化"
+            },
+            {
+              "id": "D",
+              "label": "极不平衡"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D（判断题也常考这个点，切记是“极不平衡”）",
+          "sourceIds": [
+            "ref-c1-s6-l50-list"
+          ]
+        },
+        {
+          "id": 5,
+          "type": "single",
+          "stem": "在资本-帝国主义和封建主义（以及后来的官僚资本主义）的双重压迫下，过着饥寒交迫和“毫无政治权利”生活的主要群体是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "手工业者"
+            },
+            {
+              "id": "B",
+              "label": "城市贫民"
+            },
+            {
+              "id": "C",
+              "label": "广大人民尤其是农民"
+            },
+            {
+              "id": "D",
+              "label": "民族资本家"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C（广大人民尤其是农民日益贫困化以至大批地破产）",
+          "sourceIds": [
+            "ref-c1-s6-l51-list"
+          ]
+        },
+        {
+          "id": 6,
+          "type": "single",
+          "stem": "在中国封建社会的经济中，占“主导地位”的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "小农经济"
+            },
+            {
+              "id": "B",
+              "label": "自给自足的自然经济"
+            },
+            {
+              "id": "C",
+              "label": "封建地主土地所有制经济"
+            },
+            {
+              "id": "D",
+              "label": "家庭手工业经济"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C（避坑： 选A或B的要注意，地主土地所有制是“主导地位”，小农经济是“基本生产结构”，自然经济是“主要地位”，这三个概念极易混淆）。",
+          "sourceIds": [
+            "ref-c1-s4-l25-list"
+          ]
+        },
+        {
+          "id": 7,
+          "type": "single",
+          "stem": "中国封建社会的“基本生产结构”是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "以个体家庭为单位并与家庭手工业牢固结合的小农经济"
+            },
+            {
+              "id": "B",
+              "label": "自给自足的自然经济"
+            },
+            {
+              "id": "C",
+              "label": "封建地主土地所有制经济"
+            },
+            {
+              "id": "D",
+              "label": "商品经济"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A（解析同上）。",
+          "sourceIds": [
+            "ref-c1-s4-l27-list"
+          ]
+        },
+        {
+          "id": 8,
+          "type": "single",
+          "stem": "自汉武帝确立独尊儒术的政策后，成为中国封建社会“正统思想”的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "法家思想"
+            },
+            {
+              "id": "B",
+              "label": "佛教思想"
+            },
+            {
+              "id": "C",
+              "label": "儒家思想"
+            },
+            {
+              "id": "D",
+              "label": "道家思想"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C（儒家思想开始成为正统思想）。",
+          "sourceIds": [
+            "ref-c1-s4-l33-list"
+          ]
+        },
+        {
+          "id": 9,
+          "type": "single",
+          "stem": "中国封建社会的社会结构特点是族权和政权相结合的封建宗法等级制度，其“核心”是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中央集权制"
+            },
+            {
+              "id": "B",
+              "label": "封建君主专制"
+            },
+            {
+              "id": "C",
+              "label": "宗族家长制"
+            },
+            {
+              "id": "D",
+              "label": "科举取士制"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C（社会结构的核心是宗族家长制）。",
+          "sourceIds": [
+            "ref-c1-s4-l35-list"
+          ]
+        },
+        {
+          "id": 10,
+          "type": "single",
+          "stem": "在中国封建社会里，常常结合在一起，向农民征收苛捐杂税和摊派徭役的“三者”是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "皇帝、贵族、官僚"
+            },
+            {
+              "id": "B",
+              "label": "官僚、买办、资本家"
+            },
+            {
+              "id": "C",
+              "label": "军阀、商人、地主"
+            },
+            {
+              "id": "D",
+              "label": "地主、商人、高利贷者"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D（地主、商人、高利贷者这三者常常是结合在一起的）。",
+          "sourceIds": [
+            "ref-c1-s4-l28-list"
+          ]
+        },
+        {
+          "id": 11,
+          "type": "single",
+          "stem": "近代中国诞生的新兴的被压迫阶级是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "农民阶级"
+            },
+            {
+              "id": "B",
+              "label": "工人阶级"
+            },
+            {
+              "id": "C",
+              "label": "民族资产阶级"
+            },
+            {
+              "id": "D",
+              "label": "小资产阶级"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B（避坑：新兴的被压迫阶级是工人阶级，千万别选成农民阶级，农民阶级自古就有，不是“新兴”的）。",
+          "sourceIds": [
+            "ref-c1-s7-l55-list"
+          ]
+        },
+        {
+          "id": 12,
+          "type": "single",
+          "stem": "近代中国工人阶级的来源主要是城乡破产失业的（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "买办、商人和地主"
+            },
+            {
+              "id": "B",
+              "label": "知识分子和青年学生"
+            },
+            {
+              "id": "C",
+              "label": "农民、手工业者和城市贫民"
+            },
+            {
+              "id": "D",
+              "label": "官僚和军阀"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C（工人阶级的来源主要是城乡破产失业的农民、手工业者和城市贫民）。",
+          "sourceIds": [
+            "ref-c1-s7-l56-list"
+          ]
+        },
+        {
+          "id": 13,
+          "type": "single",
+          "stem": "在外国资本主义入侵的影响和刺激下，中国资产阶级主要由一些投资新式企业转化而成。下列哪类人群不属于其主要来源？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "城市贫民"
+            },
+            {
+              "id": "B",
+              "label": "买办、商人"
+            },
+            {
+              "id": "C",
+              "label": "地主"
+            },
+            {
+              "id": "D",
+              "label": "官僚"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A（城市贫民是工人阶级的来源，中国资产阶级主要由买办、商人、地主、官僚投资新式企业转化而成）。",
+          "sourceIds": [
+            "ref-c1-s8-l60-list"
+          ]
+        },
+        {
+          "id": 14,
+          "type": "single",
+          "stem": "在近代中国，利用政治特权和与外国资本的紧密联系，在剥削劳动人民和挤压民族资本的过程中逐渐形成和发展起来的阶级是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "民族资本家"
+            },
+            {
+              "id": "B",
+              "label": "官僚买办资本家"
+            },
+            {
+              "id": "C",
+              "label": "小资产阶级"
+            },
+            {
+              "id": "D",
+              "label": "封建地主"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B（利用特权和外国资本联系的是“官僚买办资本家”，注意与民族资本家区分）。",
+          "sourceIds": [
+            "ref-c1-s8-l61-list"
+          ]
+        },
+        {
+          "id": 15,
+          "type": "single",
+          "stem": "近代中国民族资本家经营的企业始终未能在中国社会经济中占主要地位，其自身存在的内在原因是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "受到外国资本主义的压迫"
+            },
+            {
+              "id": "B",
+              "label": "受到本国封建主义的压迫"
+            },
+            {
+              "id": "C",
+              "label": "受到官僚买办资产阶级的压迫"
+            },
+            {
+              "id": "D",
+              "label": "原始积累不足，大多数规模小、设备落后"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D（选项A、B、C都是外部压迫因素，只有D“原始积累不足”是民族资本家自身存在的弱点，导致其大多数规模小、设备落后，未能占主要地位）。",
+          "sourceIds": [
+            "ref-c1-s8-l62-list"
+          ]
+        },
+        {
+          "id": 16,
+          "type": "single",
+          "stem": "近代中国社会占支配地位的主要矛盾中，最主要的矛盾是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "封建主义和人民大众的矛盾"
+            },
+            {
+              "id": "B",
+              "label": "帝国主义和中华民族的矛盾"
+            },
+            {
+              "id": "C",
+              "label": "资产阶级和无产阶级的矛盾"
+            },
+            {
+              "id": "D",
+              "label": "地主阶级和农民阶级的矛盾"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B（极高频考点：最主要的矛盾必须单选“帝国主义和中华民族的矛盾”）。",
+          "sourceIds": [
+            "ref-c1-s9-l66-list"
+          ]
+        },
+        {
+          "id": 17,
+          "type": "single",
+          "stem": "近代中国社会占支配地位的两大主要矛盾是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "帝国主义和中华民族的矛盾，封建主义和人民大众的矛盾"
+            },
+            {
+              "id": "B",
+              "label": "帝国主义和中华民族的矛盾，资产阶级和无产阶级的矛盾"
+            },
+            {
+              "id": "C",
+              "label": "资产阶级和无产阶级的矛盾，地主阶级和农民阶级的矛盾"
+            },
+            {
+              "id": "D",
+              "label": "封建主义和人民大众的矛盾，资产阶级和地主阶级的矛盾"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A（帝国主义和中华民族的矛盾，封建主义和人民大众的矛盾，这两个合起来是占支配地位的主要矛盾）。",
+          "sourceIds": [
+            "ref-c1-s9-l66-list"
+          ]
+        },
+        {
+          "id": 18,
+          "type": "single",
+          "stem": "近代以来中华民族面临的两大主要任务中，旨在“改变中国经济技术落后的面貌”的任务目标是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "推翻半殖民地半封建的社会制度"
+            },
+            {
+              "id": "B",
+              "label": "争得民族独立"
+            },
+            {
+              "id": "C",
+              "label": "实现国家富强和人民幸福"
+            },
+            {
+              "id": "D",
+              "label": "争得人民解放"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C（两大任务要对号入座：推翻旧制度是为了“民族独立和人民解放”；改变落后面貌是为了“国家富强和人民幸福”）。",
+          "sourceIds": [
+            "ref-c1-s10-l70-list",
+            "ref-c1-s10-l71-list"
+          ]
+        },
+        {
+          "id": 19,
+          "type": "single",
+          "stem": "1894年11月，在甲午战争中制造了旅顺大屠杀惨案的国家是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "俄国"
+            },
+            {
+              "id": "B",
+              "label": "英国"
+            },
+            {
+              "id": "C",
+              "label": "日本"
+            },
+            {
+              "id": "D",
+              "label": "法国"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1894年11月，日军在甲午战争中制造了旅顺大屠杀惨案。",
+          "sourceIds": [
+            "ref-c1-s12-l82-list"
+          ]
+        },
+        {
+          "id": 20,
+          "type": "single",
+          "stem": "规定外国军队有权在北京使馆区和北京至大沽、山海关一线“留兵驻守”的不平等条约是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《南京条约》"
+            },
+            {
+              "id": "B",
+              "label": "《马关条约》"
+            },
+            {
+              "id": "C",
+              "label": "中英《北京条约》"
+            },
+            {
+              "id": "D",
+              "label": "《辛丑条约》"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。1901年《辛丑条约》规定，外国军队有权在北京使馆区和北京至大沽、山海关一线包括天津、唐山等12处“留兵驻守”。",
+          "sourceIds": [
+            "ref-c1-s13-l94-list"
+          ]
+        },
+        {
+          "id": 21,
+          "type": "single",
+          "stem": "1860年，通过签订（ ），英国割去了香港岛对岸九龙半岛南端和昂船洲。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《南京条约》"
+            },
+            {
+              "id": "B",
+              "label": "中英《北京条约》"
+            },
+            {
+              "id": "C",
+              "label": "《马关条约》"
+            },
+            {
+              "id": "D",
+              "label": "《瑷珲条约》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1860年，英国通过中英《北京条约》，割去香港岛对岸九龙半岛南端和昂船洲。",
+          "sourceIds": [
+            "ref-c1-s13-l87-list"
+          ]
+        },
+        {
+          "id": 22,
+          "type": "single",
+          "stem": "俄国割去乌苏里江以东40万平方公里领土，是通过签订以下哪个条约实现的？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "《瑷珲条约》"
+            },
+            {
+              "id": "B",
+              "label": "中俄《北京条约》"
+            },
+            {
+              "id": "C",
+              "label": "《勘分西北界约记》"
+            },
+            {
+              "id": "D",
+              "label": "《改订伊犁条约》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1860年，通过签订中俄《北京条约》，俄国割去乌苏里江以东40万平方公里领土。（避坑：黑龙江以北60万是《瑷珲条约》）。",
+          "sourceIds": [
+            "ref-c1-s13-l90-list"
+          ]
+        },
+        {
+          "id": 23,
+          "type": "single",
+          "stem": "1887年，胁迫清政府订立《中葡和好通商条约》，允许其“永居管理澳门”的国家是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "英国"
+            },
+            {
+              "id": "B",
+              "label": "西班牙"
+            },
+            {
+              "id": "C",
+              "label": "葡萄牙"
+            },
+            {
+              "id": "D",
+              "label": "荷兰"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1887年，葡萄牙胁迫清政府订立《中葡和好通商条约》，允许葡萄牙“永居管理澳门”。",
+          "sourceIds": [
+            "ref-c1-s13-l88-list"
+          ]
+        },
+        {
+          "id": 24,
+          "type": "single",
+          "stem": "西方列强对中国的侵略方式主要有四种，以下哪一项不属于这四种主要方式？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "军事侵略"
+            },
+            {
+              "id": "B",
+              "label": "经济援助"
+            },
+            {
+              "id": "C",
+              "label": "政治控制"
+            },
+            {
+              "id": "D",
+              "label": "文化渗透"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。西方列强对中国的侵略方式主要有军事侵略、政治控制、经济掠夺和文化渗透。",
+          "sourceIds": [
+            "ref-c1-s11-l75-list",
+            "ref-c1-s11-l76-list",
+            "ref-c1-s11-l77-list",
+            "ref-c1-s11-l78-list"
+          ]
+        },
+        {
+          "id": 25,
+          "type": "single",
+          "stem": "通过一系列不平等条约，近代侵占中国领土最多的国家是俄国，共侵占领土（ ）多万平方公里。",
+          "options": [
+            {
+              "id": "A",
+              "label": "60"
+            },
+            {
+              "id": "B",
+              "label": "100"
+            },
+            {
+              "id": "C",
+              "label": "150"
+            },
+            {
+              "id": "D",
+              "label": "200"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。通过一系列不平等条约，俄国共侵占中国领土150多万平方公里。",
+          "sourceIds": [
+            "ref-c1-s13-l92-list"
+          ]
+        },
+        {
+          "id": 26,
+          "type": "single",
+          "stem": "以下哪一项是1895年《马关条约》中关于割地的核心内容？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "割让香港岛"
+            },
+            {
+              "id": "B",
+              "label": "割让澳门半岛"
+            },
+            {
+              "id": "C",
+              "label": "割去黑龙江以北60万平方公里领土"
+            },
+            {
+              "id": "D",
+              "label": "割去中国台湾全岛及所有附属各岛屿和澎湖列岛"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。1895年，日本强迫清政府签订《马关条约》，割去中国台湾全岛及所有附属各岛屿和澎湖列岛。",
+          "sourceIds": [
+            "ref-c1-s13-l93-list"
+          ]
+        },
+        {
+          "id": 27,
+          "type": "single",
+          "stem": "为了统治中国，资本-帝国主义列强在政治上采取的主要方式是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "直接武装推翻清政府统治"
+            },
+            {
+              "id": "B",
+              "label": "控制中国政府，操纵中国的内政、外交"
+            },
+            {
+              "id": "C",
+              "label": "彻底摧毁中国的封建剥削制度"
+            },
+            {
+              "id": "D",
+              "label": "扶持民族资产阶级建立新政权"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。为了统治中国，列强在政治上采取的主要方式是控制中国政府，操纵中国的内政、外交，把中国当权者变成自己的代理人和驯服工具。",
+          "sourceIds": [
+            "ref-c1-s14-l98-list"
+          ]
+        },
+        {
+          "id": 28,
+          "type": "single",
+          "stem": "明确规定“允许外国公使常驻北京”这一重要内容的条约是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《南京条约》"
+            },
+            {
+              "id": "B",
+              "label": "《天津条约》"
+            },
+            {
+              "id": "C",
+              "label": "中法《黄埔条约》"
+            },
+            {
+              "id": "D",
+              "label": "《辛丑条约》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。《天津条约》的一项重要内容，就是允许外国公使常驻北京。",
+          "sourceIds": [
+            "ref-c1-s15-l102-list"
+          ]
+        },
+        {
+          "id": 29,
+          "type": "single",
+          "stem": "进一步扩大了“领事裁判权”范围，即所有美国人在华之一切民事、刑事诉讼，均由美国领事等官办理的条约是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中美《望厦条约》"
+            },
+            {
+              "id": "B",
+              "label": "中法《黄埔条约》"
+            },
+            {
+              "id": "C",
+              "label": "中英《北京条约》"
+            },
+            {
+              "id": "D",
+              "label": "《天津条约》"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。1844年中美《望厦条约》更扩大了领事裁判权的范围。",
+          "sourceIds": [
+            "ref-c1-s15-l104-list"
+          ]
+        },
+        {
+          "id": 30,
+          "type": "single",
+          "stem": "在近代中国，掌握中国海关大权长达40余年之久的外籍总税务司是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "瓦德西（德国人）"
+            },
+            {
+              "id": "B",
+              "label": "蒲安臣（美国人）"
+            },
+            {
+              "id": "C",
+              "label": "赫德（英国人）"
+            },
+            {
+              "id": "D",
+              "label": "李提摩太（英国人）"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。英国人赫德自1863年任总税务司开始，直到1908年回国，掌握中国海关大权达40余年之久。",
+          "sourceIds": [
+            "ref-c1-s15-l105-list"
+          ]
+        },
+        {
+          "id": 31,
+          "type": "single",
+          "stem": "以下城市中，属于1842年《南京条约》首批规定开放的通商口岸是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "南京"
+            },
+            {
+              "id": "B",
+              "label": "汉口"
+            },
+            {
+              "id": "C",
+              "label": "营口"
+            },
+            {
+              "id": "D",
+              "label": "宁波"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。1842年《南京条约》开放的5个港口是广州、厦门、福州、宁波、上海。（避坑：单选题经常用“南京”作为干扰项，实际上南京是《天津条约》开放的）。",
+          "sourceIds": [
+            "ref-c1-s16-l109-list"
+          ]
+        },
+        {
+          "id": 32,
+          "type": "single",
+          "stem": "规定外国商船可以自由在各通商口岸转口，其商品不需要重新课税的不平等条约是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《南京条约》"
+            },
+            {
+              "id": "B",
+              "label": "中美《望厦条约》"
+            },
+            {
+              "id": "C",
+              "label": "1858年《天津条约》"
+            },
+            {
+              "id": "D",
+              "label": "中俄《北京条约》"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1858年《天津条约》进一步规定，外国商船可以自由在各通商口岸转口，其商品不需要重新课税。",
+          "sourceIds": [
+            "ref-c1-s17-l115-list"
+          ]
+        },
+        {
+          "id": 33,
+          "type": "single",
+          "stem": "外国在中国开设的第一家银行是1845年进入中国的（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "汇丰银行"
+            },
+            {
+              "id": "B",
+              "label": "花旗银行"
+            },
+            {
+              "id": "C",
+              "label": "丽如银行"
+            },
+            {
+              "id": "D",
+              "label": "麦加利银行"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。外国在中国开设的第一家银行是英国丽如银行（又称英国东方银行）。",
+          "sourceIds": [
+            "ref-c1-s18-l119-list"
+          ]
+        },
+        {
+          "id": 34,
+          "type": "single",
+          "stem": "基督教在中国设立的最大的出版机构是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "广学会"
+            },
+            {
+              "id": "B",
+              "label": "强学会"
+            },
+            {
+              "id": "C",
+              "label": "同盟会"
+            },
+            {
+              "id": "D",
+              "label": "南学会"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。基督教在中国设立的最大的出版机构是广学会。（避坑：不要和维新派办的“强学会”、“南学会”搞混）。",
+          "sourceIds": [
+            "ref-c1-s19-l124-list"
+          ]
+        },
+        {
+          "id": 35,
+          "type": "single",
+          "stem": "广学会发行的刊物在介绍西方史地、政治、文化的同时，也宣扬殖民主义奴化思想，该刊物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《时务报》"
+            },
+            {
+              "id": "B",
+              "label": "《万国公报》"
+            },
+            {
+              "id": "C",
+              "label": "《新青年》"
+            },
+            {
+              "id": "D",
+              "label": "《国闻报》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。广学会发行的刊物是《万国公报》。",
+          "sourceIds": [
+            "ref-c1-s19-l124-list"
+          ]
+        },
+        {
+          "id": 36,
+          "type": "single",
+          "stem": "中国近代史上中国人民第一次大规模的反侵略武装斗争是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "太平天国起义"
+            },
+            {
+              "id": "B",
+              "label": "义和团运动"
+            },
+            {
+              "id": "C",
+              "label": "台湾人民反割台斗争"
+            },
+            {
+              "id": "D",
+              "label": "三元里人民的抗英斗争"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。三元里人民的抗英斗争是中国近代史上中国人民第一次大规模的反侵略武装斗争。（避坑：“第一次”、“大规模”、“反侵略武装斗争”这几个定性词是极高频考点）。",
+          "sourceIds": [
+            "ref-c1-s20-l128-list"
+          ]
+        },
+        {
+          "id": 37,
+          "type": "single",
+          "stem": "1884年中法战争期间，举行罢工拒绝修理受伤的法舰的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "香港中国造船工人"
+            },
+            {
+              "id": "B",
+              "label": "上海造船工人"
+            },
+            {
+              "id": "C",
+              "label": "广州码头工人"
+            },
+            {
+              "id": "D",
+              "label": "威海卫爱国商人"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。1884年中法战争期间，是香港中国造船工人举行罢工，拒绝修理受伤的法舰。",
+          "sourceIds": [
+            "ref-c1-s20-l129-list"
+          ]
+        },
+        {
+          "id": 38,
+          "type": "single",
+          "stem": "导致近代中国反侵略战争屡遭失败的内部因素中，“更根本的原因”是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "经济技术的落后"
+            },
+            {
+              "id": "B",
+              "label": "思想观念的保守"
+            },
+            {
+              "id": "C",
+              "label": "社会制度的腐败"
+            },
+            {
+              "id": "D",
+              "label": "武器装备的劣势"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。从中国内部因素来分析，反侵略战争失败的原因一是社会制度的腐败，二是经济技术的落后，而前者则是更根本的原因。",
+          "sourceIds": [
+            "ref-c1-s23-l145-list"
+          ]
+        },
+        {
+          "id": 39,
+          "type": "single",
+          "stem": "被称为近代中国“睁眼看世界的第一人”的历史人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "魏源"
+            },
+            {
+              "id": "B",
+              "label": "林则徐"
+            },
+            {
+              "id": "C",
+              "label": "严复"
+            },
+            {
+              "id": "D",
+              "label": "郑观应"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。林则徐是近代中国睁眼看世界的第一人。",
+          "sourceIds": [
+            "ref-c1-s24-l149-list"
+          ]
+        },
+        {
+          "id": 40,
+          "type": "single",
+          "stem": "魏源在1843年1月编成的《海国图志》中，提出的核心思想主张是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "物竞天择，适者生存"
+            },
+            {
+              "id": "B",
+              "label": "中学为体，西学为用"
+            },
+            {
+              "id": "C",
+              "label": "师夷长技以制夷"
+            },
+            {
+              "id": "D",
+              "label": "振兴实业，实业救国"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。在《海国图志》中，魏源提出了“师夷长技以制夷”的思想。",
+          "sourceIds": [
+            "ref-c1-s24-l151-list"
+          ]
+        },
+        {
+          "id": 41,
+          "type": "single",
+          "stem": "在《盛世危言》中提出大力发展民族工商业，同西方国家进行“商战”的早期维新思想家是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "王韬"
+            },
+            {
+              "id": "B",
+              "label": "薛福成"
+            },
+            {
+              "id": "C",
+              "label": "郑观应"
+            },
+            {
+              "id": "D",
+              "label": "马建忠"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。郑观应在《盛世危言》中提出了大力发展民族工商业，同西方国家进行“商战”的主张。",
+          "sourceIds": [
+            "ref-c1-s24-l153-list"
+          ]
+        },
+        {
+          "id": 42,
+          "type": "single",
+          "stem": "甲午战争后，用“物竞天择”“适者生存”的社会进化论思想，为中国人的危机意识和民族意识提供理论根据的著作是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《四洲志》"
+            },
+            {
+              "id": "B",
+              "label": "《天演论》"
+            },
+            {
+              "id": "C",
+              "label": "《变法通议》"
+            },
+            {
+              "id": "D",
+              "label": "《新学伪经考》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。甲午战争后，严复翻译了《天演论》，用“物竞天择”“适者生存”的社会进化论思想提供了理论根据。",
+          "sourceIds": [
+            "ref-c1-s25-l157-list"
+          ]
+        },
+        {
+          "id": 43,
+          "type": "single",
+          "stem": "林则徐在广州主持节译了英国人慕瑞的《世界地理大全》，编成的叙述世界五大洲30多个国家地理、历史情况的著作是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《海国图志》"
+            },
+            {
+              "id": "B",
+              "label": "《夷情备采》"
+            },
+            {
+              "id": "C",
+              "label": "《盛世危言》"
+            },
+            {
+              "id": "D",
+              "label": "《四洲志》"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。林则徐主持节译《世界地理大全》，编成的是《四洲志》。",
+          "sourceIds": [
+            "ref-c1-s24-l149-list"
+          ]
+        },
+        {
+          "id": 44,
+          "type": "single",
+          "stem": "近代中国反侵略战争中，使得“经济技术落后的状况长期得不到改变”的直接原因是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "帝国主义的封锁"
+            },
+            {
+              "id": "B",
+              "label": "社会制度的腐败"
+            },
+            {
+              "id": "C",
+              "label": "自然经济的束缚"
+            },
+            {
+              "id": "D",
+              "label": "军阀割据混战"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。正是社会制度的腐败，才使得经济技术落后的状况长期得不到改变。",
+          "sourceIds": [
+            "ref-c1-s23-l145-list"
+          ]
+        },
+        {
+          "id": 45,
+          "type": "single",
+          "stem": "19世纪70年代以后，早期的维新思想家（如王韬、薛福成等）在向西方学习的问题上，表现出的新特点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "仅仅主张学习西方的军事武器"
+            },
+            {
+              "id": "B",
+              "label": "坚决排斥西方的政治学说"
+            },
+            {
+              "id": "C",
+              "label": "不仅主张学习西方的科学技术，同时也要求吸纳西方的政治、经济学说"
+            },
+            {
+              "id": "D",
+              "label": "认为“中体西用”是唯一出路"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。19世纪70年代以后，王韬、薛福成、马建忠、郑观应等人不仅主张学习西方的科学技术，同时也要求吸纳西方的政治、经济学说。",
+          "sourceIds": [
+            "ref-c1-s24-l152-list"
+          ]
+        },
+        {
+          "id": 46,
+          "type": "multiple",
+          "stem": "西方列强对中国的侵略方式主要有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "军事侵略"
+            },
+            {
+              "id": "B",
+              "label": "政治控制"
+            },
+            {
+              "id": "C",
+              "label": "经济掠夺"
+            },
+            {
+              "id": "D",
+              "label": "文化渗透"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。西方列强对中国的侵略方式包括军事侵略、政治控制、经济掠夺和文化渗透。",
+          "sourceIds": [
+            "ref-c1-s11-l75-list",
+            "ref-c1-s11-l76-list",
+            "ref-c1-s11-l77-list",
+            "ref-c1-s11-l78-list"
+          ]
+        },
+        {
+          "id": 47,
+          "type": "multiple",
+          "stem": "1900年7月，俄国入侵中国东北时先后制造的惨案有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "旅顺大屠杀惨案"
+            },
+            {
+              "id": "B",
+              "label": "海兰泡惨案"
+            },
+            {
+              "id": "C",
+              "label": "江东六十四屯惨案"
+            },
+            {
+              "id": "D",
+              "label": "济南惨案"
+            }
+          ],
+          "correctAnswers": [
+            "B",
+            "C"
+          ],
+          "explanation": "BC。1900年7月，俄国入侵中国东北时，先后制造了海兰泡惨案和江东六十四屯惨案。（避坑：旅顺大屠杀是日军制造的）。",
+          "sourceIds": [
+            "ref-c1-s12-l83-list"
+          ]
+        },
+        {
+          "id": 48,
+          "type": "multiple",
+          "stem": "关于英国侵占中国领土及所通过的不平等条约，以下对应正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1842年《南京条约》——割让香港岛给英国"
+            },
+            {
+              "id": "B",
+              "label": "1860年中英《北京条约》——割去九龙半岛南端和昂船洲"
+            },
+            {
+              "id": "C",
+              "label": "1858年《瑷珲条约》——割让威海卫"
+            },
+            {
+              "id": "D",
+              "label": "1901年《辛丑条约》——割让广州湾"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B"
+          ],
+          "explanation": "AB。1842年《南京条约》割让香港岛；1860年中英《北京条约》割去九龙半岛南端和昂船洲。",
+          "sourceIds": [
+            "ref-c1-s13-l87-list"
+          ]
+        },
+        {
+          "id": 49,
+          "type": "multiple",
+          "stem": "俄国在近代通过一系列不平等条约侵占了中国大片领土，这些条约包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《瑷珲条约》"
+            },
+            {
+              "id": "B",
+              "label": "中俄《北京条约》"
+            },
+            {
+              "id": "C",
+              "label": "《勘分西北界约记》"
+            },
+            {
+              "id": "D",
+              "label": "《改订伊犁条约》"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四个条约均为俄国侵占中国领土所签定的不平等条约，共计侵占150多万平方公里。",
+          "sourceIds": [
+            "ref-c1-s13-l89-list",
+            "ref-c1-s13-l90-list",
+            "ref-c1-s13-l91-list",
+            "ref-c1-s13-l92-list"
+          ]
+        },
+        {
+          "id": 50,
+          "type": "multiple",
+          "stem": "关于葡萄牙侵占澳门的历史过程，以下说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "葡萄牙人在明末就已经开始用欺诈手段借居澳门"
+            },
+            {
+              "id": "B",
+              "label": "1849年，葡萄牙武力强占澳门半岛"
+            },
+            {
+              "id": "C",
+              "label": "1887年，胁迫清政府订立《中葡和好通商条约》"
+            },
+            {
+              "id": "D",
+              "label": "条约中明确允许葡萄牙“永居管理澳门”"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。葡萄牙人在明末就已经开始用欺诈手段借居澳门，1849年武力强占，1887年签订《中葡和好通商条约》获取“永居管理澳门”特权。",
+          "sourceIds": [
+            "ref-c1-s13-l88-list"
+          ]
+        },
+        {
+          "id": 51,
+          "type": "multiple",
+          "stem": "以下选项中，关于帝国主义列强割占中国领土与条约的对应，完全正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "英国签订《南京条约》——割让香港岛"
+            },
+            {
+              "id": "B",
+              "label": "日本签订《马关条约》——割去台湾全岛及所有附属各岛屿和澎湖列岛"
+            },
+            {
+              "id": "C",
+              "label": "俄国签订中俄《北京条约》——割去乌苏里江以东40万平方公里领土"
+            },
+            {
+              "id": "D",
+              "label": "俄国签订《勘分西北界约记》——割去中国西北44万平方公里领土"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四个选项的条约及对应割地内容完全符合史实。",
+          "sourceIds": [
+            "ref-c1-s13-l87-list",
+            "ref-c1-s13-l90-list",
+            "ref-c1-s13-l91-list",
+            "ref-c1-s13-l93-list"
+          ]
+        },
+        {
+          "id": 52,
+          "type": "multiple",
+          "stem": "1861年，在外国公使驻京前后，中国发生了一场宫廷政变，慈禧太后和恭亲王奕䜣掌握了政权。这场政变在历史上又被称为（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "戊戌政变"
+            },
+            {
+              "id": "B",
+              "label": "北京政变"
+            },
+            {
+              "id": "C",
+              "label": "辛酉政变"
+            },
+            {
+              "id": "D",
+              "label": "甲申易枢"
+            }
+          ],
+          "correctAnswers": [
+            "B",
+            "C"
+          ],
+          "explanation": "BC。1861年的这场宫廷政变即“北京政变”，又称“辛酉政变”。",
+          "sourceIds": [
+            "ref-c1-s15-l103-list"
+          ]
+        },
+        {
+          "id": 53,
+          "type": "multiple",
+          "stem": "根据1842年《南京条约》的规定，以下被开放为通商口岸的港口城市有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "广州"
+            },
+            {
+              "id": "B",
+              "label": "厦门"
+            },
+            {
+              "id": "C",
+              "label": "福州"
+            },
+            {
+              "id": "D",
+              "label": "上海"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。广州、厦门、福州、上海（以及宁波）均是《南京条约》开放的首批通商口岸。",
+          "sourceIds": [
+            "ref-c1-s16-l109-list"
+          ]
+        },
+        {
+          "id": 54,
+          "type": "multiple",
+          "stem": "以下城市中，属于1858年《天津条约》规定开放的通商口岸有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "台湾（后定为台南）"
+            },
+            {
+              "id": "B",
+              "label": "汉口"
+            },
+            {
+              "id": "C",
+              "label": "南京"
+            },
+            {
+              "id": "D",
+              "label": "镇江"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。1858年《天津条约》开放了牛庄、登州、台湾、淡水、潮州、琼州、汉口、九江、南京、镇江10个口岸，这四个选项全在其中。",
+          "sourceIds": [
+            "ref-c1-s16-l110-list"
+          ]
+        },
+        {
+          "id": 55,
+          "type": "multiple",
+          "stem": "1844年，进一步规定倘中国以后要变更税例，必须得到对方“议允”，正式把协定关税条款订入条约的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中美《望厦条约》"
+            },
+            {
+              "id": "B",
+              "label": "中法《黄埔条约》"
+            },
+            {
+              "id": "C",
+              "label": "中俄《瑷珲条约》"
+            },
+            {
+              "id": "D",
+              "label": "中英《北京条约》"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B"
+          ],
+          "explanation": "AB。1844年中美《望厦条约》和中法《黄埔条约》正式把协定关税的条款订入了条约。",
+          "sourceIds": [
+            "ref-c1-s17-l114-list"
+          ]
+        },
+        {
+          "id": 56,
+          "type": "multiple",
+          "stem": "资本-帝国主义列强控制中国内政、外交的相关表现主要包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "允许外国公使常驻北京"
+            },
+            {
+              "id": "B",
+              "label": "扩大领事裁判权的范围"
+            },
+            {
+              "id": "C",
+              "label": "外国人直接掌握中国海关大权"
+            },
+            {
+              "id": "D",
+              "label": "把中国当权者变成自己的代理人和驯服工具"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。选项A、B、C均是列强控制内政外交的具体表现，选项D是列强操纵内政外交的核心目的。",
+          "sourceIds": [
+            "ref-c1-s14-l98-list",
+            "ref-c1-s15-l102-list",
+            "ref-c1-s15-l104-list",
+            "ref-c1-s15-l105-list"
+          ]
+        },
+        {
+          "id": 57,
+          "type": "multiple",
+          "stem": "从中国内部因素来分析，近代历次反侵略战争失败的主要原因有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "社会制度的腐败"
+            },
+            {
+              "id": "B",
+              "label": "帝国主义的强大"
+            },
+            {
+              "id": "C",
+              "label": "经济技术的落后"
+            },
+            {
+              "id": "D",
+              "label": "民族资产阶级的软弱"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "C"
+          ],
+          "explanation": "AC。从中国内部因素来分析，主要有以下两个方面：一是社会制度的腐败，二是经济技术的落后。",
+          "sourceIds": [
+            "ref-c1-s23-l145-list"
+          ]
+        },
+        {
+          "id": 58,
+          "type": "multiple",
+          "stem": "关于魏源及其著作《海国图志》，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "于1843年1月编成"
+            },
+            {
+              "id": "B",
+              "label": "书中提出了“师夷长技以制夷”的思想"
+            },
+            {
+              "id": "C",
+              "label": "包含了总结鸦片战争经验教训、论述海防战略战术的《筹海篇》"
+            },
+            {
+              "id": "D",
+              "label": "提出大力发展民族工商业，进行“商战”"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。选项D是郑观应在《盛世危言》中提出的主张，不属于《海国图志》的内容。",
+          "sourceIds": [
+            "ref-c1-s24-l150-list",
+            "ref-c1-s24-l151-list"
+          ]
+        },
+        {
+          "id": 59,
+          "type": "multiple",
+          "stem": "19世纪70年代以后，具有一定程度反对封建专制民主思想的早期维新派代表人物主要有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "王韬"
+            },
+            {
+              "id": "B",
+              "label": "薛福成"
+            },
+            {
+              "id": "C",
+              "label": "马建忠"
+            },
+            {
+              "id": "D",
+              "label": "郑观应"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。王韬、薛福成、马建忠、郑观应等人是19世纪70年代以后早期维新思想的重要代表人物。",
+          "sourceIds": [
+            "ref-c1-s24-l152-list"
+          ]
+        },
+        {
+          "id": 60,
+          "type": "multiple",
+          "stem": "郑观应在《盛世危言》中提出的具有重要思想启蒙意义的主张包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "大力发展民族工商业"
+            },
+            {
+              "id": "B",
+              "label": "同西方国家进行“商战”"
+            },
+            {
+              "id": "C",
+              "label": "设立议院"
+            },
+            {
+              "id": "D",
+              "label": "实行“君民共主”制度"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。郑观应在《盛世危言》中提出大力发展民族工商业，同西方国家进行“商战”，设立议院，实行“君民共主”制度等主张。",
+          "sourceIds": [
+            "ref-c1-s24-l153-list"
+          ]
+        },
+        {
+          "id": 61,
+          "type": "judge",
+          "stem": "（ ） 鸦片战争后，中国新兴的民族资本主义经济虽然已经产生，并且在外国资本的带动下发展迅速、力量日益强大。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。 错在“发展迅速、力量强大”。民族资本主义经济在压迫下发展很缓慢，力量很软弱。",
+          "sourceIds": [
+            "ref-c1-s6-l49-list"
+          ]
+        },
+        {
+          "id": 62,
+          "type": "judge",
+          "stem": "（ ） 近代中国，资本-帝国主义侵略势力不但逐步操纵了中国的财政和经济命脉，而且逐步控制了中国的政治。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。",
+          "sourceIds": [
+            "ref-c1-s6-l46-list"
+          ]
+        },
+        {
+          "id": 63,
+          "type": "judge",
+          "stem": "（ ） 鸦片战争后，中国自然经济的基础完全没有遭到破坏，依旧以绝对优势保持着原本的状态。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。 错在“完全没有遭到破坏”。自然经济的基础“虽然遭到破坏”，但是封建地主土地所有制依然保持。",
+          "sourceIds": [
+            "ref-c1-s6-l48-list"
+          ]
+        },
+        {
+          "id": 64,
+          "type": "judge",
+          "stem": "（ ） 帝国主义列强为了自身利益，分别支持不同的政治势力以分裂中国，使近代中国处于不统一状态。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。",
+          "sourceIds": [
+            "ref-c1-s6-l50-list"
+          ]
+        },
+        {
+          "id": 65,
+          "type": "judge",
+          "stem": "（ ） 近代中国的封建势力日益成为支配中国的决定性力量。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。 偷换概念。支配中国的决定性力量是“资本-帝国主义侵略势力”，封建势力是它们的“社会基础和统治支柱”。",
+          "sourceIds": [
+            "ref-c1-s6-l46-list"
+          ]
+        },
+        {
+          "id": 66,
+          "type": "judge",
+          "stem": "（ ） 中国封建社会政治的基本特征是实行高度中央集权的封建君主专制制度。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。",
+          "sourceIds": [
+            "ref-c1-s4-l30-list"
+          ]
+        },
+        {
+          "id": 67,
+          "type": "judge",
+          "stem": "（ ） 中国封建社会的社会结构核心是宗族家长制，主要突出君权、政权和神权。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑： 宗族家长制突出的不是政权和神权，而是君权、父权、夫权）。",
+          "sourceIds": [
+            "ref-c1-s4-l35-list"
+          ]
+        },
+        {
+          "id": 68,
+          "type": "judge",
+          "stem": "（ ） 在中国封建社会，自给自足的自然经济占主要地位。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。",
+          "sourceIds": [
+            "ref-c1-s4-l27-list"
+          ]
+        },
+        {
+          "id": 69,
+          "type": "judge",
+          "stem": "（ ） 封建统治者在确立儒家思想为正统的同时，严厉排斥佛教、道教，并坚决抵制法家思想。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑： 统治者并非排斥，而是让儒家与佛教、道教相互吸收、融合，共同为维护封建统治服务；同时吸收法家思想，推行严刑峻法）。",
+          "sourceIds": [
+            "ref-c1-s4-l33-list"
+          ]
+        },
+        {
+          "id": 70,
+          "type": "judge",
+          "stem": "（ ） 从秦始皇建立中央集权制的封建帝国开始，历朝统治者为了巩固统治，不断加强皇权以统治人民，并加紧对地方官员的控制和监督。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。",
+          "sourceIds": [
+            "ref-c1-s4-l31-list"
+          ]
+        },
+        {
+          "id": 71,
+          "type": "judge",
+          "stem": "（ ） 近代中国诞生的新兴的被压迫阶级是民族资产阶级。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。新兴的被压迫阶级是工人阶级，而不是民族资产阶级。",
+          "sourceIds": [
+            "ref-c1-s7-l55-list"
+          ]
+        },
+        {
+          "id": 72,
+          "type": "judge",
+          "stem": "（ ） 中国的民族资本家经营的企业，虽然发展缓慢，但在国民政府的支持下，最终在中国社会经济中占有了主要地位。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：前半句看似合理，但陷阱在后半句。民族资本家受到三座大山的压迫，发展缓慢，始终未能在中国社会经济中占主要地位）。",
+          "sourceIds": [
+            "ref-c1-s8-l62-list"
+          ]
+        },
+        {
+          "id": 73,
+          "type": "judge",
+          "stem": "（ ） 官僚买办资本家是利用政治特权和与外国资本的紧密联系，在剥削劳动人民和挤压民族资本的过程中逐渐形成和发展起来的。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。",
+          "sourceIds": [
+            "ref-c1-s8-l61-list"
+          ]
+        },
+        {
+          "id": 74,
+          "type": "judge",
+          "stem": "（ ） 占支配地位的近代中国社会的主要矛盾，是帝国主义和中华民族的矛盾，以及封建主义和人民大众的矛盾。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。",
+          "sourceIds": [
+            "ref-c1-s9-l66-list"
+          ]
+        },
+        {
+          "id": 75,
+          "type": "judge",
+          "stem": "（ ） 在近代中国社会的主要矛盾中，封建主义和人民大众的矛盾是最主要的矛盾。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：出题人非常喜欢把“封建主义和人民大众”偷换成最主要矛盾。实际上，帝国主义和中华民族的矛盾才是最主要的矛盾）。",
+          "sourceIds": [
+            "ref-c1-s9-l66-list"
+          ]
+        },
+        {
+          "id": 76,
+          "type": "judge",
+          "stem": "（ ） 近代以来中华民族面临的两大主要任务：一是推翻帝国主义、封建主义联合统治的半殖民地半封建的社会制度，争得民族独立和人民解放；二是改变中国经济技术落后的面貌，实现国家富强和人民幸福。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。（这两大任务是必须整段背诵的核心论述）。",
+          "sourceIds": [
+            "ref-c1-s10-l70-list",
+            "ref-c1-s10-l71-list"
+          ]
+        },
+        {
+          "id": 77,
+          "type": "judge",
+          "stem": "（ ） 1894年11月，俄国军队在甲午战争中制造了旅顺大屠杀惨案，连续屠杀中国居民2万余人。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。制造旅顺大屠杀惨案的是日军，而不是俄军。",
+          "sourceIds": [
+            "ref-c1-s12-l82-list"
+          ]
+        },
+        {
+          "id": 78,
+          "type": "judge",
+          "stem": "（ ） 1901年《辛丑条约》规定，外国军队有权在北京使馆区和北京至大沽、山海关一线包括天津、唐山等12处“留兵驻守”。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。该规定确实出自1901年的《辛丑条约》，列强由此获得了驻兵特权。",
+          "sourceIds": [
+            "ref-c1-s13-l94-list"
+          ]
+        },
+        {
+          "id": 79,
+          "type": "judge",
+          "stem": "（ ） 俄国利用英、法发动第二次鸦片战争之机，于1858年胁迫签订中俄《北京条约》，割去了黑龙江以北60万平方公里领土。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。割去黑龙江以北60万平方公里领土的是1858年的《瑷珲条约》，不是中俄《北京条约》。",
+          "sourceIds": [
+            "ref-c1-s13-l89-list"
+          ]
+        },
+        {
+          "id": 80,
+          "type": "judge",
+          "stem": "（ ） 1860年，英国通过中英《北京条约》，不仅割去了香港岛，还割去了九龙半岛南端和昂船洲。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。《南京条约》在1842年割去了香港岛；1860年割去九龙半岛南端和昂船洲的是中英《北京条约》。",
+          "sourceIds": [
+            "ref-c1-s13-l87-list"
+          ]
+        },
+        {
+          "id": 81,
+          "type": "judge",
+          "stem": "（ ） 葡萄牙人在清朝末年才首次涉足澳门，并于1887年通过条约取得了永居管理权。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。葡萄牙人在明末就已经开始用欺诈手段借居澳门了，不是清朝末年才涉足。",
+          "sourceIds": [
+            "ref-c1-s13-l88-list"
+          ]
+        },
+        {
+          "id": 82,
+          "type": "judge",
+          "stem": "（ ） 通过侵华战争，帝国主义列强不仅侵占了中国领土、划分势力范围，还获得了在中国领土上驻兵的特权。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。帝国主义列强正是通过侵华战争获得了在中国领土上驻兵的特权。",
+          "sourceIds": [
+            "ref-c1-s13-l94-list"
+          ]
+        },
+        {
+          "id": 83,
+          "type": "judge",
+          "stem": "（ ） 为了统治中国，资本-帝国主义列强在政治上采取的主要方式是直接推翻中国政府，建立完全由外国人主导的殖民地政权。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。列强的主要方式不是直接推翻并建立殖民地政权，而是“控制中国政府”，把中国当权者变成自己的“代理人和驯服工具”。",
+          "sourceIds": [
+            "ref-c1-s14-l98-list"
+          ]
+        },
+        {
+          "id": 84,
+          "type": "judge",
+          "stem": "（ ） 1842年《南京条约》规定，开放广州、厦门、福州、宁波、南京5个港口城市为通商口岸。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（高频避坑点：《南京条约》里没有开放“南京”，而是开放了上海。南京被划为通商口岸是在后来的《天津条约》中）。",
+          "sourceIds": [
+            "ref-c1-s16-l109-list"
+          ]
+        },
+        {
+          "id": 85,
+          "type": "judge",
+          "stem": "（ ） 1844年中美《望厦条约》不仅扩大了领事裁判权的范围，还正式把协定关税的条款订入了条约。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。《望厦条约》扩大了领事裁判权的范围，同时它和《黄埔条约》一起把协定关税条款订入了条约。",
+          "sourceIds": [
+            "ref-c1-s15-l104-list",
+            "ref-c1-s17-l114-list"
+          ]
+        },
+        {
+          "id": 86,
+          "type": "judge",
+          "stem": "（ ） 美国人赫德自1863年任总税务司开始，直到1908年回国，掌握中国海关大权达40余年之久。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。赫德是英国人，不是美国人。出题人有时会在国籍细节上设错。",
+          "sourceIds": [
+            "ref-c1-s15-l105-list"
+          ]
+        },
+        {
+          "id": 87,
+          "type": "judge",
+          "stem": "（ ） 外国在中国开设的第一家银行是1845年进入中国的英国东方银行，这家银行又称丽如银行。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。英国东方银行和丽如银行是同一家银行的两个称呼。",
+          "sourceIds": [
+            "ref-c1-s18-l119-list"
+          ]
+        },
+        {
+          "id": 88,
+          "type": "judge",
+          "stem": "（ ） 外国教会中的某些势力利用宣传宗教和西学的名义，其真实目的之一是为资本-帝国主义的侵略制造舆论。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。列强正是利用宗教和西学的名义，为侵略制造舆论。",
+          "sourceIds": [
+            "ref-c1-s19-l123-list"
+          ]
+        },
+        {
+          "id": 89,
+          "type": "judge",
+          "stem": "（ ） 《万国公报》是资产阶级维新派为了宣传变法图强思想而设立的最大的出版机构所发行的刊物。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：这是选择判断题最爱出的陷阱） 《万国公报》是基督教设立的广学会发行的刊物，用来宣扬殖民主义奴化思想，并不是维新派创办的。",
+          "sourceIds": [
+            "ref-c1-s19-l124-list"
+          ]
+        },
+        {
+          "id": 90,
+          "type": "judge",
+          "stem": "（ ） 1841年5月，法国军队在广州郊区三元里一带的淫掠暴行，激起了当地乡民的义愤，引发了自发的大规模反侵略武装斗争。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。引发三元里抗英斗争的是英军，而不是法军。",
+          "sourceIds": [
+            "ref-c1-s20-l128-list"
+          ]
+        },
+        {
+          "id": 91,
+          "type": "judge",
+          "stem": "（ ） 1884年中法战争期间，不仅香港中国造船工人举行罢工，爱国商人也举行了罢市，码头工人则拒绝运送法货。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这完整体现了当时人民群众反抗外国武装侵略斗争的英雄气概。",
+          "sourceIds": [
+            "ref-c1-s20-l129-list"
+          ]
+        },
+        {
+          "id": 92,
+          "type": "judge",
+          "stem": "（ ） 在近代中国反侵略战争失败的内部因素中，经济技术的落后是导致失败的最根本原因。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。反侵略战争失败的内部因素中，社会制度的腐败才是更根本的原因，正是它使得经济技术落后的状况长期得不到改变。",
+          "sourceIds": [
+            "ref-c1-s23-l145-list"
+          ]
+        },
+        {
+          "id": 93,
+          "type": "judge",
+          "stem": "（ ） 近代中国睁眼看世界的第一人林则徐编成了《海国图志》，并在书中明确提出了“师夷长技以制夷”的思想。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：张冠李戴） 睁眼看世界的第一人确实是林则徐，但他编成的是《四洲志》；而编成《海国图志》并提出“师夷长技以制夷”的是魏源。",
+          "sourceIds": [
+            "ref-c1-s24-l149-list",
+            "ref-c1-s24-l150-list",
+            "ref-c1-s24-l151-list"
+          ]
+        },
+        {
+          "id": 94,
+          "type": "judge",
+          "stem": "（ ） 19世纪70年代以后，王韬、薛福成、马建忠、郑观应等人的共同特点是具有比较强烈的反对外国侵略、追求中国独立富强的爱国思想。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。他们的共同特点，就是具有比较强烈的反对外国侵略、追求中国独立富强的爱国思想，以及具有一定程度反对封建专制的民主思想。",
+          "sourceIds": [
+            "ref-c1-s24-l152-list"
+          ]
+        },
+        {
+          "id": 95,
+          "type": "judge",
+          "stem": "（ ） 在甲午战争后，严复翻译出版了《天演论》，他借用“物竞天择”“适者生存”的社会进化论思想，为当时的危机意识和民族意识提供了理论根据。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。甲午战争后严复翻译的《天演论》（1898年正式出版），确实为这种危机意识和民族意识提供了社会进化论的理论根据。",
+          "sourceIds": [
+            "ref-c1-s25-l157-list"
+          ]
+        }
+      ],
+      "downloads": {
+        "markdown": "/downloads/quizzes/chapter-1.md",
+        "pdf": "/downloads/quizzes/chapter-1.pdf"
+      }
+    },
+    {
+      "id": "xuetong-2",
+      "kind": "xuetong",
+      "chapterNo": 2,
+      "numeral": "二",
+      "title": "（学习通）第二章客观题练习题",
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "type": "single",
+          "stem": "1851年1月，洪秀全率领拜上帝教教众发动起义，建号太平天国的地点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "广东花县"
+            },
+            {
+              "id": "B",
+              "label": "广西省桂平县金田村"
+            },
+            {
+              "id": "C",
+              "label": "湖南全州"
+            },
+            {
+              "id": "D",
+              "label": "江苏南京"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1851年1月，洪秀全率拜上帝教教众在广西省桂平县金田村发动起义，建号太平天国。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "single",
+          "stem": "正式宣告太平天国农民政权建立的标志性事件是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "创立拜上帝教"
+            },
+            {
+              "id": "B",
+              "label": "金田村起义"
+            },
+            {
+              "id": "C",
+              "label": "攻克武昌"
+            },
+            {
+              "id": "D",
+              "label": "1853年3月占领南京，定为首都，改名天京"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。1853年3月，占领南京，定为首都，改名天京，正式宣告太平天国农民政权的建立。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 3,
+          "type": "single",
+          "stem": "最能体现太平天国社会理想和这次农民起义特色的纲领性文件是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《资政新篇》"
+            },
+            {
+              "id": "B",
+              "label": "《天朝田亩制度》"
+            },
+            {
+              "id": "C",
+              "label": "《海国图志》"
+            },
+            {
+              "id": "D",
+              "label": "《劝学篇》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。《天朝田亩制度》是最能体现太平天国社会理想和这次农民起义特色的纲领性文件。（避坑：《资政新篇》是后期的具有资本主义色彩的方案，不要混淆）。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 4,
+          "type": "single",
+          "stem": "《天朝田亩制度》的主张具有进步意义，主要是因为它从根本上否定了（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "封建君主专制制度"
+            },
+            {
+              "id": "B",
+              "label": "封建社会的基础即封建土地所有制"
+            },
+            {
+              "id": "C",
+              "label": "帝国主义的侵略特权"
+            },
+            {
+              "id": "D",
+              "label": "资本主义雇佣剥削制度"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。《天朝田亩制度》的主张，否定了封建社会的基础即封建土地所有制，体现了广大农民要求平均分配土地的强烈愿望。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 5,
+          "type": "single",
+          "stem": "《天朝田亩制度》所描绘的理想天国，在很大程度上具有不切实际的空想性质。在这个理想天国里，社会经济模式的特点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "鼓励自由通商和商品交换"
+            },
+            {
+              "id": "B",
+              "label": "实行资本主义雇佣劳动制"
+            },
+            {
+              "id": "C",
+              "label": "闭塞的自给自足的自然经济，没有商品交换"
+            },
+            {
+              "id": "D",
+              "label": "优先发展近代工矿企业"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。它所描绘的理想天国，仍然是闭塞的自给自足的自然经济，是小农业和家庭手工业相结合的传统生活方式；同时又是一个没有商品交换的和绝对平均的社会。（避坑：多选题极爱把“没有商品交换”和“绝对平均”列出，切记这是其空想性的表现）。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 6,
+          "type": "single",
+          "stem": "洪秀全撷取原始基督教教义中反映下层民众要求的平等思想和某些宗教仪式，从农民斗争的需要出发加以改造，于1843年创立并利用它发动和组织群众的组织是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "天地会"
+            },
+            {
+              "id": "B",
+              "label": "拜上帝教"
+            },
+            {
+              "id": "C",
+              "label": "白莲教"
+            },
+            {
+              "id": "D",
+              "label": "义和团"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1843年，洪秀全创立了拜上帝教，并利用它发动和组织群众。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 7,
+          "type": "single",
+          "stem": "1859年，提出《资政新篇》这一统筹全局的改革方案的太平天国重要人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "洪秀全"
+            },
+            {
+              "id": "B",
+              "label": "洪仁玕"
+            },
+            {
+              "id": "C",
+              "label": "杨秀清"
+            },
+            {
+              "id": "D",
+              "label": "石达开"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1859年，洪仁玕从香港来到天京，不久便提出了一个统筹全局的改革方案——《资政新篇》。（避坑：单选题常把洪秀全和洪仁玕混为一谈，《天朝田亩制度》关联洪秀全，而《资政新篇》是洪仁玕提出的）。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 8,
+          "type": "single",
+          "stem": "《资政新篇》在经济方面主张发展近代事业，其中标志着开始提倡资本主义雇佣劳动制的主张是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "凡天下田，天下人同耕"
+            },
+            {
+              "id": "B",
+              "label": "禁朋党之弊"
+            },
+            {
+              "id": "C",
+              "label": "准富者请人雇工"
+            },
+            {
+              "id": "D",
+              "label": "设立新闻馆以报时事"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。在经济方面，《资政新篇》提出“准富者请人雇工”，这就把向西方的学习扩展到了生产关系领域，即开始提倡资本主义的雇佣劳动制了。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 9,
+          "type": "single",
+          "stem": "《资政新篇》在中国近代“向西方学习”、追求近代化的进程中具有比较重要的意义。它的性质是一个（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "具有空想社会主义色彩的方案"
+            },
+            {
+              "id": "B",
+              "label": "具有封建主义色彩的方案"
+            },
+            {
+              "id": "C",
+              "label": "具有资本主义色彩的方案"
+            },
+            {
+              "id": "D",
+              "label": "具有民主主义色彩的方案"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。《资政新篇》是一个具有资本主义色彩的方案。这是考试中极高频的定性词。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 10,
+          "type": "single",
+          "stem": "严重削弱了太平天国的领导和军事力量，成为太平天国“由盛转衰的分水岭”的历史事件是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "金田起义"
+            },
+            {
+              "id": "B",
+              "label": "天京失陷"
+            },
+            {
+              "id": "C",
+              "label": "湘军攻陷安庆"
+            },
+            {
+              "id": "D",
+              "label": "天京事变"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。天京事变严重地削弱了太平天国的领导和军事力量，成为太平天国由盛转衰的分水岭。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 11,
+          "type": "single",
+          "stem": "1856年9月发生了太平天国内部自相残杀的天京事变。在这场事变中，率部出走的人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "东王杨秀清"
+            },
+            {
+              "id": "B",
+              "label": "北王韦昌辉"
+            },
+            {
+              "id": "C",
+              "label": "翼王石达开"
+            },
+            {
+              "id": "D",
+              "label": "燕王秦日纲"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。在天京事变中，东王杨秀清、北王韦昌辉先后被杀，翼王石达开率部出走。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 12,
+          "type": "single",
+          "stem": "关于《资政新篇》的最终实施情况，下列说法正确的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "顺应了农民的愿望，在太平天国后期得到了广泛的实施"
+            },
+            {
+              "id": "B",
+              "label": "遭到了洪秀全的强烈反对，未能实施"
+            },
+            {
+              "id": "C",
+              "label": "限于当时的历史条件，未能付诸实施"
+            },
+            {
+              "id": "D",
+              "label": "仅在天京城内小范围进行了成功试点"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。洪秀全看到该方案后对其中绝大部分条款表示赞同并下令镌刻颁布，但是限于当时的历史条件，未能付诸实施。（避坑：《天朝田亩制度》和《资政新篇》的最终结局都是“未能付诸实施”）。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 13,
+          "type": "single",
+          "stem": "太平天国起义具有了不同于以往农民战争的新的历史特点，被认为是中国旧式农民战争的最高峰。支撑其成为“最高峰”的重要纲领性文件是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "建立了与清政府对峙的政权"
+            },
+            {
+              "id": "B",
+              "label": "颁布了《天朝田亩制度》和《资政新篇》"
+            },
+            {
+              "id": "C",
+              "label": "沉重打击了外国侵略势力"
+            },
+            {
+              "id": "D",
+              "label": "冲击了孔孟之道的正统权威"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。太平天国起义之所以是“最高峰”，是因为它在经济上用《天朝田亩制度》完整表达了农民对土地的渴望，在政治上用《资政新篇》提出了发展资本主义的方案。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 14,
+          "type": "single",
+          "stem": "太平天国起义不仅打击了清王朝，还在一定程度上削弱了封建统治的精神支柱，这是因为它（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "沉重打击了外国侵略势力"
+            },
+            {
+              "id": "B",
+              "label": "冲击了孔子和儒家经典的正统权威"
+            },
+            {
+              "id": "C",
+              "label": "提出了发展资本主义的方案"
+            },
+            {
+              "id": "D",
+              "label": "坚持斗争了14年之久"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。冲击孔子和儒家经典的正统权威，削弱了封建统治的精神支柱。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 15,
+          "type": "single",
+          "stem": "在19世纪中叶的亚洲民族解放运动中，时间最久、规模最大、影响最深的一次是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "印度民族大起义"
+            },
+            {
+              "id": "B",
+              "label": "中国太平天国农民起义"
+            },
+            {
+              "id": "C",
+              "label": "中国义和团运动"
+            },
+            {
+              "id": "D",
+              "label": "朝鲜甲午农民战争"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。太平天国起义是19世纪中叶亚洲民族解放运动中时间最久、规模最大、影响最深的一次。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 16,
+          "type": "single",
+          "stem": "太平天国起义失败的深刻教训表明，在半殖民地半封建的中国（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "必须建立资产阶级共和国"
+            },
+            {
+              "id": "B",
+              "label": "农民阶级没有任何革命潜力"
+            },
+            {
+              "id": "C",
+              "label": "单纯的农民战争不可能完成争取民族独立和人民解放的历史任务"
+            },
+            {
+              "id": "D",
+              "label": "必须向西方寻求救国真理"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。失败教训表明单纯的农民战争不可能完成民族独立和人民解放的任务。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 17,
+          "type": "single",
+          "stem": "在太平天国起义的影响下，各地各族人民反清斗争风起云涌。当时在北方爆发的著名起义是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "天地会及其支派起义"
+            },
+            {
+              "id": "B",
+              "label": "捻军起义"
+            },
+            {
+              "id": "C",
+              "label": "少数民族大起义"
+            },
+            {
+              "id": "D",
+              "label": "义和团起义"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。受太平天国影响，北方爆发的是捻军起义，南方有天地会起义。（避坑：常考起义的地域对应）。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 18,
+          "type": "single",
+          "stem": "反映了太平天国某些领导人在后期试图通过向外国学习来寻求出路的一种努力，且是中国近代历史上第一个比较系统的发展资本主义的方案是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《海国图志》"
+            },
+            {
+              "id": "B",
+              "label": "《天朝田亩制度》"
+            },
+            {
+              "id": "C",
+              "label": "《资政新篇》"
+            },
+            {
+              "id": "D",
+              "label": "《盛世危言》"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。《资政新篇》是中国近代历史上第一个比较系统的发展资本主义的方案。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 19,
+          "type": "single",
+          "stem": "太平天国起义历时14载，起义军转战18省。天京失陷后，太平天国余部仍坚持斗争达（ ）之久，这些斗争加速了清王朝的衰败。",
+          "options": [
+            {
+              "id": "A",
+              "label": "半年"
+            },
+            {
+              "id": "B",
+              "label": "2年"
+            },
+            {
+              "id": "C",
+              "label": "4年"
+            },
+            {
+              "id": "D",
+              "label": "10年"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。天京失陷后，太平天国余部仍坚持斗争达4年之久。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 20,
+          "type": "single",
+          "stem": "太平天国的领袖们有力地打击了外国侵略势力。以下哪项不属于其在对外斗争中的具体表现？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "拒绝承认不平等条约"
+            },
+            {
+              "id": "B",
+              "label": "严禁鸦片贸易"
+            },
+            {
+              "id": "C",
+              "label": "承认列强在华的某些租界特权以换取中立"
+            },
+            {
+              "id": "D",
+              "label": "同由外国军官组织和指挥的“常胜军”“常捷军”进行英勇斗争"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。太平天国的领袖们拒绝承认不平等条约，并没有承认列强的租界特权。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 21,
+          "type": "single",
+          "stem": "以下哪位历史人物不属于洋务运动时期“洋务派”的代表人物？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "曾国藩"
+            },
+            {
+              "id": "B",
+              "label": "左宗棠"
+            },
+            {
+              "id": "C",
+              "label": "康有为"
+            },
+            {
+              "id": "D",
+              "label": "张之洞"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。康有为是资产阶级维新派的代表人物。封建统治阶级中的部分成员如奕诉、曾国藩、李鸿章、左宗棠、张之洞等被称为“洋务派”。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 22,
+          "type": "single",
+          "stem": "对洋务派兴办洋务事业的指导思想，最先作出比较完整表述的近代历史人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "严复"
+            },
+            {
+              "id": "B",
+              "label": "冯桂芬"
+            },
+            {
+              "id": "C",
+              "label": "林则徐"
+            },
+            {
+              "id": "D",
+              "label": "魏源"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。对洋务派兴办洋务事业的指导思想最先作出比较完整表述的是冯桂芬。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 23,
+          "type": "single",
+          "stem": "“中学为体，西学为用”这一洋务运动的核心指导思想，后来被进一步概括并集中论述于下列哪本著作中？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "《海国图志》"
+            },
+            {
+              "id": "B",
+              "label": "《校邠庐抗议》"
+            },
+            {
+              "id": "C",
+              "label": "《盛世危言》"
+            },
+            {
+              "id": "D",
+              "label": "《劝学篇》"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。这个思想后来在张之洞的《劝学篇》中被进一步概括为“中学为体，西学为用”。（避坑：最先表述的是冯桂芬的《校邠庐抗议》，但将其概括为“中体西用”的是张之洞的《劝学篇》，选择题常把这两者混淆）。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 24,
+          "type": "single",
+          "stem": "洋务派在兴办近代企业的过程中，最早创办的企业是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "江南制造总局"
+            },
+            {
+              "id": "B",
+              "label": "汉阳铁厂"
+            },
+            {
+              "id": "C",
+              "label": "安庆军械所"
+            },
+            {
+              "id": "D",
+              "label": "福州船政局"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。洋务派最早创办的近代企业是1861年的安庆军械所。这是极其高频的必背考点。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 25,
+          "type": "single",
+          "stem": "所谓“中体西用”，就是以中国封建伦理纲常所维护的统治秩序为主体，用（ ）为辅助，并以前者来支配后者。",
+          "options": [
+            {
+              "id": "A",
+              "label": "西方的近代工业和技术"
+            },
+            {
+              "id": "B",
+              "label": "西方的资产阶级政治制度"
+            },
+            {
+              "id": "C",
+              "label": "西方的民主与科学思想"
+            },
+            {
+              "id": "D",
+              "label": "西方的资本主义经济制度"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。所谓“中体西用”，就是以中国封建伦理纲常所维护的统治秩序为主体，用西方的近代工业和技术为辅助。（避坑：洋务派只学西方的技术，绝对不学西方的政治制度）。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 26,
+          "type": "single",
+          "stem": "洋务派兴办的洋务事业主要包含三个方面，以下哪一项不属于这三大主要方面？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "兴办近代企业"
+            },
+            {
+              "id": "B",
+              "label": "建立新式海陆军"
+            },
+            {
+              "id": "C",
+              "label": "创办新式学堂，派遣留学生"
+            },
+            {
+              "id": "D",
+              "label": "设立议院，实行君主立宪"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。设立议院，实行君主立宪是维新派的主张。洋务事业的三大方面是：兴办近代企业、建立新式海陆军、创办新式学堂并派遣留学生。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 27,
+          "type": "single",
+          "stem": "洋务派提出“自强”“求富”的主张，发展军事工业和民用企业，其在客观上起到的作用是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "彻底摧毁了中国的封建剥削制度"
+            },
+            {
+              "id": "B",
+              "label": "对中国的早期工业和民族资本主义的发展起了某些促进作用"
+            },
+            {
+              "id": "C",
+              "label": "使中国成功走上了独立富强的资本主义道路"
+            },
+            {
+              "id": "D",
+              "label": "终结了帝国主义在中国的统治"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。洋务派在客观上对中国的早期工业和民族资本主义的发展起了某些促进作用。（避坑：洋务运动绝不是为了发展资本主义，仅仅是“客观上”起到了促进作用）。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 28,
+          "type": "single",
+          "stem": "中国近代教育的开始标志是洋务运动时期（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "废除八股文，改试策论"
+            },
+            {
+              "id": "B",
+              "label": "确立“中学为体，西学为用”的思想"
+            },
+            {
+              "id": "C",
+              "label": "设立京师大学堂"
+            },
+            {
+              "id": "D",
+              "label": "开办了一批新式学堂，派出了最早的官派留学生"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。开办新式学堂，派出最早的官派留学生，是中国近代教育的开始。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 29,
+          "type": "single",
+          "stem": "标志着以“自强”“求富”为目标的洋务运动彻底失败的历史事件是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中法战争中福建水师的覆没"
+            },
+            {
+              "id": "B",
+              "label": "八国联军侵华战争的爆发"
+            },
+            {
+              "id": "C",
+              "label": "甲午战争中北洋海军全军覆没"
+            },
+            {
+              "id": "D",
+              "label": "戊戌政变的发生"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。甲午战争一役，洋务派经营多年的北洋海军全军覆没，标志着以“自强”“求富”为目标的洋务运动的失败。（避坑：不要和中法战争混淆，标志性事件是甲午战争中的北洋海军覆没）。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 30,
+          "type": "single",
+          "stem": "决定洋务运动必然失败命运的根本原因是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "洋务运动对列强具有依赖性"
+            },
+            {
+              "id": "B",
+              "label": "洋务运动具有封建性"
+            },
+            {
+              "id": "C",
+              "label": "洋务企业的管理具有腐朽性"
+            },
+            {
+              "id": "D",
+              "label": "顽固派的强烈反对和破坏"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。洋务运动具有封建性，企图以吸取西方近代生产技术为手段来维护封建统治，这就决定了它必然失败的命运。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 31,
+          "type": "single",
+          "stem": "洋务派官员一再主张对外“和戎”，其所兴办的企业一切仰赖外国，无异于与虎谋皮。这体现了洋务运动失败原因中的（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "封建性"
+            },
+            {
+              "id": "B",
+              "label": "依赖性"
+            },
+            {
+              "id": "C",
+              "label": "腐朽性"
+            },
+            {
+              "id": "D",
+              "label": "妥协性"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。仰赖外国、无异于与虎谋皮，这正是洋务运动对列强具有“依赖性”的表现。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 32,
+          "type": "single",
+          "stem": "洋务派所办的军事工业完全由官方控制，经营不讲效益，造出的枪炮、轮船往往质量低下。这反映了洋务运动的哪一致命弱点？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "管理具有腐朽性"
+            },
+            {
+              "id": "B",
+              "label": "资金严重匮乏"
+            },
+            {
+              "id": "C",
+              "label": "技术极度落后"
+            },
+            {
+              "id": "D",
+              "label": "遭到民族资本的挤压"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。官方控制、不讲效益、质量低下，这体现了洋务企业管理上的“腐朽性”。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 33,
+          "type": "single",
+          "stem": "洋务运动时期，伴随着资本主义生产方式的出现，中国传统的哪一观念受到了冲击？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "“男尊女卑”观念"
+            },
+            {
+              "id": "B",
+              "label": "“中体西用”观念"
+            },
+            {
+              "id": "C",
+              "label": "“重本抑末”观念"
+            },
+            {
+              "id": "D",
+              "label": "“君权神授”观念"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。伴随着资本主义生产方式的出现，传统的“重本抑末”等观念受到冲击。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 34,
+          "type": "single",
+          "stem": "洋务派既要发展近代企业，却又采取垄断经营、侵吞商股等手段压制民族资本；既想培养洋务人才，又不愿改变封建科举制度。这说明洋务运动（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "具有浓厚的买办性"
+            },
+            {
+              "id": "B",
+              "label": "具有强烈的封建性"
+            },
+            {
+              "id": "C",
+              "label": "受到列强的严密控制"
+            },
+            {
+              "id": "D",
+              "label": "内部管理极度腐败"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。既要近代企业又压制民族资本，既要人才又保留科举，这都是在维护封建统治的根基，体现了其“封建性”。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 35,
+          "type": "single",
+          "stem": "资产阶级维新派在宣传维新主张时著书立说，其中翻译了赫胥黎的《天演论》的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "康有为"
+            },
+            {
+              "id": "B",
+              "label": "梁启超"
+            },
+            {
+              "id": "C",
+              "label": "谭嗣同"
+            },
+            {
+              "id": "D",
+              "label": "严复"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。严复翻译了《天演论》。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 36,
+          "type": "single",
+          "stem": "1895年，联合在京参加会试的1300多名举人共同发起著名的“公车上书”的维新派代表人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "严复"
+            },
+            {
+              "id": "B",
+              "label": "梁启超"
+            },
+            {
+              "id": "C",
+              "label": "康有为"
+            },
+            {
+              "id": "D",
+              "label": "谭嗣同"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。康有为联合1300多名举人发起了“公车上书”。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 37,
+          "type": "single",
+          "stem": "在维新派与守旧派展开的激烈论战中，双方论战的焦点问题不包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "要不要变法"
+            },
+            {
+              "id": "B",
+              "label": "要不要推翻清政府，建立民主共和国"
+            },
+            {
+              "id": "C",
+              "label": "要不要兴民权、设议院，实行君主立宪"
+            },
+            {
+              "id": "D",
+              "label": "要不要废八股、改科举和兴西学"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。（高频避坑点）建立民主共和国是后来资产阶级革命派（孙中山等人）的主张，维新派主张的是保留皇帝的君主立宪制。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 38,
+          "type": "single",
+          "stem": "维新派通过办报纸来制造维新舆论，其中当时影响最大、由梁启超任主笔的报纸是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "天津《国闻报》"
+            },
+            {
+              "id": "B",
+              "label": "上海《时务报》"
+            },
+            {
+              "id": "C",
+              "label": "湖南《湘报》"
+            },
+            {
+              "id": "D",
+              "label": "《万国公报》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。梁启超任主笔的上海《时务报》影响最大。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 39,
+          "type": "single",
+          "stem": "运用西方资产阶级政治学说对封建君主专制制度作了批判，并指出“君末也，民本也”的维新派人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "谭嗣同"
+            },
+            {
+              "id": "B",
+              "label": "严复"
+            },
+            {
+              "id": "C",
+              "label": "康有为"
+            },
+            {
+              "id": "D",
+              "label": "光绪皇帝"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。谭嗣同指出：“君末也，民本也”。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 40,
+          "type": "single",
+          "stem": "针对洋务派“中体西用”的口号，以下哪个派别驳斥道：“未闻以牛为体，以马为用者也”，认为把中学之“体”和西学之“用”凑在一起极其荒谬？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "封建顽固派"
+            },
+            {
+              "id": "B",
+              "label": "洋务派内部的开明派"
+            },
+            {
+              "id": "C",
+              "label": "资产阶级维新派"
+            },
+            {
+              "id": "D",
+              "label": "资产阶级革命派"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。这是维新派对洋务派“中体西用”核心理念的经典驳斥。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 41,
+          "type": "single",
+          "stem": "为了介绍外国变法的经验教训，向光绪皇帝进呈了《日本变政考》《俄彼得变政记》《波兰分灭记》等书的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "严复"
+            },
+            {
+              "id": "B",
+              "label": "康有为"
+            },
+            {
+              "id": "C",
+              "label": "梁启超"
+            },
+            {
+              "id": "D",
+              "label": "谭嗣同"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。康有为向光绪帝进呈了这些外国变法经验的书籍。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 42,
+          "type": "single",
+          "stem": "戊戌变法在政治方面的改革措施中，触动了满洲贵族既得利益的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "裁撤闲散、重叠机构"
+            },
+            {
+              "id": "B",
+              "label": "提倡向皇帝上书言事"
+            },
+            {
+              "id": "C",
+              "label": "准许旗人自谋生计，取消他们享受国家供养的特权"
+            },
+            {
+              "id": "D",
+              "label": "澄清吏治，提倡廉政"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。取消旗人享受国家供养的特权触动了当时满人的既得利益，阻力极大。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 43,
+          "type": "single",
+          "stem": "在戊戌变法的文化教育措施中，当时创设的最高学府是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "广州万木草堂"
+            },
+            {
+              "id": "B",
+              "label": "长沙时务学堂"
+            },
+            {
+              "id": "C",
+              "label": "京师大学堂"
+            },
+            {
+              "id": "D",
+              "label": "国子监"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。最高学府是京师大学堂（北京大学的前身）。A、B选项是之前维新派自己办的学堂，不是政府变法期间创设的全国最高学府。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 44,
+          "type": "single",
+          "stem": "下列哪项改革不属于戊戌变法（百日维新）的内容？（ ）",
+          "options": [
+            {
+              "id": "A",
+              "label": "废除八股，改试策论"
+            },
+            {
+              "id": "B",
+              "label": "裁减旧式绿营兵，改练新式陆军"
+            },
+            {
+              "id": "C",
+              "label": "保护、奖励农工商业和交通采矿业"
+            },
+            {
+              "id": "D",
+              "label": "正式宣布废除科举考试"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。极高频避坑点！戊戌变法只是“废除八股，改试策论”，并没有废除整个科举考试。正式废除科举是在后来的1906年（清末新政期间）。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 45,
+          "type": "single",
+          "stem": "戊戌政变中，慈禧太后重新独揽大权，将光绪皇帝软禁于中南海瀛台所用的名义是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "“垂帘听政”"
+            },
+            {
+              "id": "B",
+              "label": "“训政”"
+            },
+            {
+              "id": "C",
+              "label": "“摄政”"
+            },
+            {
+              "id": "D",
+              "label": "“辅政”"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。慈禧太后是以“训政”的名义独揽大权的。（避坑：选择题常把“听政”和“训政”混淆）。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 46,
+          "type": "single",
+          "stem": "戊戌政变发生后，面对要求其出走日本的劝告，坦然表示“各国变法，无不从流血而成……有之，请自嗣同始”的维新人士是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "康有为"
+            },
+            {
+              "id": "B",
+              "label": "梁启超"
+            },
+            {
+              "id": "C",
+              "label": "谭嗣同"
+            },
+            {
+              "id": "D",
+              "label": "刘光第"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。拒绝出逃并表示“请自嗣同始”的是谭嗣同。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 47,
+          "type": "single",
+          "stem": "下列历史人物中，属于“戊戌六君子”之一的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "康有为"
+            },
+            {
+              "id": "B",
+              "label": "梁启超"
+            },
+            {
+              "id": "C",
+              "label": "康广仁"
+            },
+            {
+              "id": "D",
+              "label": "严复"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。康广仁（康有为的弟弟）是六君子之一。（避坑：康有为和梁启超逃跑了，不在六君子之列；严复是翻译《天演论》的学者，也不在其中）。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 48,
+          "type": "single",
+          "stem": "戊戌政变发生后，被迫逃亡海外的维新派主要领袖是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "谭嗣同、刘光第"
+            },
+            {
+              "id": "B",
+              "label": "康有为、梁启超"
+            },
+            {
+              "id": "C",
+              "label": "杨锐、林旭"
+            },
+            {
+              "id": "D",
+              "label": "杨深秀、康广仁"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。康有为、梁启超被迫逃亡海外。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 49,
+          "type": "single",
+          "stem": "“有心杀贼，无力回天。死得其所，快哉快哉！”这是（ ）就义前所说的悲壮名言。",
+          "options": [
+            {
+              "id": "A",
+              "label": "谭嗣同"
+            },
+            {
+              "id": "B",
+              "label": "林旭"
+            },
+            {
+              "id": "C",
+              "label": "杨锐"
+            },
+            {
+              "id": "D",
+              "label": "康有为"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。这是谭嗣同就义前的绝笔。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 50,
+          "type": "single",
+          "stem": "戊戌变法在经济方面的措施包括广办邮政，修筑铁路，改革财政以及（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "没收地主阶级的土地分给农民"
+            },
+            {
+              "id": "B",
+              "label": "编制国家预决算"
+            },
+            {
+              "id": "C",
+              "label": "把外国资本收归国有"
+            },
+            {
+              "id": "D",
+              "label": "实行“平均地权”"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。改革财政，编制国家预决算是经济措施之一。A和D是后来共产党和孙中山的土地主张。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 51,
+          "type": "single",
+          "stem": "下列不属于“戊戌六君子”名单的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "刘光第"
+            },
+            {
+              "id": "B",
+              "label": "杨深秀"
+            },
+            {
+              "id": "C",
+              "label": "林旭"
+            },
+            {
+              "id": "D",
+              "label": "梁启超"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。梁启超逃亡了，不属于六君子。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 52,
+          "type": "single",
+          "stem": "戊戌维新运动在政治上的性质是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "一场资产阶级性质的民主革命运动"
+            },
+            {
+              "id": "B",
+              "label": "一场资产阶级性质的政治改良运动"
+            },
+            {
+              "id": "C",
+              "label": "一场地主阶级自救运动"
+            },
+            {
+              "id": "D",
+              "label": "一场无产阶级领导的社会革命"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。（避坑：维新运动是“改良运动”，绝对不能选“革命”。资产阶级革命是后来的辛亥革命）。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 53,
+          "type": "single",
+          "stem": "维新派突破了洋务派“中体西用”思想的局限，在政治体制上主张（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "建立资产阶级民主共和国"
+            },
+            {
+              "id": "B",
+              "label": "用君主立宪制取代君主专制制度"
+            },
+            {
+              "id": "C",
+              "label": "实行人民代表大会制度"
+            },
+            {
+              "id": "D",
+              "label": "建立工农民主专政"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。（避坑：维新派主张“君主立宪制”，孙中山代表的革命派才主张建立“资产阶级民主共和国”）。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 54,
+          "type": "single",
+          "stem": "戊戌维新运动失败的主要原因，除了以慈禧太后为首的强大的守旧势力的反对外，还在于（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "帝国主义的直接武装干涉"
+            },
+            {
+              "id": "B",
+              "label": "维新派自身的局限性"
+            },
+            {
+              "id": "C",
+              "label": "缺乏先进的理论指导"
+            },
+            {
+              "id": "D",
+              "label": "袁世凯掌握了强大的新军"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。内因起决定作用，其主要原因是维新派自身的局限以及守旧势力的强大。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 55,
+          "type": "single",
+          "stem": "维新派自身局限性在经济上的突出表现是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "坚决反对发展民族资本主义"
+            },
+            {
+              "id": "B",
+              "label": "提出了“平均地权”的主张"
+            },
+            {
+              "id": "C",
+              "label": "未触及封建主义的经济基础——封建土地所有制"
+            },
+            {
+              "id": "D",
+              "label": "完全依赖外国资本的投入"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。（避坑：“平均地权”是孙中山提出的，维新派根本不敢触碰封建土地所有制，这也是他们失去农民群众支持的原因）。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 56,
+          "type": "single",
+          "stem": "维新派在思想上虽然提倡学习西学，但却不敢根本否定封建主义，其表现是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "彻底批判孔子和儒家思想"
+            },
+            {
+              "id": "B",
+              "label": "打着孔子的旗号，借古代圣贤之名“托古改制”"
+            },
+            {
+              "id": "C",
+              "label": "坚持“中学为体，西学为用”"
+            },
+            {
+              "id": "D",
+              "label": "主张完全废除科举制度"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。思想上打着孔子的旗号“托古改制”体现了不敢彻底否定封建主义。C是洋务派的指导思想。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 57,
+          "type": "single",
+          "stem": "戊戌维新运动时期，维新派对帝国主义抱有幻想。有人甚至建议聘请（ ）来中国任维新的顾问。",
+          "options": [
+            {
+              "id": "A",
+              "label": "英国人赫德"
+            },
+            {
+              "id": "B",
+              "label": "俄国沙皇"
+            },
+            {
+              "id": "C",
+              "label": "日本前首相伊藤博文"
+            },
+            {
+              "id": "D",
+              "label": "美国公使"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。他们对帝国主义抱有幻想，甚至想聘请日本前首相伊藤博文做顾问。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 58,
+          "type": "single",
+          "stem": "谭嗣同慷慨就义前的临终语“有心杀贼，无力回天”，从根本上反映了维新派（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "缺乏严密的组织机构"
+            },
+            {
+              "id": "B",
+              "label": "不掌握实权和军队"
+            },
+            {
+              "id": "C",
+              "label": "脱离人民群众，没有认识到“回天之力”存在于亿万民众之中"
+            },
+            {
+              "id": "D",
+              "label": "遭到了袁世凯的彻底出卖"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。谭嗣同觉得“无力”，是因为维新派没有认识到“回天之力”存在于亿万民众之中，反映了他们惧怕和脱离群众的局限性。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 59,
+          "type": "single",
+          "stem": "戊戌维新运动失败的血的教训表明，在半殖民地半封建的旧中国（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "企图通过统治者走自上而下的改良道路是根本行不通的"
+            },
+            {
+              "id": "B",
+              "label": "必须大力引进西方先进技术才能救国"
+            },
+            {
+              "id": "C",
+              "label": "只有依靠帝国主义的帮助才能实现变法"
+            },
+            {
+              "id": "D",
+              "label": "必须建立强大的海军力量"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。失败教训就是：自上而下的改良道路行不通，必须走自下而上的革命道路。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 60,
+          "type": "single",
+          "stem": "维新派在改革社会风习方面提出了许多新的主张，下列不属于其主张的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "革除吸食鸦片"
+            },
+            {
+              "id": "B",
+              "label": "妇女缠足"
+            },
+            {
+              "id": "C",
+              "label": "提倡“剪辫易服”"
+            },
+            {
+              "id": "D",
+              "label": "彻底废除封建地主土地所有制"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。彻底废除封建土地所有制是后来中共《中国土地法大纲》的内容，维新派不敢提出。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 61,
+          "type": "single",
+          "stem": "维新派大力传播西方资产阶级的社会政治学说和自然科学知识，从而把顽固的封建主义思想壁垒打开了一个缺口。这体现了戊戌维新运动是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "一场思想启蒙运动"
+            },
+            {
+              "id": "B",
+              "label": "一次爱国救亡运动"
+            },
+            {
+              "id": "C",
+              "label": "一场伟大的阶级革命"
+            },
+            {
+              "id": "D",
+              "label": "一次武装暴动"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。传播新思想、打开封建壁垒，体现的是其“思想启蒙运动”的意义。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 62,
+          "type": "single",
+          "stem": "在戊戌政变前夕，由于对帝国主义抱有幻想，维新派分别乞求（ ）公使的支持，结果都落了空。",
+          "options": [
+            {
+              "id": "A",
+              "label": "俄、法、德"
+            },
+            {
+              "id": "B",
+              "label": "英、美、日"
+            },
+            {
+              "id": "C",
+              "label": "英、法、美"
+            },
+            {
+              "id": "D",
+              "label": "俄、日、德"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。乞求的是英、美、日公使的支持。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 63,
+          "type": "single",
+          "stem": "导致民族资产阶级的政治代表维新派势力非常弱小的根本经济原因是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "封建势力过于强大"
+            },
+            {
+              "id": "B",
+              "label": "帝国主义的压迫"
+            },
+            {
+              "id": "C",
+              "label": "民族资本主义经济力量还十分微弱"
+            },
+            {
+              "id": "D",
+              "label": "农民阶级的不配合"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。经济基础决定上层建筑，维新派软弱的根本原因是民族资本主义经济力量十分微弱。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 64,
+          "type": "single",
+          "stem": "维新派在每次上书中，都反复提醒光绪皇帝不要忘记人民反抗的危险，强调如果不实行变法，下层群众将会起来造反。这体现了维新派（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "积极发动群众参与变法"
+            },
+            {
+              "id": "B",
+              "label": "惧怕甚至仇视人民群众"
+            },
+            {
+              "id": "C",
+              "label": "深刻认识到了农民的革命潜力"
+            },
+            {
+              "id": "D",
+              "label": "主张与底层群众联合夺权"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。害怕下层群众起来造反，生动体现了他们对人民群众的惧怕和仇视。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 65,
+          "type": "single",
+          "stem": "“戊戌六君子”流血的教训产生的最积极的历史影响是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "促使一部分人放弃改良主张，开始走上革命的道路"
+            },
+            {
+              "id": "B",
+              "label": "让光绪皇帝彻底掌握了实权"
+            },
+            {
+              "id": "C",
+              "label": "使帝国主义放弃了瓜分中国的野心"
+            },
+            {
+              "id": "D",
+              "label": "推动了洋务运动的进一步发展"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。六君子的血让一部分中国人清醒，放弃改良，走向了革命。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 66,
+          "type": "single",
+          "stem": "维新派希望通过和平、合法的手段实现自上而下的改良，让（ ）的代表参加政权。",
+          "options": [
+            {
+              "id": "A",
+              "label": "农民和工人阶级"
+            },
+            {
+              "id": "B",
+              "label": "大地主大资产阶级"
+            },
+            {
+              "id": "C",
+              "label": "资产阶级和开明士绅"
+            },
+            {
+              "id": "D",
+              "label": "帝国主义在华代理人"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。维新派的政治诉求是让“资产阶级和开明士绅”的代表参加政权。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 67,
+          "type": "multiple",
+          "stem": "下列关于太平天国农民起义的历史意义，说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "沉重打击了封建统治阶级，强烈撼动了清政府的统治根基"
+            },
+            {
+              "id": "B",
+              "label": "是中国旧式农民战争的最高峰"
+            },
+            {
+              "id": "C",
+              "label": "冲击了孔子和儒家经典的正统权威"
+            },
+            {
+              "id": "D",
+              "label": "有力地打击了外国侵略势力"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四个选项完美概括了太平天国起义前四条历史意义的首句论点。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 68,
+          "type": "multiple",
+          "stem": "太平天国起义之所以被称为“中国旧式农民战争的最高峰”，并在中国历史上留下不同以往农民战争的新的历史特点，主要是因为（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "它把千百年来农民对拥有土地的渴望在《天朝田亩制度》中比较完整地表达了出来"
+            },
+            {
+              "id": "B",
+              "label": "它提出了中国近代历史上第一个比较系统的发展资本主义的方案《资政新篇》"
+            },
+            {
+              "id": "C",
+              "label": "它是19世纪中叶亚洲民族解放运动中时间最久、规模最大的一次"
+            },
+            {
+              "id": "D",
+              "label": "它是中国历史上历时最长的一次农民起义"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B"
+          ],
+          "explanation": "AB。《天朝田亩制度》和《资政新篇》这两大文件的颁布，让其具备了不同以往的新特点，构成了“最高峰”的核心论据。C、D选项虽然是客观事实，但不能解释为什么它是农民战争演变的“最高峰”。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 69,
+          "type": "multiple",
+          "stem": "太平天国起义及其失败的历史教训告诉我们（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "农民群众具有伟大的革命潜力"
+            },
+            {
+              "id": "B",
+              "label": "农民自身不能担负起领导反帝反封建斗争取得胜利的重任"
+            },
+            {
+              "id": "C",
+              "label": "单纯的农民战争不可能完成争取民族独立和人民解放的历史任务"
+            },
+            {
+              "id": "D",
+              "label": "农民阶级不再是中国革命的主要力量"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。它表明农民具有伟大的革命潜力，但不能独立担负起领导重任，单纯农民战争走不通。D错，农民始终是民主革命的主力军。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 70,
+          "type": "multiple",
+          "stem": "太平天国起义有力打击了外国侵略势力，以下能体现这一点的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "太平天国领袖们拒绝承认不平等条约"
+            },
+            {
+              "id": "B",
+              "label": "严禁鸦片贸易"
+            },
+            {
+              "id": "C",
+              "label": "同英、法军队进行英勇的斗争"
+            },
+            {
+              "id": "D",
+              "label": "同外国军官组织指挥的“常胜军”“常捷军”进行英勇斗争"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四个选项均为太平天国打击外国侵略势力的具体史实。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 71,
+          "type": "multiple",
+          "stem": "洋务运动的历史作用主要体现在（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "客观上对中国的早期工业和民族资本主义的发展起了某些促进作用"
+            },
+            {
+              "id": "B",
+              "label": "开办新式学堂、派遣留学生，成为中国近代教育的开始"
+            },
+            {
+              "id": "C",
+              "label": "翻译了一批近代自然科学书籍，给当时的中国带来了新的知识"
+            },
+            {
+              "id": "D",
+              "label": "冲击了传统的“重本抑末”等观念，有利于社会风气的改变"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项完整概括了洋务运动在经济、教育和思想风气三个方面的客观历史作用。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 72,
+          "type": "multiple",
+          "stem": "洋务运动失败的主要原因包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "洋务运动具有封建性"
+            },
+            {
+              "id": "B",
+              "label": "洋务运动对列强具有依赖性"
+            },
+            {
+              "id": "C",
+              "label": "洋务企业的管理具有腐朽性"
+            },
+            {
+              "id": "D",
+              "label": "民族资产阶级的软弱性和妥协性"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。洋务运动失败的原因主要是封建性、依赖性和腐朽性。（避坑：D选项是后来辛亥革命等资产阶级运动失败的原因，洋务派属于地主阶级）。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 73,
+          "type": "multiple",
+          "stem": "关于洋务运动时期社会风气和价值观念的变化，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "传统的“重本抑末”观念受到冲击"
+            },
+            {
+              "id": "B",
+              "label": "工商业者的地位上升"
+            },
+            {
+              "id": "C",
+              "label": "西方的各种技术和器物不再被当作“奇技淫巧”受到排斥"
+            },
+            {
+              "id": "D",
+              "label": "资产阶级民主共和观念深入人心"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。洋务运动时期，“重本抑末”观念受冲击，工商业者地位上升，西方技术被视为学习对象。（避坑：D选项“民主共和观念深入人心”是辛亥革命的历史意义，洋务运动时期还没有引入民主共和思想）。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 74,
+          "type": "multiple",
+          "stem": "下列表现中，属于洋务企业的管理具有“腐朽性”的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "管理基本上仍是封建衙门式的"
+            },
+            {
+              "id": "B",
+              "label": "军事工业完全由官方控制，经营不讲效益"
+            },
+            {
+              "id": "C",
+              "label": "官督商办的民用企业中商人没有多少发言权，还要承担亏损"
+            },
+            {
+              "id": "D",
+              "label": "企业内部极其腐败，充斥着营私舞弊、贪污受贿等官场恶习"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。封建衙门式管理、不讲效益、商人无发言权、贪污受贿等，都是企业管理腐朽性的具体表现。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 75,
+          "type": "multiple",
+          "stem": "洋务运动的“封建性”主要表现在（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "企图以吸取西方近代生产技术为手段，来达到维护和巩固中国封建统治的目的"
+            },
+            {
+              "id": "B",
+              "label": "采取垄断经营、侵吞商股等手段压制民族资本"
+            },
+            {
+              "id": "C",
+              "label": "既想培养洋务人才，又不愿改变封建科举制度"
+            },
+            {
+              "id": "D",
+              "label": "新的生产力不可能在封建主义的桎梏下充分地发展起来"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项生动阐述了为什么洋务运动具有封建性，以及这种封建性为什么与新的生产力不相容。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 76,
+          "type": "multiple",
+          "stem": "下列关于洋务派创办的新式企业的说法，正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "具有一定的资本主义性质"
+            },
+            {
+              "id": "B",
+              "label": "大多采取了现代企业的先进管理模式"
+            },
+            {
+              "id": "C",
+              "label": "军事工业完全由官方控制"
+            },
+            {
+              "id": "D",
+              "label": "民用企业的管理大多也是由政府专门派员，掌握用人理财大权"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "C",
+            "D"
+          ],
+          "explanation": "ACD。洋务派创办的新式企业虽然具有一定资本主义性质，但管理上是封建衙门式的（如官方控制、政府派员），并没有采取现代企业的先进管理模式。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 77,
+          "type": "multiple",
+          "stem": "维新派通过著书立说来宣传变法主张。下列人物与著作对应正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "康有为——《新学伪经考》"
+            },
+            {
+              "id": "B",
+              "label": "梁启超——《变法通议》"
+            },
+            {
+              "id": "C",
+              "label": "谭嗣同——《仁学》"
+            },
+            {
+              "id": "D",
+              "label": "严复——《孔子改制考》"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项错误，《孔子改制考》是康有为写的，而不是严复。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 78,
+          "type": "multiple",
+          "stem": "以康有为、梁启超、谭嗣同、严复等为主要代表人物的资产阶级维新派，为了宣传维新主张、制造维新舆论，采取的具体行动主要包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "向皇帝上书、著书立说"
+            },
+            {
+              "id": "B",
+              "label": "介绍外国变法的经验教训"
+            },
+            {
+              "id": "C",
+              "label": "办学会、设学堂、办报纸"
+            },
+            {
+              "id": "D",
+              "label": "发动武装起义推翻清朝统治"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项错误，维新派主张自上而下的和平改良，并未主张发动武装起义。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 79,
+          "type": "multiple",
+          "stem": "维新派与守旧派（包括反对改变封建政治制度的洋务派）之间展开了一场激烈论战，论战主要围绕的问题有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "要不要变法"
+            },
+            {
+              "id": "B",
+              "label": "要不要兴民权、设议院，实行君主立宪"
+            },
+            {
+              "id": "C",
+              "label": "要不要推翻帝制，实行共和"
+            },
+            {
+              "id": "D",
+              "label": "要不要废八股、改科举和兴西学"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "D"
+          ],
+          "explanation": "ABD。C选项错误，论战的第二个问题是“要不要兴民权、设议院，实行君主立宪”，而不是实行共和。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 80,
+          "type": "multiple",
+          "stem": "维新派办报纸是宣传变法的重要方式，当时影响最大的几份报纸主要有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "梁启超任主笔的上海《时务报》"
+            },
+            {
+              "id": "B",
+              "label": "严复主办的天津《国闻报》"
+            },
+            {
+              "id": "C",
+              "label": "湖南的《湘报》"
+            },
+            {
+              "id": "D",
+              "label": "孙中山创办的《民报》"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项《民报》是后来中国同盟会（革命派）的机关报，不是维新派的报纸。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 81,
+          "type": "multiple",
+          "stem": "戊戌变法在文化教育方面的措施主要包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "创设京师大学堂，各省书院改为高等学堂"
+            },
+            {
+              "id": "B",
+              "label": "提倡西学，废除八股，改试策论，开经济特科"
+            },
+            {
+              "id": "C",
+              "label": "设立译书局，翻译外国书籍，派人出国留学"
+            },
+            {
+              "id": "D",
+              "label": "奖励创办报刊，准许自由组织学会"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项全方位概括了文化教育方面的改革。在主观题中如果考到，这四条是可以直接拿高分的骨架。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 82,
+          "type": "multiple",
+          "stem": "戊戌变法期间，维新派在经济方面提出的改革措施有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "提倡开办实业，奖励发明创造"
+            },
+            {
+              "id": "B",
+              "label": "注重农业发展，提倡西法垦殖，建立新式农场"
+            },
+            {
+              "id": "C",
+              "label": "开办商学、商报，设立商会等各类组织"
+            },
+            {
+              "id": "D",
+              "label": "实行“耕者有其田”的土地制度"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项是后来大革命后期及解放战争中中国共产党的土地政策，维新派是不敢触动封建土地所有制的。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 83,
+          "type": "multiple",
+          "stem": "下列属于“戊戌六君子”的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "谭嗣同"
+            },
+            {
+              "id": "B",
+              "label": "刘光第"
+            },
+            {
+              "id": "C",
+              "label": "康有为"
+            },
+            {
+              "id": "D",
+              "label": "杨锐"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "D"
+          ],
+          "explanation": "ABD。六君子名单：谭嗣同、刘光第、林旭、杨锐、杨深秀、康广仁。康有为跑了，选ABD。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 84,
+          "type": "multiple",
+          "stem": "戊戌变法在军事方面的主要举措包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "裁减旧式绿营兵"
+            },
+            {
+              "id": "B",
+              "label": "改练新式陆军"
+            },
+            {
+              "id": "C",
+              "label": "采用西洋兵制，练洋操，习洋枪"
+            },
+            {
+              "id": "D",
+              "label": "创建北洋水师"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项“创建北洋水师”是洋务运动的成就，且在甲午战争中已全军覆没。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 85,
+          "type": "multiple",
+          "stem": "戊戌变法在政治方面的改革措施包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "裁撤闲散、重叠机构，裁汰冗员"
+            },
+            {
+              "id": "B",
+              "label": "提倡向皇帝上书言事"
+            },
+            {
+              "id": "C",
+              "label": "准许旗人自谋生计，取消其国家供养特权"
+            },
+            {
+              "id": "D",
+              "label": "颁布《钦定宪法大纲》，实行君主立宪"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项《钦定宪法大纲》是后来1908年清末新政“预备立宪”时颁布的，戊戌变法中并没有正式实行君主立宪的法令。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 86,
+          "type": "multiple",
+          "stem": "戊戌维新运动的历史意义主要体现在它（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "是一次爱国救亡运动"
+            },
+            {
+              "id": "B",
+              "label": "是一场资产阶级性质的政治改良运动"
+            },
+            {
+              "id": "C",
+              "label": "是一场思想启蒙运动"
+            },
+            {
+              "id": "D",
+              "label": "是一场反帝反封建的武装革命运动"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项错误，维新运动是改良，不是武装革命。这三点是主观题答“意义”的核心骨架。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 87,
+          "type": "multiple",
+          "stem": "戊戌维新运动失败的原因主要包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "维新派自身的局限性"
+            },
+            {
+              "id": "B",
+              "label": "以慈禧太后为首的强大的守旧势力的反对"
+            },
+            {
+              "id": "C",
+              "label": "民族资本主义经济力量还十分微弱，社会基础狭窄"
+            },
+            {
+              "id": "D",
+              "label": "维新派没有严密的组织，不掌握实权和军队，未发动群众"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四个选项全面概括了失败的主客观原因（局限性、反动势力强大、经济基础薄弱、未掌握军队和群众）。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 88,
+          "type": "multiple",
+          "stem": "维新派自身的局限性（即失败的主观原因）主要表现在（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "不敢否定封建主义"
+            },
+            {
+              "id": "B",
+              "label": "对帝国主义抱有幻想"
+            },
+            {
+              "id": "C",
+              "label": "惧怕人民群众"
+            },
+            {
+              "id": "D",
+              "label": "没有提出系统的变法理论"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。三大局限性主观大题必备：不敢否定封建主义、对帝国主义抱有幻想、惧怕人民群众。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 89,
+          "type": "multiple",
+          "stem": "维新派“不敢否定封建主义”的具体表现有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "政治上不敢根本否定封建君主制度，幻想通过自上而下的改良实现君主立宪"
+            },
+            {
+              "id": "B",
+              "label": "经济上未触及封建主义的经济基础——封建土地所有制"
+            },
+            {
+              "id": "C",
+              "label": "思想上打着孔子的旗号，“托古改制”"
+            },
+            {
+              "id": "D",
+              "label": "军事上完全依靠帝国主义的武装力量"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项不属于“不敢否定封建主义”的表现，这三个选项分别对应政治、经济、思想上的妥协。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 90,
+          "type": "multiple",
+          "stem": "维新派“对帝国主义抱有幻想”的表现包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "幻想依靠与英、日结成同盟来抵抗俄国"
+            },
+            {
+              "id": "B",
+              "label": "建议聘请日本前首相伊藤博文来中国任维新的顾问"
+            },
+            {
+              "id": "C",
+              "label": "戊戌政变前夕乞求英、美、日公使的支持"
+            },
+            {
+              "id": "D",
+              "label": "承认列强在华的一切不平等条约"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D选项是后来辛亥革命早期资产阶级革命派的妥协表现。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 91,
+          "type": "multiple",
+          "stem": "作为一场思想启蒙运动，在维新派的推动下，相继而起并形成了广泛的文化革新运动的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "“诗界革命”"
+            },
+            {
+              "id": "B",
+              "label": "“文体革命”"
+            },
+            {
+              "id": "C",
+              "label": "“小说界革命”"
+            },
+            {
+              "id": "D",
+              "label": "“戏剧改良”和“史学革命”"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这些都是维新派推动下的文化革新运动，打破了封建文化独占阵地的局面。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 92,
+          "type": "multiple",
+          "stem": "维新派“惧怕人民群众”的表现有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "活动基本上局限于官僚士大夫和知识分子的小圈子"
+            },
+            {
+              "id": "B",
+              "label": "提醒皇帝如果不变法下层群众会造反，把群众造反视为“忧危”"
+            },
+            {
+              "id": "C",
+              "label": "面临政变危机时，只得打算依靠掌有兵权的袁世凯"
+            },
+            {
+              "id": "D",
+              "label": "谭嗣同临终前感慨“无力回天”，未认识到“回天之力”在亿万民众中"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四个选项生动描绘了维新派脱离群众、惧怕群众、被逼无奈找袁世凯的窘境。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 93,
+          "type": "multiple",
+          "stem": "戊戌维新运动失败的血的教训表明（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "在半殖民地半封建的旧中国，自上而下的改良道路是根本行不通的"
+            },
+            {
+              "id": "B",
+              "label": "必须用革命的手段推翻帝国主义、封建主义联合统治的社会制度"
+            },
+            {
+              "id": "C",
+              "label": "“戊戌六君子”的流血促使一部分人开始走上革命的道路"
+            },
+            {
+              "id": "D",
+              "label": "必须优先发展强大的军事重工业"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。这三条完整构成了戊戌维新运动失败教训的主观题骨架。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 94,
+          "type": "judge",
+          "stem": "（ ） 《天朝田亩制度》由于顺应了广大农民的强烈愿望，其平分土地方案在太平军占领地区得到了广泛且彻底的实行。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：理想很丰满，现实很骨感） 实际上，《天朝田亩制度》中的平分土地方案即使在太平军占领地区也并未能付诸实行。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 95,
+          "type": "judge",
+          "stem": "（ ） 《天朝田亩制度》是对以往农民战争中“均贫富”“等贵贱”和“均平”“均田”思想的发展和超越，它成功超出了农民小生产者的狭隘眼界。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。前半句是对的，但后半句错在“成功超出”。它并没有超出农民小生产者的狭隘眼界。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 96,
+          "type": "judge",
+          "stem": "（ ） 1853年3月，太平军占领南京，定为首都，改名天京，正式宣告太平天国农民政权的建立。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。定都天京，标志着农民政权的正式建立。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 97,
+          "type": "judge",
+          "stem": "（ ） 《天朝田亩制度》确立了平均分配土地的方案，原则是“凡天下田，天下人同耕”，凡16岁以上的男女皆可分得同等数量的土地，不满16岁的减半。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是《天朝田亩制度》中确立的平均分配土地的方案原则。",
+          "sourceIds": [
+            "ref-c2-s26-l162-list",
+            "ref-c2-s27-l167-list"
+          ]
+        },
+        {
+          "id": 98,
+          "type": "judge",
+          "stem": "（ ） 《资政新篇》是由洪秀全在太平天国初期颁布的社会发展方案，是中国近代历史上第一个比较系统的发展资本主义的方案。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：张冠李戴+时间错乱）《资政新篇》是太平天国后期颁布的社会发展方案，且是由洪仁玕提出的，并不是洪秀全在初期颁布的。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 99,
+          "type": "judge",
+          "stem": "（ ） 《资政新篇》不仅主张学习西方的生产力，还在经济上提出“准富者请人雇工”，这就把向西方的学习扩展到了生产关系的领域。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。“准富者请人雇工”是对穷人“宜令作工，以受所值”，它标志着开始提倡资本主义的雇佣劳动制了。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 100,
+          "type": "judge",
+          "stem": "（ ） 在天京事变中，东王杨秀清和翼王石达开先后被杀，这一自相残杀的事件严重削弱了太平天国的力量。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。天京事变中先后被杀的是东王杨秀清和北王韦昌辉，而翼王石达开是率部出走。（避坑：出题人极爱在事变中几位王爷的最终结局上设下陷阱）。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 101,
+          "type": "judge",
+          "stem": "（ ） 对于洪仁玕提出的《资政新篇》，洪秀全看到后几乎逐条加以批示，对其中绝大部分条款表示赞同，并下令镌刻颁布。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。洪秀全并不是反对这个方案，他赞同了绝大部分条款并下令颁布，只是限于条件没能实施。",
+          "sourceIds": [
+            "ref-c2-s28-l172-list",
+            "ref-c2-s29-l181-list"
+          ]
+        },
+        {
+          "id": 102,
+          "type": "judge",
+          "stem": "（ ） 太平天国起义虽然失败了，但它从根本上推翻了清王朝的统治，结束了中国两千多年的封建君主专制制度。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：张冠李戴）。太平天国只是“强烈撼动了清政府的统治根基”，并没有推翻清政府。推翻清政府并结束两千多年封建专制制度的是后来的辛亥革命。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 103,
+          "type": "judge",
+          "stem": "（ ） 《资政新篇》是中国近代历史上第一个比较系统的发展资本主义的方案，反映了太平天国某些领导人在后期试图通过向外国学习来寻求出路的一种努力。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。定性完全准确。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 104,
+          "type": "judge",
+          "stem": "（ ） 太平天国起义的失败表明，由于阶级局限性，农民在半殖民地半封建的中国不具备革命潜力，单纯的农民战争不可能完成争取民族独立和人民解放的历史任务。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：偷换概念）。虽然失败了，但太平天国起义表明，在半殖民地半封建的中国，农民具有伟大的革命潜力，错在“不具备”。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 105,
+          "type": "judge",
+          "stem": "（ ） 在19世纪中叶的亚洲民族解放运动中，太平天国起义是时间最久、规模最大、影响最深的一次，它和其他亚洲国家的民族解放运动汇合在一起，冲击了西方殖民主义者在亚洲的统治。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是太平天国起义的国际意义和地位。",
+          "sourceIds": [
+            "ref-c2-s30-l185-list",
+            "ref-c2-s31-l193-list"
+          ]
+        },
+        {
+          "id": 106,
+          "type": "judge",
+          "stem": "（ ） 为了挽救清政府的统治危机，封建统治阶级中的部分成员如奕䜣、曾国藩、李鸿章、左宗棠、张之洞等主张兴办洋务，他们被称为“洋务派”。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是洋务派的核心代表人物和阶级属性。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 107,
+          "type": "judge",
+          "stem": "（ ） “中学为体，西学为用”这一思想最先是由张之洞在《校邠庐抗议》一书中作出比较完整表述的。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：张冠李戴）。最先作出比较完整表述的是冯桂芬的《校邠庐抗议》。而张之洞是在《劝学篇》中对其进行了进一步概括。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 108,
+          "type": "judge",
+          "stem": "（ ） 洋务运动的指导思想“中体西用”中，“体”指的是西方的近代工业和技术，“用”指的是中国的封建伦理纲常。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：本末倒置）。“体”是以中国封建伦理纲常所维护的统治秩序为主体，“用”才是以西方的近代工业和技术为辅助。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 109,
+          "type": "judge",
+          "stem": "（ ） 洋务事业涵盖了经济、军事和教育等方面，其中最早创办的近代企业是1861年设立的安庆军械所。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。洋务派最早创办的近代企业确实是1861年的安庆军械所。",
+          "sourceIds": [
+            "ref-c2-s32-l197-list",
+            "ref-c2-s33-l201-list",
+            "ref-c2-s34-l206-list"
+          ]
+        },
+        {
+          "id": 110,
+          "type": "judge",
+          "stem": "（ ） 洋务派提出“自强”“求富”的主张，其主观目的和客观结果都是为了在中国发展民族资本主义。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。洋务运动的客观结果是促进了民族资本主义的发展，但其主观目的是为了挽救清政府的统治危机，维护中国封建统治。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 111,
+          "type": "judge",
+          "stem": "（ ） 洋务运动历时30多年，最终以中法战争中福建水师的全军覆没为标志，宣告了以“自强”“求富”为目标的洋务运动的失败。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。标志着洋务运动失败的是甲午战争中北洋海军全军覆没。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 112,
+          "type": "judge",
+          "stem": "（ ） 洋务运动的指导思想是“中学为体，西学为用”，企图以吸取西方近代生产技术为手段，来达到维护和巩固中国封建统治的目的，这就决定了它必然失败的命运。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。由于新的生产力同封建主义生产关系不相容，企图用西方技术维护封建统治的“封建性”决定了洋务运动必然失败的命运。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 113,
+          "type": "judge",
+          "stem": "（ ） 洋务派官员一再主张对外“和戎”，其所兴办的企业一切仰赖外国，这体现了洋务运动对列强具有依赖性。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。企图依赖外国来达到“自强”“求富”的目的，无异于与虎谋皮，正是“依赖性”的体现。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 114,
+          "type": "judge",
+          "stem": "（ ） 为了培养通晓洋务的人才，洋务派彻底废除了封建科举制度，开办了一批新式学堂并派出了最早的官派留学生。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。洋务派既想培养洋务人才，又不愿改变封建科举制度，这也正是其封建性的表现。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 115,
+          "type": "judge",
+          "stem": "（ ） 洋务派所创办的一些新式企业虽然具有一定的资本主义性质，但其管理基本上仍是封建衙门式的。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这就是洋务企业管理具有“腐朽性”的核心内涵。",
+          "sourceIds": [
+            "ref-c2-s35-l212-list",
+            "ref-c2-s36-l218-list"
+          ]
+        },
+        {
+          "id": 116,
+          "type": "judge",
+          "stem": "（ ） 在维新派与守旧派的论战中，维新派认为只有资产阶级民主共和制度才是当时中国理想的政治方案，因此强烈主张要兴民权、设议院，实行民主共和。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（极其容易混淆的陷阱）维新派主张的是君主立宪制，不是民主共和制度。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 117,
+          "type": "judge",
+          "stem": "（ ） 严复不仅主办了天津的《国闻报》，还在论战中大声疾呼“民智者，富强之原”，“欲开民智非讲西学不可”。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。严复主办了《国闻报》，并在论战中强调了开民智和讲西学的重要性。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 118,
+          "type": "judge",
+          "stem": "（ ） 作为维新运动的领袖人物，康有为不仅发起了“公车上书”，还写了《新学伪经考》和《变法通议》来宣传维新主张。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（张冠李戴陷阱）康有为写了《新学伪经考》，但《变法通议》是梁启超写的。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 119,
+          "type": "judge",
+          "stem": "（ ） 在维新派与守旧派的论战中，反对改变封建政治制度的洋务派也是维新派论战的对手之一，维新派对洋务派的“中体西用”口号进行了严厉驳斥。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。洋务派虽主张学西方技术，但坚持封建政治制度绝对不能触动，因此也是维新派的论战对手。",
+          "sourceIds": [
+            "ref-c2-s37-l225-list",
+            "ref-c2-s38-l236-list"
+          ]
+        },
+        {
+          "id": 120,
+          "type": "judge",
+          "stem": "（ ） 戊戌变法在文化教育方面规定了提倡西学，废除八股文，并正式宣告全面废除科举制度。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑）废除八股文是真的，但正式全面废除科举制度是错的。清末1906年才正式废除科举。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 121,
+          "type": "judge",
+          "stem": "（ ） 1898年9月21日，守旧势力发动政变，慈禧太后以“垂帘听政”的名义，重新独揽大权，并将光绪皇帝软禁。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。慈禧太后发动政变的名义是“训政”，不是“垂帘听政”。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 122,
+          "type": "judge",
+          "stem": "（ ） 戊戌政变发生后，维新派主要代表人物康有为、梁启超、谭嗣同均被迫逃亡海外，流亡日本。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑）康有为、梁启超逃亡海外，但谭嗣同拒绝出走，最终英勇就义。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 123,
+          "type": "judge",
+          "stem": "（ ） 戊戌变法在经济方面主张中央设立农工商总局与铁路矿务总局，各省设立商务局，并编制国家预决算。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这完整叙述了戊戌变法经济方面国家机构与财政的改革。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 124,
+          "type": "judge",
+          "stem": "（ ） 1898年9月28日，谭嗣同、刘光第、林旭、杨锐、杨深秀、康广仁6人同遭杀害，史称“戊戌六君子”，这表现了他们为变法维新而献身的大无畏精神。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。定性完全准确，不仅要记住名字，更要体会这种大无畏的精神。",
+          "sourceIds": [
+            "ref-c2-s39-l243-list",
+            "ref-c2-s40-l266-list"
+          ]
+        },
+        {
+          "id": 125,
+          "type": "judge",
+          "stem": "（ ） 戊戌维新运动是一场资产阶级性质的政治改良运动，它成功地在中国建立起了资本主义的君主立宪制度，并使促进民族资本主义发展的措施得到了有效落实。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。前半句定性正确，但后半句错在“成功地建立”。实际上，运动虽然冲击了封建制度，但未能成功建立君主立宪制度，发展资本主义的措施也未能生效。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 126,
+          "type": "judge",
+          "stem": "（ ） 在经济上，维新派不仅要求发展民族资本主义，还明确提出了废除封建土地所有制的主张，从而获得了广大农民的支持。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（致命陷阱）维新派在经济上未触及封建主义的经济基础——封建土地所有制。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 127,
+          "type": "judge",
+          "stem": "（ ） 戊戌维新运动是一场思想启蒙运动，维新派大力传播西方资产阶级的社会政治学说和自然科学知识，有利于民主思想在中国的传播。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是戊戌维新运动作为“思想启蒙运动”的核心意义。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 128,
+          "type": "judge",
+          "stem": "（ ） 谭嗣同在就义前说的“无力回天”，是因为他终于认识到维新派脱离了群众，只有依靠亿万民众的力量才能取得变法的成功。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（曲解题意陷阱）谭嗣同说“无力回天”反映了他们始终没有认识到（而不是终于认识到）回天之力存在于亿万民众之中。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 129,
+          "type": "judge",
+          "stem": "（ ） 戊戌维新运动失败的教训表明，企图通过统治者走自上而下的改良道路是行不通的，必须用革命的手段推翻半殖民地半封建的社会制度。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是运动留给后人的最深刻的教训：改良走不通，只能走革命。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 130,
+          "type": "judge",
+          "stem": "（ ） 面对俄国侵华的事实，维新派大声疾呼救亡图存，并主张直接发动广大人民群众同俄国侵略者进行武装斗争。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（张冠李戴）维新派惧怕群众，他们面对俄国侵略，不仅没发动群众，反而幻想依靠与英、日结成同盟来抵抗俄国。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        },
+        {
+          "id": 131,
+          "type": "judge",
+          "stem": "（ ） 维新派在政治上不敢根本否定封建君主制度，只是幻想依靠没有实权的光绪皇帝，通过和平、合法的手段实现自上而下的改良。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。定性完全准确，这就是维新派政治上的最大软弱性。",
+          "sourceIds": [
+            "ref-c2-s41-l270-list",
+            "ref-c2-s43-l277-list",
+            "ref-c2-s44-l281-list",
+            "ref-c2-s45-l287-list"
+          ]
+        }
+      ],
+      "downloads": {
+        "markdown": "/downloads/quizzes/chapter-2.md",
+        "pdf": "/downloads/quizzes/chapter-2.pdf"
+      }
+    },
+    {
+      "id": "xuetong-3",
+      "kind": "xuetong",
+      "chapterNo": 3,
+      "numeral": "三",
+      "title": "（学习通）第三章客观题练习题",
+      "available": false,
+      "questions": [],
+      "downloads": {
+        "markdown": null,
+        "pdf": null
+      }
+    },
+    {
+      "id": "xuetong-4",
+      "kind": "xuetong",
+      "chapterNo": 4,
+      "numeral": "四",
+      "title": "（学习通）第四章客观题练习题",
+      "available": false,
+      "questions": [],
+      "downloads": {
+        "markdown": null,
+        "pdf": null
+      }
+    },
+    {
+      "id": "xuetong-5",
+      "kind": "xuetong",
+      "chapterNo": 5,
+      "numeral": "五",
+      "title": "（学习通）第五章客观题练习题",
+      "available": false,
+      "questions": [],
+      "downloads": {
+        "markdown": null,
+        "pdf": null
+      }
+    },
+    {
+      "id": "xuetong-6",
+      "kind": "xuetong",
+      "chapterNo": 6,
+      "numeral": "六",
+      "title": "（学习通）第六章客观题练习题",
+      "available": false,
+      "questions": [],
+      "downloads": {
+        "markdown": null,
+        "pdf": null
+      }
+    },
+    {
+      "id": "xuetong-7",
+      "kind": "xuetong",
+      "chapterNo": 7,
+      "numeral": "七",
+      "title": "（学习通）第七章客观题练习题",
       "available": false,
       "questions": [],
       "downloads": {

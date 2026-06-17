@@ -30,6 +30,7 @@ test("progress survives refresh and reset clears the attempt", async ({ page }) 
 });
 
 test("chapter switching, coming-soon chapters, and download links work", async ({ page }) => {
+  await page.locator(".chapter-selector-panel > summary").click();
   await page.locator(".chapter-option").filter({ hasText: "第二章习题" }).click();
   await expect(page.getByRole("heading", { name: /第二章交互式复习/ })).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("131");
