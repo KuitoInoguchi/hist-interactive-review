@@ -40,10 +40,10 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await expect(page.getByText("回答正确")).toBeVisible();
   await expect(page.locator("#ref-c2-s26-l162-list")).toHaveClass(/active-source/);
 
-  await expect(page.locator('a[href="/downloads/quizzes/chapter-2.md"]')).toContainText("下载为 md 格式");
-  await expect(page.locator('a[href="/downloads/quizzes/chapter-2.pdf"]')).toContainText("下载为 PDF 格式");
-  await expect(page.locator('a[href="/downloads/reference/中国近现代史纲要 复习.md"]')).toContainText("下载为 md 格式");
-  await expect(page.locator('a[href="/downloads/reference/中国近现代史纲要复4习.pdf"]')).toContainText("下载为 PDF 格式");
+  await expect(page.locator('a[href="/docs/chapter-2/chapter-2.md"]')).toContainText("下载为 md 格式");
+  await expect(page.locator('a[href="/docs/chapter-2/chapter-2.pdf"]')).toContainText("下载为 PDF 格式");
+  await expect(page.locator('a[href="/docs/中国近现代史纲要 复习.md"]')).toContainText("下载为 md 格式");
+  await expect(page.locator('a[href="/docs/中国近现代史纲要复4习.pdf"]')).toContainText("下载为 PDF 格式");
 
   await page.locator(".chapter-option").filter({ hasText: "第三章习题" }).click();
   await expect(page.getByText("敬请期待")).toBeVisible();

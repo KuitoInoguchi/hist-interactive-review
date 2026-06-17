@@ -110,19 +110,19 @@ describe("generated quiz data", () => {
 
   it("provides download links for completed chapters and reference material", () => {
     expect(chapters[0].downloads).toEqual({
-      markdown: "/downloads/quizzes/chapter-1.md",
-      pdf: "/downloads/quizzes/chapter-1.pdf",
+      markdown: "/docs/chapter-1/chapter-1.md",
+      pdf: "/docs/chapter-1/chapter-1.pdf",
     });
     expect(chapters[1].downloads).toEqual({
-      markdown: "/downloads/quizzes/chapter-2.md",
-      pdf: "/downloads/quizzes/chapter-2.pdf",
+      markdown: "/docs/chapter-2/chapter-2.md",
+      pdf: "/docs/chapter-2/chapter-2.pdf",
     });
     expect(
       chapters
         .filter((chapter) => !chapter.available)
         .every((chapter) => chapter.downloads.markdown === null && chapter.downloads.pdf === null),
     ).toBe(true);
-    expect(chaptersPayload.referenceDownloads.markdown).toMatch(/\/downloads\/reference\/.+\.md$/);
-    expect(chaptersPayload.referenceDownloads.pdf).toMatch(/\/downloads\/reference\/.+\.pdf$/);
+    expect(chaptersPayload.referenceDownloads.markdown).toMatch(/\/docs\/.+\.md$/);
+    expect(chaptersPayload.referenceDownloads.pdf).toMatch(/\/docs\/.+\.pdf$/);
   });
 });

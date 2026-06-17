@@ -4,15 +4,11 @@ import { basename, dirname, resolve } from "node:path";
 const rootDir = resolve(import.meta.dirname, "..", "..");
 const appDir = resolve(import.meta.dirname, "..");
 const generatedDir = resolve(appDir, "src", "generated");
-const downloadsDir = resolve(appDir, "public", "downloads");
-const quizDownloadsDir = resolve(downloadsDir, "quizzes");
-const referenceDownloadsDir = resolve(downloadsDir, "reference");
+const docsDir = resolve(appDir, "public", "docs");
 
 const chapterOneSource = resolve(rootDir, "中国近现代史纲要 复习指导.md");
 const chapterTwoSource = resolve(rootDir, "reference", "chapter_2.md");
 const referenceSource = resolve(rootDir, "reference", "中国近现代史纲要 复习.md");
-const referencePdfSource = resolve(rootDir, "reference", "中国近现代史纲要复4习.pdf");
-const pdfDir = resolve(rootDir, "pdf");
 
 const chapterOneQuestionsPath = resolve(generatedDir, "questions.json");
 const referenceUnitsPath = resolve(generatedDir, "referenceUnits.json");
@@ -300,8 +296,7 @@ function copyIfExists(source, target) {
 }
 
 mkdirSync(generatedDir, { recursive: true });
-mkdirSync(quizDownloadsDir, { recursive: true });
-mkdirSync(referenceDownloadsDir, { recursive: true });
+mkdirSync(docsDir, { recursive: true });
 
 const chapterOneQuestions = JSON.parse(readFileSync(chapterOneQuestionsPath, "utf8"));
 const referenceUnits = JSON.parse(readFileSync(referenceUnitsPath, "utf8"));
@@ -311,27 +306,24 @@ if (chapterTwo.questions.length !== 131) {
   throw new Error(`Unexpected chapter 2 count: ${chapterTwo.questions.length}`);
 }
 
-const chapterOneMarkdownDownload = resolve(quizDownloadsDir, "chapter-1.md");
-const chapterTwoMarkdownDownload = resolve(quizDownloadsDir, "chapter-2.md");
+const chapterOneDir = resolve(docsDir, "chapter-1");
+const chapterTwoDir = resolve(docsDir, "chapter-2");
+mkdirSync(chapterOneDir, { recursive: true });
+mkdirSync(chapterTwoDir, { recursive: true });
+
+const chapterOneMarkdownDownload = resolve(chapterOneDir, "chapter-1.md");
+const chapterTwoMarkdownDownload = resolve(chapterTwoDir, "chapter-2.md");
 writeFileSync(chapterOneMarkdownDownload, readFileSync(chapterOneSource, "utf8"));
 writeFileSync(
   chapterTwoMarkdownDownload,
   serializeChapterMarkdown("第二章 选择题 判断题", chapterTwo.grouped, chapterTwo.questions),
 );
 
-const referenceMarkdownDownload = resolve(referenceDownloadsDir, basename(referenceSource));
+const referenceMarkdownDownload = resolve(docsDir, basename(referenceSource));
 copyIfExists(referenceSource, referenceMarkdownDownload);
-const referencePdfDownload = resolve(referenceDownloadsDir, basename(referencePdfSource));
-copyIfExists(referencePdfSource, referencePdfDownload);
-
-const chapterOnePdf = copyIfExists(
-  resolve(pdfDir, "中国近现代史纲要 第一章复习试卷.pdf"),
-  resolve(quizDownloadsDir, "chapter-1.pdf"),
-);
-const chapterTwoPdf = copyIfExists(
-  resolve(pdfDir, "中国近现代史纲要 第二章复习试卷.pdf"),
-  resolve(quizDownloadsDir, "chapter-2.pdf"),
-);
+const referencePdfDownload = resolve(docsDir, "中国近现代史纲要复4习.pdf");
+const chapterOnePdf = resolve(chapterOneDir, "chapter-1.pdf");
+const chapterTwoPdf = resolve(chapterTwoDir, "chapter-2.pdf");
 
 const numerals = ["", "一", "二", "三", "四", "五", "六", "七"];
 const regularCompletedByChapter = new Map([
@@ -340,8 +332,8 @@ const regularCompletedByChapter = new Map([
     {
       questions: chapterOneQuestions,
       downloads: {
-        markdown: "/downloads/quizzes/chapter-1.md",
-        pdf: chapterOnePdf ? "/downloads/quizzes/chapter-1.pdf" : null,
+        markdown: "/docs/chapter-1/chapter-1.md",
+        pdf: existsSync(chapterOnePdf) ? "/docs/chapter-1/chapter-1.pdf" : null,
       },
     },
   ],
@@ -350,8 +342,8 @@ const regularCompletedByChapter = new Map([
     {
       questions: chapterTwo.questions,
       downloads: {
-        markdown: "/downloads/quizzes/chapter-2.md",
-        pdf: chapterTwoPdf ? "/downloads/quizzes/chapter-2.pdf" : null,
+        markdown: "/docs/chapter-2/chapter-2.md",
+        pdf: existsSync(chapterTwoPdf) ? "/docs/chapter-2/chapter-2.pdf" : null,
       },
     },
   ],
@@ -388,8 +380,8 @@ writeFileSync(
     {
       chapters,
       referenceDownloads: {
-        markdown: `/downloads/reference/${basename(referenceSource)}`,
-        pdf: existsSync(referencePdfDownload) ? `/downloads/reference/${basename(referencePdfSource)}` : null,
+        markdown: `/docs/${basename(referenceSource)}`,
+        pdf: existsSync(referencePdfDownload) ? `/docs/${basename(referencePdfDownload)}` : null,
       },
     },
     null,

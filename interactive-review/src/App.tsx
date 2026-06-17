@@ -411,6 +411,9 @@ export default function App() {
         />
       </section>
       </div>
+      <footer className="site-footer">
+        联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>
+      </footer>
     </main>
   );
 }
