@@ -32,7 +32,7 @@ test("progress survives refresh and reset clears the attempt", async ({ page }) 
 test("chapter switching, coming-soon chapters, and download links work", async ({ page }) => {
   await page.locator(".chapter-selector-panel > summary").click();
   await page.locator(".chapter-option").filter({ hasText: "第二章习题" }).click();
-  await expect(page.getByRole("heading", { name: /第二章交互式复习/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "第二章习题" })).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("131");
 
   await page.locator(".option-row").filter({ hasText: "广西省桂平县金田村" }).click();
@@ -47,6 +47,12 @@ test("chapter switching, coming-soon chapters, and download links work", async (
 
   await page.locator(".chapter-option").filter({ hasText: "第三章习题" }).click();
   await expect(page.getByText("敬请期待")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "第三章习题" })).toBeVisible();
+
+  await page.locator(".chapter-option").filter({ hasText: "（学习通）第一章客观题练习题" }).click();
+  await expect(page.getByRole("heading", { name: "（学习通）第一章客观题练习题" })).toBeVisible();
+  await expect(page.getByText("敬请期待")).toBeVisible();
+  await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("0");
 });
 
 test("mobile layout can collapse and expand the reference pane", async ({ page, isMobile }) => {

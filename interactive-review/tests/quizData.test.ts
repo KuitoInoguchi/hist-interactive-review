@@ -81,12 +81,7 @@ describe("generated quiz data", () => {
       "（学习通）第六章客观题练习题",
       "（学习通）第七章客观题练习题",
     ]);
-    expect(chapters.filter((chapter) => chapter.available).map((chapter) => chapter.id)).toEqual([
-      "regular-1",
-      "regular-2",
-      "xuetong-1",
-      "xuetong-2",
-    ]);
+    expect(chapters.filter((chapter) => chapter.available).map((chapter) => chapter.id)).toEqual(["regular-1", "regular-2"]);
   });
 
   it("contains the expected second-chapter question counts and source links", () => {
@@ -122,8 +117,6 @@ describe("generated quiz data", () => {
       markdown: "/downloads/quizzes/chapter-2.md",
       pdf: "/downloads/quizzes/chapter-2.pdf",
     });
-    expect(chapters[7].downloads).toEqual(chapters[0].downloads);
-    expect(chapters[8].downloads).toEqual(chapters[1].downloads);
     expect(
       chapters
         .filter((chapter) => !chapter.available)

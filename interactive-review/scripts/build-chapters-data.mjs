@@ -334,7 +334,7 @@ const chapterTwoPdf = copyIfExists(
 );
 
 const numerals = ["", "一", "二", "三", "四", "五", "六", "七"];
-const completedByChapter = new Map([
+const regularCompletedByChapter = new Map([
   [
     1,
     {
@@ -356,10 +356,13 @@ const completedByChapter = new Map([
     },
   ],
 ]);
+const xuetongCompletedByChapter = new Map();
 
 function createQuizEntry(kind, chapterNo) {
-  const completed = completedByChapter.get(chapterNo);
   const isXuetong = kind === "xuetong";
+  const completed = isXuetong
+    ? xuetongCompletedByChapter.get(chapterNo)
+    : regularCompletedByChapter.get(chapterNo);
   return {
     id: `${kind}-${chapterNo}`,
     kind,

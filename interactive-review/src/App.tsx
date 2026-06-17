@@ -221,7 +221,7 @@ export default function App() {
         <header className="app-header">
           <div>
             <p className="eyebrow">中国近现代史纲要</p>
-            <h1>第{currentChapter.numeral}章交互式复习</h1>
+            <h1>{currentChapter.title}</h1>
           </div>
           <div className="header-actions">
             <button className="icon-button" type="button" onClick={resetQuiz} aria-label="重置练习">
@@ -371,7 +371,7 @@ export default function App() {
         ) : (
           <section className="question-card coming-soon" aria-label="敬请期待">
             <h2>敬请期待</h2>
-            <p>第{currentChapter.numeral}章客观题练习题还在整理中。</p>
+            <p>{currentChapter.title}还在整理中。</p>
           </section>
         )}
 
