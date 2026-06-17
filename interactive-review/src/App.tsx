@@ -1,18 +1,36 @@
-import { BookOpen, ChevronLeft, ChevronRight, RotateCcw, Send, Trophy } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, Download, RotateCcw, Send, Trophy } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ReferencePane } from "./components/ReferencePane";
-import questionsData from "./generated/questions.json";
+import chaptersData from "./generated/chapters.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
 import type { Question, QuizAttempt } from "./types";
 
-const questions = questionsData as Question[];
-const STORAGE_KEY = "interactive-review:first-chapter-progress";
+const chaptersPayload = chaptersData as {
+  chapters: Array<{
+    id: number;
+    numeral: string;
+    title: string;
+    longTitle: string;
+    available: boolean;
+    questions: Question[];
+    downloads: { markdown: string | null; pdf: string | null };
+  }>;
+  referenceDownloads: { markdown: string | null; pdf: string | null };
+};
+const chapters = chaptersPayload.chapters;
+const defaultChapterId = chapters[0]?.id ?? 1;
+const STORAGE_KEY = "interactive-review:multi-chapter-progress";
 
-type SavedQuizState = {
+type ChapterProgress = {
   currentIndex: number;
   selectedByQuestion: Record<number, string[]>;
   attempts: Record<number, QuizAttempt>;
   activeSourceIds: string[];
+};
+
+type SavedQuizState = {
+  selectedChapterId: number;
+  progressByChapter: Record<number, ChapterProgress>;
   referenceCollapsed: boolean;
 };
 
@@ -38,21 +56,76 @@ function questionStatusClass(attempt?: QuizAttempt) {
   return attempt.isCorrect ? "is-correct" : "is-wrong";
 }
 
+function emptyProgress(): ChapterProgress {
+  return {
+    currentIndex: 0,
+    selectedByQuestion: {},
+    attempts: {},
+    activeSourceIds: [],
+  };
+}
+
+function DownloadMenu({
+  label,
+  markdown,
+  pdf,
+}: {
+  label: string;
+  markdown: string | null;
+  pdf: string | null;
+}) {
+  const hasDownloads = Boolean(markdown || pdf);
+  return (
+    <details className="download-menu">
+      <summary className="secondary-button download-summary">
+        <Download size={18} />
+        {label}
+      </summary>
+      <div className="download-options">
+        {markdown ? (
+          <a download href={markdown}>
+            下载为 md 格式
+          </a>
+        ) : (
+          <span>md 格式暂不可用</span>
+        )}
+        {pdf ? (
+          <a download href={pdf}>
+            下载为 PDF 格式
+          </a>
+        ) : (
+          <span>PDF 格式暂不可用</span>
+        )}
+        {!hasDownloads ? <span>资源整理中</span> : null}
+      </div>
+    </details>
+  );
+}
+
 export default function App() {
   const savedState = useMemo(readSavedState, []);
-  const [currentIndex, setCurrentIndex] = useState(savedState.currentIndex ?? 0);
-  const [selectedByQuestion, setSelectedByQuestion] = useState<Record<number, string[]>>(
-    savedState.selectedByQuestion ?? {},
+  const initialChapterId = chapters.some((chapter) => chapter.id === savedState.selectedChapterId)
+    ? (savedState.selectedChapterId as number)
+    : defaultChapterId;
+  const [selectedChapterId, setSelectedChapterId] = useState(initialChapterId);
+  const [progressByChapter, setProgressByChapter] = useState<Record<number, ChapterProgress>>(
+    savedState.progressByChapter ?? { 1: emptyProgress() },
   );
-  const [attempts, setAttempts] = useState<Record<number, QuizAttempt>>(savedState.attempts ?? {});
-  const [activeSourceIds, setActiveSourceIds] = useState<string[]>(savedState.activeSourceIds ?? []);
   const [referenceCollapsed, setReferenceCollapsed] = useState(savedState.referenceCollapsed ?? false);
 
+  const currentChapter = chapters.find((chapter) => chapter.id === selectedChapterId) ?? chapters[0];
+  const questions = currentChapter.questions;
+  const currentProgress = progressByChapter[currentChapter.id] ?? emptyProgress();
+  const currentIndex = Math.min(currentProgress.currentIndex, Math.max(questions.length - 1, 0));
+  const selectedByQuestion = currentProgress.selectedByQuestion;
+  const attempts = currentProgress.attempts;
+  const activeSourceIds = currentProgress.activeSourceIds;
   const currentQuestion = questions[currentIndex];
-  const currentAttempt = attempts[currentQuestion.id];
-  const selectedAnswers = selectedByQuestion[currentQuestion.id] ?? [];
+  const currentAttempt = currentQuestion ? attempts[currentQuestion.id] : undefined;
+  const selectedAnswers = currentQuestion ? selectedByQuestion[currentQuestion.id] ?? [] : [];
   const submittedCount = Object.keys(attempts).length;
   const correctCount = Object.values(attempts).filter((attempt) => attempt.isCorrect).length;
+  const isAvailable = currentChapter.available && questions.length > 0;
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -62,55 +135,82 @@ export default function App() {
       },
       { single: 0, multiple: 0, judge: 0 },
     );
-  }, []);
+  }, [questions]);
 
   useEffect(() => {
     const state: SavedQuizState = {
-      currentIndex,
-      selectedByQuestion,
-      attempts,
-      activeSourceIds,
+      selectedChapterId,
+      progressByChapter,
       referenceCollapsed,
     };
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }, [activeSourceIds, attempts, currentIndex, referenceCollapsed, selectedByQuestion]);
+  }, [progressByChapter, referenceCollapsed, selectedChapterId]);
+
+  function updateCurrentProgress(updater: (progress: ChapterProgress) => ChapterProgress) {
+    setProgressByChapter((previous) => {
+      const progress = previous[currentChapter.id] ?? emptyProgress();
+      return {
+        ...previous,
+        [currentChapter.id]: updater(progress),
+      };
+    });
+  }
+
+  function chooseChapter(chapterId: number) {
+    setSelectedChapterId(chapterId);
+    const chapter = chapters.find((item) => item.id === chapterId);
+    if (!chapter?.available) {
+      setProgressByChapter((previous) => ({
+        ...previous,
+        [chapterId]: emptyProgress(),
+      }));
+    }
+  }
 
   function setSelected(question: Question, optionId: string) {
     if (attempts[question.id]) return;
 
-    setSelectedByQuestion((previous) => {
-      const current = previous[question.id] ?? [];
+    updateCurrentProgress((progress) => {
+      const current = progress.selectedByQuestion[question.id] ?? [];
       if (question.type === "multiple") {
         const next = current.includes(optionId)
           ? current.filter((answer) => answer !== optionId)
           : [...current, optionId];
-        return { ...previous, [question.id]: next };
+        return {
+          ...progress,
+          selectedByQuestion: { ...progress.selectedByQuestion, [question.id]: next },
+        };
       }
-      return { ...previous, [question.id]: [optionId] };
+      return {
+        ...progress,
+        selectedByQuestion: { ...progress.selectedByQuestion, [question.id]: [optionId] },
+      };
     });
   }
 
   function submitCurrentQuestion() {
-    if (selectedAnswers.length === 0 || currentAttempt) return;
+    if (!currentQuestion || selectedAnswers.length === 0 || currentAttempt) return;
     const isCorrect = areAnswersEqual(selectedAnswers, currentQuestion.correctAnswers);
-    setAttempts((previous) => ({
-      ...previous,
-      [currentQuestion.id]: {
-        questionId: currentQuestion.id,
-        selectedAnswers,
-        isCorrect,
-        submittedAt: new Date().toISOString(),
+    updateCurrentProgress((progress) => ({
+      ...progress,
+      attempts: {
+        ...progress.attempts,
+        [currentQuestion.id]: {
+          questionId: currentQuestion.id,
+          selectedAnswers,
+          isCorrect,
+          submittedAt: new Date().toISOString(),
+        },
       },
+      activeSourceIds: currentQuestion.sourceIds,
     }));
-    setActiveSourceIds(currentQuestion.sourceIds);
   }
 
   function resetQuiz() {
-    setCurrentIndex(0);
-    setSelectedByQuestion({});
-    setAttempts({});
-    setActiveSourceIds([]);
-    window.localStorage.removeItem(STORAGE_KEY);
+    setProgressByChapter((previous) => ({
+      ...previous,
+      [currentChapter.id]: emptyProgress(),
+    }));
   }
 
   return (
@@ -120,12 +220,35 @@ export default function App() {
         <header className="app-header">
           <div>
             <p className="eyebrow">中国近现代史纲要</p>
-            <h1>第一章交互式复习</h1>
+            <h1>第{currentChapter.numeral}章交互式复习</h1>
           </div>
-          <button className="icon-button" type="button" onClick={resetQuiz} aria-label="重置练习">
-            <RotateCcw size={18} />
-          </button>
+          <div className="header-actions">
+            <button className="icon-button" type="button" onClick={resetQuiz} aria-label="重置练习">
+              <RotateCcw size={18} />
+            </button>
+            <DownloadMenu
+              label="下载习题"
+              markdown={currentChapter.downloads.markdown}
+              pdf={currentChapter.downloads.pdf}
+            />
+          </div>
         </header>
+
+        <section className="chapter-selector" aria-label="章节习题选择">
+          {chapters.map((chapter) => (
+            <button
+              className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""} ${
+                chapter.available ? "" : "is-disabled"
+              }`}
+              key={chapter.id}
+              onClick={() => chooseChapter(chapter.id)}
+              type="button"
+            >
+              <span>{chapter.title}</span>
+              <strong>{chapter.longTitle}</strong>
+            </button>
+          ))}
+        </section>
 
         <section className="summary-grid" aria-label="练习统计">
           <div>
@@ -148,6 +271,7 @@ export default function App() {
           </div>
         </section>
 
+        {isAvailable && currentQuestion ? (
         <section className="question-card">
           <div className="question-meta">
             <span>{typeLabel(currentQuestion.type)}</span>
@@ -185,7 +309,12 @@ export default function App() {
             <button
               className="secondary-button"
               disabled={currentIndex === 0}
-              onClick={() => setCurrentIndex((index) => Math.max(0, index - 1))}
+              onClick={() =>
+                updateCurrentProgress((progress) => ({
+                  ...progress,
+                  currentIndex: Math.max(0, currentIndex - 1),
+                }))
+              }
               type="button"
             >
               <ChevronLeft size={18} />
@@ -203,7 +332,12 @@ export default function App() {
             <button
               className="secondary-button"
               disabled={currentIndex === questions.length - 1}
-              onClick={() => setCurrentIndex((index) => Math.min(questions.length - 1, index + 1))}
+              onClick={() =>
+                updateCurrentProgress((progress) => ({
+                  ...progress,
+                  currentIndex: Math.min(questions.length - 1, currentIndex + 1),
+                }))
+              }
               type="button"
             >
               下一题
@@ -221,24 +355,39 @@ export default function App() {
               <p>正确答案：{answerListLabel(currentQuestion.correctAnswers)}</p>
               <p>{currentQuestion.explanation}</p>
               <p className="source-hint">
-                已在右侧资料中高亮 {currentQuestion.sourceIds.length} 处对应知识点。
+                {currentQuestion.sourceIds.length > 0
+                  ? `已在右侧资料中高亮 ${currentQuestion.sourceIds.length} 处对应知识点。`
+                  : "当前题暂未绑定资料段落。"}
               </p>
             </aside>
           ) : null}
         </section>
+        ) : (
+          <section className="question-card coming-soon" aria-label="敬请期待">
+            <h2>敬请期待</h2>
+            <p>第{currentChapter.numeral}章客观题练习题还在整理中。</p>
+          </section>
+        )}
 
+        {isAvailable ? (
         <nav className="question-nav" aria-label="题号导航">
           {questions.map((question, index) => (
             <button
               className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(attempts[question.id])}`}
               key={question.id}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() =>
+                updateCurrentProgress((progress) => ({
+                  ...progress,
+                  currentIndex: index,
+                }))
+              }
               type="button"
             >
               {question.id}
             </button>
           ))}
         </nav>
+        ) : null}
       </section>
       <section className="reference-shell">
         <button
@@ -249,7 +398,11 @@ export default function App() {
           <BookOpen size={18} />
           {referenceCollapsed ? "展开资料" : "折叠资料"}
         </button>
-        <ReferencePane activeSourceIds={activeSourceIds} collapsed={referenceCollapsed} />
+        <ReferencePane
+          activeSourceIds={activeSourceIds}
+          collapsed={referenceCollapsed}
+          downloads={chaptersPayload.referenceDownloads}
+        />
       </section>
       </div>
     </main>
