@@ -6548,10 +6548,2689 @@
       "chapterNo": 3,
       "numeral": "三",
       "title": "第三章习题",
-      "available": false,
-      "questions": [],
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "type": "single",
+          "stem": "清末“新政”中，最能体现清政府试图在政治上继续维持君主专制统治、同时又装点门面的举措是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "裁撤绿营，建立新军"
+            },
+            {
+              "id": "B",
+              "label": "颁布商法商律，奖励工商"
+            },
+            {
+              "id": "C",
+              "label": "颁布《钦定宪法大纲》，宣布预备仿行宪政"
+            },
+            {
+              "id": "D",
+              "label": "鼓励留学，废除科举考试"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1908年颁布《钦定宪法大纲》，仿效日本实行君主立宪，同时又规定了9年的预备立宪期限，最能体现其“装点门面而不肯放权”的本质。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "single",
+          "stem": "清政府宣布“预备仿行宪政”并在1908年颁布《钦定宪法大纲》，其根本目的在于（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "真正建立资产阶级民主共和国"
+            },
+            {
+              "id": "B",
+              "label": "延续和巩固清王朝的反动统治"
+            },
+            {
+              "id": "C",
+              "label": "全面保障人民的民主权利"
+            },
+            {
+              "id": "D",
+              "label": "满足立宪派立即召开国会的要求"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。清政府改革的根本目的是延续其反动统治，而不是真正实行民主政治。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 3,
+          "type": "single",
+          "stem": "1911年5月成立、被讥为“皇族内阁”的责任内阁，其最突出的特点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "汉族大臣占绝对多数"
+            },
+            {
+              "id": "B",
+              "label": "革命派成员占据核心职位"
+            },
+            {
+              "id": "C",
+              "label": "满族和皇族成员占据多数要职"
+            },
+            {
+              "id": "D",
+              "label": "由立宪派独立组阁"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1911年5月成立的责任内阁中，13名大臣里满族有9人，其中皇族占7人，因此被讥为“皇族内阁”。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 4,
+          "type": "single",
+          "stem": "孙中山于1894年在檀香山组建的第一个资产阶级革命团体是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "华兴会"
+            },
+            {
+              "id": "B",
+              "label": "兴中会"
+            },
+            {
+              "id": "C",
+              "label": "中国同盟会"
+            },
+            {
+              "id": "D",
+              "label": "光复会"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1894年11月，孙中山在檀香山组建兴中会，这是第一个资产阶级革命团体。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 5,
+          "type": "single",
+          "stem": "资产阶级革命派的宣传家中，写作《革命军》、以“革命军中马前卒”自署的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "章炳麟"
+            },
+            {
+              "id": "B",
+              "label": "陈天华"
+            },
+            {
+              "id": "C",
+              "label": "邹容"
+            },
+            {
+              "id": "D",
+              "label": "宋教仁"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。邹容写作《革命军》，并以“革命军中马前卒”自署，是考试中非常爱考的人作对应。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 6,
+          "type": "single",
+          "stem": "资产阶级革命派宣传工作中，发表《驳康有为论革命书》、强调中国人民完全有能力建立民主共和制度的人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "孙中山"
+            },
+            {
+              "id": "B",
+              "label": "章炳麟"
+            },
+            {
+              "id": "C",
+              "label": "黄兴"
+            },
+            {
+              "id": "D",
+              "label": "梁启超"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。章炳麟发表《驳康有为论革命书》，反对保皇观念，强调中国人民有能力建立民主共和制度。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 7,
+          "type": "single",
+          "stem": "留日学生陈天华为唤起民众反帝反清而写作的小册子是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《猛回头》《警世钟》"
+            },
+            {
+              "id": "B",
+              "label": "《革命军》《警世钟》"
+            },
+            {
+              "id": "C",
+              "label": "《驳康有为论革命书》《革命军》"
+            },
+            {
+              "id": "D",
+              "label": "《民报》《革命军》"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。陈天华的代表性宣传小册子是《警世钟》《猛回头》。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 8,
+          "type": "single",
+          "stem": "清末“新政”废除科举考试的时间是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1901年"
+            },
+            {
+              "id": "B",
+              "label": "1903年"
+            },
+            {
+              "id": "C",
+              "label": "1905年"
+            },
+            {
+              "id": "D",
+              "label": "1906年"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。复习资料明确写到：从1906年起正式废除科举考试。（避坑：很多题会把1905年和1906年混淆）。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 9,
+          "type": "single",
+          "stem": "1905年8月20日，孙中山等人在日本东京成立的全国性革命政党是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "兴中会"
+            },
+            {
+              "id": "B",
+              "label": "华兴会"
+            },
+            {
+              "id": "C",
+              "label": "中国同盟会"
+            },
+            {
+              "id": "D",
+              "label": "国民党"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1905年8月20日，孙中山等人在东京成立中国同盟会。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 10,
+          "type": "single",
+          "stem": "中国同盟会的机关报是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《新青年》"
+            },
+            {
+              "id": "B",
+              "label": "《民报》"
+            },
+            {
+              "id": "C",
+              "label": "《革命军》"
+            },
+            {
+              "id": "D",
+              "label": "《时务报》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。同盟会以《民报》为机关报。（避坑：《革命军》是著作，不是机关报）。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 11,
+          "type": "single",
+          "stem": "近代中国第一个领导资产阶级革命的全国性政党是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "兴中会"
+            },
+            {
+              "id": "B",
+              "label": "中国同盟会"
+            },
+            {
+              "id": "C",
+              "label": "国民党"
+            },
+            {
+              "id": "D",
+              "label": "中华革命党"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。中国同盟会是近代中国第一个领导资产阶级革命的全国性政党。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 12,
+          "type": "single",
+          "stem": "孙中山在《民报》发刊词中将同盟会纲领概括为三大主义，它们是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "民族、民权、民主"
+            },
+            {
+              "id": "B",
+              "label": "民族、民权、民生"
+            },
+            {
+              "id": "C",
+              "label": "驱除鞑虏、恢复中华、平均地权"
+            },
+            {
+              "id": "D",
+              "label": "民主、科学、共和"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。三民主义即民族主义、民权主义、民生主义。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 13,
+          "type": "single",
+          "stem": "三民主义中的民权主义，其核心内容是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "推翻帝国主义统治"
+            },
+            {
+              "id": "B",
+              "label": "创立民国，建立资产阶级民主共和国"
+            },
+            {
+              "id": "C",
+              "label": "平均分配土地"
+            },
+            {
+              "id": "D",
+              "label": "驱除满洲贵族"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。民权主义的核心是“创立民国”，建立资产阶级民主共和国。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 14,
+          "type": "single",
+          "stem": "三民主义中的民生主义在当时主要指的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "节制资本"
+            },
+            {
+              "id": "B",
+              "label": "耕者有其田"
+            },
+            {
+              "id": "C",
+              "label": "平均地权"
+            },
+            {
+              "id": "D",
+              "label": "打倒列强"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。民生主义在当时主要指“平均地权”。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 15,
+          "type": "single",
+          "stem": "下列哪一项不属于革命派与改良派论战的焦点问题（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "要不要以革命手段推翻清王朝"
+            },
+            {
+              "id": "B",
+              "label": "要不要推翻帝制，实行共和"
+            },
+            {
+              "id": "C",
+              "label": "要不要进行社会革命"
+            },
+            {
+              "id": "D",
+              "label": "要不要立即废除科举考试"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。革命派与改良派论战的焦点是革命、共和、社会革命，不是废不废科举。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 16,
+          "type": "single",
+          "stem": "对三民主义中民族主义局限性的准确表述是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "明确提出了彻底的反帝纲领"
+            },
+            {
+              "id": "B",
+              "label": "明确把整个封建统治阶级都列为革命对象"
+            },
+            {
+              "id": "C",
+              "label": "没有从正面鲜明提出反对帝国主义的主张"
+            },
+            {
+              "id": "D",
+              "label": "主张继续保存满洲政府的统治"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。民族主义的主要局限是没有从正面鲜明提出反帝主张。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 17,
+          "type": "single",
+          "stem": "对三民主义中民生主义局限性的准确表述是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "完全否定了土地问题的重要性"
+            },
+            {
+              "id": "B",
+              "label": "正面触及了封建土地所有制"
+            },
+            {
+              "id": "C",
+              "label": "不能满足广大农民的土地要求"
+            },
+            {
+              "id": "D",
+              "label": "已经形成了彻底的社会主义土地纲领"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。民生主义没有正面触及封建土地所有制，不能满足广大农民的土地要求。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 18,
+          "type": "single",
+          "stem": "孙中山三民主义学说的总体性质是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "完整的无产阶级革命纲领"
+            },
+            {
+              "id": "B",
+              "label": "比较完整而明确的资产阶级民主革命纲领"
+            },
+            {
+              "id": "C",
+              "label": "封建地主阶级改良纲领"
+            },
+            {
+              "id": "D",
+              "label": "彻底的反帝反封建革命纲领"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。三民主义是一个比较完整而明确的资产阶级民主革命纲领。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 19,
+          "type": "single",
+          "stem": "同盟会领导的多次武装起义中，影响最大的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "镇南关起义"
+            },
+            {
+              "id": "B",
+              "label": "黄花岗起义"
+            },
+            {
+              "id": "C",
+              "label": "萍浏醴起义"
+            },
+            {
+              "id": "D",
+              "label": "武昌起义"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。同盟会领导的多次武装起义中，影响最大的是1911年4月27日举行的广州起义，即黄花岗起义。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 20,
+          "type": "single",
+          "stem": "黄花岗起义发生的时间是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1911年4月27日"
+            },
+            {
+              "id": "B",
+              "label": "1911年5月9日"
+            },
+            {
+              "id": "C",
+              "label": "1911年10月10日"
+            },
+            {
+              "id": "D",
+              "label": "1912年1月1日"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。黄花岗起义的时间一定要和武昌起义区分开。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 21,
+          "type": "single",
+          "stem": "黄花岗起义中率敢死队在广州举行起义的人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "孙中山"
+            },
+            {
+              "id": "B",
+              "label": "黄兴"
+            },
+            {
+              "id": "C",
+              "label": "宋教仁"
+            },
+            {
+              "id": "D",
+              "label": "邹容"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。黄兴率敢死队120余人在广州举行起义。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 22,
+          "type": "single",
+          "stem": "清政府在铁路利权问题上的政策直接激化了革命形势，这场风潮是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "护国运动"
+            },
+            {
+              "id": "B",
+              "label": "保路风潮"
+            },
+            {
+              "id": "C",
+              "label": "收回利权运动"
+            },
+            {
+              "id": "D",
+              "label": "二次革命"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。铁路干线收归国有并向列强借款，直接引发了保路风潮。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 23,
+          "type": "single",
+          "stem": "保路风潮最激烈的地区是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "湖北"
+            },
+            {
+              "id": "B",
+              "label": "湖南"
+            },
+            {
+              "id": "C",
+              "label": "广东"
+            },
+            {
+              "id": "D",
+              "label": "四川"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。四省中以四川斗争最为激烈。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 24,
+          "type": "single",
+          "stem": "武昌起义爆发的时间是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1911年4月27日"
+            },
+            {
+              "id": "B",
+              "label": "1911年5月"
+            },
+            {
+              "id": "C",
+              "label": "1911年10月10日晚"
+            },
+            {
+              "id": "D",
+              "label": "1912年2月12日"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。武昌起义爆发于1911年10月10日晚。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 25,
+          "type": "single",
+          "stem": "武昌起义首先打响起义第一枪的力量来自（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "湖北新军工程第八营的革命党人"
+            },
+            {
+              "id": "B",
+              "label": "同盟会总部直属卫队"
+            },
+            {
+              "id": "C",
+              "label": "保路同志军主力"
+            },
+            {
+              "id": "D",
+              "label": "南京临时政府卫队"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。第一枪是驻武昌新军工程第八营革命党人打响的。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 26,
+          "type": "single",
+          "stem": "武昌起义后成立的地方革命政权是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "南京临时政府"
+            },
+            {
+              "id": "B",
+              "label": "中华革命军政府"
+            },
+            {
+              "id": "C",
+              "label": "湖北军政府"
+            },
+            {
+              "id": "D",
+              "label": "国民政府"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。武昌起义后成立湖北军政府。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 27,
+          "type": "single",
+          "stem": "中华民国临时政府成立时，当选临时大总统的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "黄兴"
+            },
+            {
+              "id": "B",
+              "label": "孙中山"
+            },
+            {
+              "id": "C",
+              "label": "宋教仁"
+            },
+            {
+              "id": "D",
+              "label": "黎元洪"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。孙中山在南京就任临时大总统。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 28,
+          "type": "single",
+          "stem": "1912年3月颁布、被视为中国历史上第一部具有资产阶级共和国宪法性质法典的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《钦定宪法大纲》"
+            },
+            {
+              "id": "B",
+              "label": "《中华民国约法》"
+            },
+            {
+              "id": "C",
+              "label": "《中华民国临时约法》"
+            },
+            {
+              "id": "D",
+              "label": "《共同纲领》"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。中国历史上第一部具有资产阶级共和国宪法性质的法典是《中华民国临时约法》。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 29,
+          "type": "single",
+          "stem": "对南京临时政府性质的正确判断是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "封建地主阶级政权"
+            },
+            {
+              "id": "B",
+              "label": "资产阶级共和国性质的革命政权"
+            },
+            {
+              "id": "C",
+              "label": "无产阶级专政政权"
+            },
+            {
+              "id": "D",
+              "label": "北洋军阀官僚政权"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。南京临时政府是资产阶级共和国性质的革命政权。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 30,
+          "type": "single",
+          "stem": "辛亥革命的性质是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "无产阶级社会主义革命"
+            },
+            {
+              "id": "B",
+              "label": "资产阶级领导的比较完全意义上的民主革命"
+            },
+            {
+              "id": "C",
+              "label": "农民阶级反封建革命"
+            },
+            {
+              "id": "D",
+              "label": "地主阶级改良运动"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。辛亥革命是资产阶级领导的、以建立资产阶级共和国为目标的比较完全意义上的资产阶级民主革命。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 31,
+          "type": "single",
+          "stem": "辛亥革命最重大的制度性成果是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "彻底完成了反帝任务"
+            },
+            {
+              "id": "B",
+              "label": "结束了两千多年的封建君主专制制度"
+            },
+            {
+              "id": "C",
+              "label": "彻底解决了土地问题"
+            },
+            {
+              "id": "D",
+              "label": "建立了人民民主专政"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。它结束了中国延续两千多年的封建君主专制制度，这是最重大的制度性成果。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 32,
+          "type": "single",
+          "stem": "北洋军阀首领袁世凯窃夺辛亥革命果实后建立的政权，代表的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "民族资产阶级利益"
+            },
+            {
+              "id": "B",
+              "label": "大地主和买办资产阶级利益"
+            },
+            {
+              "id": "C",
+              "label": "工人农民联盟利益"
+            },
+            {
+              "id": "D",
+              "label": "革命小资产阶级利益"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。袁世凯建立的是代表大地主和买办资产阶级利益的北洋军阀反动政权。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 33,
+          "type": "single",
+          "stem": "袁世凯为镇压革命、走向专制统治而制造的重大政治事件是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "公车上书"
+            },
+            {
+              "id": "B",
+              "label": "刺杀宋教仁并镇压“二次革命”"
+            },
+            {
+              "id": "C",
+              "label": "武昌起义"
+            },
+            {
+              "id": "D",
+              "label": "黄花岗起义"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。刺杀宋教仁并镇压“二次革命”，是袁世凯走向专制的重要政治动作。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 34,
+          "type": "single",
+          "stem": "袁世凯为换取日本支持复辟帝制而基本接受的严重损害中国权益的要求是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《辛丑条约》"
+            },
+            {
+              "id": "B",
+              "label": "“二十一条”"
+            },
+            {
+              "id": "C",
+              "label": "《马关条约》"
+            },
+            {
+              "id": "D",
+              "label": "《南京条约》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1915年袁世凯为换取日本支持复辟帝制，基本接受了“二十一条”。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 35,
+          "type": "single",
+          "stem": "北洋政府在文化思想方面最突出的反动表现是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "宣传民主共和"
+            },
+            {
+              "id": "B",
+              "label": "倡导科学与民主"
+            },
+            {
+              "id": "C",
+              "label": "尊孔复古思潮猖獗"
+            },
+            {
+              "id": "D",
+              "label": "全面废除旧礼教"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。北洋政府时期尊孔复古思潮猖獗一时。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 36,
+          "type": "single",
+          "stem": "1914年孙中山在日本组织、坚持反袁武装斗争的组织是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "兴中会"
+            },
+            {
+              "id": "B",
+              "label": "中国同盟会"
+            },
+            {
+              "id": "C",
+              "label": "中华革命党"
+            },
+            {
+              "id": "D",
+              "label": "国民党"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1914年孙中山在日本组织中华革命党，坚持反袁斗争。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 37,
+          "type": "single",
+          "stem": "从根本上说，辛亥革命失败的原因在于（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "军事斗争不够坚决"
+            },
+            {
+              "id": "B",
+              "label": "革命派完全没有群众基础"
+            },
+            {
+              "id": "C",
+              "label": "在半殖民地半封建中国，资本主义建国方案行不通"
+            },
+            {
+              "id": "D",
+              "label": "革命派拒绝同任何政治力量联合"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。从根本上说，在帝国主义时代、半殖民地半封建的中国，资本主义建国方案行不通。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 38,
+          "type": "single",
+          "stem": "辛亥革命领导者的第一个主要弱点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "没有提出彻底的反帝反封建革命纲领"
+            },
+            {
+              "id": "B",
+              "label": "完全没有建立任何政党组织"
+            },
+            {
+              "id": "C",
+              "label": "完全否定民主共和国"
+            },
+            {
+              "id": "D",
+              "label": "明确反对群众参与革命"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。革命派没有提出彻底的反帝反封建革命纲领，这是第一个主要弱点。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 39,
+          "type": "single",
+          "stem": "辛亥革命未能充分发动和依靠的革命主力军是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "民族资产阶级"
+            },
+            {
+              "id": "B",
+              "label": "农民群众"
+            },
+            {
+              "id": "C",
+              "label": "立宪派"
+            },
+            {
+              "id": "D",
+              "label": "帝国主义国家"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。他们不敢依靠农民群众这个反封建的主力军。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 40,
+          "type": "single",
+          "stem": "辛亥革命给先进中国人的最深刻教训是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "只能依靠列强支持推进现代化"
+            },
+            {
+              "id": "B",
+              "label": "资产阶级共和国方案不能救中国"
+            },
+            {
+              "id": "C",
+              "label": "只要推翻皇帝就完成了革命任务"
+            },
+            {
+              "id": "D",
+              "label": "应当停止探索新的革命道路"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。辛亥革命失败最深刻的历史结论是资产阶级共和国方案救不了中国。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 41,
+          "type": "single",
+          "stem": "关于中华革命党的评价，正确的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "它提出了能够广泛动员群众的革命纲领"
+            },
+            {
+              "id": "B",
+              "label": "它因宗派性强、脱离群众而社会影响有限"
+            },
+            {
+              "id": "C",
+              "label": "它成功组织全国性武装总起义"
+            },
+            {
+              "id": "D",
+              "label": "它立即发展成为群众性革命政党"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。中华革命党因纲领不能动员群众、又带有强烈宗派性，所以社会影响有限。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 42,
+          "type": "multiple",
+          "stem": "清末“新政”的主要内容包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "设立商部、学部、巡警部等中央行政机构"
+            },
+            {
+              "id": "B",
+              "label": "裁撤绿营，建立新军"
+            },
+            {
+              "id": "C",
+              "label": "颁布商法商律，奖励工商"
+            },
+            {
+              "id": "D",
+              "label": "鼓励留学，颁布新学制并正式废除科举"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项完整构成清末“新政”的主要内容。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 43,
+          "type": "multiple",
+          "stem": "关于“皇族内阁”，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "它出现在1911年5月"
+            },
+            {
+              "id": "B",
+              "label": "13名大臣中满族有9人"
+            },
+            {
+              "id": "C",
+              "label": "其中皇族占7人"
+            },
+            {
+              "id": "D",
+              "label": "它使立宪派大失所望"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都是“皇族内阁”的核心记忆点。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 44,
+          "type": "multiple",
+          "stem": "资产阶级革命派进行宣传工作的代表成果包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "章炳麟的《驳康有为论革命书》"
+            },
+            {
+              "id": "B",
+              "label": "邹容的《革命军》"
+            },
+            {
+              "id": "C",
+              "label": "陈天华的《警世钟》"
+            },
+            {
+              "id": "D",
+              "label": "陈天华的《猛回头》"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都是资产阶级革命派宣传工作的代表成果。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 45,
+          "type": "multiple",
+          "stem": "兴中会提出的誓词内容包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "驱除鞑虏"
+            },
+            {
+              "id": "B",
+              "label": "恢复中国"
+            },
+            {
+              "id": "C",
+              "label": "创立合众政府"
+            },
+            {
+              "id": "D",
+              "label": "平均地权"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。兴中会誓词是“驱除鞑虏，恢复中国，创立合众政府”，并不包括“平均地权”。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 46,
+          "type": "multiple",
+          "stem": "关于中国同盟会，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "成立于1905年8月20日"
+            },
+            {
+              "id": "B",
+              "label": "以兴中会和华兴会为基础成立"
+            },
+            {
+              "id": "C",
+              "label": "成立地点在日本东京"
+            },
+            {
+              "id": "D",
+              "label": "是近代中国第一个领导资产阶级革命的全国性政党"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都是中国同盟会的核心知识点。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 47,
+          "type": "multiple",
+          "stem": "三民主义中民族主义的主要内容包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "驱除鞑虏"
+            },
+            {
+              "id": "B",
+              "label": "恢复中华"
+            },
+            {
+              "id": "C",
+              "label": "创立民国"
+            },
+            {
+              "id": "D",
+              "label": "建立中华民族“独立的国家”"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "D"
+          ],
+          "explanation": "ABD。民族主义包括“驱除鞑虏，恢复中华”和建立独立国家，“创立民国”属于民权主义。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 48,
+          "type": "multiple",
+          "stem": "关于民权主义，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "其内容是“创立民国”"
+            },
+            {
+              "id": "B",
+              "label": "要建立资产阶级民主共和国"
+            },
+            {
+              "id": "C",
+              "label": "强调凡国民皆平等有参政权"
+            },
+            {
+              "id": "D",
+              "label": "已经充分保障了广大劳动群众的民主权利"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项错在“充分保障”，复习资料明确指出它忽略了广大劳动群众的地位。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 49,
+          "type": "multiple",
+          "stem": "关于民生主义，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "当时主要指“平均地权”"
+            },
+            {
+              "id": "B",
+              "label": "主张核定全国地价"
+            },
+            {
+              "id": "C",
+              "label": "革命后土地增价归国家"
+            },
+            {
+              "id": "D",
+              "label": "正面触及了封建土地所有制"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项错误，平均地权并没有正面触及封建土地所有制。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 50,
+          "type": "multiple",
+          "stem": "革命派与改良派论战的焦点问题包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "要不要以革命手段推翻清王朝"
+            },
+            {
+              "id": "B",
+              "label": "要不要推翻帝制，实行共和"
+            },
+            {
+              "id": "C",
+              "label": "要不要进行社会革命"
+            },
+            {
+              "id": "D",
+              "label": "要不要保留皇权并实行君主立宪"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。这三项正是革命派与改良派论战的焦点。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 51,
+          "type": "multiple",
+          "stem": "关于黄花岗起义，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "发生于1911年4月27日"
+            },
+            {
+              "id": "B",
+              "label": "地点在广州"
+            },
+            {
+              "id": "C",
+              "label": "黄兴率敢死队起义"
+            },
+            {
+              "id": "D",
+              "label": "72烈士遗骸被葬于黄花岗"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都属于黄花岗起义的核心记忆点。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 52,
+          "type": "multiple",
+          "stem": "关于保路风潮，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "导火索是铁路干线收归国有并向列强借款"
+            },
+            {
+              "id": "B",
+              "label": "涉及湖北、湖南、广东、四川四省"
+            },
+            {
+              "id": "C",
+              "label": "四川的斗争最为激烈"
+            },
+            {
+              "id": "D",
+              "label": "“成都血案”进一步激化了群众反抗"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项完整对应保路风潮的起因、范围和激化过程。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 53,
+          "type": "multiple",
+          "stem": "关于武昌起义，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "由湖北新军中的共进会和文学社联合发动"
+            },
+            {
+              "id": "B",
+              "label": "起义后3天内光复武汉三镇"
+            },
+            {
+              "id": "C",
+              "label": "成立了湖北军政府"
+            },
+            {
+              "id": "D",
+              "label": "打开了清王朝统治的缺口"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这些都是武昌起义的标准表述。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 54,
+          "type": "multiple",
+          "stem": "关于中华民国临时政府，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1912年1月1日在南京成立"
+            },
+            {
+              "id": "B",
+              "label": "孙中山宣誓就任临时大总统"
+            },
+            {
+              "id": "C",
+              "label": "以中华民国为国号"
+            },
+            {
+              "id": "D",
+              "label": "资产阶级革命派在其中占有领导和主体地位"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项构成南京临时政府的基本史实和性质判断。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 55,
+          "type": "multiple",
+          "stem": "关于《中华民国临时约法》，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "颁布时间是1912年3月"
+            },
+            {
+              "id": "B",
+              "label": "由临时参议院颁布"
+            },
+            {
+              "id": "C",
+              "label": "具有资产阶级共和国宪法性质"
+            },
+            {
+              "id": "D",
+              "label": "是中国历史上第一部具有这种性质的法典"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。关于《中华民国临时约法》的时间、颁布者、性质和地位都要一起记。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 56,
+          "type": "multiple",
+          "stem": "辛亥革命的历史意义包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "推翻了清王朝的统治，沉重打击中外反动势力"
+            },
+            {
+              "id": "B",
+              "label": "结束了两千多年的封建君主专制制度"
+            },
+            {
+              "id": "C",
+              "label": "推动了中国人民的思想解放"
+            },
+            {
+              "id": "D",
+              "label": "推动了社会经济、思想习惯和社会风俗的积极变化"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都属于辛亥革命历史意义的核心内容。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 57,
+          "type": "multiple",
+          "stem": "关于北洋军阀反动政权的建立，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "在政治上实行军阀官僚专制统治"
+            },
+            {
+              "id": "B",
+              "label": "在经济上维护帝国主义、地主阶级和买办资产阶级利益"
+            },
+            {
+              "id": "C",
+              "label": "在文化思想上尊孔复古"
+            },
+            {
+              "id": "D",
+              "label": "通过镇压“二次革命”等手段巩固统治"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项完整对应北洋军阀专制统治建立的政治、经济和思想文化基础。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 58,
+          "type": "multiple",
+          "stem": "辛亥革命失败的主观原因包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "没有提出彻底的反帝反封建革命纲领"
+            },
+            {
+              "id": "B",
+              "label": "不能充分发动和依靠人民群众"
+            },
+            {
+              "id": "C",
+              "label": "不能建立坚强的革命政党"
+            },
+            {
+              "id": "D",
+              "label": "帝国主义和国内反动势力从外部与内部联合绞杀革命"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项说的是外部与内部联合绞杀革命，属于客观和根本条件背景，不属于主观弱点三条。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 59,
+          "type": "multiple",
+          "stem": "辛亥革命推动社会风俗和社会生活变化的表现包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "改用公历"
+            },
+            {
+              "id": "B",
+              "label": "官吏之间不再行跪拜礼"
+            },
+            {
+              "id": "C",
+              "label": "男子剪辫、女子放足"
+            },
+            {
+              "id": "D",
+              "label": "以“先生”“君”等称呼取代“老爷”"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都出自辛亥革命推动社会风俗变化的内容。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 60,
+          "type": "multiple",
+          "stem": "关于辛亥革命失败后的历史认识，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "资产阶级共和国方案没有能够救中国"
+            },
+            {
+              "id": "B",
+              "label": "资产阶级革命派的弱点根源于民族资产阶级的软弱性和妥协性"
+            },
+            {
+              "id": "C",
+              "label": "革命失败后中国不必再寻找新道路"
+            },
+            {
+              "id": "D",
+              "label": "先进中国人需要继续探索新的救国出路"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "D"
+          ],
+          "explanation": "ABD。C项错误，正相反，辛亥革命失败恰恰要求继续探索新道路。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 61,
+          "type": "judge",
+          "stem": "（ ） 清末“新政”中宣布“预备仿行宪政”，标志着清政府已经决心放弃君主专制，真正建立民主宪政。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：不要把“预备立宪”误判成真立宪） 清政府宣布“预备仿行宪政”的根本目的是延续其反动统治。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 62,
+          "type": "judge",
+          "stem": "（ ） “皇族内阁”的出现，说明清政府借立宪之名加强皇权，反而进一步激化了社会矛盾。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是“皇族内阁”的历史作用和后果。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 63,
+          "type": "judge",
+          "stem": "（ ） 兴中会是近代中国第一个领导资产阶级革命的全国性政党。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。兴中会是第一个革命团体，而近代中国第一个领导资产阶级革命的全国性政党是后来的中国同盟会。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 64,
+          "type": "judge",
+          "stem": "（ ） 《革命军》的作者是邹容，他号召人民推翻清朝统治，建立“中华共和国”。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是《革命军》的作者和主旨。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 65,
+          "type": "judge",
+          "stem": "（ ） 陈天华在《警世钟》《猛回头》中揭露清政府已经成为帝国主义统治中国的工具，号召人民奋起革命。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是陈天华宣传革命的核心内容。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 66,
+          "type": "judge",
+          "stem": "（ ） 清末“新政”正式废除科举考试的时间是1906年。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。清末“新政”中明确提出从1906年起正式废除科举考试。",
+          "sourceIds": [
+            "ref-c3-s46-l291-list",
+            "ref-c3-s47-l298-list",
+            "ref-c3-s48-l299-heading",
+            "ref-c3-s49-l305-list"
+          ]
+        },
+        {
+          "id": 67,
+          "type": "judge",
+          "stem": "（ ） 中国同盟会成立后，以《民报》为机关报，并确定了革命纲领。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是同盟会成立后的基本情况。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 68,
+          "type": "judge",
+          "stem": "（ ） 三民主义中的民族主义，不仅反对清王朝，也从正面鲜明提出了彻底反帝的主张。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：革命派当时对帝国主义认识并不清楚） 民族主义没有鲜明提出反帝主张。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 69,
+          "type": "judge",
+          "stem": "（ ） 三民主义中的民权主义主张推翻封建君主专制制度，建立资产阶级民主共和国。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是民权主义的标准表述。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 70,
+          "type": "judge",
+          "stem": "（ ） 三民主义中的民生主义“平均地权”已经从根本上解决了农民土地问题，因而成为发动工农群众的有力武器。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。民生主义并没有正面触及封建土地所有制，不能满足农民土地要求。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 71,
+          "type": "judge",
+          "stem": "（ ） 三民主义初步描绘出中国还不曾有过的资产阶级共和国方案，对推动革命发展产生了积极影响。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是对三民主义总体评价的经典表述。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 72,
+          "type": "judge",
+          "stem": "（ ） 革命派与改良派的论战，主要围绕革命、共和和社会革命三个问题展开。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。三大论战焦点一定要记准。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 73,
+          "type": "judge",
+          "stem": "（ ） 中国同盟会是近代中国第一个革命团体。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。第一个革命团体是兴中会，而同盟会是第一个全国性革命政党。",
+          "sourceIds": [
+            "ref-c3-s50-l311-list",
+            "ref-c3-s51-l317-list",
+            "ref-c3-s52-l338-list"
+          ]
+        },
+        {
+          "id": 74,
+          "type": "judge",
+          "stem": "（ ） 黄花岗起义是同盟会发动的一系列武装起义中影响最大的一次。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是教材原话性质的结论。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 75,
+          "type": "judge",
+          "stem": "（ ） 保路风潮表明清政府在铁路利权问题上的政策进一步激起了民众的愤慨和反抗，加速了革命爆发。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是保路风潮的历史作用。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 76,
+          "type": "judge",
+          "stem": "（ ） 武昌起义爆发后，全国在极短时间内形成响应，清王朝统治迅速土崩瓦解。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。武昌起义后，一个月内13省以及上海和许多州县宣布脱离清政府统治。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 77,
+          "type": "judge",
+          "stem": "（ ） 1912年2月12日清帝退位，标志着中国延续两千多年的封建君主专制制度终于覆灭。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是辛亥革命最重要的制度性成果之一。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 78,
+          "type": "judge",
+          "stem": "（ ） 南京临时政府是一个无产阶级领导的新民主主义政权。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：不要把后来的革命阶段套进来） 南京临时政府是资产阶级共和国性质的革命政权。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 79,
+          "type": "judge",
+          "stem": "（ ） 《中华民国临时约法》是中国历史上第一部具有资产阶级共和国宪法性质的法典。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是《中华民国临时约法》的经典定位。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 80,
+          "type": "judge",
+          "stem": "（ ） 孙中山是在武昌起义爆发当晚于南京就任中华民国临时大总统的。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。孙中山是1912年1月1日在南京宣誓就职，不是在武昌起义当晚。",
+          "sourceIds": [
+            "ref-c3-s53-l344-list",
+            "ref-c3-s54-l347-list",
+            "ref-c3-s55-l352-list",
+            "ref-c3-s56-l359-list",
+            "ref-c3-s57-l365-list"
+          ]
+        },
+        {
+          "id": 81,
+          "type": "judge",
+          "stem": "（ ） 辛亥革命是一次比较完全意义上的资产阶级民主革命。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是辛亥革命性质的标准表述。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 82,
+          "type": "judge",
+          "stem": "（ ） 辛亥革命已经彻底完成了反帝反封建任务，所以其后中国革命不再需要新的探索。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：辛亥革命成就巨大，但并未完成反帝反封建任务）。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 83,
+          "type": "judge",
+          "stem": "（ ） 北洋军阀为了实行专制统治，不惜投靠帝国主义，这是其反动统治的重要特征之一。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。北洋军阀统治的重要特点之一就是依附帝国主义。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 84,
+          "type": "judge",
+          "stem": "（ ） 辛亥革命失败的根本原因，在于革命派没有发动任何群众参加斗争。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。辛亥革命失败的根本原因不是“完全没有发动群众”，而是资本主义建国方案在中国行不通；从主观上说则是不敢充分发动和依靠群众。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        },
+        {
+          "id": 85,
+          "type": "judge",
+          "stem": "（ ） 辛亥革命的失败表明，资产阶级共和国的方案没有能够救中国，先进的中国人需要继续探索新的出路。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是辛亥革命失败教训的落脚点。",
+          "sourceIds": [
+            "ref-c3-s58-l369-list",
+            "ref-c3-s59-l385-list",
+            "ref-c3-s60-l393-list",
+            "ref-c3-s61-l397-list",
+            "ref-c3-s62-l405-list"
+          ]
+        }
+      ],
       "downloads": {
-        "markdown": null,
+        "markdown": "/docs/chapter-3/chapter-3.md",
         "pdf": null
       }
     },
@@ -6561,10 +9240,2664 @@
       "chapterNo": 4,
       "numeral": "四",
       "title": "第四章习题",
-      "available": false,
-      "questions": [],
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "type": "single",
+          "stem": "新文化运动兴起的标志是1915年9月陈独秀在上海创办了（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《时务报》"
+            },
+            {
+              "id": "B",
+              "label": "《青年杂志》"
+            },
+            {
+              "id": "C",
+              "label": "《民报》"
+            },
+            {
+              "id": "D",
+              "label": "《每周评论》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1915年9月，陈独秀在上海创办《青年杂志》，这被视为新文化运动兴起的标志。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "single",
+          "stem": "《青年杂志》后来改名为（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《新潮》"
+            },
+            {
+              "id": "B",
+              "label": "《新民丛报》"
+            },
+            {
+              "id": "C",
+              "label": "《新青年》"
+            },
+            {
+              "id": "D",
+              "label": "《共产党》"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。《青年杂志》后来改名为《新青年》。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 3,
+          "type": "single",
+          "stem": "1917年1月出任北京大学校长、并推动《新青年》编辑部迁到北京的人物是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "胡适"
+            },
+            {
+              "id": "B",
+              "label": "李大钊"
+            },
+            {
+              "id": "C",
+              "label": "蔡元培"
+            },
+            {
+              "id": "D",
+              "label": "鲁迅"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1917年1月蔡元培出任北京大学校长，并推动《新青年》编辑部迁至北京。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 4,
+          "type": "single",
+          "stem": "新文化运动的基本口号是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "自强与求富"
+            },
+            {
+              "id": "B",
+              "label": "民主与共和"
+            },
+            {
+              "id": "C",
+              "label": "民主与科学"
+            },
+            {
+              "id": "D",
+              "label": "独立与自由"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。新文化运动的基本口号是拥护“德先生”和“赛先生”，即民主与科学。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 5,
+          "type": "single",
+          "stem": "五四以前新文化运动的倡导者批判孔学，根本上是为了（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "复兴传统经学"
+            },
+            {
+              "id": "B",
+              "label": "给中国发展资本主义扫清障碍"
+            },
+            {
+              "id": "C",
+              "label": "建立无产阶级专政"
+            },
+            {
+              "id": "D",
+              "label": "推行宗教改革"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。倡导者批判孔学，是为了给中国发展资本主义扫清障碍。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 6,
+          "type": "single",
+          "stem": "五四以前新文化运动的局限性中，最能体现其脱离社会革命实践的一项是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "完全否定西方文明"
+            },
+            {
+              "id": "B",
+              "label": "只靠少数人的宣传而不去改造产生封建思想的社会环境"
+            },
+            {
+              "id": "C",
+              "label": "主张立即实行社会主义革命"
+            },
+            {
+              "id": "D",
+              "label": "明确反对民主与科学"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。这是其局限性的经典表述：离开改造封建思想社会环境的革命实践，只靠少数人宣传，不可能根本改造国民性。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 7,
+          "type": "single",
+          "stem": "十月革命对中国先进分子最重要的思想影响是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "推动他们继续迷信西方议会制度"
+            },
+            {
+              "id": "B",
+              "label": "推动他们把目光从东方转向西方"
+            },
+            {
+              "id": "C",
+              "label": "推动他们从资产阶级民主主义转向社会主义"
+            },
+            {
+              "id": "D",
+              "label": "推动他们放弃反帝斗争"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。十月革命推动中国先进分子把目光从西方转向东方，从资产阶级民主主义转向社会主义。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 8,
+          "type": "single",
+          "stem": "在中国大地上率先举起马克思主义旗帜的人是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "陈独秀"
+            },
+            {
+              "id": "B",
+              "label": "毛泽东"
+            },
+            {
+              "id": "C",
+              "label": "董必武"
+            },
+            {
+              "id": "D",
+              "label": "李大钊"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。在中国大地上率先举起马克思主义旗帜的是李大钊。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 9,
+          "type": "single",
+          "stem": "标志着马克思主义在中国进入比较系统传播阶段的著作是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《庶民的胜利》"
+            },
+            {
+              "id": "B",
+              "label": "《布尔什维主义的胜利》"
+            },
+            {
+              "id": "C",
+              "label": "《我的马克思主义观》"
+            },
+            {
+              "id": "D",
+              "label": "《法俄革命之比较观》"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1919年李大钊发表《我的马克思主义观》，标志着马克思主义在中国进入比较系统传播阶段。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 10,
+          "type": "single",
+          "stem": "李大钊热情讴歌十月革命胜利并确信“将来的环球，必是赤旗的世界”，主要说明他（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "主张恢复君主立宪"
+            },
+            {
+              "id": "B",
+              "label": "已开始坚定转向马克思主义"
+            },
+            {
+              "id": "C",
+              "label": "完全否定群众力量"
+            },
+            {
+              "id": "D",
+              "label": "反对社会主义传播"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。这说明李大钊已经从民主主义者转向共产主义者，并热情讴歌十月革命。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 11,
+          "type": "single",
+          "stem": "五四运动爆发的直接导火线是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "北洋军阀复辟帝制"
+            },
+            {
+              "id": "B",
+              "label": "巴黎和会上中国外交的失败"
+            },
+            {
+              "id": "C",
+              "label": "新文化运动的兴起"
+            },
+            {
+              "id": "D",
+              "label": "俄国十月革命胜利"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。五四运动的直接导火线是巴黎和会上中国外交的失败。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 12,
+          "type": "single",
+          "stem": "五四运动发生的一个重要社会基础，是第一次世界大战期间中国（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "资本主义经济迅速发展"
+            },
+            {
+              "id": "B",
+              "label": "封建经济全面瓦解"
+            },
+            {
+              "id": "C",
+              "label": "农村人民公社建立"
+            },
+            {
+              "id": "D",
+              "label": "外资全部退出"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。一战期间中国资本主义经济迅速发展，为运动发生提供了重要社会条件。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 13,
+          "type": "single",
+          "stem": "五四运动前夕，哪一社会力量的成长壮大，为运动提供了更广泛的群众基础（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "买办资产阶级"
+            },
+            {
+              "id": "B",
+              "label": "工人阶级"
+            },
+            {
+              "id": "C",
+              "label": "封建地主阶级"
+            },
+            {
+              "id": "D",
+              "label": "官僚资产阶级"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。教材特别强调新的社会力量中工人阶级的成长壮大。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 14,
+          "type": "single",
+          "stem": "五四运动获得最初群众队伍和骨干力量的重要思想条件是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "洋务运动的兴起"
+            },
+            {
+              "id": "B",
+              "label": "戊戌维新的开展"
+            },
+            {
+              "id": "C",
+              "label": "新文化运动掀起的思想解放潮流"
+            },
+            {
+              "id": "D",
+              "label": "清末新政的推进"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。新文化运动的思想解放潮流，为五四运动准备了最初群众队伍和骨干力量。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 15,
+          "type": "single",
+          "stem": "对五四运动性质的正确概括是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "一场单纯学生罢课运动"
+            },
+            {
+              "id": "B",
+              "label": "一场彻底反帝反封建的伟大爱国革命运动"
+            },
+            {
+              "id": "C",
+              "label": "一场旧式农民起义"
+            },
+            {
+              "id": "D",
+              "label": "一场资产阶级改良运动"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。五四运动是一场彻底反帝反封建的伟大爱国革命运动。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 16,
+          "type": "single",
+          "stem": "五四运动最重要的历史地位是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中国资产阶级共和国建立的开端"
+            },
+            {
+              "id": "B",
+              "label": "中国旧民主主义革命走向新民主主义革命的转折点"
+            },
+            {
+              "id": "C",
+              "label": "中国社会主义制度建立的起点"
+            },
+            {
+              "id": "D",
+              "label": "中国国民革命的终点"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。五四运动的里程碑意义，正在于它是旧民主主义革命走向新民主主义革命的转折点。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 17,
+          "type": "single",
+          "stem": "五四精神的核心是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "民主主义"
+            },
+            {
+              "id": "B",
+              "label": "科学精神"
+            },
+            {
+              "id": "C",
+              "label": "爱国主义"
+            },
+            {
+              "id": "D",
+              "label": "国际主义"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。五四精神的核心是爱国主义。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 18,
+          "type": "single",
+          "stem": "五四运动促进中国社会进步最突出的思想成果是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "促进马克思主义在中国传播"
+            },
+            {
+              "id": "B",
+              "label": "使君主立宪成为共识"
+            },
+            {
+              "id": "C",
+              "label": "终结了全部封建思想"
+            },
+            {
+              "id": "D",
+              "label": "立即实现工农政权"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。五四运动显著促进了马克思主义在中国的传播。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 19,
+          "type": "single",
+          "stem": "教材指出五四运动成为中国新民主主义革命开端，主要是因为它（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "彻底完成了反帝反封建任务"
+            },
+            {
+              "id": "B",
+              "label": "推翻了北洋军阀统治"
+            },
+            {
+              "id": "C",
+              "label": "促进了马克思主义传播并为中国共产党成立准备了条件"
+            },
+            {
+              "id": "D",
+              "label": "建立了统一的革命政权"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。这是五四运动成为新民主主义革命开端的重要原因。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 20,
+          "type": "single",
+          "stem": "五四运动实现了中国人民和中华民族自鸦片战争以来的第一次（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "全面工业化"
+            },
+            {
+              "id": "B",
+              "label": "思想统一"
+            },
+            {
+              "id": "C",
+              "label": "全面觉醒"
+            },
+            {
+              "id": "D",
+              "label": "武装起义胜利"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。教材明确说它实现了自鸦片战争以来中国人民和中华民族的第一次全面觉醒。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 21,
+          "type": "single",
+          "stem": "中国早期信仰马克思主义的第一类代表人物，主要是新文化运动的精神领袖，其中最主要的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "李大钊、陈独秀"
+            },
+            {
+              "id": "B",
+              "label": "毛泽东、董必武"
+            },
+            {
+              "id": "C",
+              "label": "周恩来、蔡和森"
+            },
+            {
+              "id": "D",
+              "label": "瞿秋白、张太雷"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。新文化运动精神领袖中，李大钊、陈独秀是最主要的代表人物。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 22,
+          "type": "single",
+          "stem": "五四爱国运动中的左翼骨干，是中国早期信仰马克思主义者的又一类型，其主要代表是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "陈独秀"
+            },
+            {
+              "id": "B",
+              "label": "毛泽东"
+            },
+            {
+              "id": "C",
+              "label": "李达"
+            },
+            {
+              "id": "D",
+              "label": "陈望道"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。五四爱国运动左翼骨干的主要代表是毛泽东等。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 23,
+          "type": "single",
+          "stem": "中国早期马克思主义思想运动的一大特点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "明确同第二国际的社会民主主义划清界限"
+            },
+            {
+              "id": "B",
+              "label": "主张照搬西方资本主义制度"
+            },
+            {
+              "id": "C",
+              "label": "排斥一切群众运动"
+            },
+            {
+              "id": "D",
+              "label": "否认中国具体国情"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。早期马克思主义思想运动一开始就明确同第二国际的社会民主主义划清界限。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 24,
+          "type": "single",
+          "stem": "最能体现中国早期马克思主义者注意从中国实际出发、学习运用马克思主义的一篇文章是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《革命军》"
+            },
+            {
+              "id": "B",
+              "label": "《再论问题与主义》"
+            },
+            {
+              "id": "C",
+              "label": "《天演论》"
+            },
+            {
+              "id": "D",
+              "label": "《孔子改制考》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。李大钊的《再论问题与主义》最能体现从中国实际出发运用马克思主义的思想。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 25,
+          "type": "single",
+          "stem": "1920年8月公开出版的《共产党宣言》中文全译本的翻译者是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "李大钊"
+            },
+            {
+              "id": "B",
+              "label": "陈独秀"
+            },
+            {
+              "id": "C",
+              "label": "陈望道"
+            },
+            {
+              "id": "D",
+              "label": "邓中夏"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1920年8月，陈望道翻译的《共产党宣言》中文全译本公开出版。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 26,
+          "type": "single",
+          "stem": "共产党早期组织到工人中去开展工作时，1920年11月领导成立的第一个工会是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "长辛店工人俱乐部"
+            },
+            {
+              "id": "B",
+              "label": "上海机器工会"
+            },
+            {
+              "id": "C",
+              "label": "省港罢工委员会"
+            },
+            {
+              "id": "D",
+              "label": "京汉铁路总工会"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。第一个工会是1920年11月成立的上海机器工会。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 27,
+          "type": "single",
+          "stem": "中国共产党第一次全国代表大会开幕的时间和地点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1920年8月，北京"
+            },
+            {
+              "id": "B",
+              "label": "1921年7月23日，上海"
+            },
+            {
+              "id": "C",
+              "label": "1921年5月1日，广州"
+            },
+            {
+              "id": "D",
+              "label": "1922年7月，嘉兴"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。中共一大于1921年7月23日在上海开幕。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 28,
+          "type": "single",
+          "stem": "中共一大最后一天的会议转移到（ ）继续举行。",
+          "options": [
+            {
+              "id": "A",
+              "label": "北京大学红楼"
+            },
+            {
+              "id": "B",
+              "label": "广州黄埔军校"
+            },
+            {
+              "id": "C",
+              "label": "嘉兴南湖游船"
+            },
+            {
+              "id": "D",
+              "label": "武汉长江轮船"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。最后一天会议转移到嘉兴南湖游船，这也是“红船”由来的重要背景。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 29,
+          "type": "single",
+          "stem": "中共一大通过的第一个纲领明确提出党的奋斗目标是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "建立资产阶级共和国"
+            },
+            {
+              "id": "B",
+              "label": "实现社会主义和共产主义"
+            },
+            {
+              "id": "C",
+              "label": "建立君主立宪政体"
+            },
+            {
+              "id": "D",
+              "label": "先发展资本主义再谈革命"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。中国共产党一经成立，就把社会主义和共产主义规定为奋斗目标。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 30,
+          "type": "single",
+          "stem": "中共一大选举产生中央局，担任书记的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "李大钊"
+            },
+            {
+              "id": "B",
+              "label": "毛泽东"
+            },
+            {
+              "id": "C",
+              "label": "陈独秀"
+            },
+            {
+              "id": "D",
+              "label": "董必武"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。中共一大选举产生以陈独秀为书记的中央局。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 31,
+          "type": "single",
+          "stem": "中国共产党成立的最根本历史意义在于（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "第一次提出发展资本主义方案"
+            },
+            {
+              "id": "B",
+              "label": "从根本上改变了近代中国没有先进政党领导的局面"
+            },
+            {
+              "id": "C",
+              "label": "彻底完成了反帝反封建任务"
+            },
+            {
+              "id": "D",
+              "label": "立即建立了全国革命政权"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。中国共产党的成立，从根本上改变了近代中国没有先进坚强政党领导的局面。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 32,
+          "type": "single",
+          "stem": "中国共产党第一次提出反帝反封建民主革命纲领的会议是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中共一大"
+            },
+            {
+              "id": "B",
+              "label": "中共二大"
+            },
+            {
+              "id": "C",
+              "label": "国民党一大"
+            },
+            {
+              "id": "D",
+              "label": "中共三大"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。中共二大第一次提出了反帝反封建的民主革命纲领。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 33,
+          "type": "single",
+          "stem": "中共二大提出党在现阶段的最低纲领是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "打倒列强，平均地权"
+            },
+            {
+              "id": "B",
+              "label": "打倒军阀，推翻国际帝国主义压迫，统一中国为真正民主共和国"
+            },
+            {
+              "id": "C",
+              "label": "建立资产阶级共和国"
+            },
+            {
+              "id": "D",
+              "label": "实现共产主义"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。这是中共二大提出的最低纲领完整表述。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 34,
+          "type": "single",
+          "stem": "1924年1月在广州举行、标志第一次国共合作正式形成的会议是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中共一大"
+            },
+            {
+              "id": "B",
+              "label": "国民党一大"
+            },
+            {
+              "id": "C",
+              "label": "中共二大"
+            },
+            {
+              "id": "D",
+              "label": "中共三大"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1924年1月国民党一大召开，标志第一次国共合作正式形成。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 35,
+          "type": "single",
+          "stem": "新三民主义在民族主义方面最突出的新发展是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "提出尊孔复古"
+            },
+            {
+              "id": "B",
+              "label": "突出反对帝国主义的内容"
+            },
+            {
+              "id": "C",
+              "label": "主张恢复帝制"
+            },
+            {
+              "id": "D",
+              "label": "放弃民族独立"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。新三民主义在民族主义中突出了反对帝国主义的内容。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 36,
+          "type": "single",
+          "stem": "新三民主义在民权主义方面强调民主权利应（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "为少数精英所独享"
+            },
+            {
+              "id": "B",
+              "label": "为一般平民所共有"
+            },
+            {
+              "id": "C",
+              "label": "限于地主资产阶级"
+            },
+            {
+              "id": "D",
+              "label": "完全由军政府掌握"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。民权主义强调民主权利“为一般平民所共有”。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 37,
+          "type": "single",
+          "stem": "为造就革命武装骨干力量而创办、1924年5月开学的学校是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "京师大学堂"
+            },
+            {
+              "id": "B",
+              "label": "黄埔军校"
+            },
+            {
+              "id": "C",
+              "label": "保定军校"
+            },
+            {
+              "id": "D",
+              "label": "南洋公学"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1924年5月开学的是黄埔军校。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 38,
+          "type": "single",
+          "stem": "1925年五卅惨案后爆发、掀起全国范围大革命高潮的群众运动是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "保路运动"
+            },
+            {
+              "id": "B",
+              "label": "五卅运动"
+            },
+            {
+              "id": "C",
+              "label": "五四运动"
+            },
+            {
+              "id": "D",
+              "label": "一二九运动"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。五卅惨案导致五卅运动爆发，并掀起全国范围的大革命高潮。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 39,
+          "type": "single",
+          "stem": "1926年7月开始、以推翻北洋军阀统治为目标的战争是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "护国战争"
+            },
+            {
+              "id": "B",
+              "label": "北伐战争"
+            },
+            {
+              "id": "C",
+              "label": "抗日战争"
+            },
+            {
+              "id": "D",
+              "label": "解放战争"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1926年7月开始的是北伐战争。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 40,
+          "type": "single",
+          "stem": "蒋介石公开实行反共步骤的重要事件之一，是1926年5月提出的（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《资政新篇》"
+            },
+            {
+              "id": "B",
+              "label": "《临时约法》"
+            },
+            {
+              "id": "C",
+              "label": "《整理党务决议案》"
+            },
+            {
+              "id": "D",
+              "label": "《建国方略》"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。《整理党务决议案》是蒋介石公开实行反共步骤的重要事件之一。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 41,
+          "type": "single",
+          "stem": "大革命失败从主观方面看，最重要的原因是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "帝国主义完全中立"
+            },
+            {
+              "id": "B",
+              "label": "中国共产党已经成熟老练"
+            },
+            {
+              "id": "C",
+              "label": "党内右倾机会主义错误占了统治地位"
+            },
+            {
+              "id": "D",
+              "label": "工农群众完全没有参加革命"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。主观方面最关键的是党还处在幼年时期，右倾机会主义错误占了统治地位。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 42,
+          "type": "single",
+          "stem": "大革命留给中国共产党最重要的经验启示之一是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "只要依靠资产阶级就能成功"
+            },
+            {
+              "id": "B",
+              "label": "要懂得进行土地革命和掌握革命武装的重要性"
+            },
+            {
+              "id": "C",
+              "label": "必须放弃工农群众"
+            },
+            {
+              "id": "D",
+              "label": "不必探索马克思主义中国化"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。大革命失败后，党开始懂得进行土地革命和掌握革命武装的重要性。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 43,
+          "type": "multiple",
+          "stem": "关于新文化运动的兴起，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1915年9月陈独秀在上海创办《青年杂志》"
+            },
+            {
+              "id": "B",
+              "label": "《青年杂志》后改名《新青年》"
+            },
+            {
+              "id": "C",
+              "label": "《新青年》和北京大学成为主要阵地"
+            },
+            {
+              "id": "D",
+              "label": "李大钊、鲁迅、胡适等都曾成为主要撰稿人"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都是新文化运动兴起和展开过程中的核心知识点。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 44,
+          "type": "multiple",
+          "stem": "新文化运动高举的“民主”和“科学”口号中，“民主”和“科学”分别指（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "资产阶级民主主义制度和思想"
+            },
+            {
+              "id": "B",
+              "label": "自然科学"
+            },
+            {
+              "id": "C",
+              "label": "广义上的社会科学"
+            },
+            {
+              "id": "D",
+              "label": "封建伦理纲常"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。民主包括资产阶级民主主义制度和思想，科学既包括自然科学，也包括广义的社会科学。D项显然不是其内涵。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 45,
+          "type": "multiple",
+          "stem": "关于五四以前新文化运动的局限性，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "资产阶级民主主义不能为改造中国提供有效思想武器"
+            },
+            {
+              "id": "B",
+              "label": "仅靠少数知识分子宣传无法根本改造国民性"
+            },
+            {
+              "id": "C",
+              "label": "许多领导人物当时还没有马克思主义的批判精神"
+            },
+            {
+              "id": "D",
+              "label": "这些局限影响了运动后来的发展"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项正好对应教材概括的三大局限及其影响。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 46,
+          "type": "multiple",
+          "stem": "十月革命之所以对中国先进分子具有特殊吸引力，主要因为（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "俄国国情与中国有相似之处"
+            },
+            {
+              "id": "B",
+              "label": "社会主义俄国号召反对帝国主义并平等对待中国"
+            },
+            {
+              "id": "C",
+              "label": "工农兵群众广泛发动并取得胜利给中国以新的革命方法启示"
+            },
+            {
+              "id": "D",
+              "label": "它证明君主立宪道路已经成功"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项错误，十月革命并不是证明君主立宪道路成功。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 47,
+          "type": "multiple",
+          "stem": "五四运动爆发的社会历史条件包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "新的社会力量的成长壮大"
+            },
+            {
+              "id": "B",
+              "label": "新文化运动掀起思想解放潮流"
+            },
+            {
+              "id": "C",
+              "label": "俄国十月革命的影响"
+            },
+            {
+              "id": "D",
+              "label": "巴黎和会上中国外交的失败"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。前三项是背景条件，D项是直接导火线，教材常合并考查。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 48,
+          "type": "multiple",
+          "stem": "关于五四运动的历史特点，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "以先进青年知识分子为先锋"
+            },
+            {
+              "id": "B",
+              "label": "广大人民群众参加"
+            },
+            {
+              "id": "C",
+              "label": "是彻底反帝反封建的伟大爱国革命运动"
+            },
+            {
+              "id": "D",
+              "label": "同时具有伟大思想启蒙运动和新文化运动的性质"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项都出自教材对五四运动特点的概括。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 49,
+          "type": "multiple",
+          "stem": "五四运动的历史意义包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "成为旧民主主义革命走向新民主主义革命的转折点"
+            },
+            {
+              "id": "B",
+              "label": "孕育了以爱国、进步、民主、科学为主要内容的伟大五四精神"
+            },
+            {
+              "id": "C",
+              "label": "激发了追求真理、追求进步的伟大觉醒"
+            },
+            {
+              "id": "D",
+              "label": "培育了永久奋斗的伟大传统"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都是其历史意义的重要组成。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 50,
+          "type": "multiple",
+          "stem": "五四运动推动中国革命发展的作用主要表现在（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "促进马克思主义在中国传播"
+            },
+            {
+              "id": "B",
+              "label": "促进马克思主义同中国工人运动结合"
+            },
+            {
+              "id": "C",
+              "label": "为中国共产党成立作了思想上干部上的准备"
+            },
+            {
+              "id": "D",
+              "label": "为新的革命力量登上历史舞台创造了条件"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这是五四运动对中国革命走向产生深远影响的完整链条。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 51,
+          "type": "multiple",
+          "stem": "中国早期信仰马克思主义的人物类型包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "新文化运动的精神领袖"
+            },
+            {
+              "id": "B",
+              "label": "五四爱国运动的左翼骨干"
+            },
+            {
+              "id": "C",
+              "label": "原中国同盟会会员和辛亥革命时期活动家中的一部分人"
+            },
+            {
+              "id": "D",
+              "label": "北洋军阀官僚集团"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项显然不属于中国早期信仰马克思主义者。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 52,
+          "type": "multiple",
+          "stem": "早期马克思主义思想运动的特点包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "重视对马克思主义基本理论的学习"
+            },
+            {
+              "id": "B",
+              "label": "注意从中国实际出发学习和运用马克思主义"
+            },
+            {
+              "id": "C",
+              "label": "开始提出知识分子同劳动群众相结合的思想"
+            },
+            {
+              "id": "D",
+              "label": "主张脱离中国国情照搬外国经验"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项恰好与教材强调的“从中国实际出发”相反。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 53,
+          "type": "multiple",
+          "stem": "中国共产党早期组织的活动主要包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "研究和宣传马克思主义，研究中国实际问题"
+            },
+            {
+              "id": "B",
+              "label": "到工人中去进行宣传和组织工作"
+            },
+            {
+              "id": "C",
+              "label": "进行关于建党问题的讨论和实际组织工作"
+            },
+            {
+              "id": "D",
+              "label": "发动全国武装总起义"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。三项分别对应早期组织的主要活动内容，D项不符合史实。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 54,
+          "type": "multiple",
+          "stem": "关于中共一大，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1921年7月23日在上海开幕"
+            },
+            {
+              "id": "B",
+              "label": "最后一天会议转移到嘉兴南湖游船"
+            },
+            {
+              "id": "C",
+              "label": "确定党的名称为“中国共产党”"
+            },
+            {
+              "id": "D",
+              "label": "通过了中国共产党第一个纲领"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都是中共一大的核心知识点。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 55,
+          "type": "multiple",
+          "stem": "中国共产党成立的历史意义包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中国人民由此踏上争取民族独立、人民解放的光明道路"
+            },
+            {
+              "id": "B",
+              "label": "开启了实现国家富强、人民幸福的历史征程"
+            },
+            {
+              "id": "C",
+              "label": "深刻改变了中国人民和中华民族的前途和命运"
+            },
+            {
+              "id": "D",
+              "label": "深刻改变了世界发展的趋势和格局"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。教材对建党历史意义的表述就是这四个层面。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 56,
+          "type": "multiple",
+          "stem": "关于中共二大的民主革命纲领，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "第一次提出反帝反封建民主革命纲领"
+            },
+            {
+              "id": "B",
+              "label": "揭示了中国社会半殖民地半封建性质"
+            },
+            {
+              "id": "C",
+              "label": "提出党的最高纲领是实现社会主义、共产主义"
+            },
+            {
+              "id": "D",
+              "label": "提出联合全国一切革命党派和资产阶级民主派组成联合战线"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项合起来才是中共二大民主革命纲领的完整考点。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 57,
+          "type": "multiple",
+          "stem": "关于新三民主义，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "民族主义中突出了反对帝国主义"
+            },
+            {
+              "id": "B",
+              "label": "民权主义强调民主权利为一般平民所共有"
+            },
+            {
+              "id": "C",
+              "label": "民生主义概括为平均地权和节制资本"
+            },
+            {
+              "id": "D",
+              "label": "它为第一次国共合作提供了政治基础"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这是新三民主义及其政治作用的标准归纳。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 58,
+          "type": "multiple",
+          "stem": "大革命高潮形成的重要表现包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "五卅运动掀起全国革命高潮"
+            },
+            {
+              "id": "B",
+              "label": "省港大罢工持续16个月"
+            },
+            {
+              "id": "C",
+              "label": "北伐战争胜利进军"
+            },
+            {
+              "id": "D",
+              "label": "上海工人举行三次武装起义"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都属于大革命高潮的重要表现。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 59,
+          "type": "multiple",
+          "stem": "大革命失败的客观原因包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "反革命力量强大"
+            },
+            {
+              "id": "B",
+              "label": "资产阶级发生严重动摇"
+            },
+            {
+              "id": "C",
+              "label": "蒋介石、汪精卫集团先后叛变革命"
+            },
+            {
+              "id": "D",
+              "label": "党内右倾机会主义错误占统治地位"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项属于主观原因，不属于客观原因。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 60,
+          "type": "multiple",
+          "stem": "关于大革命的历史意义，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中国共产党领导了全国反帝反封建的伟大斗争"
+            },
+            {
+              "id": "B",
+              "label": "开始探索马克思主义中国化的途径"
+            },
+            {
+              "id": "C",
+              "label": "初步提出了新民主主义革命的基本思想"
+            },
+            {
+              "id": "D",
+              "label": "为进入土地革命战争阶段准备了条件"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。教材对大革命历史意义的概括正包括这四层。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 61,
+          "type": "judge",
+          "stem": "（ ） 新文化运动兴起后，《新青年》杂志和北京大学逐渐成为这一运动的主要阵地。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是教材中的标准表述。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 62,
+          "type": "judge",
+          "stem": "（ ） 五四以前新文化运动已经能够依靠马克思主义的批判精神，为中国社会改造提供成熟方案。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：不要把后来马克思主义传播的成果提前到五四以前） 当时许多领导人物还没有马克思主义的批判精神。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 63,
+          "type": "judge",
+          "stem": "（ ） 十月革命使中国先进分子看到，像中国这样经济文化较落后的国家也可以走向社会主义。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。俄国国情与中国相近，这正是其特殊吸引力所在。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 64,
+          "type": "judge",
+          "stem": "（ ） 李大钊是从一开始就以共产主义者身份投身革命的，并未经历民主主义者阶段。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。李大钊是从爱国立场出发，由民主主义者转变为共产主义者的。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 65,
+          "type": "judge",
+          "stem": "（ ） 《我的马克思主义观》在当时思想界产生重大影响，标志着马克思主义在中国进入比较系统的传播阶段。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是《我的马克思主义观》的历史地位。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 66,
+          "type": "judge",
+          "stem": "（ ） 五四以前新文化运动的局限之一，是不少领导人物看问题带有形式主义和片面性。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是其局限性之一。",
+          "sourceIds": [
+            "ref-c4-s63-l410-list",
+            "ref-c4-s64-l416-list",
+            "ref-c4-s65-l423-list",
+            "ref-c4-s66-l430-list"
+          ]
+        },
+        {
+          "id": 67,
+          "type": "judge",
+          "stem": "（ ） 五四运动的直接导火线是巴黎和会上中国外交的失败。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是最常见的基础题。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 68,
+          "type": "judge",
+          "stem": "（ ） 五四运动只是一场青年学生参加的爱国运动，并没有形成广泛的群众参与。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：不要把五四运动缩成单纯学生运动） 它是广大人民群众参加的伟大爱国革命运动。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 69,
+          "type": "judge",
+          "stem": "（ ） 五四运动是中国旧民主主义革命走向新民主主义革命的转折点。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是其最重要的历史定位。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 70,
+          "type": "judge",
+          "stem": "（ ） 五四精神的主要内容是爱国、进步、民主、科学，其核心是爱国主义。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。内容和核心都要一起记。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 71,
+          "type": "judge",
+          "stem": "（ ） 五四运动后，越来越多中国先进分子集合到马克思主义旗帜下。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是五四运动推动思想转变的重要结果。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 72,
+          "type": "judge",
+          "stem": "（ ） 五四运动的历史意义主要限于文化思想领域，对革命运动本身并无实质推动作用。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。五四运动不仅是思想启蒙运动，也深刻推动了革命运动的发展。",
+          "sourceIds": [
+            "ref-c4-s67-l434-list",
+            "ref-c4-s68-l442-list"
+          ]
+        },
+        {
+          "id": 73,
+          "type": "judge",
+          "stem": "（ ） 中国早期马克思主义思想运动一开始就坚持了马克思主义的革命原则和正确方向。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是教材对其特点的明确概括。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 74,
+          "type": "judge",
+          "stem": "（ ） 中国早期马克思主义者主张把马克思主义整个照搬到中国社会中，不需要考虑具体环境。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：马克思主义中国化的萌芽恰恰反对照搬） 早期马克思主义者已经开始强调结合中国实际。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 75,
+          "type": "judge",
+          "stem": "（ ） 共产党早期组织在工人中开展工作，推动了马克思列宁主义同中国工人运动的结合。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是建党条件成熟的重要一步。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 76,
+          "type": "judge",
+          "stem": "（ ） 陈独秀、李大钊都亲自出席了中共一大会议。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。陈独秀、李大钊因事务繁忙未出席中共一大。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 77,
+          "type": "judge",
+          "stem": "（ ） 中共一大通过的第一个纲领，已经鲜明地把社会主义和共产主义规定为党的奋斗目标。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是中共一大和中共诞生最鲜明的政治标识。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 78,
+          "type": "judge",
+          "stem": "（ ） 中国共产党成立后，近代中国反帝反封建斗争终于有了先进坚强政党作为凝聚力量的领导核心。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是其最根本历史意义。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 79,
+          "type": "judge",
+          "stem": "（ ） 伟大建党精神被概括为坚持真理、坚守理想，践行初心、担当使命，不怕牺牲、英勇斗争，对党忠诚、不负人民。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是伟大建党精神的完整概括。",
+          "sourceIds": [
+            "ref-c4-s69-l455-list",
+            "ref-c4-s70-l460-list",
+            "ref-c4-s71-l469-list",
+            "ref-c4-s72-l483-list",
+            "ref-c4-s73-l493-list"
+          ]
+        },
+        {
+          "id": 80,
+          "type": "judge",
+          "stem": "（ ） 国民党一大事实上确认了联俄、联共、扶助农工的三大革命政策，标志第一次国共合作正式形成。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是第一次国共合作形成的正式标志。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 81,
+          "type": "judge",
+          "stem": "（ ） 黄埔军校的创办和五卅运动、北伐战争等，都是大革命时期的重要事件。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这些都是大革命时期的代表性事件。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 82,
+          "type": "judge",
+          "stem": "（ ） “四一二”反革命政变和武汉“分共”会议，标志国共合作全面破裂，大革命最终失败。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。蒋介石反共政变和武汉“分共”会议意味着统一战线破裂。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 83,
+          "type": "judge",
+          "stem": "（ ） 大革命失败说明中国共产党当时已经完全成熟，只是偶然遭遇了外部打击。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：大革命失败的重要主观原因，恰恰是党还处在幼年时期）。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        },
+        {
+          "id": 84,
+          "type": "judge",
+          "stem": "（ ） 大革命虽然失败了，但它提高了中国人民的觉悟程度和组织程度，并为中国革命转入新阶段准备了条件。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是大革命虽然失败但历史意义不可磨灭的原因所在。",
+          "sourceIds": [
+            "ref-c4-s74-l500-list",
+            "ref-c4-s75-l506-list",
+            "ref-c4-s76-l512-list",
+            "ref-c4-s77-l519-list",
+            "ref-c4-s78-l524-list",
+            "ref-c4-s79-l529-list"
+          ]
+        }
+      ],
       "downloads": {
-        "markdown": null,
+        "markdown": "/docs/chapter-4/chapter-4.md",
         "pdf": null
       }
     },

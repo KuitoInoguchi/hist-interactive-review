@@ -81,7 +81,12 @@ describe("generated quiz data", () => {
       "（学习通）第六章客观题练习题",
       "（学习通）第七章客观题练习题",
     ]);
-    expect(chapters.filter((chapter) => chapter.available).map((chapter) => chapter.id)).toEqual(["regular-1", "regular-2"]);
+    expect(chapters.filter((chapter) => chapter.available).map((chapter) => chapter.id)).toEqual([
+      "regular-1",
+      "regular-2",
+      "regular-3",
+      "regular-4",
+    ]);
   });
 
   it("contains the expected second-chapter question counts and source links", () => {
@@ -108,6 +113,54 @@ describe("generated quiz data", () => {
     }
   });
 
+  it("contains the expected third-chapter question counts and source links", () => {
+    const chapterThree = chapters.find((chapter) => chapter.id === "regular-3");
+    expect(chapterThree).toBeDefined();
+    const chapterThreeQuestions = chapterThree?.questions ?? [];
+    const counts = chapterThreeQuestions.reduce(
+      (acc, question) => {
+        acc[question.type] += 1;
+        return acc;
+      },
+      { single: 0, multiple: 0, judge: 0 },
+    );
+
+    expect(chapterThreeQuestions).toHaveLength(85);
+    expect(counts).toEqual({ single: 41, multiple: 19, judge: 25 });
+    for (const question of chapterThreeQuestions) {
+      expect(question.correctAnswers.length, `chapter 3 Q${question.id} correctAnswers`).toBeGreaterThan(0);
+      expect(question.explanation.length, `chapter 3 Q${question.id} explanation`).toBeGreaterThan(0);
+      expect(question.sourceIds.length, `chapter 3 Q${question.id} sourceIds`).toBeGreaterThan(0);
+      for (const sourceId of question.sourceIds) {
+        expect(referenceIds.has(sourceId), `chapter 3 Q${question.id} ${sourceId}`).toBe(true);
+      }
+    }
+  });
+
+  it("contains the expected fourth-chapter question counts and source links", () => {
+    const chapterFour = chapters.find((chapter) => chapter.id === "regular-4");
+    expect(chapterFour).toBeDefined();
+    const chapterFourQuestions = chapterFour?.questions ?? [];
+    const counts = chapterFourQuestions.reduce(
+      (acc, question) => {
+        acc[question.type] += 1;
+        return acc;
+      },
+      { single: 0, multiple: 0, judge: 0 },
+    );
+
+    expect(chapterFourQuestions).toHaveLength(84);
+    expect(counts).toEqual({ single: 42, multiple: 18, judge: 24 });
+    for (const question of chapterFourQuestions) {
+      expect(question.correctAnswers.length, `chapter 4 Q${question.id} correctAnswers`).toBeGreaterThan(0);
+      expect(question.explanation.length, `chapter 4 Q${question.id} explanation`).toBeGreaterThan(0);
+      expect(question.sourceIds.length, `chapter 4 Q${question.id} sourceIds`).toBeGreaterThan(0);
+      for (const sourceId of question.sourceIds) {
+        expect(referenceIds.has(sourceId), `chapter 4 Q${question.id} ${sourceId}`).toBe(true);
+      }
+    }
+  });
+
   it("provides download links for completed chapters and reference material", () => {
     expect(chapters[0].downloads).toEqual({
       markdown: "/docs/chapter-1/chapter-1.md",
@@ -116,6 +169,14 @@ describe("generated quiz data", () => {
     expect(chapters[1].downloads).toEqual({
       markdown: "/docs/chapter-2/chapter-2.md",
       pdf: "/docs/chapter-2/chapter-2.pdf",
+    });
+    expect(chapters[2].downloads).toEqual({
+      markdown: "/docs/chapter-3/chapter-3.md",
+      pdf: null,
+    });
+    expect(chapters[3].downloads).toEqual({
+      markdown: "/docs/chapter-4/chapter-4.md",
+      pdf: null,
     });
     expect(
       chapters
