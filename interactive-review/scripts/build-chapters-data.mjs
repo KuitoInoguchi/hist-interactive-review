@@ -8,6 +8,7 @@ const docsDir = resolve(appDir, "public", "docs");
 
 const chapterOneSource = resolve(rootDir, "中国近现代史纲要 复习指导.md");
 const chapterTwoSource = resolve(rootDir, "reference", "chapter_2.md");
+const chapterThreeSource = resolve(rootDir, "reference", "chapter_3.md");
 const referenceSource = resolve(rootDir, "reference", "中国近现代史纲要 复习.md");
 
 const chapterOneQuestionsPath = resolve(generatedDir, "questions.json");
@@ -213,7 +214,7 @@ function sectionSourceIds(referenceUnits, sectionNumbers) {
   return [...new Set(ids)];
 }
 
-function parseChapterTwo(markdown, referenceUnits) {
+function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
   const grouped = { single: [], multiple: [], judge: [] };
 
   for (const block of iterQuizBlocks(markdown)) {
@@ -224,9 +225,9 @@ function parseChapterTwo(markdown, referenceUnits) {
     for (const localId of [...questions.keys()].sort((a, b) => a - b)) {
       const question = questions.get(localId);
       const answer = answers.get(localId);
-      if (!answer) throw new Error(`Missing answer in chapter 2 block for question ${localId}`);
+      if (!answer) throw new Error(`Missing answer in ${chapterLabel} block for question ${localId}`);
       if (answer.type !== question.type) {
-        throw new Error(`Type mismatch in chapter 2 block for question ${localId}`);
+        throw new Error(`Type mismatch in ${chapterLabel} block for question ${localId}`);
       }
       const normalized = normalizeQuestion(`**${localId}. ${question.body}`, question.type);
       grouped[question.type].push({
@@ -300,23 +301,34 @@ mkdirSync(docsDir, { recursive: true });
 
 const chapterOneQuestions = JSON.parse(readFileSync(chapterOneQuestionsPath, "utf8"));
 const referenceUnits = JSON.parse(readFileSync(referenceUnitsPath, "utf8"));
-const chapterTwo = parseChapterTwo(readFileSync(chapterTwoSource, "utf8"), referenceUnits);
+const chapterTwo = parseGeneratedChapter(readFileSync(chapterTwoSource, "utf8"), referenceUnits, "chapter 2");
+const chapterThree = parseGeneratedChapter(readFileSync(chapterThreeSource, "utf8"), referenceUnits, "chapter 3");
 
 if (chapterTwo.questions.length !== 131) {
   throw new Error(`Unexpected chapter 2 count: ${chapterTwo.questions.length}`);
 }
+if (chapterThree.questions.length !== 85) {
+  throw new Error(`Unexpected chapter 3 count: ${chapterThree.questions.length}`);
+}
 
 const chapterOneDir = resolve(docsDir, "chapter-1");
 const chapterTwoDir = resolve(docsDir, "chapter-2");
+const chapterThreeDir = resolve(docsDir, "chapter-3");
 mkdirSync(chapterOneDir, { recursive: true });
 mkdirSync(chapterTwoDir, { recursive: true });
+mkdirSync(chapterThreeDir, { recursive: true });
 
 const chapterOneMarkdownDownload = resolve(chapterOneDir, "chapter-1.md");
 const chapterTwoMarkdownDownload = resolve(chapterTwoDir, "chapter-2.md");
+const chapterThreeMarkdownDownload = resolve(chapterThreeDir, "chapter-3.md");
 writeFileSync(chapterOneMarkdownDownload, readFileSync(chapterOneSource, "utf8"));
 writeFileSync(
   chapterTwoMarkdownDownload,
   serializeChapterMarkdown("第二章 选择题 判断题", chapterTwo.grouped, chapterTwo.questions),
+);
+writeFileSync(
+  chapterThreeMarkdownDownload,
+  serializeChapterMarkdown("第三章 选择题 判断题", chapterThree.grouped, chapterThree.questions),
 );
 
 const referenceMarkdownDownload = resolve(docsDir, basename(referenceSource));
@@ -344,6 +356,16 @@ const regularCompletedByChapter = new Map([
       downloads: {
         markdown: "/docs/chapter-2/chapter-2.md",
         pdf: existsSync(chapterTwoPdf) ? "/docs/chapter-2/chapter-2.pdf" : null,
+      },
+    },
+  ],
+  [
+    3,
+    {
+      questions: chapterThree.questions,
+      downloads: {
+        markdown: "/docs/chapter-3/chapter-3.md",
+        pdf: null,
       },
     },
   ],
@@ -389,7 +411,7 @@ writeFileSync(
   )}\n`,
 );
 
-for (const chapter of chapters.slice(0, 2)) {
+for (const chapter of chapters.slice(0, 3)) {
   const counts = countsFor(chapter.questions);
   console.log(
     `Chapter ${chapter.id}: ${chapter.questions.length} questions (${counts.single}/${counts.multiple}/${counts.judge})`,
