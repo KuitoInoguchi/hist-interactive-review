@@ -11,6 +11,12 @@ type ReferencePaneProps = {
   downloads: { markdown: string | null; pdf: string | null };
 };
 
+function assetUrl(path: string | null): string | null {
+  if (!path) return null;
+  const base = import.meta.env.BASE_URL;
+  return `${base}${path.replace(/^\//, '')}`;
+}
+
 export function ReferencePane({ activeSourceIds, collapsed, downloads }: ReferencePaneProps) {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -58,14 +64,14 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads }: Referen
           </summary>
           <div className="download-options">
             {downloads.markdown ? (
-              <a download href={downloads.markdown}>
+              <a download href={assetUrl(downloads.markdown)!}>
                 下载为 md 格式
               </a>
             ) : (
               <span>md 格式暂不可用</span>
             )}
             {downloads.pdf ? (
-              <a download href={downloads.pdf}>
+              <a download href={assetUrl(downloads.pdf)!}>
                 下载为 PDF 格式
               </a>
             ) : (

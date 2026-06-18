@@ -105,6 +105,12 @@ function gradeSelectedQuestions(
   };
 }
 
+function assetUrl(path: string | null): string | null {
+  if (!path) return null;
+  const base = import.meta.env.BASE_URL;
+  return `${base}${path.replace(/^\//, '')}`;
+}
+
 function DownloadMenu({
   label,
   markdown,
@@ -123,14 +129,14 @@ function DownloadMenu({
       </summary>
       <div className="download-options">
         {markdown ? (
-          <a download href={markdown}>
+          <a download href={assetUrl(markdown)!}>
             下载为 md 格式
           </a>
         ) : (
           <span>md 格式暂不可用</span>
         )}
         {pdf ? (
-          <a download href={pdf}>
+          <a download href={assetUrl(pdf)!}>
             下载为 PDF 格式
           </a>
         ) : (
