@@ -30,7 +30,18 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads }: Referen
     const firstTarget = activeSourceIds[0]
       ? container.querySelector(`#${CSS.escape(activeSourceIds[0])}`)
       : null;
-    firstTarget?.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (!firstTarget) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const targetRect = firstTarget.getBoundingClientRect();
+    const currentScrollTop = container.scrollTop;
+    const targetScrollTop =
+      currentScrollTop + (targetRect.top - containerRect.top) - container.clientHeight / 2 + targetRect.height / 2;
+
+    container.scrollTo({
+      top: Math.max(0, targetScrollTop),
+      behavior: "smooth",
+    });
   }, [activeSourceIds]);
 
   return (

@@ -52,7 +52,8 @@ function typeLabel(type: Question["type"]) {
   return "判断题";
 }
 
-function questionStatusClass(attempt?: QuizAttempt) {
+function questionStatusClass(attempt: QuizAttempt | undefined, hasPendingSelection: boolean) {
+  if (!attempt && hasPendingSelection) return "is-pending";
   if (!attempt) return "";
   return attempt.isCorrect ? "is-correct" : "is-wrong";
 }
@@ -63,6 +64,44 @@ function emptyProgress(): ChapterProgress {
     selectedByQuestion: {},
     attempts: {},
     activeSourceIds: [],
+  };
+}
+
+function gradeSelectedQuestions(
+  questions: Question[],
+  progress: ChapterProgress,
+  activeQuestionId?: number,
+): ChapterProgress {
+  const pendingQuestions = questions.filter((question) => {
+    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
+    return selectedAnswers.length > 0 && !progress.attempts[question.id];
+  });
+
+  if (pendingQuestions.length === 0) {
+    return progress;
+  }
+
+  const nextAttempts = { ...progress.attempts };
+  const submittedAt = new Date().toISOString();
+
+  for (const question of pendingQuestions) {
+    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
+    nextAttempts[question.id] = {
+      questionId: question.id,
+      selectedAnswers,
+      isCorrect: areAnswersEqual(selectedAnswers, question.correctAnswers),
+      submittedAt,
+    };
+  }
+
+  const activeQuestion = activeQuestionId
+    ? pendingQuestions.find((question) => question.id === activeQuestionId)
+    : undefined;
+
+  return {
+    ...progress,
+    attempts: nextAttempts,
+    activeSourceIds: activeQuestion ? activeQuestion.sourceIds : progress.activeSourceIds,
   };
 }
 
@@ -127,6 +166,10 @@ export default function App() {
   const submittedCount = Object.keys(attempts).length;
   const correctCount = Object.values(attempts).filter((attempt) => attempt.isCorrect).length;
   const isAvailable = currentChapter.available && questions.length > 0;
+  const pendingReviewCount = questions.filter((question) => {
+    const answers = selectedByQuestion[question.id] ?? [];
+    return answers.length > 0 && !attempts[question.id];
+  }).length;
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -212,6 +255,22 @@ export default function App() {
       ...previous,
       [currentChapter.id]: emptyProgress(),
     }));
+  }
+
+  function jumpToQuestion(index: number) {
+    updateCurrentProgress((progress) => {
+      const question = questions[index];
+      const attempt = question ? progress.attempts[question.id] : undefined;
+      return {
+        ...progress,
+        currentIndex: index,
+        activeSourceIds: attempt ? question.sourceIds : progress.activeSourceIds,
+      };
+    });
+  }
+
+  function gradeAllSelectedQuestions() {
+    updateCurrentProgress((progress) => gradeSelectedQuestions(questions, progress, currentQuestion?.id));
   }
 
   return (
@@ -315,12 +374,7 @@ export default function App() {
             <button
               className="secondary-button"
               disabled={currentIndex === 0}
-              onClick={() =>
-                updateCurrentProgress((progress) => ({
-                  ...progress,
-                  currentIndex: Math.max(0, currentIndex - 1),
-                }))
-              }
+              onClick={() => jumpToQuestion(Math.max(0, currentIndex - 1))}
               type="button"
             >
               <ChevronLeft size={18} />
@@ -338,12 +392,7 @@ export default function App() {
             <button
               className="secondary-button"
               disabled={currentIndex === questions.length - 1}
-              onClick={() =>
-                updateCurrentProgress((progress) => ({
-                  ...progress,
-                  currentIndex: Math.min(questions.length - 1, currentIndex + 1),
-                }))
-              }
+              onClick={() => jumpToQuestion(Math.min(questions.length - 1, currentIndex + 1))}
               type="button"
             >
               下一题
@@ -376,23 +425,34 @@ export default function App() {
         )}
 
         {isAvailable ? (
-        <nav className="question-nav" aria-label="题号导航">
-          {questions.map((question, index) => (
+        <>
+          <nav className="question-nav" aria-label="题号导航">
+            {questions.map((question, index) => (
+              <button
+                className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
+                  attempts[question.id],
+                  (selectedByQuestion[question.id] ?? []).length > 0,
+                )}`}
+                key={question.id}
+                onClick={() => jumpToQuestion(index)}
+                type="button"
+              >
+                {question.id}
+              </button>
+            ))}
+          </nav>
+          <div className="batch-actions">
             <button
-              className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(attempts[question.id])}`}
-              key={question.id}
-              onClick={() =>
-                updateCurrentProgress((progress) => ({
-                  ...progress,
-                  currentIndex: index,
-                }))
-              }
+              className="secondary-button"
+              disabled={pendingReviewCount === 0}
+              onClick={gradeAllSelectedQuestions}
               type="button"
             >
-              {question.id}
+              <Trophy size={18} />
+              一键批改
             </button>
-          ))}
-        </nav>
+          </div>
+        </>
         ) : null}
       </section>
       <section className="reference-shell">
@@ -412,7 +472,21 @@ export default function App() {
       </section>
       </div>
       <footer className="site-footer">
-        联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>
+        <span>
+          联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>
+        </span>
+        <span>
+          仓库地址：
+          <a href="https://github.com/KuitoInoguchi/hist-interactive-review" rel="noreferrer" target="_blank">
+            GitHub 仓库
+          </a>
+        </span>
+        <span>
+          更多资料：
+          <a href="https://my.feishu.cn/wiki/AatBwiDa7ig7RJkzdlocLm1cnTh" rel="noreferrer" target="_blank">
+            飞书资料
+          </a>
+        </span>
       </footer>
     </main>
   );
