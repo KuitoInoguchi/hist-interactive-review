@@ -107,6 +107,44 @@ function emptyProgress(): ChapterProgress {
   };
 }
 
+function gradeSelectedQuestions(
+  questions: Question[],
+  progress: ChapterProgress,
+  activeQuestionId?: number,
+): ChapterProgress {
+  const pendingQuestions = questions.filter((question) => {
+    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
+    return selectedAnswers.length > 0 && !progress.attempts[question.id];
+  });
+
+  if (pendingQuestions.length === 0) {
+    return progress;
+  }
+
+  const nextAttempts = { ...progress.attempts };
+  const submittedAt = new Date().toISOString();
+
+  for (const question of pendingQuestions) {
+    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
+    nextAttempts[question.id] = {
+      questionId: question.id,
+      selectedAnswers,
+      isCorrect: areAnswersEqual(selectedAnswers, question.correctAnswers),
+      submittedAt,
+    };
+  }
+
+  const activeQuestion = activeQuestionId
+    ? pendingQuestions.find((question) => question.id === activeQuestionId)
+    : undefined;
+
+  return {
+    ...progress,
+    attempts: nextAttempts,
+    activeSourceIds: activeQuestion ? activeQuestion.sourceIds : progress.activeSourceIds,
+  };
+}
+
 function assetUrl(path: string | null): string | null {
   if (!path) return null;
   const base = import.meta.env.BASE_URL;
