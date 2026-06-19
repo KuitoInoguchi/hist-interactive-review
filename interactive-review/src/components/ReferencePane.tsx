@@ -9,9 +9,10 @@ type ReferencePaneProps = {
   activeSourceIds: string[];
   collapsed: boolean;
   downloads: { markdown: string | null; pdf: string | null };
+  scrollRequest: number;
 };
 
-export function ReferencePane({ activeSourceIds, collapsed, downloads }: ReferencePaneProps) {
+export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollRequest }: ReferencePaneProps) {
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -27,11 +28,13 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads }: Referen
       target?.classList.add("active-source");
     }
 
-    const firstTarget = activeSourceIds[0]
-      ? container.querySelector(`#${CSS.escape(activeSourceIds[0])}`)
-      : null;
-    firstTarget?.scrollIntoView({ behavior: "smooth", block: "center" });
-  }, [activeSourceIds]);
+    if (scrollRequest > 0) {
+      const firstTarget = activeSourceIds[0]
+        ? container.querySelector(`#${CSS.escape(activeSourceIds[0])}`)
+        : null;
+      firstTarget?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [activeSourceIds, scrollRequest]);
 
   return (
     <aside className={`reference-pane ${collapsed ? "is-collapsed" : ""}`} ref={containerRef}>
