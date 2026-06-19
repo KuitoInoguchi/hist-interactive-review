@@ -282,6 +282,59 @@ test("footer links to the project repository", async ({ page }) => {
   await expect(moreMaterialsLink).toHaveAttribute("href", "https://my.feishu.cn/wiki/AatBwiDa7ig7RJkzdlocLm1cnTh");
 });
 
+test("automatic theme follows UTC+8 night hours when no manual choice is saved", async ({ page }) => {
+  await page.addInitScript(() => {
+    const fixedTime = Date.UTC(2026, 0, 1, 12, 0);
+    const NativeDate = Date;
+    function FixedDate(this: Date, ...args: unknown[]) {
+      return args.length === 0
+        ? new NativeDate(fixedTime)
+        : new NativeDate(...(args as [number | string | Date]));
+    }
+    FixedDate.UTC = NativeDate.UTC;
+    FixedDate.parse = NativeDate.parse;
+    FixedDate.now = () => fixedTime;
+    FixedDate.prototype = NativeDate.prototype;
+    window.Date = FixedDate as unknown as DateConstructor;
+  });
+
+  await page.goto("/");
+  await page.evaluate(() => window.localStorage.clear());
+  await page.reload();
+
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator("html")).toHaveAttribute("data-theme-mode", "auto");
+});
+
+test("floating theme button stores a manual theme choice across refreshes", async ({ page }) => {
+  await page.evaluate(() => window.localStorage.setItem("interactive-review:theme-mode", "dark"));
+  await page.reload();
+
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await page.getByRole("button", { name: "切换到日间模式" }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator("html")).toHaveAttribute("data-theme-mode", "light");
+
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator("html")).toHaveAttribute("data-theme-mode", "light");
+});
+
+test("theme menu can return to automatic mode", async ({ page, isMobile }) => {
+  await page.evaluate(() => window.localStorage.setItem("interactive-review:theme-mode", "dark"));
+  await page.reload();
+
+  if (isMobile) {
+    await page.locator(".mobile-course-menu > summary").click();
+    await page.locator(".mobile-course-popover").getByRole("button", { name: /主题/ }).click();
+  } else {
+    await page.locator(".header-actions").getByRole("button", { name: /主题/ }).click();
+  }
+
+  await page.getByRole("menuitem", { name: /自动/ }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme-mode", "auto");
+});
+
 test("mobile layout can switch to the reference pane", async ({ page, isMobile }) => {
   test.skip(!isMobile, "mobile-only behavior");
 
@@ -377,6 +430,7 @@ test("mobile menus float without taking vertical space", async ({ page, isMobile
 
   await page.locator(".question-nav-panel > summary").click();
   await expect(page.locator(".question-nav")).toBeVisible();
+  await expect(page.getByRole("button", { name: /切换到/ })).toBeVisible();
   await page.locator(".question-nav-panel .mobile-menu-backdrop").click({ position: { x: 8, y: 8 } });
   await expect(page.locator(".question-nav-panel")).not.toHaveAttribute("open", "");
 });

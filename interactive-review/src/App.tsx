@@ -7,9 +7,12 @@ import {
   Download,
   Eye,
   ListChecks,
+  Monitor,
+  Moon,
   RotateCcw,
   Send,
   SlidersHorizontal,
+  Sun,
   Trophy,
 } from "lucide-react";
 import {
@@ -25,6 +28,14 @@ import {
 import { ReferencePane } from "./components/ReferencePane";
 import chaptersData from "./generated/chapters.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
+import {
+  THEME_STORAGE_KEY,
+  type ResolvedTheme,
+  type ThemeMode,
+  isThemeMode,
+  resolveTheme,
+  themeModeLabels,
+} from "./lib/theme";
 import type { Question, QuizAttempt } from "./types";
 
 const chaptersPayload = chaptersData as {
@@ -105,6 +116,12 @@ function readSavedState(): Partial<SavedQuizState> {
   } catch {
     return {};
   }
+}
+
+function readThemeMode(): ThemeMode {
+  if (typeof window === "undefined") return "auto";
+  const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+  return isThemeMode(savedTheme) ? savedTheme : "auto";
 }
 
 function typeLabel(type: Question["type"]) {
@@ -269,10 +286,62 @@ function ModeMenu({
   );
 }
 
+function ThemeMenu({
+  menuKey,
+  onChange,
+  onToggle,
+  openMenu,
+  resolvedTheme,
+  themeMode,
+}: {
+  menuKey: string;
+  onChange: (mode: ThemeMode) => void;
+  onToggle: (menuKey: string) => void;
+  openMenu: string | null;
+  resolvedTheme: ResolvedTheme;
+  themeMode: ThemeMode;
+}) {
+  const ThemeIcon = resolvedTheme === "dark" ? Moon : Sun;
+  return (
+    <PopupMenu
+      className="theme-menu"
+      id={`${menuKey}-options`}
+      label={
+        <>
+          <ThemeIcon size={18} />
+          <span>主题：{themeModeLabels[themeMode]}</span>
+        </>
+      }
+      menuKey={menuKey}
+      onToggle={onToggle}
+      openMenu={openMenu}
+    >
+      {(Object.keys(themeModeLabels) as ThemeMode[]).map((mode) => {
+        const Icon = mode === "auto" ? Monitor : mode === "dark" ? Moon : Sun;
+        return (
+          <button
+            className={`mode-option ${themeMode === mode ? "is-active" : ""}`}
+            key={mode}
+            onClick={() => onChange(mode)}
+            role="menuitem"
+            type="button"
+          >
+            <Icon size={16} />
+            <span>{themeModeLabels[mode]}</span>
+          </button>
+        );
+      })}
+    </PopupMenu>
+  );
+}
+
 export default function App() {
   const layoutRef = useRef<HTMLDivElement>(null);
   const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
   const savedState = useMemo(readSavedState, []);
+  const initialThemeMode = useMemo(readThemeMode, []);
+  const [themeNow, setThemeNow] = useState(() => new Date());
+  const [themeMode, setThemeMode] = useState<ThemeMode>(initialThemeMode);
   const initialChapterId = selectableChapters.some((chapter) => chapter.id === savedState.selectedChapterId)
     ? (savedState.selectedChapterId as string)
     : defaultChapterId;
@@ -308,6 +377,7 @@ export default function App() {
   const isAvailable = currentChapter.available && questions.length > 0;
   const currentQuestionFlagged = currentQuestion ? flaggedQuestionIdSet.has(currentQuestion.id) : false;
   const isXuetongChapter = currentChapter.id === xuetongChapter.id;
+  const resolvedTheme = resolveTheme(themeMode, themeNow);
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -328,6 +398,18 @@ export default function App() {
     };
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [gradingMode, progressByChapter, referenceCollapsed, selectedChapterId]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = resolvedTheme;
+    document.documentElement.dataset.themeMode = themeMode;
+    window.localStorage.setItem(THEME_STORAGE_KEY, themeMode);
+  }, [resolvedTheme, themeMode]);
+
+  useEffect(() => {
+    if (themeMode !== "auto") return;
+    const interval = window.setInterval(() => setThemeNow(new Date()), 60_000);
+    return () => window.clearInterval(interval);
+  }, [themeMode]);
 
   useEffect(() => {
     function shouldKeepDesktopQuestionPanelOpen(element: HTMLDetailsElement) {
@@ -470,6 +552,16 @@ export default function App() {
     setOpenMenu(null);
   }
 
+  function changeThemeMode(mode: ThemeMode) {
+    setThemeMode(mode);
+    setThemeNow(new Date());
+    setOpenMenu(null);
+  }
+
+  function toggleManualTheme() {
+    changeThemeMode(resolvedTheme === "dark" ? "light" : "dark");
+  }
+
   function toggleMenu(menuKey: string) {
     setOpenMenu((current) => (current === menuKey ? null : menuKey));
   }
@@ -593,6 +685,14 @@ export default function App() {
               onToggle={toggleMenu}
               openMenu={openMenu}
             />
+            <ThemeMenu
+              menuKey="desktop-theme"
+              onChange={changeThemeMode}
+              onToggle={toggleMenu}
+              openMenu={openMenu}
+              resolvedTheme={resolvedTheme}
+              themeMode={themeMode}
+            />
             <DownloadMenu
               label="下载习题"
               markdown={currentChapter.downloads.markdown}
@@ -693,6 +793,14 @@ export default function App() {
                 onChange={changeGradingMode}
                 onToggle={toggleMenu}
                 openMenu={openMenu}
+              />
+              <ThemeMenu
+                menuKey="mobile-theme"
+                onChange={changeThemeMode}
+                onToggle={toggleMenu}
+                openMenu={openMenu}
+                resolvedTheme={resolvedTheme}
+                themeMode={themeMode}
               />
               <DownloadMenu
                 label="下载习题"
@@ -894,6 +1002,15 @@ export default function App() {
           type="button"
         />
       </div>
+      <button
+        aria-label={resolvedTheme === "dark" ? "切换到日间模式" : "切换到夜间模式"}
+        className="theme-fab"
+        onClick={toggleManualTheme}
+        title={resolvedTheme === "dark" ? "切换到日间模式" : "切换到夜间模式"}
+        type="button"
+      >
+        {resolvedTheme === "dark" ? <Sun size={22} /> : <Moon size={22} />}
+      </button>
       <footer className="site-footer">
         <span>
           联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>
