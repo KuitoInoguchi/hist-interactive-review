@@ -1031,6 +1031,148 @@ h1 {
   transform: translateY(-1px);
 }
 
+.help-fab {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(132px, calc(env(safe-area-inset-bottom) + 132px));
+  z-index: 60;
+  display: inline-grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-floating);
+  color: var(--color-accent-strong);
+  box-shadow: 0 14px 32px var(--shadow-floating);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.help-fab:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.help-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(7, 12, 20, 0.42);
+}
+
+.help-dialog {
+  display: grid;
+  width: min(720px, 100%);
+  max-height: min(720px, calc(100dvh - 40px));
+  overflow: hidden;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 24px 64px var(--shadow-floating);
+}
+
+.help-dialog-header,
+.help-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.help-dialog-header h2 {
+  margin-bottom: 0;
+  color: var(--color-heading);
+  font-size: 24px;
+}
+
+.help-dialog-content {
+  display: grid;
+  gap: 16px;
+  overflow: auto;
+  padding: 18px;
+}
+
+.help-section {
+  display: grid;
+  gap: 10px;
+}
+
+.help-section h3 {
+  margin: 0;
+  color: var(--color-heading);
+  font-size: 18px;
+}
+
+.help-section dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.help-section dl > div {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.34fr) minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-soft);
+}
+
+.help-section dt {
+  color: var(--color-accent-strong);
+  font-weight: 800;
+}
+
+.help-section dd {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.help-dialog-actions {
+  justify-content: flex-end;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 0;
+}
+
+.app-tour-popover {
+  max-width: min(360px, calc(100vw - 32px));
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 18px 48px var(--shadow-floating);
+}
+
+.app-tour-popover .driver-popover-title {
+  color: var(--color-heading);
+  font-family: inherit;
+}
+
+.app-tour-popover .driver-popover-description,
+.app-tour-popover .driver-popover-progress-text {
+  color: var(--color-text);
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.app-tour-popover .driver-popover-next-btn,
+.app-tour-popover .driver-popover-prev-btn,
+.app-tour-popover .driver-popover-close-btn {
+  font-family: inherit;
+}
+
+.driver-active .learning-layout {
+  touch-action: none;
+}
+
 @keyframes source-pulse {
   0% {
     background: var(--color-source-highlight-pulse);
@@ -1538,6 +1680,55 @@ h1 {
     bottom: max(58px, calc(env(safe-area-inset-bottom) + 58px));
     width: 42px;
     height: 42px;
+  }
+
+  .help-fab {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(110px, calc(env(safe-area-inset-bottom) + 110px));
+    width: 42px;
+    height: 42px;
+  }
+
+  .help-overlay {
+    align-items: end;
+    padding: 8px;
+  }
+
+  .help-dialog {
+    width: 100%;
+    max-height: calc(100dvh - 16px);
+  }
+
+  .help-dialog-header,
+  .help-dialog-actions {
+    padding: 12px;
+  }
+
+  .help-dialog-header h2 {
+    font-size: 20px;
+  }
+
+  .help-dialog-content {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .help-section dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 10px;
+  }
+
+  .help-dialog-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .help-dialog-actions .primary-button,
+  .help-dialog-actions .secondary-button {
+    width: 100%;
+    min-width: 0;
+    padding: 0 10px;
   }
 }
 

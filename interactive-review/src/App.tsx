@@ -6,9 +6,11 @@ import {
   ChevronRight,
   Download,
   Eye,
+  HelpCircle,
   ListChecks,
   Monitor,
   Moon,
+  X,
   RotateCcw,
   Send,
   SlidersHorizontal,
@@ -38,6 +40,7 @@ import {
   resolveTheme,
   themeModeLabels,
 } from "./lib/theme";
+import { shouldAutoStartOnboarding, startOnboarding } from "./lib/onboarding";
 import type { Question, QuizAttempt } from "./types";
 
 const chaptersPayload = chaptersData as {
@@ -342,6 +345,92 @@ function ThemeMenu({
   );
 }
 
+const helpSections = [
+  {
+    title: "快速开始",
+    items: [
+      ["选择章节", "移动端点顶部章节按钮，桌面端使用题库选择。"],
+      ["作答并提交", "选择答案后点中间提交按钮；判题后会显示解析和资料高亮。"],
+      ["查看资料", "移动端点底部右侧圆点或左右滑动进入资料页。"],
+      ["定位题目", "打开题号面板可跳题，题号区域上下滑动查看更多题号。"],
+    ],
+  },
+  {
+    title: "按钮说明",
+    items: [
+      ["记不清", "书签图标用于标记拿不准的题目，再点一次取消标记。"],
+      ["提交/重置本题", "未判题时提交答案；判题后同一按钮变成重置本题。"],
+      ["一键批改", "提交所有已经选择答案但还没判题的题目。"],
+      ["题号面板：重置", "先进入多选状态，选中题号后再点重置确认。"],
+      ["题号面板：全部/撤销/取消", "全部重置整章；撤销恢复最近一次重置；取消退出多选重置。"],
+      ["常驻", "题号面板标题行的书本图标可让面板固定显示，再点一次取消。"],
+      ["夜间模式", "右下角月亮/太阳按钮快速切换主题；自动模式按 UTC+8 夜间时段启用。"],
+    ],
+  },
+  {
+    title: "移动端手势",
+    items: [
+      ["左右滑动", "在答题区和资料区之间切换。"],
+      ["点击空白处", "收起已展开的章节菜单或题号面板。"],
+      ["题号区露出半行", "看到下一行题号露出一截时，表示这里可以继续上下滑动。"],
+    ],
+  },
+];
+
+function HelpDialog({
+  onClose,
+  onStartTour,
+}: {
+  onClose: () => void;
+  onStartTour: () => void;
+}) {
+  return (
+    <div className="help-overlay" onClick={onClose}>
+      <section
+        aria-labelledby="help-dialog-title"
+        aria-modal="true"
+        className="help-dialog"
+        onClick={(event) => event.stopPropagation()}
+        role="dialog"
+      >
+        <header className="help-dialog-header">
+          <div>
+            <p className="eyebrow">使用帮助</p>
+            <h2 id="help-dialog-title">按钮和流程说明</h2>
+          </div>
+          <button aria-label="关闭帮助" className="icon-button" onClick={onClose} type="button">
+            <X size={18} />
+          </button>
+        </header>
+        <div className="help-dialog-content">
+          {helpSections.map((section) => (
+            <section className="help-section" key={section.title}>
+              <h3>{section.title}</h3>
+              <dl>
+                {section.items.map(([term, description]) => (
+                  <div key={term}>
+                    <dt>{term}</dt>
+                    <dd>{description}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          ))}
+        </div>
+        <footer className="help-dialog-actions">
+          <button className="primary-button" onClick={onStartTour} type="button">
+            <HelpCircle size={18} />
+            重新开始导览
+          </button>
+          <button className="secondary-button" onClick={onClose} type="button">
+            关闭
+          </button>
+        </footer>
+      </section>
+    </div>
+  );
+}
+
 export default function App() {
   const layoutRef = useRef<HTMLDivElement>(null);
   const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
@@ -367,6 +456,7 @@ export default function App() {
   const [resetSelectionMode, setResetSelectionMode] = useState(false);
   const [resetSelectionIds, setResetSelectionIds] = useState<number[]>([]);
   const [lastResetSnapshot, setLastResetSnapshot] = useState<ResetSnapshot | null>(null);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   const currentChapter = selectableChapters.find((chapter) => chapter.id === selectedChapterId) ?? selectableChapters[0];
   const questions = currentChapter.questions;
@@ -422,6 +512,25 @@ export default function App() {
     const interval = window.setInterval(() => setThemeNow(new Date()), 60_000);
     return () => window.clearInterval(interval);
   }, [themeMode]);
+
+  useEffect(() => {
+    if (!isAvailable || !shouldAutoStartOnboarding()) return;
+    const timeout = window.setTimeout(() => {
+      startOnboarding();
+    }, 800);
+    return () => window.clearTimeout(timeout);
+  }, [isAvailable]);
+
+  useEffect(() => {
+    if (!helpOpen) return;
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setHelpOpen(false);
+      }
+    }
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [helpOpen]);
 
   useEffect(() => {
     function shouldKeepQuestionPanelOpen(element: HTMLDetailsElement) {
@@ -575,6 +684,11 @@ export default function App() {
 
   function toggleManualTheme() {
     changeThemeMode(resolvedTheme === "dark" ? "light" : "dark");
+  }
+
+  function replayOnboarding() {
+    setHelpOpen(false);
+    window.setTimeout(() => startOnboarding(), 80);
   }
 
   function toggleMenu(menuKey: string) {
@@ -797,7 +911,7 @@ export default function App() {
           </div>
         </header>
 
-        <details className="chapter-selector-panel expandable-menu">
+        <details className="chapter-selector-panel expandable-menu" data-tour="chapter-menu">
           <summary>
             <span>题库选择</span>
             <strong>{currentChapter.title}</strong>
@@ -840,7 +954,7 @@ export default function App() {
         </section>
 
         <div className="mobile-top-controls">
-          <details className="mobile-course-menu expandable-menu" onToggle={closeOtherDetails}>
+          <details className="mobile-course-menu expandable-menu" data-tour="chapter-menu" onToggle={closeOtherDetails}>
             <summary>
               <span>{currentChapter.title}</span>
               <ChevronDown size={16} />
@@ -909,6 +1023,7 @@ export default function App() {
           {isAvailable ? (
             <details
               className={`question-nav-panel expandable-menu ${questionPanelPinned ? "is-pinned" : ""}`}
+              data-tour="question-panel"
               onToggle={closeOtherDetails}
               open={questionPanelPinned || undefined}
             >
@@ -959,7 +1074,7 @@ export default function App() {
                     })}
                   </nav>
                 </div>
-                <div className="question-nav-tools" aria-label="题号面板工具">
+                <div className="question-nav-tools" aria-label="题号面板工具" data-tour="question-panel-tools">
                   <button
                     aria-pressed={resetSelectionMode}
                     className={`question-tool-button ${resetSelectionMode ? "is-active" : ""}`}
@@ -1001,7 +1116,7 @@ export default function App() {
         </div>
 
         {isAvailable && currentQuestion ? (
-        <section className="question-card">
+        <section className="question-card" data-tour="question-card">
           <div className="question-meta">
             <span>{typeLabel(currentQuestion.type)}</span>
             <span>
@@ -1034,7 +1149,7 @@ export default function App() {
             })}
           </div>
 
-          <div className="question-actions">
+          <div className="question-actions" data-tour="question-actions">
             <button
               className="secondary-button"
               disabled={currentIndex === 0}
@@ -1123,7 +1238,7 @@ export default function App() {
         )}
 
       </section>
-      <section className="reference-shell">
+      <section className="reference-shell" data-tour="reference-entry">
         <button
           className="reference-toggle"
           onClick={() => setReferenceCollapsed((collapsed) => !collapsed)}
@@ -1157,12 +1272,24 @@ export default function App() {
       <button
         aria-label={resolvedTheme === "dark" ? "切换到日间模式" : "切换到夜间模式"}
         className="theme-fab"
+        data-tour="theme-toggle"
         onClick={toggleManualTheme}
         title={resolvedTheme === "dark" ? "切换到日间模式" : "切换到夜间模式"}
         type="button"
       >
         {resolvedTheme === "dark" ? <Sun size={22} /> : <Moon size={22} />}
       </button>
+      <button
+        aria-label="打开帮助"
+        className="help-fab"
+        data-tour="help-button"
+        onClick={() => setHelpOpen(true)}
+        title="打开帮助"
+        type="button"
+      >
+        <HelpCircle size={22} />
+      </button>
+      {helpOpen ? <HelpDialog onClose={() => setHelpOpen(false)} onStartTour={replayOnboarding} /> : null}
       <footer className="site-footer">
         <span>
           联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>

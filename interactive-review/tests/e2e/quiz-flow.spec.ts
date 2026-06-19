@@ -22,6 +22,7 @@ async function closeQuestionPanelIfMobile(page: Page, isMobile: boolean) {
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
   await page.evaluate(() => window.localStorage.clear());
+  await page.evaluate(() => window.localStorage.setItem("interactive-review:onboarding-v1-completed", "true"));
   await page.reload();
 });
 
@@ -334,6 +335,33 @@ test("theme menu can return to automatic mode", async ({ page, isMobile }) => {
 
   await page.getByRole("menuitem", { name: /自动/ }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme-mode", "auto");
+});
+
+test("first visit automatically starts onboarding and stores completion", async ({ page }) => {
+  await page.evaluate(() => window.localStorage.removeItem("interactive-review:onboarding-v1-completed"));
+  await page.reload();
+
+  await expect(page.locator(".driver-popover")).toBeVisible();
+  await expect(page.locator(".driver-popover")).toContainText("选择章节");
+  await page.locator(".driver-popover-close-btn").click();
+  await expect
+    .poll(() => page.evaluate(() => window.localStorage.getItem("interactive-review:onboarding-v1-completed")))
+    .toBe("true");
+
+  await page.reload();
+  await expect(page.locator(".driver-popover")).toHaveCount(0);
+});
+
+test("help panel explains controls and can replay onboarding", async ({ page }) => {
+  await page.getByRole("button", { name: "打开帮助" }).click();
+
+  await expect(page.getByRole("dialog", { name: "按钮和流程说明" })).toBeVisible();
+  await expect(page.getByText("题号面板：重置")).toBeVisible();
+  await expect(page.getByText("移动端手势")).toBeVisible();
+
+  await page.getByRole("button", { name: "重新开始导览" }).click();
+  await expect(page.locator(".driver-popover")).toBeVisible();
+  await expect(page.locator(".driver-popover")).toContainText("选择章节");
 });
 
 test("mobile layout can switch to the reference pane", async ({ page, isMobile }) => {
