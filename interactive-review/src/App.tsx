@@ -258,6 +258,9 @@ export default function App() {
   const currentQuestion = questions[currentIndex];
   const currentAttempt = currentQuestion ? attempts[currentQuestion.id] : undefined;
   const selectedAnswers = currentQuestion ? selectedByQuestion[currentQuestion.id] ?? [] : [];
+  const pendingQuestions = questions.filter(
+    (question) => !attempts[question.id] && (selectedByQuestion[question.id] ?? []).length > 0,
+  );
   const submittedCount = Object.keys(attempts).length;
   const correctCount = Object.values(attempts).filter((attempt) => attempt.isCorrect).length;
   const isAvailable = currentChapter.available && questions.length > 0;
@@ -372,6 +375,29 @@ export default function App() {
       },
       activeSourceIds: question.sourceIds,
     }));
+  }
+
+  function submitPendingQuestions() {
+    if (pendingQuestions.length === 0) return;
+    updateCurrentProgress((progress) => {
+      const nextAttempts = { ...progress.attempts };
+      for (const question of questions) {
+        const answers = progress.selectedByQuestion[question.id] ?? [];
+        if (answers.length === 0 || nextAttempts[question.id]) continue;
+        nextAttempts[question.id] = {
+          questionId: question.id,
+          selectedAnswers: answers,
+          isCorrect: areAnswersEqual(answers, question.correctAnswers),
+          submittedAt: new Date().toISOString(),
+        };
+      }
+      const focusedQuestion = questions[progress.currentIndex];
+      return {
+        ...progress,
+        attempts: nextAttempts,
+        activeSourceIds: focusedQuestion ? focusedQuestion.sourceIds : progress.activeSourceIds,
+      };
+    });
   }
 
   function changeGradingMode(mode: GradingMode) {
@@ -549,7 +575,7 @@ export default function App() {
         </section>
 
         {isAvailable ? (
-          <details className="question-nav-panel expandable-menu">
+          <details className="question-nav-panel expandable-menu" open>
             <summary>
               <ListChecks size={18} />
               <span>
@@ -626,6 +652,15 @@ export default function App() {
             >
               <Send size={18} />
               <span className="action-label">提交答案</span>
+            </button>
+            <button
+              className="secondary-button"
+              disabled={pendingQuestions.length === 0}
+              onClick={submitPendingQuestions}
+              type="button"
+            >
+              <ListChecks size={18} />
+              <span className="action-label">一键批改</span>
             </button>
             <button
               className="secondary-button"
