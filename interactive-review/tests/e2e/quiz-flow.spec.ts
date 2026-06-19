@@ -11,6 +11,14 @@ async function openQuestionPanel(page: Page) {
   }
 }
 
+async function closeQuestionPanelIfMobile(page: Page, isMobile: boolean) {
+  if (!isMobile) return;
+  const panel = page.locator(".question-nav-panel");
+  if ((await panel.getAttribute("open")) !== null) {
+    await page.locator(".question-nav-panel .mobile-menu-backdrop").click({ position: { x: 8, y: 8 } });
+  }
+}
+
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
   await page.evaluate(() => window.localStorage.clear());
@@ -56,10 +64,11 @@ test("question chip becomes pending after selecting an unsubmitted answer", asyn
   await expect(questionThreeChip).toHaveClass(/is-pending/);
 });
 
-test("flagged questions stay highlighted even after grading", async ({ page }) => {
+test("flagged questions stay highlighted even after grading", async ({ page, isMobile }) => {
   await openQuestionPanel(page);
   const questionOneChip = questionChip(page, 1);
   const flagButton = page.getByRole("button", { name: "记不清" });
+  await closeQuestionPanelIfMobile(page, isMobile);
 
   await flagButton.click();
   await expect(flagButton).toHaveAttribute("aria-label", "取消记不清");
@@ -95,7 +104,8 @@ test("flagging works with legacy saved progress from older chapters", async ({ p
 
   const flagButton = page.getByRole("button", { name: "记不清" });
   await openQuestionPanel(page);
-  const questionOneChip = page.getByRole("button", { name: "1", exact: true });
+  const questionOneChip = questionChip(page, 1);
+  await closeQuestionPanelIfMobile(page, isMobile);
 
   await flagButton.click();
   if (!isMobile) {
@@ -287,11 +297,28 @@ test("mobile layout can swipe to the reference pane", async ({ page, isMobile })
   const box = await quizPane.boundingBox();
   expect(box).not.toBeNull();
 
-  await page.touchscreen.tap(box!.x + box!.width * 0.8, box!.y + box!.height * 0.45);
-  await page.mouse.move(box!.x + box!.width * 0.8, box!.y + box!.height * 0.45);
-  await page.mouse.down();
-  await page.mouse.move(box!.x + box!.width * 0.2, box!.y + box!.height * 0.45, { steps: 8 });
-  await page.mouse.up();
+  await page.evaluate(({ startX, endX, y }) => {
+    const layout = document.querySelector(".learning-layout");
+    if (!(layout instanceof HTMLElement)) return;
+    layout.dispatchEvent(
+      new TouchEvent("touchstart", {
+        bubbles: true,
+        cancelable: true,
+        touches: [new Touch({ identifier: 1, target: layout, clientX: startX, clientY: y })],
+      }),
+    );
+    layout.dispatchEvent(
+      new TouchEvent("touchend", {
+        bubbles: true,
+        cancelable: true,
+        changedTouches: [new Touch({ identifier: 1, target: layout, clientX: endX, clientY: y })],
+      }),
+    );
+  }, {
+    startX: box!.x + box!.width * 0.8,
+    endX: box!.x + box!.width * 0.2,
+    y: box!.y + box!.height * 0.45,
+  });
 
   await expect
     .poll(() =>
@@ -305,29 +332,58 @@ test("mobile layout can swipe to the reference pane", async ({ page, isMobile })
   await expect(page.locator(".reference-content")).toContainText("半殖民地半封建社会");
 });
 
-test("mobile chapter menu pushes the question panel down", async ({ page, isMobile }) => {
+test("mobile menus float without taking vertical space", async ({ page, isMobile }) => {
   test.skip(!isMobile, "mobile-only behavior");
+
+  const controlsLayout = await page.evaluate(() => {
+    const chapterSummary = document.querySelector(".mobile-course-menu > summary")?.getBoundingClientRect();
+    const questionSummary = document.querySelector(".question-nav-panel > summary")?.getBoundingClientRect();
+    const questionCard = document.querySelector(".question-card")?.getBoundingClientRect();
+    return chapterSummary && questionSummary && questionCard
+      ? {
+          chapterTop: chapterSummary.top,
+          chapterBottom: chapterSummary.bottom,
+          questionTop: questionSummary.top,
+          questionBottom: questionSummary.bottom,
+          cardTop: questionCard.top,
+        }
+      : null;
+  });
+
+  expect(controlsLayout).not.toBeNull();
+  expect(Math.abs(controlsLayout!.chapterTop - controlsLayout!.questionTop)).toBeLessThan(2);
+  expect(Math.abs(controlsLayout!.chapterBottom - controlsLayout!.questionBottom)).toBeLessThan(2);
 
   await page.locator(".mobile-course-menu > summary").click();
   await expect(page.locator(".mobile-course-popover")).toBeVisible();
 
   const layout = await page.evaluate(() => {
     const popover = document.querySelector(".mobile-course-popover")?.getBoundingClientRect();
-    const questionPanel = document.querySelector(".question-nav-panel")?.getBoundingClientRect();
-    return popover && questionPanel
+    const questionCard = document.querySelector(".question-card")?.getBoundingClientRect();
+    return popover && questionCard
       ? {
-          popoverBottom: popover.bottom,
-          questionPanelTop: questionPanel.top,
+          popoverTop: popover.top,
+          questionCardTop: questionCard.top,
         }
       : null;
   });
 
   expect(layout).not.toBeNull();
-  expect(layout!.questionPanelTop).toBeGreaterThanOrEqual(layout!.popoverBottom);
+  expect(Math.abs(layout!.questionCardTop - controlsLayout!.cardTop)).toBeLessThan(2);
+  expect(layout!.popoverTop).toBeLessThanOrEqual(layout!.questionCardTop);
+
+  await page.locator(".mobile-course-menu .mobile-menu-backdrop").click({ position: { x: 8, y: 8 } });
+  await expect(page.locator(".mobile-course-menu")).not.toHaveAttribute("open", "");
+
+  await page.locator(".question-nav-panel > summary").click();
+  await expect(page.locator(".question-nav")).toBeVisible();
+  await page.locator(".question-nav-panel .mobile-menu-backdrop").click({ position: { x: 8, y: 8 } });
+  await expect(page.locator(".question-nav-panel")).not.toHaveAttribute("open", "");
 });
 
 test("mobile quiz pane remains scrollable after feedback expands the page", async ({ page, isMobile }) => {
   test.skip(!isMobile, "mobile-only behavior");
+  await page.setViewportSize({ width: 393, height: 520 });
 
   await page.locator(".option-row").filter({ hasText: "中国的封建势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();

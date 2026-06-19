@@ -12,7 +12,16 @@ import {
   SlidersHorizontal,
   Trophy,
 } from "lucide-react";
-import { type PointerEvent as ReactPointerEvent, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import {
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode,
+  type SyntheticEvent,
+  type TouchEvent as ReactTouchEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { ReferencePane } from "./components/ReferencePane";
 import chaptersData from "./generated/chapters.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
@@ -321,14 +330,22 @@ export default function App() {
   }, [gradingMode, progressByChapter, referenceCollapsed, selectedChapterId]);
 
   useEffect(() => {
+    function shouldKeepDesktopQuestionPanelOpen(element: HTMLDetailsElement) {
+      return element.classList.contains("question-nav-panel") && !window.matchMedia("(max-width: 760px)").matches;
+    }
+
     function closeMenuOnOutsideClick(event: PointerEvent) {
       const target = event.target;
       if (!(target instanceof Node)) return;
       if (target instanceof Element && target.closest(".expandable-menu")) return;
       setOpenMenu(null);
       document
-        .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]:not(.question-nav-panel)")
-        .forEach((element) => element.removeAttribute("open"));
+        .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+        .forEach((element) => {
+          if (!shouldKeepDesktopQuestionPanelOpen(element)) {
+            element.removeAttribute("open");
+          }
+        });
     }
 
     document.addEventListener("pointerdown", closeMenuOnOutsideClick);
@@ -349,7 +366,7 @@ export default function App() {
     setSelectedChapterId(chapterId);
     setOpenMenu(null);
     document
-      .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]:not(.question-nav-panel)")
+      .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
       .forEach((element) => element.removeAttribute("open"));
     const chapter = selectableChapters.find((item) => item.id === chapterId);
     if (!chapter?.available) {
@@ -501,16 +518,48 @@ export default function App() {
     swipeStartRef.current = { x: event.clientX, y: event.clientY };
   }
 
-  function handleSwipeEnd(event: ReactPointerEvent<HTMLDivElement>) {
+  function finishSwipe(endX: number, endY: number) {
     const start = swipeStartRef.current;
     swipeStartRef.current = null;
     if (!start) return;
 
-    const deltaX = event.clientX - start.x;
-    const deltaY = event.clientY - start.y;
+    const deltaX = endX - start.x;
+    const deltaY = endY - start.y;
     if (Math.abs(deltaX) < 56 || Math.abs(deltaX) < Math.abs(deltaY) * 1.35) return;
 
     scrollToMobilePage(deltaX < 0 ? 1 : 0, { focusReference: deltaX < 0 });
+  }
+
+  function handleSwipeEnd(event: ReactPointerEvent<HTMLDivElement>) {
+    finishSwipe(event.clientX, event.clientY);
+  }
+
+  function handleTouchStart(event: ReactTouchEvent<HTMLDivElement>) {
+    const touch = event.touches[0];
+    if (!touch) return;
+    swipeStartRef.current = { x: touch.clientX, y: touch.clientY };
+  }
+
+  function handleTouchEnd(event: ReactTouchEvent<HTMLDivElement>) {
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    finishSwipe(touch.clientX, touch.clientY);
+  }
+
+  function closeDetailsFromBackdrop(event: SyntheticEvent<HTMLElement>) {
+    event.currentTarget.closest("details")?.removeAttribute("open");
+    setOpenMenu(null);
+  }
+
+  function closeOtherDetails(event: SyntheticEvent<HTMLDetailsElement>) {
+    const current = event.currentTarget;
+    if (!current.open) return;
+    setOpenMenu(null);
+    document.querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]").forEach((element) => {
+      if (element !== current) {
+        element.removeAttribute("open");
+      }
+    });
   }
 
   return (
@@ -524,60 +573,10 @@ export default function App() {
         onPointerDown={handleSwipeStart}
         onPointerUp={handleSwipeEnd}
         onScroll={handleLayoutScroll}
+        onTouchEnd={handleTouchEnd}
+        onTouchStart={handleTouchStart}
       >
       <section className="quiz-pane">
-        <details className="mobile-course-menu expandable-menu">
-          <summary>
-            <span>{currentChapter.title}</span>
-            <ChevronDown size={16} />
-          </summary>
-          <div className="mobile-course-popover">
-            <section className="mobile-menu-group" aria-label="选择章节">
-              <p>选择章节</p>
-              <div className="mobile-chapter-list">
-                {regularChapters.map((chapter) => (
-                  <button
-                    className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""} ${
-                      chapter.available ? "" : "is-disabled"
-                    }`}
-                    key={chapter.id}
-                    onClick={() => chooseChapter(chapter.id)}
-                    type="button"
-                    title={chapter.title}
-                  >
-                    <span>{chapter.numeral}</span>
-                  </button>
-                ))}
-              </div>
-              <button
-                className={`chapter-option mobile-xuetong-option ${
-                  xuetongChapter.id === currentChapter.id ? "is-active" : ""
-                }`}
-                onClick={() => chooseChapter(xuetongChapter.id)}
-                type="button"
-              >
-                <span>学习通</span>
-              </button>
-            </section>
-            <div className="mobile-menu-divider" />
-            <ModeMenu
-              gradingMode={gradingMode}
-              menuKey="mobile-mode"
-              onChange={changeGradingMode}
-              onToggle={toggleMenu}
-              openMenu={openMenu}
-            />
-            <DownloadMenu
-              label="下载习题"
-              markdown={currentChapter.downloads.markdown}
-              menuKey="mobile-download"
-              onToggle={toggleMenu}
-              openMenu={openMenu}
-              pdf={currentChapter.downloads.pdf}
-            />
-          </div>
-        </details>
-
         <header className="app-header">
           <div>
             <p className="eyebrow">中国近现代史纲要</p>
@@ -647,33 +646,99 @@ export default function App() {
           </div>
         </section>
 
-        {isAvailable ? (
-          <details className="question-nav-panel expandable-menu">
+        <div className="mobile-top-controls">
+          <details className="mobile-course-menu expandable-menu" onToggle={closeOtherDetails}>
             <summary>
-              <ListChecks size={18} />
-              <span>
-                题号面板 · {currentIndex + 1}/{questions.length}
-              </span>
-              <ChevronDown className="question-nav-toggle" size={16} aria-hidden="true" />
+              <span>{currentChapter.title}</span>
+              <ChevronDown size={16} />
             </summary>
-            <nav className="question-nav" aria-label="题号导航">
-              {questions.map((question, index) => (
+            <button
+              aria-label="收起菜单"
+              className="mobile-menu-backdrop"
+              onClick={closeDetailsFromBackdrop}
+              type="button"
+            />
+            <div className="mobile-course-popover">
+              <section className="mobile-menu-group" aria-label="选择章节">
+                <p>选择章节</p>
+                <div className="mobile-chapter-list">
+                  {regularChapters.map((chapter) => (
+                    <button
+                      className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""} ${
+                        chapter.available ? "" : "is-disabled"
+                      }`}
+                      key={chapter.id}
+                      onClick={() => chooseChapter(chapter.id)}
+                      type="button"
+                      title={chapter.title}
+                    >
+                      <span>{chapter.numeral}</span>
+                    </button>
+                  ))}
+                </div>
                 <button
-                  className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
-                    attempts[question.id],
-                    (selectedByQuestion[question.id] ?? []).length > 0,
-                    flaggedQuestionIdSet.has(question.id),
-                  )}`}
-                  key={question.id}
-                  onClick={() => jumpToQuestion(index)}
+                  className={`chapter-option mobile-xuetong-option ${
+                    xuetongChapter.id === currentChapter.id ? "is-active" : ""
+                  }`}
+                  onClick={() => chooseChapter(xuetongChapter.id)}
                   type="button"
                 >
-                  {question.id}
+                  <span>学习通</span>
                 </button>
-              ))}
-            </nav>
+              </section>
+              <div className="mobile-menu-divider" />
+              <ModeMenu
+                gradingMode={gradingMode}
+                menuKey="mobile-mode"
+                onChange={changeGradingMode}
+                onToggle={toggleMenu}
+                openMenu={openMenu}
+              />
+              <DownloadMenu
+                label="下载习题"
+                markdown={currentChapter.downloads.markdown}
+                menuKey="mobile-download"
+                onToggle={toggleMenu}
+                openMenu={openMenu}
+                pdf={currentChapter.downloads.pdf}
+              />
+            </div>
           </details>
-        ) : null}
+
+          {isAvailable ? (
+            <details className="question-nav-panel expandable-menu" onToggle={closeOtherDetails}>
+              <summary>
+                <ListChecks size={18} />
+                <span>
+                  题号面板 · {currentIndex + 1}/{questions.length}
+                </span>
+                <ChevronDown className="question-nav-toggle" size={16} aria-hidden="true" />
+              </summary>
+              <button
+                aria-label="收起题号面板"
+                className="mobile-menu-backdrop"
+                onClick={closeDetailsFromBackdrop}
+                type="button"
+              />
+              <nav className="question-nav" aria-label="题号导航">
+                {questions.map((question, index) => (
+                  <button
+                    className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
+                      attempts[question.id],
+                      (selectedByQuestion[question.id] ?? []).length > 0,
+                      flaggedQuestionIdSet.has(question.id),
+                    )}`}
+                    key={question.id}
+                    onClick={() => jumpToQuestion(index)}
+                    type="button"
+                  >
+                    {question.id}
+                  </button>
+                ))}
+              </nav>
+            </details>
+          ) : null}
+        </div>
 
         {isAvailable && currentQuestion ? (
         <section className="question-card">

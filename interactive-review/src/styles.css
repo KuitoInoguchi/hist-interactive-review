@@ -874,11 +874,21 @@ h1 {
     display: none;
   }
 
+  .mobile-top-controls {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
   .mobile-course-menu {
-    position: relative;
+    position: static;
     z-index: 20;
     display: block;
-    margin-bottom: 6px;
+    margin: 0;
     border: 0;
     background: transparent;
     box-shadow: none;
@@ -886,12 +896,13 @@ h1 {
 
   .mobile-course-menu > summary {
     display: inline-flex;
-    min-height: 32px;
+    width: 100%;
+    min-width: 0;
+    min-height: 34px;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    max-width: 100%;
-    padding: 0 12px;
+    padding: 0 10px;
     border: 1px solid #d9e1ee;
     background: #ffffff;
     color: #18395f;
@@ -912,21 +923,47 @@ h1 {
   .mobile-course-menu > summary svg {
     width: 15px;
     height: 15px;
+    flex: 0 0 auto;
+  }
+
+  .mobile-course-menu > summary span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .mobile-course-popover {
-    position: static;
-    z-index: 30;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 42;
     display: grid;
     gap: 8px;
     max-height: min(68vh, 480px);
     overflow: auto;
-    margin-top: 6px;
+    margin-top: 0;
     padding: 10px;
     border: 1px solid #c7d4e7;
-    border-width: 1px 0 0;
     background: #ffffff;
-    box-shadow: none;
+    box-shadow: 0 16px 32px rgba(24, 34, 53, 0.14);
+  }
+
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 41;
+    display: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: default;
+  }
+
+  .mobile-course-menu[open] .mobile-menu-backdrop,
+  .question-nav-panel[open] .mobile-menu-backdrop {
+    display: block;
   }
 
   .mobile-menu-group p {
@@ -991,20 +1028,24 @@ h1 {
   }
 
   .question-nav-panel {
-    margin: 0 0 6px;
+    position: static;
+    z-index: 20;
+    display: block;
+    margin: 0;
     border: 0;
     background: transparent;
   }
 
   .question-nav-panel > summary {
-    width: max-content;
-    max-width: 100%;
-    min-height: 32px;
-    margin: 0 auto;
-    padding: 0 12px;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 34px;
+    margin: 0;
+    padding: 0 10px;
     border: 1px solid #d9e1ee;
     background: #ffffff;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .question-nav-toggle {
@@ -1014,13 +1055,19 @@ h1 {
   }
 
   .question-nav-panel .question-nav {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 42;
     grid-template-columns: repeat(auto-fill, minmax(34px, 1fr));
     max-height: 168px;
     overflow: auto;
-    margin-top: 6px;
+    margin-top: 0;
     padding: 8px;
     border: 1px solid #d9e1ee;
     background: #ffffff;
+    box-shadow: 0 16px 32px rgba(24, 34, 53, 0.14);
     gap: 6px;
   }
 
