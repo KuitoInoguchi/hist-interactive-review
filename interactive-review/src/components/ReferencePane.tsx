@@ -64,7 +64,7 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads, focusRequ
           <p className="eyebrow">复习资料</p>
           <h2>知识点定位</h2>
         </div>
-        <details className="download-menu reference-download">
+        <details className="download-menu reference-download expandable-menu">
           <summary className="secondary-button download-summary">
             <Download size={18} />
             下载复习资料

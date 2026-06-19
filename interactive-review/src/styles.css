@@ -60,6 +60,7 @@ input:disabled {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 16px;
   padding: 24px;
   border: 1px solid #d9e1ee;
@@ -67,9 +68,17 @@ input:disabled {
   box-shadow: 0 16px 44px rgba(24, 34, 53, 0.08);
 }
 
+.app-header > div:first-child {
+  min-width: min(100%, 320px);
+  flex: 1 1 320px;
+}
+
 .header-actions {
   display: flex;
   align-items: flex-start;
+  justify-content: flex-end;
+  flex: 1 1 280px;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -120,8 +129,17 @@ h1 {
   place-items: center;
 }
 
-.download-menu {
+.popup-menu {
+  display: inline-flex;
   position: relative;
+}
+
+.popup-summary {
+  width: 100%;
+}
+
+.download-menu .popup-summary {
+  min-width: 132px;
 }
 
 .download-menu summary {
@@ -136,12 +154,18 @@ h1 {
   min-width: 132px;
 }
 
+.mode-menu .popup-summary {
+  min-width: 188px;
+}
+
+.popup-options,
 .download-options {
   position: absolute;
   right: 0;
   z-index: 10;
   display: grid;
-  min-width: 190px;
+  min-width: min(220px, calc(100vw - 48px));
+  max-width: calc(100vw - 48px);
   margin-top: 8px;
   padding: 8px;
   border: 1px solid #c7d4e7;
@@ -149,6 +173,9 @@ h1 {
   box-shadow: 0 16px 32px rgba(24, 34, 53, 0.14);
 }
 
+.popup-options a,
+.popup-options span,
+.popup-options button,
 .download-options a,
 .download-options span {
   padding: 10px 12px;
@@ -157,12 +184,27 @@ h1 {
   white-space: nowrap;
 }
 
+.popup-options a:hover,
+.popup-options button:hover,
 .download-options a:hover {
   background: #edf5ff;
 }
 
+.popup-options span,
 .download-options span {
   color: #8190a5;
+}
+
+.mode-option {
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.mode-option.is-active {
+  background: #edf5ff;
+  color: #1f5f99;
+  font-weight: 800;
 }
 
 .chapter-selector-panel {
@@ -303,6 +345,7 @@ h1 {
 .coming-soon p {
   margin-bottom: 0;
   color: #63718a;
+  line-height: 1.8;
 }
 
 .question-meta {
@@ -832,31 +875,50 @@ h1 {
 
   .mobile-chapter-list {
     display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
     gap: 6px;
   }
 
   .mobile-course-popover .chapter-option {
+    display: grid;
+    place-items: center;
     min-height: 38px;
-    padding: 8px 10px;
+    padding: 0;
     box-shadow: none;
+    text-align: center;
   }
 
   .mobile-course-popover .chapter-option span {
-    font-size: 13px;
+    font-size: 14px;
   }
 
-  .mobile-mode-button,
+  .mobile-xuetong-option {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .mobile-menu-divider {
+    height: 1px;
+    margin: 4px 0;
+    background: linear-gradient(90deg, transparent, #dfe7f2, transparent);
+  }
+
+  .mobile-course-popover .mode-menu,
   .mobile-course-popover .download-menu,
-  .mobile-course-popover .download-summary {
+  .mobile-course-popover .popup-summary {
     width: 100%;
   }
 
-  .mobile-course-popover .download-options {
+  .mobile-course-popover .popup-options {
+    position: static;
     width: 100%;
     min-width: 0;
+    max-width: none;
+    margin-top: 6px;
+    box-shadow: none;
   }
 
-  .download-options {
+  .popup-options {
     left: 0;
     right: auto;
   }

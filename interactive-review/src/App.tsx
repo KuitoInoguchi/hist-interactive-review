@@ -12,7 +12,7 @@ import {
   SlidersHorizontal,
   Trophy,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { ReferencePane } from "./components/ReferencePane";
 import chaptersData from "./generated/chapters.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
@@ -32,8 +32,25 @@ const chaptersPayload = chaptersData as {
   referenceDownloads: { markdown: string | null; pdf: string | null };
 };
 const chapters = chaptersPayload.chapters;
+const regularChapters = chapters.filter((chapter) => chapter.kind === "regular");
+const xuetongChapter = {
+  id: "xuetong",
+  kind: "xuetong" as const,
+  chapterNo: 0,
+  numeral: "学习通",
+  title: "（学习通）",
+  available: true,
+  questions: [] as Question[],
+  downloads: { markdown: null, pdf: null },
+};
+const selectableChapters = [...regularChapters, xuetongChapter];
 const defaultChapterId = chapters[0]?.id ?? "regular-1";
 const STORAGE_KEY = "interactive-review:multi-chapter-progress";
+const modeLabels = {
+  instant: "点选即判",
+  manual: "提交后判题",
+} as const;
+type GradingMode = keyof typeof modeLabels;
 
 type ChapterProgress = {
   currentIndex: number;
@@ -47,6 +64,7 @@ type SavedQuizState = {
   selectedChapterId: string;
   progressByChapter: Record<string, ChapterProgress>;
   referenceCollapsed: boolean;
+  gradingMode: GradingMode;
 };
 
 function normalizeProgress(progress?: Partial<ChapterProgress> | null): ChapterProgress {
@@ -151,47 +169,139 @@ function assetUrl(path: string | null): string | null {
   return `${base}${path.replace(/^\//, '')}`;
 }
 
+function PopupMenu({
+  children,
+  className = "",
+  id,
+  label,
+  menuKey,
+  onToggle,
+  openMenu,
+}: {
+  children: ReactNode;
+  className?: string;
+  id: string;
+  label: ReactNode;
+  menuKey: string;
+  onToggle: (menuKey: string) => void;
+  openMenu: string | null;
+}) {
+  const isOpen = openMenu === menuKey;
+  return (
+    <div className={`popup-menu expandable-menu ${className}`}>
+      <button
+        aria-controls={id}
+        aria-expanded={isOpen}
+        className="secondary-button popup-summary"
+        onClick={() => onToggle(menuKey)}
+        type="button"
+      >
+        {label}
+      </button>
+      {isOpen ? (
+        <div className="popup-options" id={id} role="menu">
+          {children}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function DownloadMenu({
   label,
   markdown,
+  menuKey,
+  onToggle,
+  openMenu,
   pdf,
 }: {
   label: string;
   markdown: string | null;
+  menuKey: string;
+  onToggle: (menuKey: string) => void;
+  openMenu: string | null;
   pdf: string | null;
 }) {
   const hasDownloads = Boolean(markdown || pdf);
   return (
-    <details className="download-menu">
-      <summary className="secondary-button download-summary">
-        <Download size={18} />
-        {label}
-      </summary>
-      <div className="download-options">
-        {markdown ? (
-          <a download href={assetUrl(markdown)!}>
-            下载为 md 格式
-          </a>
-        ) : (
-          <span>md 格式暂不可用</span>
-        )}
-        {pdf ? (
-          <a download href={assetUrl(pdf)!}>
-            下载为 PDF 格式
-          </a>
-        ) : (
-          <span>PDF 格式暂不可用</span>
-        )}
-        {!hasDownloads ? <span>资源整理中</span> : null}
-      </div>
-    </details>
+    <PopupMenu
+      className="download-menu"
+      id={`${menuKey}-options`}
+      label={
+        <>
+          <Download size={18} />
+          {label}
+        </>
+      }
+      menuKey={menuKey}
+      onToggle={onToggle}
+      openMenu={openMenu}
+    >
+      {markdown ? (
+        <a download href={assetUrl(markdown)!} role="menuitem">
+          下载为 md 格式
+        </a>
+      ) : (
+        <span>md 格式暂不可用</span>
+      )}
+      {pdf ? (
+        <a download href={assetUrl(pdf)!} role="menuitem">
+          下载为 PDF 格式
+        </a>
+      ) : (
+        <span>PDF 格式暂不可用</span>
+      )}
+      {!hasDownloads ? <span>资源整理中</span> : null}
+    </PopupMenu>
+  );
+}
+
+function ModeMenu({
+  gradingMode,
+  menuKey,
+  onChange,
+  onToggle,
+  openMenu,
+}: {
+  gradingMode: GradingMode;
+  menuKey: string;
+  onChange: (mode: GradingMode) => void;
+  onToggle: (menuKey: string) => void;
+  openMenu: string | null;
+}) {
+  return (
+    <PopupMenu
+      className="mode-menu"
+      id={`${menuKey}-options`}
+      label={
+        <>
+          <SlidersHorizontal size={18} />
+          <span>判题模式：{modeLabels[gradingMode]}</span>
+        </>
+      }
+      menuKey={menuKey}
+      onToggle={onToggle}
+      openMenu={openMenu}
+    >
+      {(Object.keys(modeLabels) as GradingMode[]).map((mode) => (
+        <button
+          className={`mode-option ${gradingMode === mode ? "is-active" : ""}`}
+          key={mode}
+          onClick={() => onChange(mode)}
+          role="menuitem"
+          type="button"
+        >
+          {modeLabels[mode]}
+        </button>
+      ))}
+    </PopupMenu>
   );
 }
 
 export default function App() {
   const layoutRef = useRef<HTMLDivElement>(null);
   const savedState = useMemo(readSavedState, []);
-  const initialChapterId = chapters.some((chapter) => chapter.id === savedState.selectedChapterId)
+  const initialChapterId = selectableChapters.some((chapter) => chapter.id === savedState.selectedChapterId)
     ? (savedState.selectedChapterId as string)
     : defaultChapterId;
   const [selectedChapterId, setSelectedChapterId] = useState(initialChapterId);
@@ -203,8 +313,10 @@ export default function App() {
   const [referenceCollapsed, setReferenceCollapsed] = useState(savedState.referenceCollapsed ?? false);
   const [activeMobilePage, setActiveMobilePage] = useState<0 | 1>(0);
   const [referenceFocusRequest, setReferenceFocusRequest] = useState(0);
+  const [gradingMode, setGradingMode] = useState<GradingMode>(savedState.gradingMode ?? "manual");
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
-  const currentChapter = chapters.find((chapter) => chapter.id === selectedChapterId) ?? chapters[0];
+  const currentChapter = selectableChapters.find((chapter) => chapter.id === selectedChapterId) ?? selectableChapters[0];
   const questions = currentChapter.questions;
   const currentProgress = progressByChapter[currentChapter.id] ?? emptyProgress();
   const currentIndex = Math.min(currentProgress.currentIndex, Math.max(questions.length - 1, 0));
@@ -224,6 +336,7 @@ export default function App() {
     return answers.length > 0 && !attempts[question.id];
   }).length;
   const currentQuestionFlagged = currentQuestion ? flaggedQuestionIdSet.has(currentQuestion.id) : false;
+  const isXuetongChapter = currentChapter.id === xuetongChapter.id;
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -240,9 +353,25 @@ export default function App() {
       selectedChapterId,
       progressByChapter,
       referenceCollapsed,
+      gradingMode,
     };
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }, [progressByChapter, referenceCollapsed, selectedChapterId]);
+  }, [gradingMode, progressByChapter, referenceCollapsed, selectedChapterId]);
+
+  useEffect(() => {
+    function closeMenuOnOutsideClick(event: PointerEvent) {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (target instanceof Element && target.closest(".expandable-menu")) return;
+      setOpenMenu(null);
+      document
+        .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+        .forEach((element) => element.removeAttribute("open"));
+    }
+
+    document.addEventListener("pointerdown", closeMenuOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeMenuOnOutsideClick);
+  }, []);
 
   function updateCurrentProgress(updater: (progress: ChapterProgress) => ChapterProgress) {
     setProgressByChapter((previous) => {
@@ -256,7 +385,11 @@ export default function App() {
 
   function chooseChapter(chapterId: string) {
     setSelectedChapterId(chapterId);
-    const chapter = chapters.find((item) => item.id === chapterId);
+    setOpenMenu(null);
+    document
+      .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+      .forEach((element) => element.removeAttribute("open"));
+    const chapter = selectableChapters.find((item) => item.id === chapterId);
     if (!chapter?.available) {
       setProgressByChapter((previous) => ({
         ...previous,
@@ -268,39 +401,51 @@ export default function App() {
   function setSelected(question: Question, optionId: string) {
     if (attempts[question.id]) return;
 
+    let nextSelectedAnswers: string[] = [];
     updateCurrentProgress((progress) => {
       const current = progress.selectedByQuestion[question.id] ?? [];
       if (question.type === "multiple") {
         const next = current.includes(optionId)
           ? current.filter((answer) => answer !== optionId)
           : [...current, optionId];
+        nextSelectedAnswers = next;
         return {
           ...progress,
           selectedByQuestion: { ...progress.selectedByQuestion, [question.id]: next },
         };
       }
+      nextSelectedAnswers = [optionId];
       return {
         ...progress,
         selectedByQuestion: { ...progress.selectedByQuestion, [question.id]: [optionId] },
       };
     });
+
+    if (gradingMode === "instant" && question.type !== "multiple") {
+      submitQuestionWithAnswers(question, nextSelectedAnswers);
+    }
   }
 
   function submitCurrentQuestion() {
     if (!currentQuestion || selectedAnswers.length === 0 || currentAttempt) return;
-    const isCorrect = areAnswersEqual(selectedAnswers, currentQuestion.correctAnswers);
+    submitQuestionWithAnswers(currentQuestion, selectedAnswers);
+  }
+
+  function submitQuestionWithAnswers(question: Question, answers: string[]) {
+    if (answers.length === 0 || attempts[question.id]) return;
+    const isCorrect = areAnswersEqual(answers, question.correctAnswers);
     updateCurrentProgress((progress) => ({
       ...progress,
       attempts: {
         ...progress.attempts,
-        [currentQuestion.id]: {
-          questionId: currentQuestion.id,
-          selectedAnswers,
+        [question.id]: {
+          questionId: question.id,
+          selectedAnswers: answers,
           isCorrect,
           submittedAt: new Date().toISOString(),
         },
       },
-      activeSourceIds: currentQuestion.sourceIds,
+      activeSourceIds: question.sourceIds,
     }));
   }
 
@@ -316,6 +461,15 @@ export default function App() {
           : [...progress.flaggedQuestionIds, currentQuestion.id],
       };
     });
+  }
+
+  function changeGradingMode(mode: GradingMode) {
+    setGradingMode(mode);
+    setOpenMenu(null);
+  }
+
+  function toggleMenu(menuKey: string) {
+    setOpenMenu((current) => (current === menuKey ? null : menuKey));
   }
 
   function resetQuiz() {
@@ -366,7 +520,7 @@ export default function App() {
     <main className="app-shell">
       <div className="learning-layout" ref={layoutRef} onScroll={handleLayoutScroll}>
       <section className="quiz-pane">
-        <details className="mobile-course-menu">
+        <details className="mobile-course-menu expandable-menu">
           <summary>
             <span>{currentChapter.title}</span>
             <ChevronDown size={16} />
@@ -375,7 +529,7 @@ export default function App() {
             <section className="mobile-menu-group" aria-label="选择章节">
               <p>选择章节</p>
               <div className="mobile-chapter-list">
-                {chapters.map((chapter) => (
+                {regularChapters.map((chapter) => (
                   <button
                     className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""} ${
                       chapter.available ? "" : "is-disabled"
@@ -383,19 +537,36 @@ export default function App() {
                     key={chapter.id}
                     onClick={() => chooseChapter(chapter.id)}
                     type="button"
+                    title={chapter.title}
                   >
-                    <span>{chapter.title}</span>
+                    <span>{chapter.numeral}</span>
                   </button>
                 ))}
               </div>
+              <button
+                className={`chapter-option mobile-xuetong-option ${
+                  xuetongChapter.id === currentChapter.id ? "is-active" : ""
+                }`}
+                onClick={() => chooseChapter(xuetongChapter.id)}
+                type="button"
+              >
+                <span>学习通</span>
+              </button>
             </section>
-            <button className="secondary-button mobile-mode-button" type="button">
-              <SlidersHorizontal size={17} />
-              判题模式：提交后判题
-            </button>
+            <div className="mobile-menu-divider" />
+            <ModeMenu
+              gradingMode={gradingMode}
+              menuKey="mobile-mode"
+              onChange={changeGradingMode}
+              onToggle={toggleMenu}
+              openMenu={openMenu}
+            />
             <DownloadMenu
               label="下载习题"
               markdown={currentChapter.downloads.markdown}
+              menuKey="mobile-download"
+              onToggle={toggleMenu}
+              openMenu={openMenu}
               pdf={currentChapter.downloads.pdf}
             />
           </div>
@@ -410,21 +581,31 @@ export default function App() {
             <button className="icon-button" type="button" onClick={resetQuiz} aria-label="重置练习">
               <RotateCcw size={18} />
             </button>
+            <ModeMenu
+              gradingMode={gradingMode}
+              menuKey="desktop-mode"
+              onChange={changeGradingMode}
+              onToggle={toggleMenu}
+              openMenu={openMenu}
+            />
             <DownloadMenu
               label="下载习题"
               markdown={currentChapter.downloads.markdown}
+              menuKey="desktop-download"
+              onToggle={toggleMenu}
+              openMenu={openMenu}
               pdf={currentChapter.downloads.pdf}
             />
           </div>
         </header>
 
-        <details className="chapter-selector-panel">
+        <details className="chapter-selector-panel expandable-menu">
           <summary>
             <span>题库选择</span>
             <strong>{currentChapter.title}</strong>
           </summary>
           <section className="chapter-selector" aria-label="章节习题选择">
-            {chapters.map((chapter) => (
+            {selectableChapters.map((chapter) => (
               <button
                 className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""} ${
                   chapter.available ? "" : "is-disabled"
@@ -461,7 +642,7 @@ export default function App() {
         </section>
 
         {isAvailable ? (
-          <details className="question-nav-panel">
+          <details className="question-nav-panel expandable-menu">
             <summary>
               <ListChecks size={18} />
               <span>
@@ -599,8 +780,14 @@ export default function App() {
         </section>
         ) : (
           <section className="question-card coming-soon" aria-label="敬请期待">
-            <h2>敬请期待</h2>
-            <p>{currentChapter.title}还在整理中。</p>
+            {isXuetongChapter ? (
+              <p>如果你的任课老师在学习通发布了题目，请在学习通上完成哦。</p>
+            ) : (
+              <>
+                <h2>敬请期待</h2>
+                <p>{currentChapter.title}还在整理中。</p>
+              </>
+            )}
           </section>
         )}
 
