@@ -4,6 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>中国近现代史纲要复习小程序</title>
+    <script>
+      (() => {
+        const key = "interactive-review:theme-mode";
+        let mode = "auto";
+        try {
+          mode = localStorage.getItem(key) || "auto";
+        } catch {
+          mode = "auto";
+        }
+        const hour = (new Date().getUTCHours() + 8) % 24;
+        const autoTheme = hour >= 20 || hour < 6 ? "dark" : "light";
+        const theme = mode === "light" || mode === "dark" ? mode : autoTheme;
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.themeMode =
+          mode === "light" || mode === "dark" || mode === "auto" ? mode : "auto";
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -12,12 +12,14 @@
     "generate": "npm run generate:reference && npm run generate:quiz && npm run validate:source-map && npm run generate:chapters",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "vitest run tests/answerCheck.test.ts tests/quizData.test.ts",
+    "test": "vitest run tests/answerCheck.test.ts tests/quizData.test.ts tests/theme.test.ts",
     "test:watch": "vitest",
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@fontsource/noto-serif-sc": "^5.2.8",
     "@vitejs/plugin-react": "^4.3.4",
+    "driver.js": "^1.4.0",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

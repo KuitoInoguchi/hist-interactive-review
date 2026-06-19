@@ -10,6 +10,7 @@ const chapterOneSource = resolve(rootDir, "中国近现代史纲要 复习指导
 const chapterTwoSource = resolve(rootDir, "reference", "chapter_2.md");
 const chapterThreeSource = resolve(rootDir, "reference", "chapter_3.md");
 const chapterFourSource = resolve(rootDir, "reference", "chapter_4.md");
+const chapterFiveSource = resolve(rootDir, "reference", "chapter_5.md");
 const referenceSource = resolve(rootDir, "reference", "中国近现代史纲要 复习.md");
 
 const chapterOneQuestionsPath = resolve(generatedDir, "questions.json");
@@ -205,7 +206,11 @@ function answerIdsFor(type, answerText) {
   return match[1].split("");
 }
 
-function sectionSourceIds(referenceUnits, sectionNumbers) {
+function unitsForSections(referenceUnits, sectionNumbers) {
+  return referenceUnits.filter((unit) => sectionNumbers.includes(unit.sectionNo));
+}
+
+function preferredSourceIds(referenceUnits, sectionNumbers) {
   const ids = [];
   for (const sectionNo of sectionNumbers) {
     const units = referenceUnits.filter((unit) => unit.sectionNo === sectionNo);
@@ -215,13 +220,123 @@ function sectionSourceIds(referenceUnits, sectionNumbers) {
   return [...new Set(ids)];
 }
 
+function textForMatching(value) {
+  return stripMarkdown(value)
+    .replace(/[（(]\s*[）)]/g, " ")
+    .replace(/【[^】]*】/g, " ")
+    .replace(/避坑[:：]?/g, " ")
+    .replace(/正确答案[:：]?/g, " ")
+    .replace(/答案[:：]?/g, " ")
+    .replace(/^[A-D]|^正确|^错误/, " ")
+    .replace(/[^\p{Script=Han}A-Za-z0-9]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function bigrams(value) {
+  const compact = value.replace(/\s+/g, "");
+  const grams = new Set();
+  for (let index = 0; index < compact.length - 1; index += 1) {
+    grams.add(compact.slice(index, index + 2));
+  }
+  return grams;
+}
+
+function keywords(value) {
+  const normalized = textForMatching(value);
+  const terms = new Set();
+  for (const match of normalized.matchAll(/[\p{Script=Han}A-Za-z0-9]{2,}/gu)) {
+    const term = match[0];
+    if (term.length >= 2) terms.add(term);
+    if (/^[\p{Script=Han}]{5,}$/u.test(term)) {
+      for (let index = 0; index <= term.length - 4; index += 2) {
+        terms.add(term.slice(index, index + 4));
+      }
+    }
+  }
+  return [...terms];
+}
+
+function overlapScore(queryText, unitText) {
+  const queryGrams = bigrams(queryText);
+  const unitGrams = bigrams(textForMatching(unitText));
+  if (queryGrams.size === 0 || unitGrams.size === 0) return 0;
+
+  let overlap = 0;
+  for (const gram of queryGrams) {
+    if (unitGrams.has(gram)) overlap += 1;
+  }
+
+  const dice = (2 * overlap) / (queryGrams.size + unitGrams.size);
+  const phraseBoost = keywords(queryText).reduce((score, term) => {
+    if (term.length >= 4 && unitText.includes(term)) return score + Math.min(0.45, term.length * 0.025);
+    return score;
+  }, 0);
+
+  return dice + phraseBoost;
+}
+
+function bestSourceIdsForQuery(queryText, candidateUnits, fallbackIds, options = {}) {
+  const { maxIds = 3, relativeThreshold = 0.72, absoluteDrop = 0.18 } = options;
+  const scored = candidateUnits
+    .map((unit) => ({
+      id: unit.id,
+      score: overlapScore(textForMatching(queryText), unit.plainText) * sourceUnitWeight(unit),
+    }))
+    .sort((left, right) => right.score - left.score);
+
+  const best = scored[0];
+  if (!best || best.score <= 0) return fallbackIds;
+
+  return scored
+    .filter((item) => item.score >= Math.max(best.score * relativeThreshold, best.score - absoluteDrop))
+    .slice(0, maxIds)
+    .map((item) => item.id);
+}
+
+function sourceUnitWeight(unit) {
+  if (unit.kind === "heading") return 0.42;
+  if (unit.kind === "paragraph" && unit.plainText.length < 24) return 0.35;
+  return 1;
+}
+
+function sourceIdsForQuestion(question, answer, normalized, referenceUnits, sectionNumbers) {
+  const candidateUnits = unitsForSections(referenceUnits, sectionNumbers).filter((unit) =>
+    ["heading", "paragraph", "listItem"].includes(unit.kind),
+  );
+  const fallbackIds = preferredSourceIds(referenceUnits, sectionNumbers);
+  if (candidateUnits.length === 0) return fallbackIds;
+
+  const correctAnswers = answerIdsFor(question.type, answer.body);
+  const correctOptions = normalized.options.filter((option) => correctAnswers.includes(option.id));
+  const correctOptionLabels = correctOptions.map((option) => option.label).join(" ");
+
+  if (question.type === "multiple" && correctOptions.length > 1) {
+    const selected = [];
+    for (const option of correctOptions) {
+      selected.push(
+        ...bestSourceIdsForQuery(`${normalized.stem} ${option.label} ${answer.body}`, candidateUnits, fallbackIds, {
+          maxIds: 1,
+          relativeThreshold: 0.9,
+          absoluteDrop: 0.08,
+        }),
+      );
+    }
+    if (selected.length > 0) return [...new Set(selected)].slice(0, 5);
+  }
+
+  const selected = bestSourceIdsForQuery(`${normalized.stem} ${correctOptionLabels} ${answer.body}`, candidateUnits, fallbackIds);
+
+  return [...new Set(selected)];
+}
+
 function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
   const grouped = { single: [], multiple: [], judge: [] };
 
   for (const block of iterQuizBlocks(markdown)) {
     const questions = parseQuestions(block.before);
     const answers = parseAnswers(block.answerPart);
-    const sourceIds = sectionSourceIds(referenceUnits, block.targetSections);
 
     for (const localId of [...questions.keys()].sort((a, b) => a - b)) {
       const question = questions.get(localId);
@@ -231,11 +346,13 @@ function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
         throw new Error(`Type mismatch in ${chapterLabel} block for question ${localId}`);
       }
       const normalized = normalizeQuestion(`**${localId}. ${question.body}`, question.type);
+      const correctAnswers = answerIdsFor(question.type, answer.body);
+      const sourceIds = sourceIdsForQuestion(question, answer, normalized, referenceUnits, block.targetSections);
       grouped[question.type].push({
         type: question.type,
         stem: normalized.stem,
         options: normalized.options,
-        correctAnswers: answerIdsFor(question.type, answer.body),
+        correctAnswers,
         explanation: stripMarkdown(answer.body),
         sourceIds,
       });
@@ -305,6 +422,7 @@ const referenceUnits = JSON.parse(readFileSync(referenceUnitsPath, "utf8"));
 const chapterTwo = parseGeneratedChapter(readFileSync(chapterTwoSource, "utf8"), referenceUnits, "chapter 2");
 const chapterThree = parseGeneratedChapter(readFileSync(chapterThreeSource, "utf8"), referenceUnits, "chapter 3");
 const chapterFour = parseGeneratedChapter(readFileSync(chapterFourSource, "utf8"), referenceUnits, "chapter 4");
+const chapterFive = parseGeneratedChapter(readFileSync(chapterFiveSource, "utf8"), referenceUnits, "chapter 5");
 
 if (chapterTwo.questions.length !== 131) {
   throw new Error(`Unexpected chapter 2 count: ${chapterTwo.questions.length}`);
@@ -315,20 +433,26 @@ if (chapterThree.questions.length !== 85) {
 if (chapterFour.questions.length !== 84) {
   throw new Error(`Unexpected chapter 4 count: ${chapterFour.questions.length}`);
 }
+if (chapterFive.questions.length !== 84) {
+  throw new Error(`Unexpected chapter 5 count: ${chapterFive.questions.length}`);
+}
 
 const chapterOneDir = resolve(docsDir, "chapter-1");
 const chapterTwoDir = resolve(docsDir, "chapter-2");
 const chapterThreeDir = resolve(docsDir, "chapter-3");
 const chapterFourDir = resolve(docsDir, "chapter-4");
+const chapterFiveDir = resolve(docsDir, "chapter-5");
 mkdirSync(chapterOneDir, { recursive: true });
 mkdirSync(chapterTwoDir, { recursive: true });
 mkdirSync(chapterThreeDir, { recursive: true });
 mkdirSync(chapterFourDir, { recursive: true });
+mkdirSync(chapterFiveDir, { recursive: true });
 
 const chapterOneMarkdownDownload = resolve(chapterOneDir, "chapter-1.md");
 const chapterTwoMarkdownDownload = resolve(chapterTwoDir, "chapter-2.md");
 const chapterThreeMarkdownDownload = resolve(chapterThreeDir, "chapter-3.md");
 const chapterFourMarkdownDownload = resolve(chapterFourDir, "chapter-4.md");
+const chapterFiveMarkdownDownload = resolve(chapterFiveDir, "chapter-5.md");
 writeFileSync(chapterOneMarkdownDownload, readFileSync(chapterOneSource, "utf8"));
 writeFileSync(
   chapterTwoMarkdownDownload,
@@ -341,6 +465,10 @@ writeFileSync(
 writeFileSync(
   chapterFourMarkdownDownload,
   serializeChapterMarkdown("第四章 选择题 判断题", chapterFour.grouped, chapterFour.questions),
+);
+writeFileSync(
+  chapterFiveMarkdownDownload,
+  serializeChapterMarkdown("第五章 选择题 判断题", chapterFive.grouped, chapterFive.questions),
 );
 
 const referenceMarkdownDownload = resolve(docsDir, basename(referenceSource));
@@ -391,6 +519,16 @@ const regularCompletedByChapter = new Map([
       },
     },
   ],
+  [
+    5,
+    {
+      questions: chapterFive.questions,
+      downloads: {
+        markdown: "/docs/chapter-5/chapter-5.md",
+        pdf: null,
+      },
+    },
+  ],
 ]);
 const xuetongCompletedByChapter = new Map();
 
@@ -433,7 +571,7 @@ writeFileSync(
   )}\n`,
 );
 
-for (const chapter of chapters.slice(0, 4)) {
+for (const chapter of chapters.slice(0, 5)) {
   const counts = countsFor(chapter.questions);
   console.log(
     `Chapter ${chapter.id}: ${chapter.questions.length} questions (${counts.single}/${counts.multiple}/${counts.judge})`,

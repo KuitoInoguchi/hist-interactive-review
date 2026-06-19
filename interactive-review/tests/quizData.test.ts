@@ -86,6 +86,7 @@ describe("generated quiz data", () => {
       "regular-2",
       "regular-3",
       "regular-4",
+      "regular-5",
     ]);
   });
 
@@ -161,6 +162,68 @@ describe("generated quiz data", () => {
     }
   });
 
+  it("contains the expected fifth-chapter question counts and source links", () => {
+    const chapterFive = chapters.find((chapter) => chapter.id === "regular-5");
+    expect(chapterFive).toBeDefined();
+    const chapterFiveQuestions = chapterFive?.questions ?? [];
+    const counts = chapterFiveQuestions.reduce(
+      (acc, question) => {
+        acc[question.type] += 1;
+        return acc;
+      },
+      { single: 0, multiple: 0, judge: 0 },
+    );
+
+    expect(chapterFiveQuestions).toHaveLength(84);
+    expect(counts).toEqual({ single: 42, multiple: 18, judge: 24 });
+    for (const question of chapterFiveQuestions) {
+      expect(question.correctAnswers.length, `chapter 5 Q${question.id} correctAnswers`).toBeGreaterThan(0);
+      expect(question.explanation.length, `chapter 5 Q${question.id} explanation`).toBeGreaterThan(0);
+      expect(question.sourceIds.length, `chapter 5 Q${question.id} sourceIds`).toBeGreaterThan(0);
+      for (const sourceId of question.sourceIds) {
+        expect(referenceIds.has(sourceId), `chapter 5 Q${question.id} ${sourceId}`).toBe(true);
+      }
+    }
+
+    expect(chapterFiveQuestions.find((question) => question.id === 56)?.sourceIds).toEqual(["ref-c5-s88-l597-list"]);
+    expect(chapterFiveQuestions.find((question) => question.id === 58)?.sourceIds).toEqual([
+      "ref-c5-s89-l602-list",
+      "ref-c5-s89-l601-list",
+    ]);
+    expect(chapterFiveQuestions.find((question) => question.id === 59)?.sourceIds).toEqual([
+      "ref-c5-s90-l609-list",
+      "ref-c5-s90-l610-list",
+      "ref-c5-s90-l608-list",
+    ]);
+  });
+
+  it("keeps generated source mappings specific for completed generated chapters", () => {
+    const minimumsByChapter = new Map([
+      ["regular-2", { sourceIds: 50, sourceSets: 50, multiSourceMultiple: 8 }],
+      ["regular-3", { sourceIds: 45, sourceSets: 45, multiSourceMultiple: 10 }],
+      ["regular-4", { sourceIds: 50, sourceSets: 50, multiSourceMultiple: 14 }],
+      ["regular-5", { sourceIds: 45, sourceSets: 45, multiSourceMultiple: 14 }],
+    ]);
+
+    for (const [chapterId, minimums] of minimumsByChapter) {
+      const chapter = chapters.find((item) => item.id === chapterId);
+      expect(chapter, chapterId).toBeDefined();
+      const chapterQuestions = chapter?.questions ?? [];
+      const uniqueSourceIds = new Set(chapterQuestions.flatMap((question) => question.sourceIds));
+      const uniqueSourceSets = new Set(chapterQuestions.map((question) => question.sourceIds.join("|")));
+      const multiSourceMultipleQuestions = chapterQuestions.filter(
+        (question) => question.type === "multiple" && question.sourceIds.length > 1,
+      );
+
+      expect(uniqueSourceIds.size, `${chapterId} unique source ids`).toBeGreaterThanOrEqual(minimums.sourceIds);
+      expect(uniqueSourceSets.size, `${chapterId} unique source sets`).toBeGreaterThanOrEqual(minimums.sourceSets);
+      expect(
+        multiSourceMultipleQuestions.length,
+        `${chapterId} multiple questions with more than one source id`,
+      ).toBeGreaterThanOrEqual(minimums.multiSourceMultiple);
+    }
+  });
+
   it("provides download links for completed chapters and reference material", () => {
     expect(chapters[0].downloads).toEqual({
       markdown: "/docs/chapter-1/chapter-1.md",
@@ -176,6 +239,10 @@ describe("generated quiz data", () => {
     });
     expect(chapters[3].downloads).toEqual({
       markdown: "/docs/chapter-4/chapter-4.md",
+      pdf: null,
+    });
+    expect(chapters[4].downloads).toEqual({
+      markdown: "/docs/chapter-5/chapter-5.md",
       pdf: null,
     });
     expect(

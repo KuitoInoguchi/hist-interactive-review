@@ -9,7 +9,7 @@ type ReferencePaneProps = {
   activeSourceIds: string[];
   collapsed: boolean;
   downloads: { markdown: string | null; pdf: string | null };
-  scrollRequest: number;
+  focusRequest: number;
 };
 
 function assetUrl(path: string | null): string | null {
@@ -18,7 +18,7 @@ function assetUrl(path: string | null): string | null {
   return `${base}${path.replace(/^\//, '')}`;
 }
 
-export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollRequest }: ReferencePaneProps) {
+export function ReferencePane({ activeSourceIds, collapsed, downloads, focusRequest }: ReferencePaneProps) {
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -27,14 +27,18 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollReq
 
     container
       .querySelectorAll(".active-source")
-      .forEach((element) => element.classList.remove("active-source"));
+      .forEach((element) => {
+        element.classList.remove("active-source");
+        element.removeAttribute("data-tour");
+      });
 
     for (const sourceId of activeSourceIds) {
       const target = container.querySelector(`#${CSS.escape(sourceId)}`);
       target?.classList.add("active-source");
+      target?.setAttribute("data-tour", "active-source");
     }
 
-    if (scrollRequest > 0) {
+    const focusActiveSource = () => {
       const firstTarget = activeSourceIds[0]
         ? container.querySelector(`#${CSS.escape(activeSourceIds[0])}`)
         : null;
@@ -50,8 +54,12 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollReq
         top: Math.max(0, targetScrollTop),
         behavior: "smooth",
       });
-    }
-  }, [activeSourceIds, scrollRequest]);
+    };
+
+    focusActiveSource();
+    const delayedFocus = window.setTimeout(focusActiveSource, 360);
+    return () => window.clearTimeout(delayedFocus);
+  }, [activeSourceIds, focusRequest]);
 
   return (
     <aside className={`reference-pane ${collapsed ? "is-collapsed" : ""}`} ref={containerRef}>
@@ -60,7 +68,7 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollReq
           <p className="eyebrow">复习资料</p>
           <h2>知识点定位</h2>
         </div>
-        <details className="download-menu reference-download">
+        <details className="download-menu reference-download expandable-menu">
           <summary className="secondary-button download-summary">
             <Download size={18} />
             下载复习资料
