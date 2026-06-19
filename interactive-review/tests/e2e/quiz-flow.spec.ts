@@ -300,3 +300,28 @@ test("mobile chapter menu pushes the question panel down", async ({ page, isMobi
   expect(layout).not.toBeNull();
   expect(layout!.questionPanelTop).toBeGreaterThanOrEqual(layout!.popoverBottom);
 });
+
+test("mobile quiz pane remains scrollable after feedback expands the page", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile-only behavior");
+
+  await page.locator(".option-row").filter({ hasText: "中国的封建势力" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答错误")).toBeVisible();
+
+  const scrollState = await page.evaluate(() => {
+    const pane = document.querySelector(".quiz-pane");
+    if (!(pane instanceof HTMLElement)) return null;
+    const before = pane.scrollTop;
+    pane.scrollTop = pane.scrollHeight;
+    return {
+      before,
+      after: pane.scrollTop,
+      clientHeight: pane.clientHeight,
+      scrollHeight: pane.scrollHeight,
+    };
+  });
+
+  expect(scrollState).not.toBeNull();
+  expect(scrollState!.scrollHeight).toBeGreaterThan(scrollState!.clientHeight);
+  expect(scrollState!.after).toBeGreaterThan(scrollState!.before);
+});

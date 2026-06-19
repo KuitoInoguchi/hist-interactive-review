@@ -481,24 +481,11 @@ export default function App() {
     if (options.focusReference) {
       setReferenceFocusRequest((request) => request + 1);
     }
-    const layout = layoutRef.current;
-    if (!layout) return;
-    layout.scrollTo({
-      left: page * layout.clientWidth,
-      behavior: "smooth",
-    });
-  }
-
-  function handleLayoutScroll() {
-    const layout = layoutRef.current;
-    if (!layout) return;
-    const page = layout.scrollLeft > layout.clientWidth / 2 ? 1 : 0;
-    setActiveMobilePage(page);
   }
 
   return (
     <main className="app-shell">
-      <div className="learning-layout" ref={layoutRef} onScroll={handleLayoutScroll}>
+      <div className={`learning-layout mobile-page-${activeMobilePage}`} ref={layoutRef}>
       <section className="quiz-pane">
         <details className="mobile-course-menu expandable-menu">
           <summary>

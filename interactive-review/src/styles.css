@@ -833,11 +833,17 @@ h1 {
     flex: 1 1 auto;
     gap: 0;
     margin: 0;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: none;
     scrollbar-width: none;
+    transition: transform 0.24s ease;
+    will-change: transform;
+  }
+
+  .learning-layout.mobile-page-1 {
+    transform: translateX(-100%);
   }
 
   .learning-layout::-webkit-scrollbar {
@@ -853,7 +859,9 @@ h1 {
     max-height: 100%;
     min-height: 0;
     overflow-y: auto;
-    scroll-snap-align: start;
+    scroll-snap-align: none;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
   }
 
