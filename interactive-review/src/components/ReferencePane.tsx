@@ -9,6 +9,7 @@ type ReferencePaneProps = {
   activeSourceIds: string[];
   collapsed: boolean;
   downloads: { markdown: string | null; pdf: string | null };
+  scrollRequest: number;
 };
 
 function assetUrl(path: string | null): string | null {
@@ -17,7 +18,7 @@ function assetUrl(path: string | null): string | null {
   return `${base}${path.replace(/^\//, '')}`;
 }
 
-export function ReferencePane({ activeSourceIds, collapsed, downloads }: ReferencePaneProps) {
+export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollRequest }: ReferencePaneProps) {
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -33,22 +34,24 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads }: Referen
       target?.classList.add("active-source");
     }
 
-    const firstTarget = activeSourceIds[0]
-      ? container.querySelector(`#${CSS.escape(activeSourceIds[0])}`)
-      : null;
-    if (!firstTarget) return;
+    if (scrollRequest > 0) {
+      const firstTarget = activeSourceIds[0]
+        ? container.querySelector(`#${CSS.escape(activeSourceIds[0])}`)
+        : null;
+      if (!firstTarget) return;
 
-    const containerRect = container.getBoundingClientRect();
-    const targetRect = firstTarget.getBoundingClientRect();
-    const currentScrollTop = container.scrollTop;
-    const targetScrollTop =
-      currentScrollTop + (targetRect.top - containerRect.top) - container.clientHeight / 2 + targetRect.height / 2;
+      const containerRect = container.getBoundingClientRect();
+      const targetRect = firstTarget.getBoundingClientRect();
+      const currentScrollTop = container.scrollTop;
+      const targetScrollTop =
+        currentScrollTop + (targetRect.top - containerRect.top) - container.clientHeight / 2 + targetRect.height / 2;
 
-    container.scrollTo({
-      top: Math.max(0, targetScrollTop),
-      behavior: "smooth",
-    });
-  }, [activeSourceIds]);
+      container.scrollTo({
+        top: Math.max(0, targetScrollTop),
+        behavior: "smooth",
+      });
+    }
+  }, [activeSourceIds, scrollRequest]);
 
   return (
     <aside className={`reference-pane ${collapsed ? "is-collapsed" : ""}`} ref={containerRef}>
