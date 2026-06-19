@@ -47,6 +47,7 @@ test("progress survives refresh and reset clears the attempt", async ({ page, is
   await expect(page.getByText("回答正确")).toBeVisible();
   await expect(page.locator("#ref-c1-s6-l46-list")).toHaveClass(/active-source/);
 
+  page.once("dialog", (dialog) => dialog.accept());
   await page.getByLabel("重置练习").click();
   await expect(page.getByText("回答正确")).toHaveCount(0);
   await expect(page.locator(".summary-grid div").filter({ hasText: "已提交" })).toContainText("0");
@@ -406,6 +407,7 @@ test("mobile menus float without taking vertical space", async ({ page, isMobile
   expect(controlsLayout).not.toBeNull();
   expect(Math.abs(controlsLayout!.chapterTop - controlsLayout!.questionTop)).toBeLessThan(2);
   expect(Math.abs(controlsLayout!.chapterBottom - controlsLayout!.questionBottom)).toBeLessThan(2);
+  expect(controlsLayout!.questionBottom - controlsLayout!.questionTop).toBeLessThan(40);
 
   await page.locator(".mobile-course-menu > summary").click();
   await expect(page.locator(".mobile-course-popover")).toBeVisible();
@@ -433,6 +435,63 @@ test("mobile menus float without taking vertical space", async ({ page, isMobile
   await expect(page.getByRole("button", { name: /切换到/ })).toBeVisible();
   await page.locator(".question-nav-panel .mobile-menu-backdrop").click({ position: { x: 8, y: 8 } });
   await expect(page.locator(".question-nav-panel")).not.toHaveAttribute("open", "");
+});
+
+test("submitted questions can be reset and restored", async ({ page }) => {
+  await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+
+  await page.getByRole("button", { name: "重置本题" }).click();
+  await expect(page.getByText("回答正确")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /提交答案/ })).toBeDisabled();
+
+  await openQuestionPanel(page);
+  await page.getByRole("button", { name: "撤销", exact: true }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+});
+
+test("question panel can batch reset, undo reset, and pin on mobile", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile-only behavior");
+
+  await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+
+  await page.locator(".question-nav-panel > summary").click();
+  await page.getByRole("button", { name: "批量" }).click();
+  await questionChip(page, 1).click();
+  page.once("dialog", (dialog) => dialog.accept());
+  await page.getByRole("button", { name: "重置", exact: true }).click();
+  await expect(page.getByText("回答正确")).toHaveCount(0);
+
+  await page.getByRole("button", { name: "撤销", exact: true }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+
+  await page.getByRole("button", { name: "常驻" }).click();
+  const pinnedLayout = await page.evaluate(() => {
+    const panel = document.querySelector(".question-nav-panel");
+    const nav = document.querySelector(".question-nav");
+    const card = document.querySelector(".question-card");
+    const popover = document.querySelector(".question-nav-popover");
+    if (!(panel instanceof HTMLElement) || !(nav instanceof HTMLElement) || !card || !popover) return null;
+    const panelRect = panel.getBoundingClientRect();
+    const navRect = nav.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const popoverRect = popover.getBoundingClientRect();
+    const firstChip = nav.querySelector(".question-chip")?.getBoundingClientRect();
+    return {
+      panelOpen: panel.hasAttribute("open"),
+      cardTop: cardRect.top,
+      popoverBottom: popoverRect.bottom,
+      navHeight: navRect.height,
+      chipHeight: firstChip?.height ?? 0,
+    };
+  });
+  expect(pinnedLayout).not.toBeNull();
+  expect(pinnedLayout!.panelOpen).toBe(true);
+  expect(pinnedLayout!.cardTop).toBeGreaterThanOrEqual(pinnedLayout!.popoverBottom);
+  expect(pinnedLayout!.navHeight).toBeLessThanOrEqual(pinnedLayout!.chipHeight * 3 + 24);
 });
 
 test("mobile quiz pane remains scrollable after feedback expands the page", async ({ page, isMobile }) => {

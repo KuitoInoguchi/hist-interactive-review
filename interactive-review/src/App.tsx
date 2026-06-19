@@ -14,6 +14,7 @@ import {
   SlidersHorizontal,
   Sun,
   Trophy,
+  Undo2,
 } from "lucide-react";
 import {
   type PointerEvent as ReactPointerEvent,
@@ -85,6 +86,11 @@ type SavedQuizState = {
   progressByChapter: Record<string, ChapterProgress>;
   referenceCollapsed: boolean;
   gradingMode: GradingMode;
+};
+
+type ResetSnapshot = {
+  chapterId: string;
+  progress: ChapterProgress;
 };
 
 function normalizeProgress(progress?: Partial<ChapterProgress> | null): ChapterProgress {
@@ -356,6 +362,10 @@ export default function App() {
   const [referenceFocusRequest, setReferenceFocusRequest] = useState(0);
   const [gradingMode, setGradingMode] = useState<GradingMode>(savedState.gradingMode ?? "manual");
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [questionPanelPinned, setQuestionPanelPinned] = useState(false);
+  const [resetSelectionMode, setResetSelectionMode] = useState(false);
+  const [resetSelectionIds, setResetSelectionIds] = useState<number[]>([]);
+  const [lastResetSnapshot, setLastResetSnapshot] = useState<ResetSnapshot | null>(null);
 
   const currentChapter = selectableChapters.find((chapter) => chapter.id === selectedChapterId) ?? selectableChapters[0];
   const questions = currentChapter.questions;
@@ -378,6 +388,7 @@ export default function App() {
   const currentQuestionFlagged = currentQuestion ? flaggedQuestionIdSet.has(currentQuestion.id) : false;
   const isXuetongChapter = currentChapter.id === xuetongChapter.id;
   const resolvedTheme = resolveTheme(themeMode, themeNow);
+  const canUndoReset = lastResetSnapshot?.chapterId === currentChapter.id;
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -412,8 +423,9 @@ export default function App() {
   }, [themeMode]);
 
   useEffect(() => {
-    function shouldKeepDesktopQuestionPanelOpen(element: HTMLDetailsElement) {
-      return element.classList.contains("question-nav-panel") && !window.matchMedia("(max-width: 760px)").matches;
+    function shouldKeepQuestionPanelOpen(element: HTMLDetailsElement) {
+      if (!element.classList.contains("question-nav-panel")) return false;
+      return element.classList.contains("is-pinned") || !window.matchMedia("(max-width: 760px)").matches;
     }
 
     function closeMenuOnOutsideClick(event: PointerEvent) {
@@ -424,7 +436,7 @@ export default function App() {
       document
         .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
         .forEach((element) => {
-          if (!shouldKeepDesktopQuestionPanelOpen(element)) {
+          if (!shouldKeepQuestionPanelOpen(element)) {
             element.removeAttribute("open");
           }
         });
@@ -446,6 +458,8 @@ export default function App() {
 
   function chooseChapter(chapterId: string) {
     setSelectedChapterId(chapterId);
+    setResetSelectionMode(false);
+    setResetSelectionIds([]);
     setOpenMenu(null);
     document
       .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
@@ -567,10 +581,71 @@ export default function App() {
   }
 
   function resetQuiz() {
+    resetQuestions(questions.map((question) => question.id), { confirm: true });
+  }
+
+  function resetQuestions(questionIds: number[], options: { confirm: boolean }) {
+    if (questionIds.length === 0) return;
+    if (options.confirm && !window.confirm(`确定要重置 ${questionIds.length} 道题的作答情况吗？`)) return;
+    const resetIdSet = new Set(questionIds);
+    const snapshot = normalizeProgress(currentProgress);
+    setLastResetSnapshot({
+      chapterId: currentChapter.id,
+      progress: {
+        ...snapshot,
+        selectedByQuestion: { ...snapshot.selectedByQuestion },
+        attempts: { ...snapshot.attempts },
+        flaggedQuestionIds: [...snapshot.flaggedQuestionIds],
+        activeSourceIds: [...snapshot.activeSourceIds],
+      },
+    });
+    updateCurrentProgress((progress) => {
+      const nextSelectedByQuestion = { ...progress.selectedByQuestion };
+      const nextAttempts = { ...progress.attempts };
+      for (const questionId of resetIdSet) {
+        delete nextSelectedByQuestion[questionId];
+        delete nextAttempts[questionId];
+      }
+      return {
+        ...progress,
+        selectedByQuestion: nextSelectedByQuestion,
+        attempts: nextAttempts,
+        activeSourceIds: resetIdSet.has(currentQuestion?.id ?? -1) ? [] : progress.activeSourceIds,
+      };
+    });
+    setResetSelectionMode(false);
+    setResetSelectionIds([]);
+  }
+
+  function resetCurrentQuestion() {
+    if (!currentQuestion) return;
+    resetQuestions([currentQuestion.id], { confirm: false });
+  }
+
+  function undoLastReset() {
+    if (!lastResetSnapshot || lastResetSnapshot.chapterId !== currentChapter.id) return;
     setProgressByChapter((previous) => ({
       ...previous,
-      [currentChapter.id]: emptyProgress(),
+      [lastResetSnapshot.chapterId]: lastResetSnapshot.progress,
     }));
+    setLastResetSnapshot(null);
+    setResetSelectionMode(false);
+    setResetSelectionIds([]);
+  }
+
+  function toggleResetSelection(questionId: number) {
+    setResetSelectionIds((current) =>
+      current.includes(questionId) ? current.filter((id) => id !== questionId) : [...current, questionId],
+    );
+  }
+
+  function toggleResetSelectionMode() {
+    setResetSelectionMode((enabled) => !enabled);
+    setResetSelectionIds([]);
+  }
+
+  function resetSelectedQuestions() {
+    resetQuestions(resetSelectionIds, { confirm: true });
   }
 
   function jumpToQuestion(index: number) {
@@ -648,7 +723,8 @@ export default function App() {
     if (!current.open) return;
     setOpenMenu(null);
     document.querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]").forEach((element) => {
-      if (element !== current) {
+      const keepPinnedQuestionPanel = element.classList.contains("question-nav-panel") && questionPanelPinned;
+      if (element !== current && !keepPinnedQuestionPanel) {
         element.removeAttribute("open");
       }
     });
@@ -814,7 +890,11 @@ export default function App() {
           </details>
 
           {isAvailable ? (
-            <details className="question-nav-panel expandable-menu" onToggle={closeOtherDetails}>
+            <details
+              className={`question-nav-panel expandable-menu ${questionPanelPinned ? "is-pinned" : ""}`}
+              onToggle={closeOtherDetails}
+              open={questionPanelPinned || undefined}
+            >
               <summary>
                 <ListChecks size={18} />
                 <span>
@@ -822,28 +902,86 @@ export default function App() {
                 </span>
                 <ChevronDown className="question-nav-toggle" size={16} aria-hidden="true" />
               </summary>
-              <button
-                aria-label="收起题号面板"
-                className="mobile-menu-backdrop"
-                onClick={closeDetailsFromBackdrop}
-                type="button"
-              />
-              <nav className="question-nav" aria-label="题号导航">
-                {questions.map((question, index) => (
+              {!questionPanelPinned ? (
+                <button
+                  aria-label="收起题号面板"
+                  className="mobile-menu-backdrop"
+                  onClick={closeDetailsFromBackdrop}
+                  type="button"
+                />
+              ) : null}
+              <div className="question-nav-popover">
+                <nav className="question-nav" aria-label="题号导航">
+                  {questions.map((question, index) => {
+                    const isResetSelected = resetSelectionIds.includes(question.id);
+                    return (
                   <button
                     className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
                       attempts[question.id],
                       (selectedByQuestion[question.id] ?? []).length > 0,
                       flaggedQuestionIdSet.has(question.id),
-                    )}`}
+                    )} ${isResetSelected ? "is-reset-selected" : ""}`}
                     key={question.id}
-                    onClick={() => jumpToQuestion(index)}
+                    onClick={() => (resetSelectionMode ? toggleResetSelection(question.id) : jumpToQuestion(index))}
                     type="button"
                   >
                     {question.id}
                   </button>
-                ))}
-              </nav>
+                    );
+                  })}
+                </nav>
+                <div className="question-nav-tools" aria-label="题号面板工具">
+                  <button
+                    aria-pressed={resetSelectionMode}
+                    className={`question-tool-button ${resetSelectionMode ? "is-active" : ""}`}
+                    onClick={toggleResetSelectionMode}
+                    title="批量重置"
+                    type="button"
+                  >
+                    <RotateCcw size={16} />
+                    <span>批量</span>
+                  </button>
+                  <button
+                    className="question-tool-button"
+                    disabled={!resetSelectionMode || resetSelectionIds.length === 0}
+                    onClick={resetSelectedQuestions}
+                    title="重置已选择题目"
+                    type="button"
+                  >
+                    <ListChecks size={16} />
+                    <span>重置</span>
+                  </button>
+                  <button
+                    className="question-tool-button"
+                    onClick={resetQuiz}
+                    title="全部重置"
+                    type="button"
+                  >
+                    <RotateCcw size={16} />
+                    <span>全部</span>
+                  </button>
+                  <button
+                    className="question-tool-button"
+                    disabled={!canUndoReset}
+                    onClick={undoLastReset}
+                    title="撤销重置"
+                    type="button"
+                  >
+                    <Undo2 size={16} />
+                    <span>撤销</span>
+                  </button>
+                  <button
+                    aria-pressed={questionPanelPinned}
+                    className={`question-tool-button ${questionPanelPinned ? "is-active" : ""}`}
+                    onClick={() => setQuestionPanelPinned((pinned) => !pinned)}
+                    title={questionPanelPinned ? "关闭常驻" : "常驻开启"}
+                    type="button"
+                  >
+                    <BookOpen size={16} />
+                    <span>常驻</span>
+                  </button>
+                </div>
+              </div>
             </details>
           ) : null}
         </div>
@@ -903,12 +1041,12 @@ export default function App() {
             </button>
             <button
               className="primary-button"
-              disabled={selectedAnswers.length === 0 || Boolean(currentAttempt)}
-              onClick={submitCurrentQuestion}
+              disabled={!currentAttempt && selectedAnswers.length === 0}
+              onClick={currentAttempt ? resetCurrentQuestion : submitCurrentQuestion}
               type="button"
             >
-              <Send size={18} />
-              <span className="action-label">提交答案</span>
+              {currentAttempt ? <RotateCcw size={18} /> : <Send size={18} />}
+              <span className="action-label">{currentAttempt ? "重置本题" : "提交答案"}</span>
             </button>
             <button
               className="secondary-button"
