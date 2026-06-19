@@ -503,6 +503,26 @@ h1 {
   display: none;
 }
 
+.question-nav-toggle {
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 999px;
+  background: #eef4fb;
+  color: #356baa;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.question-nav-panel[open] .question-nav-toggle {
+  transform: rotate(180deg);
+}
+
+.question-nav-panel > summary:hover .question-nav-toggle {
+  background: #dfeaf7;
+}
+
 .question-nav-panel .question-nav {
   margin: 0;
   padding: 12px;
@@ -935,6 +955,12 @@ h1 {
   .question-nav-panel > summary {
     min-height: 38px;
     font-size: 15px;
+  }
+
+  .question-nav-toggle {
+    width: 22px;
+    height: 22px;
+    padding: 4px;
   }
 
   .question-nav-panel .question-nav {

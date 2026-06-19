@@ -674,6 +674,7 @@ export default function App() {
               <span>
                 题号面板 · {currentIndex + 1}/{questions.length}
               </span>
+              <ChevronDown className="question-nav-toggle" size={16} aria-hidden="true" />
             </summary>
             <nav className="question-nav" aria-label="题号导航">
               {questions.map((question, index) => (
