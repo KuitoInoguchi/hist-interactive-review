@@ -399,7 +399,7 @@ test("interactive onboarding demos quiz features and restores progress", async (
   await advanceTour(page, "切换判题模式");
   await advanceTour(page, "点选即判");
   await advanceTour(page, "回到提交后判题");
-  await expect(page.locator('[data-tour="mode-option-manual"]')).toBeVisible();
+  await expect(page.locator('[data-tour="mode-option-per-question-submit"]')).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "已提交" })).toContainText("1");
 
   await advanceTour(page, "标记记不准");

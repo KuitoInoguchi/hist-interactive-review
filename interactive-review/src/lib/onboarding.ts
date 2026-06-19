@@ -12,7 +12,7 @@ export type OnboardingApi = {
   restoreAfterTour: () => void;
   selectAndGradeDemoAnswer: () => void;
   selectDemoAnswer: () => void;
-  setDemoGradingMode: (mode: "instant" | "manual") => void;
+  setDemoGradingMode: (mode: "per-question-submit" | "instant-on-select" | "batch-submit") => void;
   showDemoKnowledgePoint: () => void;
   submitDemoAnswer: () => void;
   toggleDemoFlag: () => void;
@@ -170,7 +170,7 @@ function createTourSteps(api: OnboardingApi): DriveStep[] {
       },
       popover: {
         title: "切换判题模式",
-        description: "这里可以在“提交后判题”和“点选即判”之间切换。下一步会先切到点选即判。",
+        description: "这里可以切换提交后判题、点选即判和一键批改。下一步会先切到点选即判。",
         side: "bottom",
         align: "center",
         onNextClick: (_element, _step, { driver: activeDriver }) => {
@@ -179,7 +179,7 @@ function createTourSteps(api: OnboardingApi): DriveStep[] {
       },
     },
     {
-      element: () => getTourElement('[data-tour="mode-option-instant"]'),
+      element: () => getTourElement('[data-tour="mode-option-instant-on-select"]'),
       onHighlightStarted: api.openModeMenu,
       popover: {
         title: "点选即判",
@@ -188,7 +188,7 @@ function createTourSteps(api: OnboardingApi): DriveStep[] {
         align: "center",
         onNextClick: (_element, _step, { driver: activeDriver }) => {
           advanceAfterAction(activeDriver, () => {
-            api.setDemoGradingMode("instant");
+            api.setDemoGradingMode("instant-on-select");
             api.resetDemoQuestion();
             api.selectAndGradeDemoAnswer();
           });
@@ -196,7 +196,7 @@ function createTourSteps(api: OnboardingApi): DriveStep[] {
       },
     },
     {
-      element: () => getTourElement('[data-tour="mode-option-manual"]'),
+      element: () => getTourElement('[data-tour="mode-option-per-question-submit"]'),
       onHighlightStarted: api.openModeMenu,
       popover: {
         title: "回到提交后判题",
@@ -204,7 +204,7 @@ function createTourSteps(api: OnboardingApi): DriveStep[] {
         side: "bottom",
         align: "center",
         onNextClick: (_element, _step, { driver: activeDriver }) => {
-          api.setDemoGradingMode("manual");
+          api.setDemoGradingMode("per-question-submit");
           window.setTimeout(() => {
             activeDriver.moveNext();
             window.setTimeout(() => {

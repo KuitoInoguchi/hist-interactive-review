@@ -21,3 +21,5 @@ export type QuizAttempt = {
   isCorrect: boolean;
   submittedAt: string;
 };
+
+export type GradingMode = "instant-on-select" | "per-question-submit" | "batch-submit";

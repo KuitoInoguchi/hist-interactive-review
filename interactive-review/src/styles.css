@@ -1374,7 +1374,7 @@ body.help-dialog-open {
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    min-height: 34px;
+    min-height: 38px;
     align-items: center;
     justify-content: center;
     gap: 5px;
@@ -1523,7 +1523,7 @@ body.help-dialog-open {
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    min-height: 34px;
+    min-height: 38px;
     margin: 0;
     padding: 0 10px;
     border: 1px solid var(--color-border);

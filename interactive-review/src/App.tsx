@@ -73,10 +73,12 @@ const selectableChapters = [...regularChapters, xuetongChapter];
 const defaultChapterId = chapters[0]?.id ?? "regular-1";
 const STORAGE_KEY = "interactive-review:multi-chapter-progress";
 const modeLabels = {
-  instant: "点选即判",
-  manual: "提交后判题",
+  "per-question-submit": "提交后判题",
+  "instant-on-select": "点选即判",
+  "batch-submit": "一键批改",
 } as const;
 type GradingMode = keyof typeof modeLabels;
+const DEFAULT_GRADING_MODE: GradingMode = "per-question-submit";
 
 type ChapterProgress = {
   currentIndex: number;
@@ -137,6 +139,7 @@ function readSavedState(): Partial<SavedQuizState> {
     );
     return {
       ...parsed,
+      gradingMode: normalizeGradingMode(parsed.gradingMode),
       progressByChapter,
     };
   } catch {
@@ -175,6 +178,12 @@ function emptyProgress(): ChapterProgress {
     flaggedQuestionIds: [],
     activeSourceIds: [],
   };
+}
+
+function normalizeGradingMode(mode?: string | null): GradingMode {
+  if (mode === "manual") return "per-question-submit";
+  if (mode === "instant") return "instant-on-select";
+  return mode && mode in modeLabels ? (mode as GradingMode) : DEFAULT_GRADING_MODE;
 }
 
 function assetUrl(path: string | null): string | null {
@@ -520,7 +529,7 @@ export default function App() {
   const [referenceCollapsed, setReferenceCollapsed] = useState(savedState.referenceCollapsed ?? false);
   const [activeMobilePage, setActiveMobilePage] = useState<0 | 1>(0);
   const [referenceFocusRequest, setReferenceFocusRequest] = useState(0);
-  const [gradingMode, setGradingMode] = useState<GradingMode>(savedState.gradingMode ?? "manual");
+  const [gradingMode, setGradingMode] = useState<GradingMode>(normalizeGradingMode(savedState.gradingMode));
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [questionPanelPinned, setQuestionPanelPinned] = useState(false);
   const [resetSelectionMode, setResetSelectionMode] = useState(false);
@@ -697,7 +706,7 @@ export default function App() {
       };
     });
 
-    if (gradingMode === "instant" && question.type !== "multiple") {
+    if (gradingMode === "instant-on-select" && question.type !== "multiple") {
       submitQuestionWithAnswers(question, nextSelectedAnswers);
     }
   }
@@ -867,7 +876,7 @@ export default function App() {
       ...previous,
       [demoChapter.id]: resetDemoProgress(demoQuestion, normalizeProgress(previous[demoChapter.id])),
     }));
-    setGradingMode("manual");
+    setGradingMode(DEFAULT_GRADING_MODE);
     setReferenceCollapsed(false);
     setActiveMobilePage(0);
     setOpenMenu(null);
@@ -900,7 +909,7 @@ export default function App() {
         ...progress,
         selectedByQuestion: { ...progress.selectedByQuestion, [demoQuestion.id]: [answer] },
       };
-      if (gradingMode !== "instant" || demoQuestion.type === "multiple") return nextProgress;
+      if (gradingMode !== "instant-on-select" || demoQuestion.type === "multiple") return nextProgress;
       return {
         ...nextProgress,
         attempts: {
