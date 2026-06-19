@@ -48,10 +48,57 @@ test("question chip becomes pending after selecting an unsubmitted answer", asyn
   await expect(questionThreeChip).toHaveClass(/is-pending/);
 });
 
+test("flagged questions stay highlighted even after grading", async ({ page }) => {
+  const questionOneChip = questionChip(page, 1);
+  const flagButton = page.getByRole("button", { name: "记不清" });
+
+  await flagButton.click();
+  await expect(flagButton).toHaveText(/取消记不清/);
+  await expect(questionOneChip).toHaveClass(/is-flagged/);
+
+  await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+
+  await expect(page.getByText("回答正确")).toBeVisible();
+  await expect(questionOneChip).toHaveClass(/is-correct/);
+  await expect(questionOneChip).toHaveClass(/is-flagged/);
+});
+
+test("flagging works with legacy saved progress from older chapters", async ({ page, isMobile }) => {
+  await page.evaluate(() => {
+    window.localStorage.setItem(
+      "interactive-review:multi-chapter-progress",
+      JSON.stringify({
+        selectedChapterId: "regular-2",
+        referenceCollapsed: false,
+        progressByChapter: {
+          "regular-2": {
+            currentIndex: 0,
+            selectedByQuestion: {},
+            attempts: {},
+            activeSourceIds: [],
+          },
+        },
+      }),
+    );
+  });
+  await page.reload();
+
+  const flagButton = page.getByRole("button", { name: "记不清" });
+  const questionOneChip = page.getByRole("button", { name: "1", exact: true });
+
+  await flagButton.click();
+  if (!isMobile) {
+    await expect(page.getByRole("heading", { name: "第二章习题" })).toBeVisible();
+  }
+  await expect(flagButton).toHaveText(/取消记不清/);
+  await expect(questionOneChip).toHaveClass(/is-flagged/);
+});
+
 test("batch grading submits all selected unanswered questions", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop question navigation behavior");
 
-  const batchButton = page.getByRole("button", { name: /一键批改/ });
+  const batchButton = page.locator(".batch-actions").getByRole("button", { name: /一键批改/ });
 
   await expect(batchButton).toBeDisabled();
 
@@ -155,10 +202,49 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await expect(page.locator("#ref-c4-s63-l410-list")).toHaveClass(/active-source/);
 
   await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").filter({ hasText: "第五章习题" }).click();
+  await expect(page.getByRole("heading", { name: "第五章习题" })).toBeVisible();
+  await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("84");
+  await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
+  await expect(page.locator('a[href="/docs/chapter-5/chapter-5.md"]')).toContainText("下载为 md 格式");
+  await page.keyboard.press("Escape");
+  await page.locator(".option-row").filter({ hasText: "张学良宣布东北易帜" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+  await expect(page.locator("#ref-c5-s80-l537-list")).toHaveClass(/active-source/);
+
+  await page.locator(".chapter-selector-panel > summary").click();
   await page.locator(".chapter-option").filter({ hasText: "（学习通）" }).click();
   await expect(page.getByRole("heading", { name: "（学习通）" })).toBeVisible();
   await expect(page.getByText("如果你的任课老师在学习通发布了题目，请在学习通上完成哦。")).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("0");
+});
+
+test("chapter 5 question mapping jumps to the matched source block", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop chapter selector behavior");
+
+  await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").filter({ hasText: "第五章习题" }).click();
+
+  await page.getByRole("button", { name: "56", exact: true }).click();
+  await page.locator(".option-row").filter({ hasText: "必须坚持独立自主解决中国革命实际问题" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.locator("#ref-c5-s88-l597-list")).toHaveClass(/active-source/);
+
+  await page.getByRole("button", { name: "58", exact: true }).click();
+  await page.locator(".option-row").filter({ hasText: "只有把马克思主义基本原理同中国革命具体实际结合起来，革命事业才能胜利" }).click();
+  await page.locator(".option-row").filter({ hasText: "长征是一次理想信念的伟大远征" }).click();
+  await page.locator(".option-row").filter({ hasText: "长征是一次检验真理、唤醒民众、开创新局的伟大远征" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.locator("#ref-c5-s89-l602-list")).toHaveClass(/active-source/);
+
+  await page.getByRole("button", { name: "59", exact: true }).click();
+  await page.locator(".option-row").filter({ hasText: "《论反对日本帝国主义的策略》" }).click();
+  await page.locator(".option-row").filter({ hasText: "《中国革命战争的战略问题》" }).click();
+  await page.locator(".option-row").filter({ hasText: "《实践论》" }).click();
+  await page.locator(".option-row").filter({ hasText: "《矛盾论》" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.locator("#ref-c5-s90-l609-list")).toHaveClass(/active-source/);
 });
 
 test("footer links to the project repository", async ({ page }) => {
