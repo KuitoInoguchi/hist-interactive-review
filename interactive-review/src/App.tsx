@@ -6,6 +6,7 @@ import {
   ChevronRight,
   Download,
   Eye,
+  Grid3X3,
   HelpCircle,
   ListChecks,
   Monitor,
@@ -387,7 +388,7 @@ const helpSections: Array<{
       {
         term: "定位题目",
         description: "打开题号面板可跳题，题号区域上下滑动查看更多题号。",
-        icon: <ListChecks />,
+        icon: <Grid3X3 />,
       },
     ],
   },
@@ -1412,7 +1413,7 @@ export default function App() {
               open={questionPanelPinned || undefined}
             >
               <summary>
-                <ListChecks size={18} />
+                <Grid3X3 size={18} />
                 <span>
                   题号面板 · {currentIndex + 1}/{questions.length}
                 </span>
@@ -1557,6 +1558,7 @@ export default function App() {
               type="button"
             >
               <Bookmark size={18} />
+              <span className="action-label">{currentQuestionFlagged ? "取消记不清" : "记不清"}</span>
             </button>
             <button
               className="primary-button"
