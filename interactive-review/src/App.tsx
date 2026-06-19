@@ -122,7 +122,7 @@ function PopupMenu({
 }) {
   const isOpen = openMenu === menuKey;
   return (
-    <div className={`popup-menu ${className}`}>
+    <div className={`popup-menu expandable-menu ${className}`}>
       <button
         aria-controls={id}
         aria-expanded={isOpen}
@@ -287,8 +287,11 @@ export default function App() {
     function closeMenuOnOutsideClick(event: PointerEvent) {
       const target = event.target;
       if (!(target instanceof Node)) return;
-      if (target instanceof Element && target.closest(".popup-menu, .mobile-course-menu")) return;
+      if (target instanceof Element && target.closest(".expandable-menu")) return;
       setOpenMenu(null);
+      document
+        .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+        .forEach((element) => element.removeAttribute("open"));
     }
 
     document.addEventListener("pointerdown", closeMenuOnOutsideClick);
@@ -308,6 +311,9 @@ export default function App() {
   function chooseChapter(chapterId: string) {
     setSelectedChapterId(chapterId);
     setOpenMenu(null);
+    document
+      .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+      .forEach((element) => element.removeAttribute("open"));
     const chapter = selectableChapters.find((item) => item.id === chapterId);
     if (!chapter?.available) {
       setProgressByChapter((previous) => ({
@@ -421,7 +427,7 @@ export default function App() {
     <main className="app-shell">
       <div className="learning-layout" ref={layoutRef} onScroll={handleLayoutScroll}>
       <section className="quiz-pane">
-        <details className="mobile-course-menu">
+        <details className="mobile-course-menu expandable-menu">
           <summary>
             <span>{currentChapter.title}</span>
             <ChevronDown size={16} />
@@ -500,7 +506,7 @@ export default function App() {
           </div>
         </header>
 
-        <details className="chapter-selector-panel">
+        <details className="chapter-selector-panel expandable-menu">
           <summary>
             <span>题库选择</span>
             <strong>{currentChapter.title}</strong>
@@ -543,7 +549,7 @@ export default function App() {
         </section>
 
         {isAvailable ? (
-          <details className="question-nav-panel">
+          <details className="question-nav-panel expandable-menu">
             <summary>
               <ListChecks size={18} />
               <span>
