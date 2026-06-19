@@ -903,19 +903,18 @@ h1 {
   }
 
   .mobile-course-popover {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    right: 0;
+    position: static;
     z-index: 30;
     display: grid;
     gap: 8px;
     max-height: min(68vh, 480px);
     overflow: auto;
+    margin-top: 6px;
     padding: 10px;
     border: 1px solid #c7d4e7;
+    border-width: 1px 0 0;
     background: #ffffff;
-    box-shadow: 0 18px 38px rgba(24, 34, 53, 0.2);
+    box-shadow: none;
   }
 
   .mobile-menu-group p {

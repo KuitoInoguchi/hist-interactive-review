@@ -279,3 +279,24 @@ test("mobile layout can switch to the reference pane", async ({ page, isMobile }
   await expect(page.locator(".reference-pane")).toBeVisible();
   await expect(page.locator(".mobile-page-dots button").nth(1)).toHaveClass(/is-active/);
 });
+
+test("mobile chapter menu pushes the question panel down", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile-only behavior");
+
+  await page.locator(".mobile-course-menu > summary").click();
+  await expect(page.locator(".mobile-course-popover")).toBeVisible();
+
+  const layout = await page.evaluate(() => {
+    const popover = document.querySelector(".mobile-course-popover")?.getBoundingClientRect();
+    const questionPanel = document.querySelector(".question-nav-panel")?.getBoundingClientRect();
+    return popover && questionPanel
+      ? {
+          popoverBottom: popover.bottom,
+          questionPanelTop: questionPanel.top,
+        }
+      : null;
+  });
+
+  expect(layout).not.toBeNull();
+  expect(layout!.questionPanelTop).toBeGreaterThanOrEqual(layout!.popoverBottom);
+});
