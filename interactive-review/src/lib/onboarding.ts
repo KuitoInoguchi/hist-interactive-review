@@ -4,6 +4,7 @@ import "driver.js/dist/driver.css";
 export const ONBOARDING_STORAGE_KEY = "interactive-review:onboarding-v1-completed";
 
 export type OnboardingApi = {
+  closeTourMenus: () => void;
   openDownloadMenu: () => void;
   openModeMenu: () => void;
   prepareDemo: () => void;
@@ -44,6 +45,11 @@ function advanceAfterAction(activeDriver: Driver, action?: () => void, delay = 4
     activeDriver.moveNext();
     deferTourRefresh(activeDriver);
   }, delay);
+}
+
+function scrollTourElementIntoView(selector: string) {
+  const element = getTourElement(selector);
+  element.scrollIntoView({ block: "center", inline: "center", behavior: "auto" });
 }
 
 function closeFloatingDetails() {
@@ -149,9 +155,10 @@ function createTourSteps(api: OnboardingApi): DriveStep[] {
           showQuizPane();
           api.openModeMenu();
           window.setTimeout(() => {
+            scrollTourElementIntoView('[data-tour="mode-menu-trigger"]');
             activeDriver.moveNext();
             deferTourRefresh(activeDriver, 220);
-          }, 80);
+          }, 220);
         },
       },
     },
@@ -173,7 +180,7 @@ function createTourSteps(api: OnboardingApi): DriveStep[] {
     },
     {
       element: () => getTourElement('[data-tour="mode-option-instant"]'),
-      onHighlightStarted: openChapterMenu,
+      onHighlightStarted: api.openModeMenu,
       popover: {
         title: "点选即判",
         description: "这个模式下，单选和判断题点选后会立刻判题。下一步会重置演示题并试一次。",
@@ -190,17 +197,21 @@ function createTourSteps(api: OnboardingApi): DriveStep[] {
     },
     {
       element: () => getTourElement('[data-tour="mode-option-manual"]'),
-      onHighlightStarted: openChapterMenu,
+      onHighlightStarted: api.openModeMenu,
       popover: {
         title: "回到提交后判题",
         description: "如果想先选完、再统一提交，就用提交后判题。下一步会切回来继续演示其他工具。",
         side: "bottom",
         align: "center",
         onNextClick: (_element, _step, { driver: activeDriver }) => {
-          advanceAfterAction(activeDriver, () => {
-            api.setDemoGradingMode("manual");
-            closeFloatingDetails();
-          });
+          api.setDemoGradingMode("manual");
+          window.setTimeout(() => {
+            activeDriver.moveNext();
+            window.setTimeout(() => {
+              api.closeTourMenus();
+              deferTourRefresh(activeDriver);
+            }, 80);
+          }, 40);
         },
       },
     },

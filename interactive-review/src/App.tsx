@@ -1007,6 +1007,17 @@ export default function App() {
     setOpenMenu(menuKey);
   }
 
+  function closeOnboardingMenus() {
+    setOpenMenu(null);
+    document
+      .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+      .forEach((element) => element.removeAttribute("open"));
+  }
+
+  function setOnboardingGradingMode(mode: GradingMode) {
+    setGradingMode(mode);
+  }
+
   function openVisibleChapterMenu() {
     const isMobile = window.matchMedia("(max-width: 760px)").matches;
     const selector = isMobile ? ".mobile-course-menu" : ".chapter-selector-panel";
@@ -1038,6 +1049,7 @@ export default function App() {
 
   function createOnboardingApi(): OnboardingApi {
     return {
+      closeTourMenus: closeOnboardingMenus,
       openDownloadMenu: openOnboardingDownloadMenu,
       openModeMenu: openOnboardingModeMenu,
       prepareDemo: prepareOnboardingDemo,
@@ -1045,7 +1057,7 @@ export default function App() {
       restoreAfterTour: restoreOnboardingSnapshot,
       selectDemoAnswer: selectOnboardingDemoAnswer,
       selectAndGradeDemoAnswer: selectAndGradeOnboardingDemoAnswer,
-      setDemoGradingMode: changeGradingMode,
+      setDemoGradingMode: setOnboardingGradingMode,
       showDemoKnowledgePoint: showOnboardingKnowledgePoint,
       submitDemoAnswer: submitOnboardingDemoAnswer,
       toggleDemoFlag: toggleOnboardingDemoFlag,
