@@ -276,32 +276,56 @@ function overlapScore(queryText, unitText) {
   return dice + phraseBoost;
 }
 
-function sourceIdsForQuestion(question, answer, normalized, referenceUnits, sectionNumbers) {
-  const candidateUnits = unitsForSections(referenceUnits, sectionNumbers).filter((unit) =>
-    ["heading", "paragraph", "listItem"].includes(unit.kind),
-  );
-  if (candidateUnits.length === 0) return preferredSourceIds(referenceUnits, sectionNumbers);
-
-  const correctAnswers = answerIdsFor(question.type, answer.body);
-  const correctOptionLabels = normalized.options
-    .filter((option) => correctAnswers.includes(option.id))
-    .map((option) => option.label)
-    .join(" ");
-  const queryText = textForMatching(`${normalized.stem} ${correctOptionLabels} ${answer.body}`);
+function bestSourceIdsForQuery(queryText, candidateUnits, fallbackIds, options = {}) {
+  const { maxIds = 3, relativeThreshold = 0.72, absoluteDrop = 0.18 } = options;
   const scored = candidateUnits
     .map((unit) => ({
       id: unit.id,
-      score: overlapScore(queryText, unit.plainText),
+      score: overlapScore(textForMatching(queryText), unit.plainText) * sourceUnitWeight(unit),
     }))
     .sort((left, right) => right.score - left.score);
 
   const best = scored[0];
-  if (!best || best.score <= 0) return preferredSourceIds(referenceUnits, sectionNumbers);
+  if (!best || best.score <= 0) return fallbackIds;
 
-  const selected = scored
-    .filter((item) => item.score >= Math.max(best.score * 0.72, best.score - 0.18))
-    .slice(0, 3)
+  return scored
+    .filter((item) => item.score >= Math.max(best.score * relativeThreshold, best.score - absoluteDrop))
+    .slice(0, maxIds)
     .map((item) => item.id);
+}
+
+function sourceUnitWeight(unit) {
+  if (unit.kind === "heading") return 0.42;
+  if (unit.kind === "paragraph" && unit.plainText.length < 24) return 0.35;
+  return 1;
+}
+
+function sourceIdsForQuestion(question, answer, normalized, referenceUnits, sectionNumbers) {
+  const candidateUnits = unitsForSections(referenceUnits, sectionNumbers).filter((unit) =>
+    ["heading", "paragraph", "listItem"].includes(unit.kind),
+  );
+  const fallbackIds = preferredSourceIds(referenceUnits, sectionNumbers);
+  if (candidateUnits.length === 0) return fallbackIds;
+
+  const correctAnswers = answerIdsFor(question.type, answer.body);
+  const correctOptions = normalized.options.filter((option) => correctAnswers.includes(option.id));
+  const correctOptionLabels = correctOptions.map((option) => option.label).join(" ");
+
+  if (question.type === "multiple" && correctOptions.length > 1) {
+    const selected = [];
+    for (const option of correctOptions) {
+      selected.push(
+        ...bestSourceIdsForQuery(`${normalized.stem} ${option.label} ${answer.body}`, candidateUnits, fallbackIds, {
+          maxIds: 1,
+          relativeThreshold: 0.9,
+          absoluteDrop: 0.08,
+        }),
+      );
+    }
+    if (selected.length > 0) return [...new Set(selected)].slice(0, 5);
+  }
+
+  const selected = bestSourceIdsForQuery(`${normalized.stem} ${correctOptionLabels} ${answer.body}`, candidateUnits, fallbackIds);
 
   return [...new Set(selected)];
 }

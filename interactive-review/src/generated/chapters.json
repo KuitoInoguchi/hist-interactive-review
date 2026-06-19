@@ -3757,7 +3757,6 @@
           ],
           "explanation": "B。（高频避坑点）建立民主共和国是后来资产阶级革命派（孙中山等人）的主张，维新派主张的是保留皇帝的君主立宪制。",
           "sourceIds": [
-            "ref-c2-s38-l234-heading",
             "ref-c2-s38-l236-list",
             "ref-c2-s38-l238-list"
           ]
@@ -3969,7 +3968,6 @@
           ],
           "explanation": "D。极高频避坑点！戊戌变法只是“废除八股，改试策论”，并没有废除整个科举考试。正式废除科举是在后来的1906年（清末新政期间）。",
           "sourceIds": [
-            "ref-c2-s39-l241-heading",
             "ref-c2-s39-l260-list"
           ]
         },
@@ -4060,7 +4058,6 @@
           ],
           "explanation": "C。康广仁（康有为的弟弟）是六君子之一。（避坑：康有为和梁启超逃跑了，不在六君子之列；严复是翻译《天演论》的学者，也不在其中）。",
           "sourceIds": [
-            "ref-c2-s40-l264-heading",
             "ref-c2-s40-l266-list"
           ]
         },
@@ -4181,6 +4178,7 @@
           ],
           "explanation": "D。梁启超逃亡了，不属于六君子。",
           "sourceIds": [
+            "ref-c2-s40-l266-list",
             "ref-c2-s40-l264-heading"
           ]
         },
@@ -4664,7 +4662,10 @@
           ],
           "explanation": "ABCD。这四个选项完美概括了太平天国起义前四条历史意义的首句论点。",
           "sourceIds": [
-            "ref-c2-s30-l185-list"
+            "ref-c2-s30-l185-list",
+            "ref-c2-s30-l186-list",
+            "ref-c2-s30-l187-list",
+            "ref-c2-s30-l188-list"
           ]
         },
         {
@@ -4793,7 +4794,9 @@
           ],
           "explanation": "ABCD。这四项完整概括了洋务运动在经济、教育和思想风气三个方面的客观历史作用。",
           "sourceIds": [
-            "ref-c2-s35-l213-list"
+            "ref-c2-s35-l212-list",
+            "ref-c2-s35-l213-list",
+            "ref-c2-s35-l214-list"
           ]
         },
         {
@@ -4825,6 +4828,7 @@
           ],
           "explanation": "ABC。洋务运动失败的原因主要是封建性、依赖性和腐朽性。（避坑：D选项是后来辛亥革命等资产阶级运动失败的原因，洋务派属于地主阶级）。",
           "sourceIds": [
+            "ref-c2-s36-l218-list",
             "ref-c2-s36-l220-list",
             "ref-c2-s36-l221-list"
           ]
@@ -5118,7 +5122,9 @@
           "explanation": "ABCD。这四项全方位概括了文化教育方面的改革。在主观题中如果考到，这四条是可以直接拿高分的骨架。",
           "sourceIds": [
             "ref-c2-s39-l259-list",
-            "ref-c2-s39-l261-list"
+            "ref-c2-s39-l260-list",
+            "ref-c2-s39-l261-list",
+            "ref-c2-s39-l262-list"
           ]
         },
         {
@@ -5150,7 +5156,9 @@
           ],
           "explanation": "ABC。D选项是后来大革命后期及解放战争中中国共产党的土地政策，维新派是不敢触动封建土地所有制的。",
           "sourceIds": [
-            "ref-c2-s39-l251-list"
+            "ref-c2-s39-l250-list",
+            "ref-c2-s39-l251-list",
+            "ref-c2-s39-l253-list"
           ]
         },
         {
@@ -5182,7 +5190,6 @@
           ],
           "explanation": "ABD。六君子名单：谭嗣同、刘光第、林旭、杨锐、杨深秀、康广仁。康有为跑了，选ABD。",
           "sourceIds": [
-            "ref-c2-s40-l264-heading",
             "ref-c2-s40-l266-list"
           ]
         },
@@ -5215,7 +5222,8 @@
           ],
           "explanation": "ABC。D选项“创建北洋水师”是洋务运动的成就，且在甲午战争中已全军覆没。",
           "sourceIds": [
-            "ref-c2-s39-l256-list"
+            "ref-c2-s39-l256-list",
+            "ref-c2-s39-l257-list"
           ]
         },
         {
@@ -5247,8 +5255,9 @@
           ],
           "explanation": "ABC。D选项《钦定宪法大纲》是后来1908年清末新政“预备立宪”时颁布的，戊戌变法中并没有正式实行君主立宪的法令。",
           "sourceIds": [
-            "ref-c2-s39-l247-list",
-            "ref-c2-s39-l246-list"
+            "ref-c2-s39-l244-list",
+            "ref-c2-s39-l246-list",
+            "ref-c2-s39-l247-list"
           ]
         },
         {
@@ -5280,7 +5289,9 @@
           ],
           "explanation": "ABC。D选项错误，维新运动是改良，不是武装革命。这三点是主观题答“意义”的核心骨架。",
           "sourceIds": [
-            "ref-c2-s41-l271-list"
+            "ref-c2-s41-l270-list",
+            "ref-c2-s41-l271-list",
+            "ref-c2-s41-l272-list"
           ]
         },
         {
@@ -5345,7 +5356,7 @@
           ],
           "explanation": "ABC。三大局限性主观大题必备：不敢否定封建主义、对帝国主义抱有幻想、惧怕人民群众。",
           "sourceIds": [
-            "ref-c2-s44-l279-heading"
+            "ref-c2-s44-l282-list"
           ]
         },
         {
@@ -6507,7 +6518,6 @@
           ],
           "explanation": "C。邹容写作《革命军》，并以“革命军中马前卒”自署，是考试中非常爱考的人作对应。",
           "sourceIds": [
-            "ref-c3-s49-l303-heading",
             "ref-c3-s49-l306-list"
           ]
         },
@@ -7049,8 +7059,7 @@
           ],
           "explanation": "D。四省中以四川斗争最为激烈。",
           "sourceIds": [
-            "ref-c3-s54-l348-list",
-            "ref-c3-s54-l345-heading"
+            "ref-c3-s54-l348-list"
           ]
         },
         {
@@ -7140,8 +7149,7 @@
           ],
           "explanation": "C。武昌起义后成立湖北军政府。",
           "sourceIds": [
-            "ref-c3-s55-l354-list",
-            "ref-c3-s55-l351-paragraph"
+            "ref-c3-s55-l354-list"
           ]
         },
         {
@@ -7626,7 +7634,10 @@
           ],
           "explanation": "ABCD。这四项完整构成清末“新政”的主要内容。",
           "sourceIds": [
-            "ref-c3-s46-l291-list"
+            "ref-c3-s46-l291-list",
+            "ref-c3-s46-l292-list",
+            "ref-c3-s46-l293-list",
+            "ref-c3-s46-l294-list"
           ]
         },
         {
@@ -7692,7 +7703,8 @@
           ],
           "explanation": "ABCD。四项都是资产阶级革命派宣传工作的代表成果。",
           "sourceIds": [
-            "ref-c3-s49-l305-list"
+            "ref-c3-s49-l305-list",
+            "ref-c3-s49-l303-heading"
           ]
         },
         {
@@ -7757,6 +7769,7 @@
           ],
           "explanation": "ABCD。四项都是中国同盟会的核心知识点。",
           "sourceIds": [
+            "ref-c3-s50-l311-list",
             "ref-c3-s50-l313-list"
           ]
         },
@@ -7789,8 +7802,7 @@
           ],
           "explanation": "ABD。民族主义包括“驱除鞑虏，恢复中华”和建立独立国家，“创立民国”属于民权主义。",
           "sourceIds": [
-            "ref-c3-s51-l319-list",
-            "ref-c3-s51-l321-list"
+            "ref-c3-s51-l319-list"
           ]
         },
         {
@@ -7822,7 +7834,6 @@
           ],
           "explanation": "ABC。D项错在“充分保障”，复习资料明确指出它忽略了广大劳动群众的地位。",
           "sourceIds": [
-            "ref-c3-s51-l325-list",
             "ref-c3-s51-l328-list"
           ]
         },
@@ -7887,7 +7898,9 @@
           ],
           "explanation": "ABC。这三项正是革命派与改良派论战的焦点。",
           "sourceIds": [
-            "ref-c3-s52-l338-list"
+            "ref-c3-s52-l338-list",
+            "ref-c3-s52-l339-list",
+            "ref-c3-s52-l340-list"
           ]
         },
         {
@@ -7953,8 +7966,8 @@
           ],
           "explanation": "ABCD。四项完整对应保路风潮的起因、范围和激化过程。",
           "sourceIds": [
-            "ref-c3-s54-l348-list",
-            "ref-c3-s54-l347-list"
+            "ref-c3-s54-l347-list",
+            "ref-c3-s54-l348-list"
           ]
         },
         {
@@ -7987,8 +8000,9 @@
           ],
           "explanation": "ABCD。这些都是武昌起义的标准表述。",
           "sourceIds": [
-            "ref-c3-s55-l355-list",
-            "ref-c3-s55-l352-list"
+            "ref-c3-s55-l352-list",
+            "ref-c3-s55-l354-list",
+            "ref-c3-s55-l355-list"
           ]
         },
         {
@@ -8021,6 +8035,7 @@
           ],
           "explanation": "ABCD。这四项构成南京临时政府的基本史实和性质判断。",
           "sourceIds": [
+            "ref-c3-s56-l360-list",
             "ref-c3-s56-l361-list"
           ]
         },
@@ -8087,6 +8102,8 @@
           ],
           "explanation": "ABCD。四项都属于辛亥革命历史意义的核心内容。",
           "sourceIds": [
+            "ref-c3-s58-l371-list",
+            "ref-c3-s58-l372-list",
             "ref-c3-s58-l373-list",
             "ref-c3-s58-l374-list"
           ]
@@ -8121,7 +8138,7 @@
           ],
           "explanation": "ABCD。四项完整对应北洋军阀专制统治建立的政治、经济和思想文化基础。",
           "sourceIds": [
-            "ref-c3-s59-l389-list",
+            "ref-c3-s59-l386-list",
             "ref-c3-s59-l385-list"
           ]
         },
@@ -8154,6 +8171,7 @@
           ],
           "explanation": "ABC。D项说的是外部与内部联合绞杀革命，属于客观和根本条件背景，不属于主观弱点三条。",
           "sourceIds": [
+            "ref-c3-s61-l399-list",
             "ref-c3-s61-l400-list",
             "ref-c3-s61-l401-list"
           ]
@@ -8188,8 +8206,7 @@
           ],
           "explanation": "ABCD。四项都出自辛亥革命推动社会风俗变化的内容。",
           "sourceIds": [
-            "ref-c3-s58-l374-list",
-            "ref-c3-s58-l377-list"
+            "ref-c3-s58-l374-list"
           ]
         },
         {
@@ -8287,7 +8304,8 @@
           ],
           "explanation": "错误。兴中会是第一个革命团体，而近代中国第一个领导资产阶级革命的全国性政党是后来的中国同盟会。",
           "sourceIds": [
-            "ref-c3-s48-l300-paragraph"
+            "ref-c3-s48-l300-paragraph",
+            "ref-c3-s48-l301-paragraph"
           ]
         },
         {
@@ -8486,8 +8504,7 @@
           "explanation": "正确。三大论战焦点一定要记准。",
           "sourceIds": [
             "ref-c3-s52-l340-list",
-            "ref-c3-s52-l336-heading",
-            "ref-c3-s52-l337-paragraph"
+            "ref-c3-s51-l330-list"
           ]
         },
         {
@@ -8531,8 +8548,7 @@
           ],
           "explanation": "正确。这是教材原话性质的结论。",
           "sourceIds": [
-            "ref-c3-s53-l344-list",
-            "ref-c3-s53-l342-heading"
+            "ref-c3-s53-l344-list"
           ]
         },
         {
@@ -8752,9 +8768,7 @@
           ],
           "explanation": "错误。辛亥革命失败的根本原因不是“完全没有发动群众”，而是资本主义建国方案在中国行不通；从主观上说则是不敢充分发动和依靠群众。",
           "sourceIds": [
-            "ref-c3-s61-l400-list",
-            "ref-c3-s61-l395-heading",
-            "ref-c3-s62-l403-heading"
+            "ref-c3-s61-l400-list"
           ]
         },
         {
@@ -9450,8 +9464,7 @@
           ],
           "explanation": "B。五四爱国运动左翼骨干的主要代表是毛泽东等。",
           "sourceIds": [
-            "ref-c4-s69-l456-list",
-            "ref-c4-s69-l453-heading"
+            "ref-c4-s69-l456-list"
           ]
         },
         {
@@ -10151,6 +10164,8 @@
           ],
           "explanation": "ABCD。这四项正好对应教材概括的三大局限及其影响。",
           "sourceIds": [
+            "ref-c4-s64-l416-list",
+            "ref-c4-s64-l417-list",
             "ref-c4-s64-l418-list"
           ]
         },
@@ -10183,8 +10198,8 @@
           ],
           "explanation": "ABC。D项错误，十月革命并不是证明君主立宪道路成功。",
           "sourceIds": [
-            "ref-c4-s65-l425-list",
             "ref-c4-s65-l424-list",
+            "ref-c4-s65-l425-list",
             "ref-c4-s65-l426-list"
           ]
         },
@@ -10218,6 +10233,9 @@
           ],
           "explanation": "ABCD。前三项是背景条件，D项是直接导火线，教材常合并考查。",
           "sourceIds": [
+            "ref-c4-s67-l435-list",
+            "ref-c4-s67-l436-list",
+            "ref-c4-s67-l437-list",
             "ref-c4-s67-l438-list"
           ]
         },
@@ -10251,7 +10269,8 @@
           ],
           "explanation": "ABCD。这四项都出自教材对五四运动特点的概括。",
           "sourceIds": [
-            "ref-c4-s68-l443-list"
+            "ref-c4-s68-l443-list",
+            "ref-c4-s68-l445-list"
           ]
         },
         {
@@ -10284,7 +10303,10 @@
           ],
           "explanation": "ABCD。四项都是其历史意义的重要组成。",
           "sourceIds": [
-            "ref-c4-s68-l449-list"
+            "ref-c4-s68-l448-list",
+            "ref-c4-s68-l449-list",
+            "ref-c4-s68-l450-list",
+            "ref-c4-s68-l451-list"
           ]
         },
         {
@@ -10349,9 +10371,9 @@
           ],
           "explanation": "ABC。D项显然不属于中国早期信仰马克思主义者。",
           "sourceIds": [
-            "ref-c4-s69-l453-heading",
+            "ref-c4-s69-l455-list",
             "ref-c4-s69-l456-list",
-            "ref-c4-s69-l455-list"
+            "ref-c4-s69-l457-list"
           ]
         },
         {
@@ -10383,7 +10405,9 @@
           ],
           "explanation": "ABC。D项恰好与教材强调的“从中国实际出发”相反。",
           "sourceIds": [
-            "ref-c4-s70-l460-list"
+            "ref-c4-s70-l460-list",
+            "ref-c4-s70-l462-list",
+            "ref-c4-s70-l464-list"
           ]
         },
         {
@@ -10415,8 +10439,9 @@
           ],
           "explanation": "ABC。三项分别对应早期组织的主要活动内容，D项不符合史实。",
           "sourceIds": [
-            "ref-c4-s71-l476-list",
-            "ref-c4-s71-l469-list"
+            "ref-c4-s71-l469-list",
+            "ref-c4-s71-l472-list",
+            "ref-c4-s71-l476-list"
           ]
         },
         {
@@ -10449,8 +10474,10 @@
           ],
           "explanation": "ABCD。四项都是中共一大的核心知识点。",
           "sourceIds": [
-            "ref-c4-s72-l487-list",
-            "ref-c4-s72-l486-list"
+            "ref-c4-s72-l483-list",
+            "ref-c4-s72-l485-list",
+            "ref-c4-s72-l486-list",
+            "ref-c4-s72-l487-list"
           ]
         },
         {
@@ -10483,8 +10510,8 @@
           ],
           "explanation": "ABCD。教材对建党历史意义的表述就是这四个层面。",
           "sourceIds": [
-            "ref-c4-s73-l496-list",
-            "ref-c4-s73-l494-list"
+            "ref-c4-s73-l494-list",
+            "ref-c4-s73-l496-list"
           ]
         },
         {
@@ -10517,8 +10544,8 @@
           ],
           "explanation": "ABCD。四项合起来才是中共二大民主革命纲领的完整考点。",
           "sourceIds": [
+            "ref-c4-s74-l500-list",
             "ref-c4-s74-l501-list",
-            "ref-c4-s74-l499-paragraph",
             "ref-c4-s74-l502-list"
           ]
         },
@@ -10552,7 +10579,8 @@
           ],
           "explanation": "ABCD。这是新三民主义及其政治作用的标准归纳。",
           "sourceIds": [
-            "ref-c4-s75-l507-list"
+            "ref-c4-s75-l507-list",
+            "ref-c4-s75-l505-paragraph"
           ]
         },
         {
@@ -10585,6 +10613,7 @@
           ],
           "explanation": "ABCD。四项都属于大革命高潮的重要表现。",
           "sourceIds": [
+            "ref-c4-s76-l513-list",
             "ref-c4-s76-l514-list"
           ]
         },
@@ -10650,7 +10679,8 @@
           ],
           "explanation": "ABCD。教材对大革命历史意义的概括正包括这四层。",
           "sourceIds": [
-            "ref-c4-s79-l529-list"
+            "ref-c4-s79-l529-list",
+            "ref-c4-s79-l530-list"
           ]
         },
         {
@@ -10782,7 +10812,9 @@
           ],
           "explanation": "正确。这正是其局限性之一。",
           "sourceIds": [
-            "ref-c4-s64-l414-heading"
+            "ref-c4-s64-l414-heading",
+            "ref-c4-s63-l412-list",
+            "ref-c4-s64-l416-list"
           ]
         },
         {
@@ -10914,7 +10946,8 @@
           ],
           "explanation": "错误。五四运动不仅是思想启蒙运动，也深刻推动了革命运动的发展。",
           "sourceIds": [
-            "ref-c4-s68-l440-heading"
+            "ref-c4-s68-l443-list",
+            "ref-c4-s68-l445-list"
           ]
         },
         {
@@ -11157,8 +11190,7 @@
           ],
           "explanation": "错误。（避坑：大革命失败的重要主观原因，恰恰是党还处在幼年时期）。",
           "sourceIds": [
-            "ref-c4-s78-l525-list",
-            "ref-c4-s78-l522-heading"
+            "ref-c4-s78-l525-list"
           ]
         },
         {
