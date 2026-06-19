@@ -280,6 +280,31 @@ test("mobile layout can switch to the reference pane", async ({ page, isMobile }
   await expect(page.locator(".mobile-page-dots button").nth(1)).toHaveClass(/is-active/);
 });
 
+test("mobile layout can swipe to the reference pane", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile-only behavior");
+
+  const quizPane = page.locator(".quiz-pane");
+  const box = await quizPane.boundingBox();
+  expect(box).not.toBeNull();
+
+  await page.touchscreen.tap(box!.x + box!.width * 0.8, box!.y + box!.height * 0.45);
+  await page.mouse.move(box!.x + box!.width * 0.8, box!.y + box!.height * 0.45);
+  await page.mouse.down();
+  await page.mouse.move(box!.x + box!.width * 0.2, box!.y + box!.height * 0.45, { steps: 8 });
+  await page.mouse.up();
+
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const layout = document.querySelector(".learning-layout");
+        return layout instanceof HTMLElement ? layout.scrollLeft : 0;
+      }),
+    )
+    .toBeGreaterThan(100);
+  await expect(page.locator(".mobile-page-dots button").nth(1)).toHaveClass(/is-active/);
+  await expect(page.locator(".reference-content")).toContainText("半殖民地半封建社会");
+});
+
 test("mobile chapter menu pushes the question panel down", async ({ page, isMobile }) => {
   test.skip(!isMobile, "mobile-only behavior");
 

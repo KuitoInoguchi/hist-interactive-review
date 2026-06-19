@@ -12,7 +12,7 @@ import {
   SlidersHorizontal,
   Trophy,
 } from "lucide-react";
-import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { type PointerEvent as ReactPointerEvent, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { ReferencePane } from "./components/ReferencePane";
 import chaptersData from "./generated/chapters.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
@@ -262,6 +262,7 @@ function ModeMenu({
 
 export default function App() {
   const layoutRef = useRef<HTMLDivElement>(null);
+  const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
   const savedState = useMemo(readSavedState, []);
   const initialChapterId = selectableChapters.some((chapter) => chapter.id === savedState.selectedChapterId)
     ? (savedState.selectedChapterId as string)
@@ -481,11 +482,49 @@ export default function App() {
     if (options.focusReference) {
       setReferenceFocusRequest((request) => request + 1);
     }
+    const layout = layoutRef.current;
+    if (!layout) return;
+    layout.scrollTo({
+      left: page * layout.clientWidth,
+      behavior: "smooth",
+    });
+  }
+
+  function handleLayoutScroll() {
+    const layout = layoutRef.current;
+    if (!layout) return;
+    const page = layout.scrollLeft > layout.clientWidth / 2 ? 1 : 0;
+    setActiveMobilePage(page);
+  }
+
+  function handleSwipeStart(event: ReactPointerEvent<HTMLDivElement>) {
+    swipeStartRef.current = { x: event.clientX, y: event.clientY };
+  }
+
+  function handleSwipeEnd(event: ReactPointerEvent<HTMLDivElement>) {
+    const start = swipeStartRef.current;
+    swipeStartRef.current = null;
+    if (!start) return;
+
+    const deltaX = event.clientX - start.x;
+    const deltaY = event.clientY - start.y;
+    if (Math.abs(deltaX) < 56 || Math.abs(deltaX) < Math.abs(deltaY) * 1.35) return;
+
+    scrollToMobilePage(deltaX < 0 ? 1 : 0, { focusReference: deltaX < 0 });
   }
 
   return (
     <main className="app-shell">
-      <div className={`learning-layout mobile-page-${activeMobilePage}`} ref={layoutRef}>
+      <div
+        className="learning-layout"
+        ref={layoutRef}
+        onPointerCancel={() => {
+          swipeStartRef.current = null;
+        }}
+        onPointerDown={handleSwipeStart}
+        onPointerUp={handleSwipeEnd}
+        onScroll={handleLayoutScroll}
+      >
       <section className="quiz-pane">
         <details className="mobile-course-menu expandable-menu">
           <summary>
