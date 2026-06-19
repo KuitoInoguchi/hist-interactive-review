@@ -11907,10 +11907,2533 @@
       "chapterNo": 5,
       "numeral": "五",
       "title": "第五章习题",
-      "available": false,
-      "questions": [],
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "type": "single",
+          "stem": "国民党在全国范围内建立统治的重要标志是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "南昌起义爆发"
+            },
+            {
+              "id": "B",
+              "label": "张学良宣布东北易帜"
+            },
+            {
+              "id": "C",
+              "label": "广州起义爆发"
+            },
+            {
+              "id": "D",
+              "label": "西安事变和平解决"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。张学良东北易帜后，北洋军阀不再作为独立政治力量存在，国民党由此在全国范围内建立统治。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "single",
+          "stem": "张学良宣布“遵守三民主义，服从国民政府，改易旗帜”的时间是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1927年7月"
+            },
+            {
+              "id": "B",
+              "label": "1928年12月29日"
+            },
+            {
+              "id": "C",
+              "label": "1931年9月18日"
+            },
+            {
+              "id": "D",
+              "label": "1935年1月15日"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。东北易帜的具体时间是1928年12月29日。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 3,
+          "type": "single",
+          "stem": "国民党政府镇压人民和消灭异己力量的首要手段是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "建立庞大的军队和全国性特务系统"
+            },
+            {
+              "id": "B",
+              "label": "推行土地改革"
+            },
+            {
+              "id": "C",
+              "label": "实行“三三制”原则"
+            },
+            {
+              "id": "D",
+              "label": "发展工农武装"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。国民党首先依靠庞大军队和特务系统镇压人民、消灭异己。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 4,
+          "type": "single",
+          "stem": "国民党为了控制人民、禁止革命活动而大力推行的制度是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "科举制度"
+            },
+            {
+              "id": "B",
+              "label": "责任内阁制度"
+            },
+            {
+              "id": "C",
+              "label": "保甲制度"
+            },
+            {
+              "id": "D",
+              "label": "均田制度"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。保甲制度是其控制人民、禁止革命活动的重要手段。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 5,
+          "type": "single",
+          "stem": "国民党政府剥夺人民言论和出版自由所实行的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "民主集中制"
+            },
+            {
+              "id": "B",
+              "label": "文化专制主义"
+            },
+            {
+              "id": "C",
+              "label": "联省自治"
+            },
+            {
+              "id": "D",
+              "label": "议会政治"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。国民党对舆论和出版的控制体现为文化专制主义。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 6,
+          "type": "single",
+          "stem": "八七会议召开的地点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "上海"
+            },
+            {
+              "id": "B",
+              "label": "南昌"
+            },
+            {
+              "id": "C",
+              "label": "汉口"
+            },
+            {
+              "id": "D",
+              "label": "广州"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。八七会议在汉口秘密召开。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 7,
+          "type": "single",
+          "stem": "八七会议确定的总方针是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "联蒋抗日"
+            },
+            {
+              "id": "B",
+              "label": "土地革命和武装起义"
+            },
+            {
+              "id": "C",
+              "label": "和平建国"
+            },
+            {
+              "id": "D",
+              "label": "发展工商业"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。八七会议确定了土地革命和武装起义的方针。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 8,
+          "type": "single",
+          "stem": "在八七会议上明确提出“须知政权是由枪杆子中取得的”的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "周恩来"
+            },
+            {
+              "id": "B",
+              "label": "陈独秀"
+            },
+            {
+              "id": "C",
+              "label": "毛泽东"
+            },
+            {
+              "id": "D",
+              "label": "朱德"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。毛泽东在八七会议上强调“政权是由枪杆子中取得的”。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 9,
+          "type": "single",
+          "stem": "八七会议最重要的历史作用是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "结束了北洋军阀统治"
+            },
+            {
+              "id": "B",
+              "label": "促成了第一次国共合作"
+            },
+            {
+              "id": "C",
+              "label": "为正处于混乱和涣散中的党指明了新的出路"
+            },
+            {
+              "id": "D",
+              "label": "宣告抗日民族统一战线正式形成"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。它给正处于混乱和组织涣散中的党指明了新的出路。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 10,
+          "type": "single",
+          "stem": "国民党政府主要通过军队、特务、保甲和文化专制等手段维护的根本利益是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "工农群众利益"
+            },
+            {
+              "id": "B",
+              "label": "帝国主义、封建主义和官僚资本主义利益"
+            },
+            {
+              "id": "C",
+              "label": "民族资产阶级利益"
+            },
+            {
+              "id": "D",
+              "label": "小资产阶级利益"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。这些统治手段的根本目的是维护帝国主义、封建主义和官僚资本主义的利益。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 11,
+          "type": "single",
+          "stem": "中国共产党打响武装反抗国民党反动派第一枪的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "秋收起义"
+            },
+            {
+              "id": "B",
+              "label": "广州起义"
+            },
+            {
+              "id": "C",
+              "label": "南昌起义"
+            },
+            {
+              "id": "D",
+              "label": "百色起义"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。南昌起义打响了武装反抗国民党反动派的第一枪。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 12,
+          "type": "single",
+          "stem": "南昌起义爆发的时间是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1927年8月1日"
+            },
+            {
+              "id": "B",
+              "label": "1927年9月9日"
+            },
+            {
+              "id": "C",
+              "label": "1927年10月7日"
+            },
+            {
+              "id": "D",
+              "label": "1927年12月11日"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。南昌起义时间一定要记准，是1927年8月1日。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 13,
+          "type": "single",
+          "stem": "毛泽东等领导的湘赣边界秋收起义爆发于（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "8月1日"
+            },
+            {
+              "id": "B",
+              "label": "9月9日"
+            },
+            {
+              "id": "C",
+              "label": "9月29日"
+            },
+            {
+              "id": "D",
+              "label": "10月7日"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。秋收起义爆发于1927年9月9日。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 14,
+          "type": "single",
+          "stem": "三湾改编最重要的意义在于（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "开始实行减租减息"
+            },
+            {
+              "id": "B",
+              "label": "从组织上确立了党对军队的领导"
+            },
+            {
+              "id": "C",
+              "label": "建立苏维埃政府"
+            },
+            {
+              "id": "D",
+              "label": "宣布停止内战一致抗日"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。三湾改编最重要的意义是从组织上确立了党对军队的领导。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 15,
+          "type": "single",
+          "stem": "从进攻大城市转到向农村进军，成为中国人民革命史上具有决定意义新起点的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "红军长征结束"
+            },
+            {
+              "id": "B",
+              "label": "起义部队开始创建井冈山根据地"
+            },
+            {
+              "id": "C",
+              "label": "古田会议召开"
+            },
+            {
+              "id": "D",
+              "label": "中华苏维埃共和国成立"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。向农村进军并开始创建井冈山根据地，是革命道路转变的新起点。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 16,
+          "type": "single",
+          "stem": "毛泽东提出农村包围城市、武装夺取政权思想的理论基础之一，是1928年写作的（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《实践论》"
+            },
+            {
+              "id": "B",
+              "label": "《中国的红色政权为什么能够存在？》"
+            },
+            {
+              "id": "C",
+              "label": "《新民主主义论》"
+            },
+            {
+              "id": "D",
+              "label": "《论持久战》"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1928年毛泽东写作《中国的红色政权为什么能够存在？》。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 17,
+          "type": "single",
+          "stem": "毛泽东进一步指出“星星之火，可以燎原”的文章是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《井冈山的斗争》"
+            },
+            {
+              "id": "B",
+              "label": "《反对本本主义》"
+            },
+            {
+              "id": "C",
+              "label": "《星星之火，可以燎原》"
+            },
+            {
+              "id": "D",
+              "label": "《中国革命战争的战略问题》"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1930年1月《星星之火，可以燎原》进一步阐明了新道路思想。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 18,
+          "type": "single",
+          "stem": "“没有调查，没有发言权”这一重要思想出自（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《反对本本主义》"
+            },
+            {
+              "id": "B",
+              "label": "《矛盾论》"
+            },
+            {
+              "id": "C",
+              "label": "《整顿党的作风》"
+            },
+            {
+              "id": "D",
+              "label": "《改造我们的学习》"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。这是《反对本本主义》的经典表述。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 19,
+          "type": "single",
+          "stem": "古田会议最重要的历史贡献是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "确立了持久战方针"
+            },
+            {
+              "id": "B",
+              "label": "确立了思想建党、政治建军原则"
+            },
+            {
+              "id": "C",
+              "label": "提出了新民主主义总路线"
+            },
+            {
+              "id": "D",
+              "label": "确立了抗日民族统一战线政策"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。古田会议最重要的历史贡献就是确立思想建党、政治建军原则。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 20,
+          "type": "single",
+          "stem": "古田会议规定红军的根本性质是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "军阀混战武装集团"
+            },
+            {
+              "id": "B",
+              "label": "单纯军事组织"
+            },
+            {
+              "id": "C",
+              "label": "执行革命政治任务的武装集团"
+            },
+            {
+              "id": "D",
+              "label": "地方保安武装"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。红军是执行革命政治任务的武装集团。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 21,
+          "type": "single",
+          "stem": "古田会议提出红军必须担负的任务不包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "打仗"
+            },
+            {
+              "id": "B",
+              "label": "筹款"
+            },
+            {
+              "id": "C",
+              "label": "做群众工作"
+            },
+            {
+              "id": "D",
+              "label": "经营买办企业"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。红军承担的是打仗、筹款和做群众工作，不包括经营买办企业。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 22,
+          "type": "single",
+          "stem": "中华苏维埃第一次全国代表大会召开的时间和地点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1931年11月，江西瑞金"
+            },
+            {
+              "id": "B",
+              "label": "1935年1月，贵州遵义"
+            },
+            {
+              "id": "C",
+              "label": "1929年12月，福建古田"
+            },
+            {
+              "id": "D",
+              "label": "1927年8月，汉口"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。1931年11月，中华苏维埃第一次全国代表大会在江西瑞金召开。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 23,
+          "type": "single",
+          "stem": "中华苏维埃第一次全国代表大会成立的政权机构是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "南京临时政府"
+            },
+            {
+              "id": "B",
+              "label": "中华苏维埃共和国临时中央政府"
+            },
+            {
+              "id": "C",
+              "label": "国民政府军事委员会"
+            },
+            {
+              "id": "D",
+              "label": "陕甘宁边区政府"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。会议成立了中华苏维埃共和国临时中央政府。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 24,
+          "type": "single",
+          "stem": "在中华苏维埃第一次全国代表大会上当选为主席的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "周恩来"
+            },
+            {
+              "id": "B",
+              "label": "张闻天"
+            },
+            {
+              "id": "C",
+              "label": "毛泽东"
+            },
+            {
+              "id": "D",
+              "label": "朱德"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。毛泽东当选为主席。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 25,
+          "type": "single",
+          "stem": "20世纪30年代前期、中期中国共产党内屡次出现严重“左”倾错误的一个重要外部原因是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "帝国主义完全放弃干涉中国"
+            },
+            {
+              "id": "B",
+              "label": "共产国际对中国革命的错误指导"
+            },
+            {
+              "id": "C",
+              "label": "民族资产阶级力量过强"
+            },
+            {
+              "id": "D",
+              "label": "工农群众完全不支持革命"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。共产国际的错误指导是一个重要外部原因。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 26,
+          "type": "single",
+          "stem": "党内严重“左”倾错误的一个重要主观原因是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "马克思主义理论准备不足、缺乏实践经验"
+            },
+            {
+              "id": "B",
+              "label": "已经完全掌握中国革命规律"
+            },
+            {
+              "id": "C",
+              "label": "过于重视调查研究"
+            },
+            {
+              "id": "D",
+              "label": "对中国社会认识非常深刻"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。理论准备不足、缺乏实践经验是关键主观原因之一。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 27,
+          "type": "single",
+          "stem": "遵义会议召开的时间是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1931年11月"
+            },
+            {
+              "id": "B",
+              "label": "1935年1月15日至17日"
+            },
+            {
+              "id": "C",
+              "label": "1936年12月"
+            },
+            {
+              "id": "D",
+              "label": "1937年8月"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。遵义会议的准确时间是1935年1月15日至17日。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 28,
+          "type": "single",
+          "stem": "遵义会议集中解决的最关键问题是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "外交和经济问题"
+            },
+            {
+              "id": "B",
+              "label": "农村土地分配问题"
+            },
+            {
+              "id": "C",
+              "label": "军事和组织问题"
+            },
+            {
+              "id": "D",
+              "label": "抗日民族统一战线问题"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。会议集中解决的是具有决定意义的军事和组织问题。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 29,
+          "type": "single",
+          "stem": "遵义会议后不久，由谁代替博古负总的责任（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "王稼祥"
+            },
+            {
+              "id": "B",
+              "label": "毛泽东"
+            },
+            {
+              "id": "C",
+              "label": "张闻天"
+            },
+            {
+              "id": "D",
+              "label": "周恩来"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。会后不久由张闻天代替博古负总的责任。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 30,
+          "type": "single",
+          "stem": "遵义会议后成立负责全军军事行动的三人小组成员不包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "毛泽东"
+            },
+            {
+              "id": "B",
+              "label": "周恩来"
+            },
+            {
+              "id": "C",
+              "label": "王稼祥"
+            },
+            {
+              "id": "D",
+              "label": "陈独秀"
+            }
+          ],
+          "correctAnswers": [
+            "D"
+          ],
+          "explanation": "D。三人小组成员是毛泽东、周恩来、王稼祥，不包括陈独秀。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 31,
+          "type": "single",
+          "stem": "对遵义会议历史地位的正确概括是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "第一次提出民主革命纲领"
+            },
+            {
+              "id": "B",
+              "label": "党的历史上一个生死攸关的转折点"
+            },
+            {
+              "id": "C",
+              "label": "抗日战争全面开始的标志"
+            },
+            {
+              "id": "D",
+              "label": "中国共产党成立的标志"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。遵义会议是党的历史上一个生死攸关的转折点。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 32,
+          "type": "single",
+          "stem": "遵义会议最鲜明的特点是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "完全照搬外国经验"
+            },
+            {
+              "id": "B",
+              "label": "坚持真理、修正错误"
+            },
+            {
+              "id": "C",
+              "label": "放弃武装斗争"
+            },
+            {
+              "id": "D",
+              "label": "立即建立全国苏维埃政权"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。遵义会议的鲜明特点是坚持真理、修正错误。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 33,
+          "type": "single",
+          "stem": "红军长征胜利最突出的政治效果之一是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "促进了党在政治上和思想上的成熟"
+            },
+            {
+              "id": "B",
+              "label": "立即建立了全国统一政权"
+            },
+            {
+              "id": "C",
+              "label": "彻底消灭了帝国主义势力"
+            },
+            {
+              "id": "D",
+              "label": "完成了土地改革"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。长征的胜利极大促进了党在政治上和思想上的成熟。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 34,
+          "type": "single",
+          "stem": "教材把长征称为“宣言书、宣传队、播种机”，主要强调它（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "只是单纯军事转移"
+            },
+            {
+              "id": "B",
+              "label": "是中国革命转危为安的关键"
+            },
+            {
+              "id": "C",
+              "label": "结束了国共关系"
+            },
+            {
+              "id": "D",
+              "label": "放弃了武装斗争"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。这句概括强调长征不仅是军事行动，更是中国革命转危为安的关键。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 35,
+          "type": "single",
+          "stem": "长征胜利宣告了（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "国民党反动派消灭中国共产党和红军图谋的彻底失败"
+            },
+            {
+              "id": "B",
+              "label": "日本全面侵华战争开始"
+            },
+            {
+              "id": "C",
+              "label": "北洋军阀重新崛起"
+            },
+            {
+              "id": "D",
+              "label": "抗日民族统一战线正式形成"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。长征胜利宣告了国民党消灭中共和红军图谋的彻底失败。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 36,
+          "type": "single",
+          "stem": "长征胜利实现的重大转折是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "中国革命由胜利转向低潮"
+            },
+            {
+              "id": "B",
+              "label": "中国共产党和中国革命事业从挫折走向胜利"
+            },
+            {
+              "id": "C",
+              "label": "国民党由专政转向民主"
+            },
+            {
+              "id": "D",
+              "label": "中国进入社会主义阶段"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。它实现了中国共产党和中国革命事业从挫折走向胜利的伟大转折。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 37,
+          "type": "single",
+          "stem": "毛泽东作《论反对日本帝国主义的策略》报告的时间是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1931年11月"
+            },
+            {
+              "id": "B",
+              "label": "1935年12月"
+            },
+            {
+              "id": "C",
+              "label": "1936年12月"
+            },
+            {
+              "id": "D",
+              "label": "1937年夏"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。1935年12月毛泽东作《论反对日本帝国主义的策略》的报告。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 38,
+          "type": "single",
+          "stem": "《中国革命战争的战略问题》主要总结的是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "抗日战争中的外交问题"
+            },
+            {
+              "id": "B",
+              "label": "土地革命战争中党内在军事问题上的争论"
+            },
+            {
+              "id": "C",
+              "label": "新民主主义文化问题"
+            },
+            {
+              "id": "D",
+              "label": "国共合作的统一战线问题"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。这篇文章系统总结土地革命战争中党内关于军事问题的争论。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 39,
+          "type": "single",
+          "stem": "毛泽东在抗日军政大学讲授《实践论》《矛盾论》的时间是（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "1935年1月"
+            },
+            {
+              "id": "B",
+              "label": "1936年5月"
+            },
+            {
+              "id": "C",
+              "label": "1937年夏"
+            },
+            {
+              "id": "D",
+              "label": "1941年5月"
+            }
+          ],
+          "correctAnswers": [
+            "C"
+          ],
+          "explanation": "C。1937年夏毛泽东在抗日军政大学讲授《实践论》《矛盾论》。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 40,
+          "type": "single",
+          "stem": "《实践论》《矛盾论》从马克思主义认识论高度总结党的历史经验，主要是为了（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "论证君主立宪的可行性"
+            },
+            {
+              "id": "B",
+              "label": "揭露和批评主观主义尤其是教条主义错误"
+            },
+            {
+              "id": "C",
+              "label": "证明速胜论正确"
+            },
+            {
+              "id": "D",
+              "label": "否定调查研究的重要性"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。其重要目的之一就是批评主观主义尤其是教条主义。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 41,
+          "type": "single",
+          "stem": "红军长征胜利对党的认识提升，集中说明了（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "只能依赖外国革命经验"
+            },
+            {
+              "id": "B",
+              "label": "必须把马克思主义基本原理同中国革命具体实际结合起来"
+            },
+            {
+              "id": "C",
+              "label": "只要进行城市暴动就能胜利"
+            },
+            {
+              "id": "D",
+              "label": "革命不需要党的领导"
+            }
+          ],
+          "correctAnswers": [
+            "B"
+          ],
+          "explanation": "B。长征的胜利再次说明必须把马克思主义同中国实际结合起来。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 42,
+          "type": "single",
+          "stem": "毛泽东总结历史经验、端正思想路线的这些论著，核心作用在于（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "加强共产党自身思想理论建设"
+            },
+            {
+              "id": "B",
+              "label": "取消武装斗争"
+            },
+            {
+              "id": "C",
+              "label": "否定统一战线"
+            },
+            {
+              "id": "D",
+              "label": "放弃独立自主"
+            }
+          ],
+          "correctAnswers": [
+            "A"
+          ],
+          "explanation": "A。这些论著的核心作用就是加强党的思想理论建设。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 43,
+          "type": "multiple",
+          "stem": "关于国民党在全国统治的建立，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "七一五反革命政变后宁汉合流"
+            },
+            {
+              "id": "B",
+              "label": "1928年2月南京国民政府改组"
+            },
+            {
+              "id": "C",
+              "label": "国民党军队继续北伐并进驻北京、天津一带"
+            },
+            {
+              "id": "D",
+              "label": "张学良东北易帜后北洋军阀不再作为独立政治力量存在"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项共同构成国民党在全国建立统治的基本过程。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 44,
+          "type": "multiple",
+          "stem": "国民党政府实行一党专政军事独裁统治的主要做法包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "建立庞大军队和特务系统"
+            },
+            {
+              "id": "B",
+              "label": "大力推行保甲制度"
+            },
+            {
+              "id": "C",
+              "label": "厉行文化专制主义"
+            },
+            {
+              "id": "D",
+              "label": "给予人民充分出版自由"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项与史实相反。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 45,
+          "type": "multiple",
+          "stem": "关于八七会议，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "召开于1927年8月7日"
+            },
+            {
+              "id": "B",
+              "label": "召开地点在汉口"
+            },
+            {
+              "id": "C",
+              "label": "确定了土地革命和武装起义的方针"
+            },
+            {
+              "id": "D",
+              "label": "提出了“找着新的道路”的任务"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项都是八七会议的核心记忆点。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 46,
+          "type": "multiple",
+          "stem": "八七会议的历史意义主要表现在（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "给思想混乱和组织涣散中的中国共产党指明了新的出路"
+            },
+            {
+              "id": "B",
+              "label": "标志着从大革命失败到土地革命战争兴起的历史性转变"
+            },
+            {
+              "id": "C",
+              "label": "正式确立了毛泽东思想为全党指导思想"
+            },
+            {
+              "id": "D",
+              "label": "是党在付出血的代价后换得的正确结论"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "D"
+          ],
+          "explanation": "ABD。C项属于中共七大的内容，不是八七会议的意义。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 47,
+          "type": "multiple",
+          "stem": "三大起义主要包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "南昌起义"
+            },
+            {
+              "id": "B",
+              "label": "秋收起义"
+            },
+            {
+              "id": "C",
+              "label": "广州起义"
+            },
+            {
+              "id": "D",
+              "label": "武昌起义"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。武昌起义属于辛亥革命时期，不属于这里的“三大起义”。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 48,
+          "type": "multiple",
+          "stem": "关于秋收起义及其后续发展，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "起义军公开打出“工农革命军”的旗帜"
+            },
+            {
+              "id": "B",
+              "label": "攻打长沙受挫后转向农村"
+            },
+            {
+              "id": "C",
+              "label": "三湾改编从组织上确立了党对军队的领导"
+            },
+            {
+              "id": "D",
+              "label": "随后开始创建井冈山农村革命根据地"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这就是秋收起义到井冈山道路开辟的完整链条。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 49,
+          "type": "multiple",
+          "stem": "毛泽东对中国革命新道路开辟作出的贡献包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "在实践中把武装斗争立足点放在农村"
+            },
+            {
+              "id": "B",
+              "label": "领导开创井冈山根据地"
+            },
+            {
+              "id": "C",
+              "label": "从理论上逐步阐明工农武装割据思想"
+            },
+            {
+              "id": "D",
+              "label": "提出农村包围城市、武装夺取政权的思想"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项合起来正是毛泽东对革命新道路开辟的主要贡献。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 50,
+          "type": "multiple",
+          "stem": "关于古田会议，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "召开于1929年12月"
+            },
+            {
+              "id": "B",
+              "label": "地点在福建上杭县古田村"
+            },
+            {
+              "id": "C",
+              "label": "通过了毛泽东起草的古田会议决议"
+            },
+            {
+              "id": "D",
+              "label": "确立了思想建党、政治建军原则"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项都是古田会议的核心知识点。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 51,
+          "type": "multiple",
+          "stem": "古田会议关于红军建设的基本要求包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "红军必须绝对服从共产党的领导"
+            },
+            {
+              "id": "B",
+              "label": "必须全心全意为党的纲领路线政策奋斗"
+            },
+            {
+              "id": "C",
+              "label": "必须加强政治工作"
+            },
+            {
+              "id": "D",
+              "label": "可以脱离群众单独行动"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项与古田会议精神相反。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 52,
+          "type": "multiple",
+          "stem": "关于中华苏维埃第一次全国代表大会，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "召开于1931年11月"
+            },
+            {
+              "id": "B",
+              "label": "地点在江西瑞金"
+            },
+            {
+              "id": "C",
+              "label": "通过了《中华苏维埃共和国宪法大纲》"
+            },
+            {
+              "id": "D",
+              "label": "毛泽东当选为主席"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项都是中华苏维埃第一次全国代表大会的标准记忆点。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 53,
+          "type": "multiple",
+          "stem": "党内屡次出现严重“左”倾错误的原因包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "八七会议后浓厚“左”倾情绪未认真清理"
+            },
+            {
+              "id": "B",
+              "label": "共产国际错误指导"
+            },
+            {
+              "id": "C",
+              "label": "马克思主义理论准备不足"
+            },
+            {
+              "id": "D",
+              "label": "不善于把马克思列宁主义同中国实际正确结合"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这些正是教材概括的主要原因。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 54,
+          "type": "multiple",
+          "stem": "关于遵义会议，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "召开前红军已攻克遵义"
+            },
+            {
+              "id": "B",
+              "label": "会议增选毛泽东为中央政治局常委"
+            },
+            {
+              "id": "C",
+              "label": "会议后开始形成以毛泽东同志为核心的第一代中央领导集体"
+            },
+            {
+              "id": "D",
+              "label": "在最危急关头挽救了党、红军和中国革命"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四项共同构成遵义会议的重要内容和意义。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 55,
+          "type": "multiple",
+          "stem": "遵义会议实现伟大历史转折，主要体现在（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "事实上确立了毛泽东在党中央和红军的领导地位"
+            },
+            {
+              "id": "B",
+              "label": "开始确立马克思主义正确路线在党中央的领导地位"
+            },
+            {
+              "id": "C",
+              "label": "开启了中国共产党独立自主解决中国革命实际问题的新阶段"
+            },
+            {
+              "id": "D",
+              "label": "直接宣告日本侵华失败"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项显然无关。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 56,
+          "type": "multiple",
+          "stem": "遵义会议后中国共产党得到的重要启示包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "必须坚持独立自主解决中国革命实际问题"
+            },
+            {
+              "id": "B",
+              "label": "必须创造性制定符合中国特点的战略策略"
+            },
+            {
+              "id": "C",
+              "label": "必须在关键时刻坚持真理、修正错误"
+            },
+            {
+              "id": "D",
+              "label": "不需要再把马克思主义同中国实际结合"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项恰好与遵义会议及其历史经验相反。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 57,
+          "type": "multiple",
+          "stem": "红军长征的历史意义包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "促进了党在政治上和思想上的成熟"
+            },
+            {
+              "id": "B",
+              "label": "是中国革命转危为安的关键"
+            },
+            {
+              "id": "C",
+              "label": "宣告北上抗日的战略转移胜利实现"
+            },
+            {
+              "id": "D",
+              "label": "开启了中国共产党为民族独立、人民解放而斗争的新的伟大进军"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。这四项共同构成长征胜利的重要历史意义。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 58,
+          "type": "multiple",
+          "stem": "关于长征胜利的认识，下列说法正确的有（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "只有把马克思主义基本原理同中国革命具体实际结合起来，革命事业才能胜利"
+            },
+            {
+              "id": "B",
+              "label": "长征是一次理想信念的伟大远征"
+            },
+            {
+              "id": "C",
+              "label": "长征是一次检验真理、唤醒民众、开创新局的伟大远征"
+            },
+            {
+              "id": "D",
+              "label": "长征只是一次普通军事撤退"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项是对长征的错误理解。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 59,
+          "type": "multiple",
+          "stem": "毛泽东在长征到达陕北后总结历史经验的重要论著包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "《论反对日本帝国主义的策略》"
+            },
+            {
+              "id": "B",
+              "label": "《中国革命战争的战略问题》"
+            },
+            {
+              "id": "C",
+              "label": "《实践论》"
+            },
+            {
+              "id": "D",
+              "label": "《矛盾论》"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "explanation": "ABCD。四篇都是这部分必须掌握的重要论著。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 60,
+          "type": "multiple",
+          "stem": "《实践论》《矛盾论》的重要意义包括（ ）。",
+          "options": [
+            {
+              "id": "A",
+              "label": "揭露和批评党内主观主义尤其是教条主义错误"
+            },
+            {
+              "id": "B",
+              "label": "深入论证马克思列宁主义同中国具体实际相结合的原则"
+            },
+            {
+              "id": "C",
+              "label": "科学阐明党的马克思主义思想路线"
+            },
+            {
+              "id": "D",
+              "label": "证明照搬外国经验最有效"
+            }
+          ],
+          "correctAnswers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "explanation": "ABC。D项和这些论著的精神完全相反。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 61,
+          "type": "judge",
+          "stem": "（ ） 张学良东北易帜后，国民党就在全国范围内建立了自己的统治。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是教材对东北易帜历史后果的标准表述。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 62,
+          "type": "judge",
+          "stem": "（ ） 国民党政府推行保甲制度，主要是为了便利基层民主自治和地方财政公开。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：保甲制度不是自治工具，而是控制工具） 它主要用于监视、告发和禁锢人民。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 63,
+          "type": "judge",
+          "stem": "（ ） 国民党政府通过军队、特务、保甲和文化专制主义等手段，把广大人民置于严密控制和监视之下。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是对其统治方式的准确概括。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 64,
+          "type": "judge",
+          "stem": "（ ） 八七会议确定了土地革命和武装起义的方针。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是八七会议最核心的结论。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 65,
+          "type": "judge",
+          "stem": "（ ） 八七会议召开时，中国共产党已经完全摆脱思想混乱和组织涣散状态。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。会议召开时党正处于思想混乱和组织涣散状态。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 66,
+          "type": "judge",
+          "stem": "（ ） 八七会议是由大革命失败到土地革命战争兴起的历史性转变。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是八七会议最重要的历史定位。",
+          "sourceIds": [
+            "ref-c5-s80-l535-list",
+            "ref-c5-s81-l541-list",
+            "ref-c5-s82-l548-list"
+          ]
+        },
+        {
+          "id": 67,
+          "type": "judge",
+          "stem": "（ ） 南昌起义是中国共产党独立领导革命战争、创建人民军队和武装夺取政权的开端。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是教材原话级别的定位。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 68,
+          "type": "judge",
+          "stem": "（ ） 秋收起义后坚持继续夺取中心城市，最终成功建立全国政权。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：秋收起义后不是坚持进攻城市，而是果断转向农村）。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 69,
+          "type": "judge",
+          "stem": "（ ） 三湾改编是建设无产阶级领导的新型人民军队的重要开端。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。三湾改编是新型人民军队建设的重要开端。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 70,
+          "type": "judge",
+          "stem": "（ ） 毛泽东在《中国的红色政权为什么能够存在？》《井冈山的斗争》等文章中提出了工农武装割据思想。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是毛泽东理论贡献的重要组成部分。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 71,
+          "type": "judge",
+          "stem": "（ ） 古田会议确立了思想建党、政治建军原则。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是古田会议最核心的结论。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 72,
+          "type": "judge",
+          "stem": "（ ） 古田会议认为红军只需要负责作战，不需要承担群众工作。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。古田会议明确要求红军承担群众工作。",
+          "sourceIds": [
+            "ref-c5-s83-l554-list",
+            "ref-c5-s84-l562-list",
+            "ref-c5-s85-l570-list"
+          ]
+        },
+        {
+          "id": 73,
+          "type": "judge",
+          "stem": "（ ） 中华苏维埃第一次全国代表大会召开后，中华苏维埃共和国临时中央政府成立。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是苏维埃政权建立的重要标志。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 74,
+          "type": "judge",
+          "stem": "（ ） 中国共产党内“左”倾错误反复出现，说明当时党对中国革命的特点和规律认识还不够深刻。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是“左”倾错误反复出现的重要原因。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 75,
+          "type": "judge",
+          "stem": "（ ） 遵义会议集中解决了当时具有决定意义的军事和组织问题。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是教材中的标准表述。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 76,
+          "type": "judge",
+          "stem": "（ ） 遵义会议后，中国共产党已经完全不再需要总结历史经验。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。遵义会议后党更加重视总结历史经验。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 77,
+          "type": "judge",
+          "stem": "（ ） 遵义会议开启了中国共产党独立自主解决中国革命实际问题的新阶段。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是遵义会议的重要历史意义之一。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 78,
+          "type": "judge",
+          "stem": "（ ） 遵义会议是党的历史上一个生死攸关的转折点。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是遵义会议的经典定位。",
+          "sourceIds": [
+            "ref-c5-s86-l578-list",
+            "ref-c5-s87-l582-list",
+            "ref-c5-s88-l591-list"
+          ]
+        },
+        {
+          "id": 79,
+          "type": "judge",
+          "stem": "（ ） 红军长征的胜利，极大促进了党在政治上和思想上的成熟。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是长征胜利的重要结论。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 80,
+          "type": "judge",
+          "stem": "（ ） 长征胜利宣告国民党反动派消灭中国共产党和红军的图谋彻底失败。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是教材中的标准表述。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 81,
+          "type": "judge",
+          "stem": "（ ） 红军长征的胜利，使中国共产党更加认识到独立自主解决中国革命重大问题的重要性。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。长征让党进一步认识到独立自主的重要性。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 82,
+          "type": "judge",
+          "stem": "（ ） 《中国革命战争的战略问题》写于1936年12月。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这是时间点高频考法。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 83,
+          "type": "judge",
+          "stem": "（ ） 《实践论》《矛盾论》主要是在1945年中共七大后写成的。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "false"
+          ],
+          "explanation": "错误。（避坑：时间别错位） 《实践论》《矛盾论》写于1937年夏。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        },
+        {
+          "id": 84,
+          "type": "judge",
+          "stem": "（ ） 毛泽东这些总结历史经验的论著，有力加强了中国共产党的思想理论建设。",
+          "options": [
+            {
+              "id": "true",
+              "label": "正确"
+            },
+            {
+              "id": "false",
+              "label": "错误"
+            }
+          ],
+          "correctAnswers": [
+            "true"
+          ],
+          "explanation": "正确。这正是这些论著的重要作用。",
+          "sourceIds": [
+            "ref-c5-s89-l601-list",
+            "ref-c5-s90-l608-list"
+          ]
+        }
+      ],
       "downloads": {
-        "markdown": null,
+        "markdown": "/docs/chapter-5/chapter-5.md",
         "pdf": null
       }
     },

@@ -10,6 +10,7 @@ const chapterOneSource = resolve(rootDir, "中国近现代史纲要 复习指导
 const chapterTwoSource = resolve(rootDir, "reference", "chapter_2.md");
 const chapterThreeSource = resolve(rootDir, "reference", "chapter_3.md");
 const chapterFourSource = resolve(rootDir, "reference", "chapter_4.md");
+const chapterFiveSource = resolve(rootDir, "reference", "chapter_5.md");
 const referenceSource = resolve(rootDir, "reference", "中国近现代史纲要 复习.md");
 
 const chapterOneQuestionsPath = resolve(generatedDir, "questions.json");
@@ -305,6 +306,7 @@ const referenceUnits = JSON.parse(readFileSync(referenceUnitsPath, "utf8"));
 const chapterTwo = parseGeneratedChapter(readFileSync(chapterTwoSource, "utf8"), referenceUnits, "chapter 2");
 const chapterThree = parseGeneratedChapter(readFileSync(chapterThreeSource, "utf8"), referenceUnits, "chapter 3");
 const chapterFour = parseGeneratedChapter(readFileSync(chapterFourSource, "utf8"), referenceUnits, "chapter 4");
+const chapterFive = parseGeneratedChapter(readFileSync(chapterFiveSource, "utf8"), referenceUnits, "chapter 5");
 
 if (chapterTwo.questions.length !== 131) {
   throw new Error(`Unexpected chapter 2 count: ${chapterTwo.questions.length}`);
@@ -315,20 +317,26 @@ if (chapterThree.questions.length !== 85) {
 if (chapterFour.questions.length !== 84) {
   throw new Error(`Unexpected chapter 4 count: ${chapterFour.questions.length}`);
 }
+if (chapterFive.questions.length !== 84) {
+  throw new Error(`Unexpected chapter 5 count: ${chapterFive.questions.length}`);
+}
 
 const chapterOneDir = resolve(docsDir, "chapter-1");
 const chapterTwoDir = resolve(docsDir, "chapter-2");
 const chapterThreeDir = resolve(docsDir, "chapter-3");
 const chapterFourDir = resolve(docsDir, "chapter-4");
+const chapterFiveDir = resolve(docsDir, "chapter-5");
 mkdirSync(chapterOneDir, { recursive: true });
 mkdirSync(chapterTwoDir, { recursive: true });
 mkdirSync(chapterThreeDir, { recursive: true });
 mkdirSync(chapterFourDir, { recursive: true });
+mkdirSync(chapterFiveDir, { recursive: true });
 
 const chapterOneMarkdownDownload = resolve(chapterOneDir, "chapter-1.md");
 const chapterTwoMarkdownDownload = resolve(chapterTwoDir, "chapter-2.md");
 const chapterThreeMarkdownDownload = resolve(chapterThreeDir, "chapter-3.md");
 const chapterFourMarkdownDownload = resolve(chapterFourDir, "chapter-4.md");
+const chapterFiveMarkdownDownload = resolve(chapterFiveDir, "chapter-5.md");
 writeFileSync(chapterOneMarkdownDownload, readFileSync(chapterOneSource, "utf8"));
 writeFileSync(
   chapterTwoMarkdownDownload,
@@ -341,6 +349,10 @@ writeFileSync(
 writeFileSync(
   chapterFourMarkdownDownload,
   serializeChapterMarkdown("第四章 选择题 判断题", chapterFour.grouped, chapterFour.questions),
+);
+writeFileSync(
+  chapterFiveMarkdownDownload,
+  serializeChapterMarkdown("第五章 选择题 判断题", chapterFive.grouped, chapterFive.questions),
 );
 
 const referenceMarkdownDownload = resolve(docsDir, basename(referenceSource));
@@ -391,6 +403,16 @@ const regularCompletedByChapter = new Map([
       },
     },
   ],
+  [
+    5,
+    {
+      questions: chapterFive.questions,
+      downloads: {
+        markdown: "/docs/chapter-5/chapter-5.md",
+        pdf: null,
+      },
+    },
+  ],
 ]);
 const xuetongCompletedByChapter = new Map();
 
@@ -433,7 +455,7 @@ writeFileSync(
   )}\n`,
 );
 
-for (const chapter of chapters.slice(0, 4)) {
+for (const chapter of chapters.slice(0, 5)) {
   const counts = countsFor(chapter.questions);
   console.log(
     `Chapter ${chapter.id}: ${chapter.questions.length} questions (${counts.single}/${counts.multiple}/${counts.judge})`,

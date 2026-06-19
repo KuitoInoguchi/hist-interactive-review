@@ -130,6 +130,15 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await expect(page.getByText("回答正确")).toBeVisible();
   await expect(page.locator("#ref-c4-s63-l410-list")).toHaveClass(/active-source/);
 
+  await page.locator(".chapter-option").filter({ hasText: "第五章习题" }).click();
+  await expect(page.getByRole("heading", { name: "第五章习题" })).toBeVisible();
+  await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("84");
+  await expect(page.locator('a[href="/docs/chapter-5/chapter-5.md"]')).toContainText("下载为 md 格式");
+  await page.locator(".option-row").filter({ hasText: "张学良宣布东北易帜" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+  await expect(page.locator("#ref-c5-s80-l535-list")).toHaveClass(/active-source/);
+
   await page.locator(".chapter-option").filter({ hasText: "（学习通）第一章客观题练习题" }).click();
   await expect(page.getByRole("heading", { name: "（学习通）第一章客观题练习题" })).toBeVisible();
   await expect(page.getByText("敬请期待")).toBeVisible();
