@@ -84,9 +84,10 @@ function typeLabel(type: Question["type"]) {
   return "判断题";
 }
 
-function questionStatusClass(question: Question, selectedByQuestion: Record<number, string[]>, attempt?: QuizAttempt) {
-  if (attempt) return attempt.isCorrect ? "is-correct" : "is-wrong";
-  return selectedByQuestion[question.id]?.length ? "is-answered" : "";
+function questionStatusClass(attempt: QuizAttempt | undefined, hasPendingSelection: boolean) {
+  if (!attempt && hasPendingSelection) return "is-pending";
+  if (!attempt) return "";
+  return attempt.isCorrect ? "is-correct" : "is-wrong";
 }
 
 function gradingModeLabel(mode: GradingMode) {
@@ -104,7 +105,59 @@ function createAttempt(question: Question, selectedAnswers: string[]): QuizAttem
   };
 }
 
-function DownloadMenu({ label, markdown, pdf }: { label: string; markdown: string | null; pdf: string | null }) {
+function gradeSelectedQuestions(
+  questions: Question[],
+  progress: ChapterProgress,
+  activeQuestionId?: number,
+): ChapterProgress {
+  const pendingQuestions = questions.filter((question) => {
+    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
+    return selectedAnswers.length > 0 && !progress.attempts[question.id];
+  });
+
+  if (pendingQuestions.length === 0) {
+    return progress;
+  }
+
+  const nextAttempts = { ...progress.attempts };
+  const submittedAt = new Date().toISOString();
+
+  for (const question of pendingQuestions) {
+    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
+    nextAttempts[question.id] = {
+      questionId: question.id,
+      selectedAnswers,
+      isCorrect: areAnswersEqual(selectedAnswers, question.correctAnswers),
+      submittedAt,
+    };
+  }
+
+  const activeQuestion = activeQuestionId
+    ? pendingQuestions.find((question) => question.id === activeQuestionId)
+    : undefined;
+
+  return {
+    ...progress,
+    attempts: nextAttempts,
+    activeSourceIds: activeQuestion ? activeQuestion.sourceIds : progress.activeSourceIds,
+  };
+}
+
+function assetUrl(path: string | null): string | null {
+  if (!path) return null;
+  const base = import.meta.env.BASE_URL;
+  return `${base}${path.replace(/^\//, '')}`;
+}
+
+function DownloadMenu({
+  label,
+  markdown,
+  pdf,
+}: {
+  label: string;
+  markdown: string | null;
+  pdf: string | null;
+}) {
   const hasDownloads = Boolean(markdown || pdf);
   return (
     <details className="download-menu">
@@ -113,8 +166,20 @@ function DownloadMenu({ label, markdown, pdf }: { label: string; markdown: strin
         {label}
       </summary>
       <div className="download-options">
-        {markdown ? <a download href={markdown}>下载为 md 格式</a> : <span>md 格式暂不可用</span>}
-        {pdf ? <a download href={pdf}>下载为 PDF 格式</a> : <span>PDF 格式暂不可用</span>}
+        {markdown ? (
+          <a download href={assetUrl(markdown)!}>
+            下载为 md 格式
+          </a>
+        ) : (
+          <span>md 格式暂不可用</span>
+        )}
+        {pdf ? (
+          <a download href={assetUrl(pdf)!}>
+            下载为 PDF 格式
+          </a>
+        ) : (
+          <span>PDF 格式暂不可用</span>
+        )}
         {!hasDownloads ? <span>资源整理中</span> : null}
       </div>
     </details>
@@ -159,6 +224,10 @@ export default function App() {
   const wrongAttempts = questions.filter((question) => attempts[question.id] && !attempts[question.id].isCorrect);
   const isAvailable = currentChapter.available && questions.length > 0;
   const showBatchResult = gradingMode === "batch-submit" && currentProgress.hasBatchResult && submittedCount > 0;
+  const pendingReviewCount = questions.filter((question) => {
+    const answers = selectedByQuestion[question.id] ?? [];
+    return answers.length > 0 && !attempts[question.id];
+  }).length;
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -278,6 +347,22 @@ export default function App() {
         </button>
       </aside>
     );
+  }
+
+  function jumpToQuestion(index: number) {
+    updateCurrentProgress((progress) => {
+      const question = questions[index];
+      const attempt = question ? progress.attempts[question.id] : undefined;
+      return {
+        ...progress,
+        currentIndex: index,
+        activeSourceIds: attempt ? question.sourceIds : progress.activeSourceIds,
+      };
+    });
+  }
+
+  function gradeAllSelectedQuestions() {
+    updateCurrentProgress((progress) => gradeSelectedQuestions(questions, progress, currentQuestion?.id));
   }
 
   return (
@@ -440,15 +525,29 @@ export default function App() {
               <nav className="question-nav" aria-label="题号导航">
                 {questions.map((question, index) => (
                   <button
-                    className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(question, selectedByQuestion, attempts[question.id])}`}
+                    className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
+                      attempts[question.id],
+                      (selectedByQuestion[question.id] ?? []).length > 0,
+                    )}`}
                     key={question.id}
-                    onClick={() => goToQuestion(index)}
+                    onClick={() => jumpToQuestion(index)}
                     type="button"
                   >
                     {question.id}
                   </button>
                 ))}
               </nav>
+              <div className="batch-actions">
+                <button
+                  className="secondary-button"
+                  disabled={pendingReviewCount === 0}
+                  onClick={gradeAllSelectedQuestions}
+                  type="button"
+                >
+                  <Trophy size={18} />
+                  一键批改
+                </button>
+              </div>
             </>
           ) : null}
         </section>
@@ -488,7 +587,10 @@ export default function App() {
             <div className="drawer-header"><h2>题号面板</h2><button className="icon-button" type="button" onClick={() => setQuestionDrawerOpen(false)} aria-label="关闭题号面板"><X size={18} /></button></div>
             <nav className="drawer-question-grid">
               {questions.map((question, index) => (
-                <button className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(question, selectedByQuestion, attempts[question.id])}`} key={question.id} onClick={() => goToQuestion(index)} type="button">
+                <button className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
+                      attempts[question.id],
+                      (selectedByQuestion[question.id] ?? []).length > 0,
+                    )}`} key={question.id} onClick={() => jumpToQuestion(index)} type="button">
                   {question.id}
                 </button>
               ))}
@@ -498,7 +600,21 @@ export default function App() {
       ) : null}
 
       <footer className="site-footer">
-        联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>
+        <span>
+          联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>
+        </span>
+        <span>
+          仓库地址：
+          <a href="https://github.com/KuitoInoguchi/hist-interactive-review" rel="noreferrer" target="_blank">
+            GitHub 仓库
+          </a>
+        </span>
+        <span>
+          更多资料：
+          <a href="https://my.feishu.cn/wiki/AatBwiDa7ig7RJkzdlocLm1cnTh" rel="noreferrer" target="_blank">
+            飞书资料
+          </a>
+        </span>
       </footer>
     </main>
   );

@@ -12,6 +12,12 @@ type ReferencePaneProps = {
   scrollRequest: number;
 };
 
+function assetUrl(path: string | null): string | null {
+  if (!path) return null;
+  const base = import.meta.env.BASE_URL;
+  return `${base}${path.replace(/^\//, '')}`;
+}
+
 export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollRequest }: ReferencePaneProps) {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -32,7 +38,18 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollReq
       const firstTarget = activeSourceIds[0]
         ? container.querySelector(`#${CSS.escape(activeSourceIds[0])}`)
         : null;
-      firstTarget?.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (!firstTarget) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const targetRect = firstTarget.getBoundingClientRect();
+      const currentScrollTop = container.scrollTop;
+      const targetScrollTop =
+        currentScrollTop + (targetRect.top - containerRect.top) - container.clientHeight / 2 + targetRect.height / 2;
+
+      container.scrollTo({
+        top: Math.max(0, targetScrollTop),
+        behavior: "smooth",
+      });
     }
   }, [activeSourceIds, scrollRequest]);
 
@@ -50,14 +67,14 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads, scrollReq
           </summary>
           <div className="download-options">
             {downloads.markdown ? (
-              <a download href={downloads.markdown}>
+              <a download href={assetUrl(downloads.markdown)!}>
                 下载为 md 格式
               </a>
             ) : (
               <span>md 格式暂不可用</span>
             )}
             {downloads.pdf ? (
-              <a download href={downloads.pdf}>
+              <a download href={assetUrl(downloads.pdf)!}>
                 下载为 PDF 格式
               </a>
             ) : (
