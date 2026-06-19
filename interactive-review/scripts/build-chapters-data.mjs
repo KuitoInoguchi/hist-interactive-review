@@ -205,7 +205,11 @@ function answerIdsFor(type, answerText) {
   return match[1].split("");
 }
 
-function sectionSourceIds(referenceUnits, sectionNumbers) {
+function unitsForSections(referenceUnits, sectionNumbers) {
+  return referenceUnits.filter((unit) => sectionNumbers.includes(unit.sectionNo));
+}
+
+function preferredSourceIds(referenceUnits, sectionNumbers) {
   const ids = [];
   for (const sectionNo of sectionNumbers) {
     const units = referenceUnits.filter((unit) => unit.sectionNo === sectionNo);
@@ -215,13 +219,99 @@ function sectionSourceIds(referenceUnits, sectionNumbers) {
   return [...new Set(ids)];
 }
 
+function textForMatching(value) {
+  return stripMarkdown(value)
+    .replace(/[（(]\s*[）)]/g, " ")
+    .replace(/【[^】]*】/g, " ")
+    .replace(/避坑[:：]?/g, " ")
+    .replace(/正确答案[:：]?/g, " ")
+    .replace(/答案[:：]?/g, " ")
+    .replace(/^[A-D]|^正确|^错误/, " ")
+    .replace(/[^\p{Script=Han}A-Za-z0-9]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function bigrams(value) {
+  const compact = value.replace(/\s+/g, "");
+  const grams = new Set();
+  for (let index = 0; index < compact.length - 1; index += 1) {
+    grams.add(compact.slice(index, index + 2));
+  }
+  return grams;
+}
+
+function keywords(value) {
+  const normalized = textForMatching(value);
+  const terms = new Set();
+  for (const match of normalized.matchAll(/[\p{Script=Han}A-Za-z0-9]{2,}/gu)) {
+    const term = match[0];
+    if (term.length >= 2) terms.add(term);
+    if (/^[\p{Script=Han}]{5,}$/u.test(term)) {
+      for (let index = 0; index <= term.length - 4; index += 2) {
+        terms.add(term.slice(index, index + 4));
+      }
+    }
+  }
+  return [...terms];
+}
+
+function overlapScore(queryText, unitText) {
+  const queryGrams = bigrams(queryText);
+  const unitGrams = bigrams(textForMatching(unitText));
+  if (queryGrams.size === 0 || unitGrams.size === 0) return 0;
+
+  let overlap = 0;
+  for (const gram of queryGrams) {
+    if (unitGrams.has(gram)) overlap += 1;
+  }
+
+  const dice = (2 * overlap) / (queryGrams.size + unitGrams.size);
+  const phraseBoost = keywords(queryText).reduce((score, term) => {
+    if (term.length >= 4 && unitText.includes(term)) return score + Math.min(0.45, term.length * 0.025);
+    return score;
+  }, 0);
+
+  return dice + phraseBoost;
+}
+
+function sourceIdsForQuestion(question, answer, normalized, referenceUnits, sectionNumbers) {
+  const candidateUnits = unitsForSections(referenceUnits, sectionNumbers).filter((unit) =>
+    ["heading", "paragraph", "listItem"].includes(unit.kind),
+  );
+  if (candidateUnits.length === 0) return preferredSourceIds(referenceUnits, sectionNumbers);
+
+  const correctAnswers = answerIdsFor(question.type, answer.body);
+  const correctOptionLabels = normalized.options
+    .filter((option) => correctAnswers.includes(option.id))
+    .map((option) => option.label)
+    .join(" ");
+  const queryText = textForMatching(`${normalized.stem} ${correctOptionLabels} ${answer.body}`);
+  const scored = candidateUnits
+    .map((unit) => ({
+      id: unit.id,
+      score: overlapScore(queryText, unit.plainText),
+    }))
+    .sort((left, right) => right.score - left.score);
+
+  const best = scored[0];
+  if (!best || best.score <= 0) return preferredSourceIds(referenceUnits, sectionNumbers);
+
+  const selected = scored
+    .filter((item) => item.score >= Math.max(best.score * 0.72, best.score - 0.18))
+    .slice(0, 3)
+    .map((item) => item.id);
+
+  return [...new Set(selected)];
+}
+
 function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
   const grouped = { single: [], multiple: [], judge: [] };
 
   for (const block of iterQuizBlocks(markdown)) {
     const questions = parseQuestions(block.before);
     const answers = parseAnswers(block.answerPart);
-    const sourceIds = sectionSourceIds(referenceUnits, block.targetSections);
 
     for (const localId of [...questions.keys()].sort((a, b) => a - b)) {
       const question = questions.get(localId);
@@ -231,6 +321,7 @@ function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
         throw new Error(`Type mismatch in ${chapterLabel} block for question ${localId}`);
       }
       const normalized = normalizeQuestion(`**${localId}. ${question.body}`, question.type);
+      const sourceIds = sourceIdsForQuestion(question, answer, normalized, referenceUnits, block.targetSections);
       grouped[question.type].push({
         type: question.type,
         stem: normalized.stem,
