@@ -293,7 +293,7 @@ export default function App() {
       if (target instanceof Element && target.closest(".expandable-menu")) return;
       setOpenMenu(null);
       document
-        .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+        .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]:not(.question-nav-panel)")
         .forEach((element) => element.removeAttribute("open"));
     }
 
@@ -315,7 +315,7 @@ export default function App() {
     setSelectedChapterId(chapterId);
     setOpenMenu(null);
     document
-      .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+      .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]:not(.question-nav-panel)")
       .forEach((element) => element.removeAttribute("open"));
     const chapter = selectableChapters.find((item) => item.id === chapterId);
     if (!chapter?.available) {

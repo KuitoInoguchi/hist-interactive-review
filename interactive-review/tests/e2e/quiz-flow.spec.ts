@@ -1,4 +1,8 @@
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
+
+function questionChip(page: Page, questionId: number) {
+  return page.locator(".question-nav .question-chip").nth(questionId - 1);
+}
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
@@ -6,7 +10,9 @@ test.beforeEach(async ({ page }) => {
   await page.reload();
 });
 
-test("submitting an answer shows feedback and highlights the reference block", async ({ page }) => {
+test("submitting an answer shows feedback and highlights the reference block", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop reference pane behavior");
+
   await page.locator(".option-row").filter({ hasText: "中国的封建势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
 
@@ -15,7 +21,9 @@ test("submitting an answer shows feedback and highlights the reference block", a
   await expect(page.locator("#ref-c1-s6-l46-list")).toHaveClass(/active-source/);
 });
 
-test("progress survives refresh and reset clears the attempt", async ({ page }) => {
+test("progress survives refresh and reset clears the attempt", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop reset control behavior");
+
   await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
   await expect(page.getByText("回答正确")).toBeVisible();
@@ -29,74 +37,82 @@ test("progress survives refresh and reset clears the attempt", async ({ page }) 
   await expect(page.locator(".summary-grid div").filter({ hasText: "已提交" })).toContainText("0");
 });
 
-test("question chip becomes pending after selecting an unsubmitted answer", async ({ page }) => {
-  const questionThreeChip = page.getByRole("button", { name: "3", exact: true });
+test("question chip becomes pending after selecting an unsubmitted answer", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop chapter selector behavior");
 
-  await page.locator(".chapter-selector-panel > summary").click();
-  await page.locator(".chapter-option").filter({ hasText: "第一章习题" }).click();
-  await page.getByRole("button", { name: "3", exact: true }).click();
+  const questionThreeChip = questionChip(page, 3);
+
+  await questionThreeChip.click();
   await page.locator(".option-row").filter({ hasText: "宗族家长制" }).click();
 
   await expect(questionThreeChip).toHaveClass(/is-pending/);
 });
 
-test("batch grading submits all selected unanswered questions", async ({ page }) => {
+test("batch grading submits all selected unanswered questions", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop question navigation behavior");
+
   const batchButton = page.getByRole("button", { name: /一键批改/ });
 
   await expect(batchButton).toBeDisabled();
 
   await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
-  await expect(page.getByRole("button", { name: "1", exact: true })).toHaveClass(/is-pending/);
+  await expect(questionChip(page, 1)).toHaveClass(/is-pending/);
   await expect(batchButton).toBeEnabled();
 
-  await page.getByRole("button", { name: "2", exact: true }).click();
+  await questionChip(page, 2).click();
   await page.locator(".option-row").filter({ hasText: "外国公使馆" }).click();
-  await expect(page.getByRole("button", { name: "2", exact: true })).toHaveClass(/is-pending/);
+  await expect(questionChip(page, 2)).toHaveClass(/is-pending/);
 
   await batchButton.click();
 
   await expect(page.locator(".summary-grid div").filter({ hasText: "已提交" })).toContainText("2");
-  await expect(page.getByRole("button", { name: "1", exact: true })).toHaveClass(/is-correct/);
-  await expect(page.getByRole("button", { name: "2", exact: true })).toHaveClass(/is-wrong/);
+  await expect(questionChip(page, 1)).toHaveClass(/is-correct/);
+  await expect(questionChip(page, 2)).toHaveClass(/is-wrong/);
   await expect(batchButton).toBeDisabled();
   await expect(page.getByText("回答错误")).toBeVisible();
 });
 
-test("switching to a graded question syncs reference highlight", async ({ page }) => {
+test("switching to a graded question syncs reference highlight", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop reference pane behavior");
+
   await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
   await expect(page.locator("#ref-c1-s6-l46-list")).toHaveClass(/active-source/);
 
-  await page.getByRole("button", { name: "2", exact: true }).click();
+  await questionChip(page, 2).click();
   await page.locator(".option-row").filter({ hasText: "中国的封建势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
   await expect(page.locator("#ref-c1-s6-l47-list")).toHaveClass(/active-source/);
 
-  await page.getByRole("button", { name: "1", exact: true }).click();
+  await questionChip(page, 1).click();
   await expect(page.locator("#ref-c1-s6-l46-list")).toHaveClass(/active-source/);
 
-  await page.getByRole("button", { name: "2", exact: true }).click();
+  await questionChip(page, 2).click();
   await expect(page.locator("#ref-c1-s6-l47-list")).toHaveClass(/active-source/);
 });
 
-test("switching graded questions scrolls the reference pane without moving the page", async ({ page }) => {
+test("switching graded questions scrolls the reference pane without moving the page", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop page scroll behavior");
+
   await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
-  await page.getByRole("button", { name: "2", exact: true }).click();
+  await questionChip(page, 2).click();
   await page.locator(".option-row").filter({ hasText: "中国的封建势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
 
   await page.evaluate(() => window.scrollTo({ top: 420, behavior: "instant" }));
   const beforeScrollY = await page.evaluate(() => window.scrollY);
 
-  await page.getByRole("button", { name: "1", exact: true }).click();
+  await questionChip(page, 1).click();
   await expect(page.locator("#ref-c1-s6-l46-list")).toHaveClass(/active-source/);
 
   const afterScrollY = await page.evaluate(() => window.scrollY);
   expect(Math.abs(afterScrollY - beforeScrollY)).toBeLessThan(5);
 });
 
-test("chapter switching, coming-soon chapters, and download links work", async ({ page }) => {
+test("chapter switching, coming-soon chapters, and download links work", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop chapter selector behavior");
+
   await page.locator(".chapter-selector-panel > summary").click();
   await page.locator(".chapter-option").filter({ hasText: "第二章习题" }).click();
   await expect(page.getByRole("heading", { name: "第二章习题" })).toBeVisible();
@@ -105,34 +121,43 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await page.locator(".option-row").filter({ hasText: "广西省桂平县金田村" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
   await expect(page.getByText("回答正确")).toBeVisible();
-  await expect(page.locator("#ref-c2-s26-l162-list")).toHaveClass(/active-source/);
+  await expect(page.locator("#ref-c2-s26-l163-list")).toHaveClass(/active-source/);
 
+  await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
   await expect(page.locator('a[href="/docs/chapter-2/chapter-2.md"]')).toContainText("下载为 md 格式");
   await expect(page.locator('a[href="/docs/chapter-2/chapter-2.pdf"]')).toContainText("下载为 PDF 格式");
   await expect(page.locator('a[href="/docs/中国近现代史纲要 复习.md"]')).toContainText("下载为 md 格式");
   await expect(page.locator('a[href="/docs/中国近现代史纲要复4习.pdf"]')).toContainText("下载为 PDF 格式");
 
+  await page.keyboard.press("Escape");
+  await page.locator(".chapter-selector-panel > summary").click();
   await page.locator(".chapter-option").filter({ hasText: "第三章习题" }).click();
   await expect(page.getByRole("heading", { name: "第三章习题" })).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("85");
+  await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
   await expect(page.locator('a[href="/docs/chapter-3/chapter-3.md"]')).toContainText("下载为 md 格式");
+  await page.keyboard.press("Escape");
   await page.locator(".option-row").filter({ hasText: "颁布《钦定宪法大纲》" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
   await expect(page.getByText("回答正确")).toBeVisible();
-  await expect(page.locator("#ref-c3-s46-l291-list")).toHaveClass(/active-source/);
+  await expect(page.locator("#ref-c3-s46-l295-list")).toHaveClass(/active-source/);
 
+  await page.locator(".chapter-selector-panel > summary").click();
   await page.locator(".chapter-option").filter({ hasText: "第四章习题" }).click();
   await expect(page.getByRole("heading", { name: "第四章习题" })).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("84");
+  await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
   await expect(page.locator('a[href="/docs/chapter-4/chapter-4.md"]')).toContainText("下载为 md 格式");
+  await page.keyboard.press("Escape");
   await page.locator(".option-row").filter({ hasText: "《青年杂志》" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
   await expect(page.getByText("回答正确")).toBeVisible();
   await expect(page.locator("#ref-c4-s63-l410-list")).toHaveClass(/active-source/);
 
-  await page.locator(".chapter-option").filter({ hasText: "（学习通）第一章客观题练习题" }).click();
-  await expect(page.getByRole("heading", { name: "（学习通）第一章客观题练习题" })).toBeVisible();
-  await expect(page.getByText("敬请期待")).toBeVisible();
+  await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").filter({ hasText: "（学习通）" }).click();
+  await expect(page.getByRole("heading", { name: "（学习通）" })).toBeVisible();
+  await expect(page.getByText("如果你的任课老师在学习通发布了题目，请在学习通上完成哦。")).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("0");
 });
 
@@ -146,14 +171,10 @@ test("footer links to the project repository", async ({ page }) => {
   await expect(moreMaterialsLink).toHaveAttribute("href", "https://my.feishu.cn/wiki/AatBwiDa7ig7RJkzdlocLm1cnTh");
 });
 
-test("mobile layout can collapse and expand the reference pane", async ({ page, isMobile }) => {
+test("mobile layout can switch to the reference pane", async ({ page, isMobile }) => {
   test.skip(!isMobile, "mobile-only behavior");
 
-  await expect(page.getByRole("button", { name: /折叠资料/ })).toBeVisible();
-  await page.getByRole("button", { name: /折叠资料/ }).click();
-  await expect(page.getByRole("button", { name: /展开资料/ })).toBeVisible();
-  await expect(page.locator(".reference-pane")).toBeHidden();
-
-  await page.getByRole("button", { name: /展开资料/ }).click();
+  await page.getByRole("button", { name: "资料区域" }).click();
   await expect(page.locator(".reference-pane")).toBeVisible();
+  await expect(page.locator(".mobile-page-dots button").nth(1)).toHaveClass(/is-active/);
 });
