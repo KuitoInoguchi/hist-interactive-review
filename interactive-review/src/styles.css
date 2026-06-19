@@ -986,16 +986,24 @@ h1 {
 
   .question-actions {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
     margin-top: 10px;
   }
 
   .question-actions .primary-button,
   .question-actions .secondary-button {
     width: 100%;
-    min-height: 38px;
+    min-width: 0;
+    min-height: 36px;
     padding: 0;
+  }
+
+  .question-actions .primary-button svg,
+  .question-actions .secondary-button svg {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 auto;
   }
 
   .question-actions .action-label {

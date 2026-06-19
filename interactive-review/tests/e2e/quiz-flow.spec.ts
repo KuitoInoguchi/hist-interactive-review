@@ -53,7 +53,7 @@ test("flagged questions stay highlighted even after grading", async ({ page }) =
   const flagButton = page.getByRole("button", { name: "记不清" });
 
   await flagButton.click();
-  await expect(flagButton).toHaveText(/取消记不清/);
+  await expect(flagButton).toHaveAttribute("aria-label", "取消记不清");
   await expect(questionOneChip).toHaveClass(/is-flagged/);
 
   await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
@@ -91,7 +91,7 @@ test("flagging works with legacy saved progress from older chapters", async ({ p
   if (!isMobile) {
     await expect(page.getByRole("heading", { name: "第二章习题" })).toBeVisible();
   }
-  await expect(flagButton).toHaveText(/取消记不清/);
+  await expect(flagButton).toHaveAttribute("aria-label", "取消记不清");
   await expect(questionOneChip).toHaveClass(/is-flagged/);
 });
 

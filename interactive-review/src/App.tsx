@@ -750,12 +750,13 @@ export default function App() {
               <span className="action-label">上一题</span>
             </button>
             <button
+              aria-label={currentQuestionFlagged ? "取消记不清" : "记不清"}
               className={`secondary-button flag-button ${currentQuestionFlagged ? "is-active" : ""}`}
               onClick={toggleCurrentQuestionFlag}
+              title={currentQuestionFlagged ? "取消记不清" : "记不清"}
               type="button"
             >
               <Bookmark size={18} />
-              {currentQuestionFlagged ? "取消记不清" : "记不清"}
             </button>
             <button
               className="primary-button"
