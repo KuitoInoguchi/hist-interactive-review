@@ -432,6 +432,7 @@ test("mobile menus float without taking vertical space", async ({ page, isMobile
 
   await page.locator(".question-nav-panel > summary").click();
   await expect(page.locator(".question-nav")).toBeVisible();
+  await expect(page.locator(".question-nav-tools .question-tool-button")).toHaveCount(3);
   await expect(page.getByRole("button", { name: /切换到/ })).toBeVisible();
   await page.locator(".question-nav-panel .mobile-menu-backdrop").click({ position: { x: 8, y: 8 } });
   await expect(page.locator(".question-nav-panel")).not.toHaveAttribute("open", "");
@@ -459,16 +460,30 @@ test("question panel can batch reset, undo reset, and pin on mobile", async ({ p
   await expect(page.getByText("回答正确")).toBeVisible();
 
   await page.locator(".question-nav-panel > summary").click();
-  await page.getByRole("button", { name: "批量" }).click();
+  const toolButtons = page.locator(".question-nav-tools .question-tool-button");
+  await expect(toolButtons).toHaveCount(3);
+  await expect(toolButtons.nth(0)).toContainText("重置");
+  await expect(toolButtons.nth(1)).toContainText("全部");
+  await expect(toolButtons.nth(2)).toContainText("撤销");
+
+  await toolButtons.nth(0).click();
+  await expect(page.getByText("选择要重置的题目，再点重置确认")).toBeVisible();
+  await expect(toolButtons.nth(0)).toHaveClass(/is-active/);
+  await expect(toolButtons.nth(2)).toContainText("取消");
   await questionChip(page, 1).click();
   page.once("dialog", (dialog) => dialog.accept());
-  await page.getByRole("button", { name: "重置", exact: true }).click();
+  await toolButtons.nth(0).click();
   await expect(page.getByText("回答正确")).toHaveCount(0);
 
   await page.getByRole("button", { name: "撤销", exact: true }).click();
   await expect(page.getByText("回答正确")).toBeVisible();
 
-  await page.getByRole("button", { name: "常驻" }).click();
+  await toolButtons.nth(0).click();
+  await expect(toolButtons.nth(2)).toContainText("取消");
+  await toolButtons.nth(2).click();
+  await expect(toolButtons.nth(2)).toContainText("撤销");
+
+  await page.getByLabel("常驻开启").click();
   const pinnedLayout = await page.evaluate(() => {
     const panel = document.querySelector(".question-nav-panel");
     const nav = document.querySelector(".question-nav");
@@ -486,12 +501,21 @@ test("question panel can batch reset, undo reset, and pin on mobile", async ({ p
       popoverBottom: popoverRect.bottom,
       navHeight: navRect.height,
       chipHeight: firstChip?.height ?? 0,
+      rowGap: Number.parseFloat(getComputedStyle(nav).rowGap) || 0,
+      navScrollTop: nav.scrollTop,
+      navScrollHeight: nav.scrollHeight,
+      navClientHeight: nav.clientHeight,
     };
   });
   expect(pinnedLayout).not.toBeNull();
   expect(pinnedLayout!.panelOpen).toBe(true);
   expect(pinnedLayout!.cardTop).toBeGreaterThanOrEqual(pinnedLayout!.popoverBottom);
-  expect(pinnedLayout!.navHeight).toBeLessThanOrEqual(pinnedLayout!.chipHeight * 3 + 24);
+  expect(pinnedLayout!.navHeight).toBeGreaterThan(pinnedLayout!.chipHeight * 3 + pinnedLayout!.rowGap * 2);
+  expect(pinnedLayout!.navHeight).toBeLessThan(pinnedLayout!.chipHeight * 4 + pinnedLayout!.rowGap * 3);
+  expect(pinnedLayout!.navScrollHeight).toBeGreaterThan(pinnedLayout!.navClientHeight);
+
+  await page.getByLabel("取消常驻").click();
+  await expect(page.locator(".question-nav-panel")).not.toHaveAttribute("open", "");
 });
 
 test("mobile quiz pane remains scrollable after feedback expands the page", async ({ page, isMobile }) => {

@@ -17,6 +17,7 @@ import {
   Undo2,
 } from "lucide-react";
 import {
+  type MouseEvent as ReactMouseEvent,
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
   type SyntheticEvent,
@@ -639,13 +640,29 @@ export default function App() {
     );
   }
 
-  function toggleResetSelectionMode() {
-    setResetSelectionMode((enabled) => !enabled);
+  function resetSelectedQuestions() {
+    resetQuestions(resetSelectionIds, { confirm: true });
+  }
+
+  function handleResetToolClick() {
+    if (!resetSelectionMode) {
+      setResetSelectionMode(true);
+      setResetSelectionIds([]);
+      return;
+    }
+    if (resetSelectionIds.length === 0) return;
+    resetSelectedQuestions();
+  }
+
+  function cancelResetSelection() {
+    setResetSelectionMode(false);
     setResetSelectionIds([]);
   }
 
-  function resetSelectedQuestions() {
-    resetQuestions(resetSelectionIds, { confirm: true });
+  function toggleQuestionPanelPinned(event: ReactMouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    event.stopPropagation();
+    setQuestionPanelPinned((pinned) => !pinned);
   }
 
   function jumpToQuestion(index: number) {
@@ -901,6 +918,16 @@ export default function App() {
                   题号面板 · {currentIndex + 1}/{questions.length}
                 </span>
                 <ChevronDown className="question-nav-toggle" size={16} aria-hidden="true" />
+                <button
+                  aria-label={questionPanelPinned ? "取消常驻" : "常驻开启"}
+                  aria-pressed={questionPanelPinned}
+                  className={`question-pin-button ${questionPanelPinned ? "is-active" : ""}`}
+                  onClick={toggleQuestionPanelPinned}
+                  title={questionPanelPinned ? "取消常驻" : "常驻开启"}
+                  type="button"
+                >
+                  <BookOpen size={16} />
+                </button>
               </summary>
               {!questionPanelPinned ? (
                 <button
@@ -911,44 +938,36 @@ export default function App() {
                 />
               ) : null}
               <div className="question-nav-popover">
-                <nav className="question-nav" aria-label="题号导航">
-                  {questions.map((question, index) => {
-                    const isResetSelected = resetSelectionIds.includes(question.id);
-                    return (
-                  <button
-                    className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
-                      attempts[question.id],
-                      (selectedByQuestion[question.id] ?? []).length > 0,
-                      flaggedQuestionIdSet.has(question.id),
-                    )} ${isResetSelected ? "is-reset-selected" : ""}`}
-                    key={question.id}
-                    onClick={() => (resetSelectionMode ? toggleResetSelection(question.id) : jumpToQuestion(index))}
-                    type="button"
-                  >
-                    {question.id}
-                  </button>
-                    );
-                  })}
-                </nav>
+                <div className="question-nav-scroll">
+                  <nav className="question-nav" aria-label="题号导航">
+                    {questions.map((question, index) => {
+                      const isResetSelected = resetSelectionIds.includes(question.id);
+                      return (
+                        <button
+                          className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
+                            attempts[question.id],
+                            (selectedByQuestion[question.id] ?? []).length > 0,
+                            flaggedQuestionIdSet.has(question.id),
+                          )} ${isResetSelected ? "is-reset-selected" : ""}`}
+                          key={question.id}
+                          onClick={() => (resetSelectionMode ? toggleResetSelection(question.id) : jumpToQuestion(index))}
+                          type="button"
+                        >
+                          {question.id}
+                        </button>
+                      );
+                    })}
+                  </nav>
+                </div>
                 <div className="question-nav-tools" aria-label="题号面板工具">
                   <button
                     aria-pressed={resetSelectionMode}
                     className={`question-tool-button ${resetSelectionMode ? "is-active" : ""}`}
-                    onClick={toggleResetSelectionMode}
-                    title="批量重置"
+                    onClick={handleResetToolClick}
+                    title={resetSelectionMode ? "重置已选择题目" : "选择要重置的题目"}
                     type="button"
                   >
                     <RotateCcw size={16} />
-                    <span>批量</span>
-                  </button>
-                  <button
-                    className="question-tool-button"
-                    disabled={!resetSelectionMode || resetSelectionIds.length === 0}
-                    onClick={resetSelectedQuestions}
-                    title="重置已选择题目"
-                    type="button"
-                  >
-                    <ListChecks size={16} />
                     <span>重置</span>
                   </button>
                   <button
@@ -962,25 +981,20 @@ export default function App() {
                   </button>
                   <button
                     className="question-tool-button"
-                    disabled={!canUndoReset}
-                    onClick={undoLastReset}
-                    title="撤销重置"
+                    disabled={!resetSelectionMode && !canUndoReset}
+                    onClick={resetSelectionMode ? cancelResetSelection : undoLastReset}
+                    title={resetSelectionMode ? "取消选择" : "撤销重置"}
                     type="button"
                   >
                     <Undo2 size={16} />
-                    <span>撤销</span>
-                  </button>
-                  <button
-                    aria-pressed={questionPanelPinned}
-                    className={`question-tool-button ${questionPanelPinned ? "is-active" : ""}`}
-                    onClick={() => setQuestionPanelPinned((pinned) => !pinned)}
-                    title={questionPanelPinned ? "关闭常驻" : "常驻开启"}
-                    type="button"
-                  >
-                    <BookOpen size={16} />
-                    <span>常驻</span>
+                    <span>{resetSelectionMode ? "取消" : "撤销"}</span>
                   </button>
                 </div>
+                {resetSelectionMode ? (
+                  <p className="question-reset-hint" aria-live="polite">
+                    选择要重置的题目，再点重置确认
+                  </p>
+                ) : null}
               </div>
             </details>
           ) : null}
