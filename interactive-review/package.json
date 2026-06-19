@@ -17,6 +17,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@fontsource/noto-serif-sc": "^5.2.8",
     "@vitejs/plugin-react": "^4.3.4",
     "driver.js": "^1.4.0",
     "lucide-react": "^0.468.0",

@@ -358,10 +358,42 @@ test("help panel explains controls and can replay onboarding", async ({ page }) 
   await expect(page.getByRole("dialog", { name: "按钮和流程说明" })).toBeVisible();
   await expect(page.getByText("题号面板：重置")).toBeVisible();
   await expect(page.getByText("移动端手势")).toBeVisible();
+  await expect(page.locator(".help-item-icon svg")).toHaveCount(14);
 
   await page.getByRole("button", { name: "重新开始导览" }).click();
   await expect(page.locator(".driver-popover")).toBeVisible();
   await expect(page.locator(".driver-popover")).toContainText("选择章节");
+});
+
+test("mobile help panel scrolls internally without moving the quiz pane", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile-only behavior");
+  await page.setViewportSize({ width: 393, height: 520 });
+
+  await page.getByRole("button", { name: "打开帮助" }).click();
+  await expect(page.getByRole("dialog", { name: "按钮和流程说明" })).toBeVisible();
+
+  const scrollState = await page.evaluate(() => {
+    const content = document.querySelector(".help-dialog-content");
+    const quizPane = document.querySelector(".quiz-pane");
+    if (!(content instanceof HTMLElement) || !(quizPane instanceof HTMLElement)) return null;
+    quizPane.scrollTop = 24;
+    const quizBefore = quizPane.scrollTop;
+    const helpBefore = content.scrollTop;
+    content.scrollTop = content.scrollHeight;
+    return {
+      helpAfter: content.scrollTop,
+      helpBefore,
+      helpClientHeight: content.clientHeight,
+      helpScrollHeight: content.scrollHeight,
+      quizAfter: quizPane.scrollTop,
+      quizBefore,
+    };
+  });
+
+  expect(scrollState).not.toBeNull();
+  expect(scrollState!.helpScrollHeight).toBeGreaterThan(scrollState!.helpClientHeight);
+  expect(scrollState!.helpAfter).toBeGreaterThan(scrollState!.helpBefore);
+  expect(scrollState!.quizAfter).toBe(scrollState!.quizBefore);
 });
 
 test("mobile layout can switch to the reference pane", async ({ page, isMobile }) => {

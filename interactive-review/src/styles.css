@@ -3,7 +3,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/noto-serif-sc-400.woff") format("woff");
+  src: url("@fontsource/noto-serif-sc/files/noto-serif-sc-chinese-simplified-400-normal.woff2")
+    format("woff2");
 }
 
 @font-face {
@@ -11,7 +12,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/noto-serif-sc-600.woff") format("woff");
+  src: url("@fontsource/noto-serif-sc/files/noto-serif-sc-chinese-simplified-600-normal.woff2")
+    format("woff2");
 }
 
 @font-face {
@@ -19,7 +21,8 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("../fonts/noto-serif-sc-700.woff") format("woff");
+  src: url("@fontsource/noto-serif-sc/files/noto-serif-sc-chinese-simplified-700-normal.woff2")
+    format("woff2");
 }
 
 @font-face {
@@ -27,7 +30,8 @@
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url("../fonts/noto-serif-sc-800.woff") format("woff");
+  src: url("@fontsource/noto-serif-sc/files/noto-serif-sc-chinese-simplified-800-normal.woff2")
+    format("woff2");
 }
 
 :root {
@@ -1057,6 +1061,10 @@ h1 {
   transform: translateY(-1px);
 }
 
+body.help-dialog-open {
+  overflow: hidden;
+}
+
 .help-overlay {
   position: fixed;
   inset: 0;
@@ -1065,17 +1073,31 @@ h1 {
   place-items: center;
   padding: 20px;
   background: rgba(7, 12, 20, 0.42);
+  overscroll-behavior: contain;
+  animation: help-overlay-enter 0.18s ease both;
+}
+
+.help-overlay.is-closing {
+  animation: help-overlay-exit 0.18s ease both;
 }
 
 .help-dialog {
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   width: min(720px, 100%);
   max-height: min(720px, calc(100dvh - 40px));
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--color-border-strong);
   background: var(--color-surface);
   color: var(--color-text);
   box-shadow: 0 24px 64px var(--shadow-floating);
+  transform-origin: calc(100% - 22px) calc(100% + 92px);
+  animation: help-dialog-enter 0.18s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.help-dialog.is-closing {
+  animation: help-dialog-exit 0.18s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 .help-dialog-header,
@@ -1096,9 +1118,13 @@ h1 {
 
 .help-dialog-content {
   display: grid;
+  min-height: 0;
   gap: 16px;
   overflow: auto;
   padding: 18px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 .help-section {
@@ -1120,16 +1146,37 @@ h1 {
 
 .help-section dl > div {
   display: grid;
-  grid-template-columns: minmax(92px, 0.34fr) minmax(0, 1fr);
-  gap: 10px;
+  grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1fr);
+  gap: 12px;
   padding: 10px 12px;
   border: 1px solid var(--color-border);
   background: var(--color-surface-soft);
 }
 
 .help-section dt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--color-accent-strong);
   font-weight: 800;
+}
+
+.help-item-icon {
+  display: grid;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-control-pill);
+  color: var(--color-accent-strong);
+}
+
+.help-item-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
 }
 
 .help-section dd {
@@ -1171,6 +1218,55 @@ h1 {
 
 .driver-active .learning-layout {
   touch-action: none;
+}
+
+@keyframes help-overlay-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes help-overlay-exit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes help-dialog-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(18px, 28px, 0) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes help-dialog-exit {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(18px, 28px, 0) scale(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .help-overlay,
+  .help-overlay.is-closing,
+  .help-dialog,
+  .help-dialog.is-closing {
+    animation: none;
+  }
 }
 
 @keyframes source-pulse {
@@ -1697,6 +1793,7 @@ h1 {
   .help-dialog {
     width: 100%;
     max-height: calc(100dvh - 16px);
+    transform-origin: calc(100% - 28px) calc(100% + 110px);
   }
 
   .help-dialog-header,
@@ -1715,8 +1812,23 @@ h1 {
 
   .help-section dl > div {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 6px;
     padding: 10px;
+  }
+
+  .help-section dt {
+    gap: 8px;
+  }
+
+  .help-item-icon {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .help-item-icon svg {
+    width: 17px;
+    height: 17px;
   }
 
   .help-dialog-actions {

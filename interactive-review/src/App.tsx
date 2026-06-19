@@ -97,6 +97,8 @@ type ResetSnapshot = {
   progress: ChapterProgress;
 };
 
+const HELP_DIALOG_ANIMATION_MS = 180;
+
 function normalizeProgress(progress?: Partial<ChapterProgress> | null): ChapterProgress {
   return {
     currentIndex: progress?.currentIndex ?? 0,
@@ -345,52 +347,91 @@ function ThemeMenu({
   );
 }
 
-const helpSections = [
+const helpSections: Array<{
+  title: string;
+  items: Array<{ term: string; description: string; icon: ReactNode }>;
+}> = [
   {
     title: "快速开始",
     items: [
-      ["选择章节", "移动端点顶部章节按钮，桌面端使用题库选择。"],
-      ["作答并提交", "选择答案后点中间提交按钮；判题后会显示解析和资料高亮。"],
-      ["查看资料", "移动端点底部右侧圆点或左右滑动进入资料页。"],
-      ["定位题目", "打开题号面板可跳题，题号区域上下滑动查看更多题号。"],
+      { term: "选择章节", description: "移动端点顶部章节按钮，桌面端使用题库选择。", icon: <BookOpen /> },
+      {
+        term: "作答并提交",
+        description: "选择答案后点中间提交按钮；判题后会显示解析和资料高亮。",
+        icon: <Send />,
+      },
+      { term: "查看资料", description: "移动端点底部右侧圆点或左右滑动进入资料页。", icon: <Eye /> },
+      {
+        term: "定位题目",
+        description: "打开题号面板可跳题，题号区域上下滑动查看更多题号。",
+        icon: <ListChecks />,
+      },
     ],
   },
   {
     title: "按钮说明",
     items: [
-      ["记不清", "书签图标用于标记拿不准的题目，再点一次取消标记。"],
-      ["提交/重置本题", "未判题时提交答案；判题后同一按钮变成重置本题。"],
-      ["一键批改", "提交所有已经选择答案但还没判题的题目。"],
-      ["题号面板：重置", "先进入多选状态，选中题号后再点重置确认。"],
-      ["题号面板：全部/撤销/取消", "全部重置整章；撤销恢复最近一次重置；取消退出多选重置。"],
-      ["常驻", "题号面板标题行的书本图标可让面板固定显示，再点一次取消。"],
-      ["夜间模式", "右下角月亮/太阳按钮快速切换主题；自动模式按 UTC+8 夜间时段启用。"],
+      { term: "记不清", description: "标记拿不准的题目，再点一次取消标记。", icon: <Bookmark /> },
+      {
+        term: "提交/重置本题",
+        description: "未判题时提交答案；判题后同一按钮变成重置本题。",
+        icon: <RotateCcw />,
+      },
+      { term: "一键批改", description: "提交所有已经选择答案但还没判题的题目。", icon: <ListChecks /> },
+      {
+        term: "题号面板：重置",
+        description: "先进入多选状态，选中题号后再点重置确认。",
+        icon: <RotateCcw />,
+      },
+      {
+        term: "题号面板：全部/撤销/取消",
+        description: "全部重置整章；撤销恢复最近一次重置；取消退出多选重置。",
+        icon: <Undo2 />,
+      },
+      {
+        term: "常驻",
+        description: "题号面板标题行的书本图标可让面板固定显示，再点一次取消。",
+        icon: <BookOpen />,
+      },
+      {
+        term: "夜间模式",
+        description: "右下角月亮/太阳按钮快速切换主题；自动模式按 UTC+8 夜间时段启用。",
+        icon: <Moon />,
+      },
     ],
   },
   {
     title: "移动端手势",
     items: [
-      ["左右滑动", "在答题区和资料区之间切换。"],
-      ["点击空白处", "收起已展开的章节菜单或题号面板。"],
-      ["题号区露出半行", "看到下一行题号露出一截时，表示这里可以继续上下滑动。"],
+      { term: "左右滑动", description: "在答题区和资料区之间切换。", icon: <ChevronRight /> },
+      { term: "点击空白处", description: "收起已展开的章节菜单或题号面板。", icon: <X /> },
+      {
+        term: "题号区露出半行",
+        description: "看到下一行题号露出一截时，表示这里可以继续上下滑动。",
+        icon: <ChevronDown />,
+      },
     ],
   },
 ];
 
 function HelpDialog({
+  isClosing,
   onClose,
   onStartTour,
 }: {
+  isClosing: boolean;
   onClose: () => void;
   onStartTour: () => void;
 }) {
   return (
-    <div className="help-overlay" onClick={onClose}>
+    <div className={`help-overlay ${isClosing ? "is-closing" : ""}`} onClick={onClose}>
       <section
         aria-labelledby="help-dialog-title"
         aria-modal="true"
-        className="help-dialog"
+        className={`help-dialog ${isClosing ? "is-closing" : ""}`}
         onClick={(event) => event.stopPropagation()}
+        onTouchMove={(event) => event.stopPropagation()}
+        onWheel={(event) => event.stopPropagation()}
         role="dialog"
       >
         <header className="help-dialog-header">
@@ -407,9 +448,14 @@ function HelpDialog({
             <section className="help-section" key={section.title}>
               <h3>{section.title}</h3>
               <dl>
-                {section.items.map(([term, description]) => (
+                {section.items.map(({ description, icon, term }) => (
                   <div key={term}>
-                    <dt>{term}</dt>
+                    <dt>
+                      <span className="help-item-icon" aria-hidden="true">
+                        {icon}
+                      </span>
+                      <span>{term}</span>
+                    </dt>
                     <dd>{description}</dd>
                   </div>
                 ))}
@@ -457,6 +503,8 @@ export default function App() {
   const [resetSelectionIds, setResetSelectionIds] = useState<number[]>([]);
   const [lastResetSnapshot, setLastResetSnapshot] = useState<ResetSnapshot | null>(null);
   const [helpOpen, setHelpOpen] = useState(false);
+  const [helpClosing, setHelpClosing] = useState(false);
+  const helpCloseTimeoutRef = useRef<number | null>(null);
 
   const currentChapter = selectableChapters.find((chapter) => chapter.id === selectedChapterId) ?? selectableChapters[0];
   const questions = currentChapter.questions;
@@ -525,12 +573,26 @@ export default function App() {
     if (!helpOpen) return;
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setHelpOpen(false);
+        closeHelpDialog();
       }
     }
     document.addEventListener("keydown", closeOnEscape);
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [helpOpen]);
+
+  useEffect(() => {
+    const dialogVisible = helpOpen || helpClosing;
+    document.body.classList.toggle("help-dialog-open", dialogVisible);
+    return () => document.body.classList.remove("help-dialog-open");
+  }, [helpClosing, helpOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (helpCloseTimeoutRef.current !== null) {
+        window.clearTimeout(helpCloseTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     function shouldKeepQuestionPanelOpen(element: HTMLDetailsElement) {
@@ -686,9 +748,28 @@ export default function App() {
     changeThemeMode(resolvedTheme === "dark" ? "light" : "dark");
   }
 
-  function replayOnboarding() {
+  function openHelpDialog() {
+    if (helpCloseTimeoutRef.current !== null) {
+      window.clearTimeout(helpCloseTimeoutRef.current);
+      helpCloseTimeoutRef.current = null;
+    }
+    setHelpClosing(false);
+    setHelpOpen(true);
+  }
+
+  function closeHelpDialog() {
+    if (!helpOpen || helpClosing) return;
+    setHelpClosing(true);
     setHelpOpen(false);
-    window.setTimeout(() => startOnboarding(), 80);
+    helpCloseTimeoutRef.current = window.setTimeout(() => {
+      setHelpClosing(false);
+      helpCloseTimeoutRef.current = null;
+    }, HELP_DIALOG_ANIMATION_MS);
+  }
+
+  function replayOnboarding() {
+    closeHelpDialog();
+    window.setTimeout(() => startOnboarding(), HELP_DIALOG_ANIMATION_MS + 60);
   }
 
   function toggleMenu(menuKey: string) {
@@ -1283,13 +1364,15 @@ export default function App() {
         aria-label="打开帮助"
         className="help-fab"
         data-tour="help-button"
-        onClick={() => setHelpOpen(true)}
+        onClick={openHelpDialog}
         title="打开帮助"
         type="button"
       >
         <HelpCircle size={22} />
       </button>
-      {helpOpen ? <HelpDialog onClose={() => setHelpOpen(false)} onStartTour={replayOnboarding} /> : null}
+      {helpOpen || helpClosing ? (
+        <HelpDialog isClosing={helpClosing} onClose={closeHelpDialog} onStartTour={replayOnboarding} />
+      ) : null}
       <footer className="site-footer">
         <span>
           联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>
