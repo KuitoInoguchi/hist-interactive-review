@@ -1,5 +1,6 @@
 import {
   BookOpen,
+  Bookmark,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -38,6 +39,7 @@ type ChapterProgress = {
   currentIndex: number;
   selectedByQuestion: Record<number, string[]>;
   attempts: Record<number, QuizAttempt>;
+  flaggedQuestionIds: number[];
   activeSourceIds: string[];
 };
 
@@ -47,12 +49,32 @@ type SavedQuizState = {
   referenceCollapsed: boolean;
 };
 
+function normalizeProgress(progress?: Partial<ChapterProgress> | null): ChapterProgress {
+  return {
+    currentIndex: progress?.currentIndex ?? 0,
+    selectedByQuestion: progress?.selectedByQuestion ?? {},
+    attempts: progress?.attempts ?? {},
+    flaggedQuestionIds: progress?.flaggedQuestionIds ?? [],
+    activeSourceIds: progress?.activeSourceIds ?? [],
+  };
+}
+
 function readSavedState(): Partial<SavedQuizState> {
   if (typeof window === "undefined") return {};
   const raw = window.localStorage.getItem(STORAGE_KEY);
   if (!raw) return {};
   try {
-    return JSON.parse(raw) as Partial<SavedQuizState>;
+    const parsed = JSON.parse(raw) as Partial<SavedQuizState>;
+    const progressByChapter = Object.fromEntries(
+      Object.entries(parsed.progressByChapter ?? {}).map(([chapterId, progress]) => [
+        chapterId,
+        normalizeProgress(progress),
+      ]),
+    );
+    return {
+      ...parsed,
+      progressByChapter,
+    };
   } catch {
     return {};
   }
@@ -64,7 +86,12 @@ function typeLabel(type: Question["type"]) {
   return "判断题";
 }
 
-function questionStatusClass(attempt: QuizAttempt | undefined, hasPendingSelection: boolean) {
+function questionStatusClass(
+  attempt: QuizAttempt | undefined,
+  hasPendingSelection: boolean,
+  isFlagged: boolean,
+) {
+  if (isFlagged) return attempt ? `is-flagged ${attempt.isCorrect ? "is-correct" : "is-wrong"}` : "is-flagged";
   if (!attempt && hasPendingSelection) return "is-pending";
   if (!attempt) return "";
   return attempt.isCorrect ? "is-correct" : "is-wrong";
@@ -75,6 +102,7 @@ function emptyProgress(): ChapterProgress {
     currentIndex: 0,
     selectedByQuestion: {},
     attempts: {},
+    flaggedQuestionIds: [],
     activeSourceIds: [],
   };
 }
@@ -130,7 +158,9 @@ export default function App() {
     : defaultChapterId;
   const [selectedChapterId, setSelectedChapterId] = useState(initialChapterId);
   const [progressByChapter, setProgressByChapter] = useState<Record<string, ChapterProgress>>(
-    savedState.progressByChapter ?? { [defaultChapterId]: emptyProgress() },
+    Object.keys(savedState.progressByChapter ?? {}).length > 0
+      ? (savedState.progressByChapter as Record<string, ChapterProgress>)
+      : { [defaultChapterId]: emptyProgress() },
   );
   const [referenceCollapsed, setReferenceCollapsed] = useState(savedState.referenceCollapsed ?? false);
   const [activeMobilePage, setActiveMobilePage] = useState<0 | 1>(0);
@@ -142,6 +172,8 @@ export default function App() {
   const currentIndex = Math.min(currentProgress.currentIndex, Math.max(questions.length - 1, 0));
   const selectedByQuestion = currentProgress.selectedByQuestion;
   const attempts = currentProgress.attempts;
+  const flaggedQuestionIds = currentProgress.flaggedQuestionIds;
+  const flaggedQuestionIdSet = new Set(flaggedQuestionIds);
   const activeSourceIds = currentProgress.activeSourceIds;
   const currentQuestion = questions[currentIndex];
   const currentAttempt = currentQuestion ? attempts[currentQuestion.id] : undefined;
@@ -149,6 +181,11 @@ export default function App() {
   const submittedCount = Object.keys(attempts).length;
   const correctCount = Object.values(attempts).filter((attempt) => attempt.isCorrect).length;
   const isAvailable = currentChapter.available && questions.length > 0;
+  const pendingReviewCount = questions.filter((question) => {
+    const answers = selectedByQuestion[question.id] ?? [];
+    return answers.length > 0 && !attempts[question.id];
+  }).length;
+  const currentQuestionFlagged = currentQuestion ? flaggedQuestionIdSet.has(currentQuestion.id) : false;
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -171,7 +208,7 @@ export default function App() {
 
   function updateCurrentProgress(updater: (progress: ChapterProgress) => ChapterProgress) {
     setProgressByChapter((previous) => {
-      const progress = previous[currentChapter.id] ?? emptyProgress();
+      const progress = normalizeProgress(previous[currentChapter.id]);
       return {
         ...previous,
         [currentChapter.id]: updater(progress),
@@ -229,6 +266,20 @@ export default function App() {
     }));
   }
 
+  function toggleCurrentQuestionFlag() {
+    if (!currentQuestion) return;
+
+    updateCurrentProgress((progress) => {
+      const isFlagged = progress.flaggedQuestionIds.includes(currentQuestion.id);
+      return {
+        ...progress,
+        flaggedQuestionIds: isFlagged
+          ? progress.flaggedQuestionIds.filter((questionId) => questionId !== currentQuestion.id)
+          : [...progress.flaggedQuestionIds, currentQuestion.id],
+      };
+    });
+  }
+
   function resetQuiz() {
     setProgressByChapter((previous) => ({
       ...previous,
@@ -246,6 +297,10 @@ export default function App() {
         activeSourceIds: attempt ? question.sourceIds : progress.activeSourceIds,
       };
     });
+  }
+
+  function gradeAllSelectedQuestions() {
+    updateCurrentProgress((progress) => gradeSelectedQuestions(questions, progress, currentQuestion?.id));
   }
 
   function scrollToMobilePage(page: 0 | 1, options: { focusReference?: boolean } = {}) {
@@ -381,6 +436,7 @@ export default function App() {
                   className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
                     attempts[question.id],
                     (selectedByQuestion[question.id] ?? []).length > 0,
+                    flaggedQuestionIdSet.has(question.id),
                   )}`}
                   key={question.id}
                   onClick={() => jumpToQuestion(index)}
@@ -390,6 +446,17 @@ export default function App() {
                 </button>
               ))}
             </nav>
+            <div className="batch-actions">
+              <button
+                className="secondary-button"
+                disabled={pendingReviewCount === 0}
+                onClick={gradeAllSelectedQuestions}
+                type="button"
+              >
+                <Trophy size={18} />
+                一键批改
+              </button>
+            </div>
           </details>
         ) : null}
 
@@ -436,6 +503,14 @@ export default function App() {
             >
               <ChevronLeft size={18} />
               <span className="action-label">上一题</span>
+            </button>
+            <button
+              className={`secondary-button flag-button ${currentQuestionFlagged ? "is-active" : ""}`}
+              onClick={toggleCurrentQuestionFlag}
+              type="button"
+            >
+              <Bookmark size={18} />
+              {currentQuestionFlagged ? "取消记不清" : "记不清"}
             </button>
             <button
               className="primary-button"

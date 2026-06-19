@@ -216,13 +216,83 @@ function sectionSourceIds(referenceUnits, sectionNumbers) {
   return [...new Set(ids)];
 }
 
+function sectionText(referenceUnits, sectionNo) {
+  return referenceUnits
+    .filter((unit) => unit.sectionNo === sectionNo)
+    .map((unit) => stripMarkdown(unit.plainText ?? ""))
+    .join(" ");
+}
+
+function matchTerms(text) {
+  const normalized = stripMarkdown(text);
+  const directMatches = normalized.match(/《[^》]+》|[\u4e00-\u9fff]{2,}|[A-Za-z][A-Za-z.\-]*|\d{4}年|\d{1,2}月\d{1,2}日|\d+/g) ?? [];
+  const terms = new Set();
+
+  for (const match of directMatches) {
+    const term = match.trim();
+    if (term.length < 2) continue;
+    terms.add(term);
+
+    if (/^[\u4e00-\u9fff]{4,}$/.test(term)) {
+      for (let size = 2; size <= Math.min(4, term.length); size += 1) {
+        for (let index = 0; index + size <= term.length; index += 1) {
+          terms.add(term.slice(index, index + size));
+        }
+      }
+    }
+  }
+
+  return [...terms];
+}
+
+function scoreSectionForQuestion(referenceUnits, sectionNo, text) {
+  const candidateText = sectionText(referenceUnits, sectionNo);
+  let score = 0;
+
+  for (const term of matchTerms(text)) {
+    if (candidateText.includes(term)) {
+      score += term.length;
+    }
+  }
+
+  return score;
+}
+
+function bestSourceIdsForQuestion(referenceUnits, sectionNumbers, stem, options, correctAnswers, explanation) {
+  const candidates = sectionNumbers
+    .map((sectionNo) => {
+      const units = referenceUnits.filter((unit) => unit.sectionNo === sectionNo);
+      const preferred = units.find((unit) => unit.kind === "listItem") ?? units.find((unit) => unit.kind === "heading");
+      return preferred ? { sectionNo, sourceId: preferred.id } : null;
+    })
+    .filter(Boolean);
+
+  if (candidates.length === 0) return [];
+
+  const matchedOptionLabels = options
+    .filter((option) => correctAnswers.includes(option.id))
+    .map((option) => option.label);
+  const matchText = [stem, ...matchedOptionLabels, explanation].join(" ");
+
+  const scored = candidates
+    .map((candidate) => ({
+      ...candidate,
+      score: scoreSectionForQuestion(referenceUnits, candidate.sectionNo, matchText),
+    }))
+    .sort((left, right) => right.score - left.score);
+
+  const topScore = scored[0]?.score ?? 0;
+  const selected = topScore > 0 ? scored.filter((candidate) => candidate.score === topScore) : scored.slice(0, 1);
+
+  return [...new Set(selected.map((candidate) => candidate.sourceId))];
+}
+
 function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
   const grouped = { single: [], multiple: [], judge: [] };
 
   for (const block of iterQuizBlocks(markdown)) {
     const questions = parseQuestions(block.before);
     const answers = parseAnswers(block.answerPart);
-    const sourceIds = sectionSourceIds(referenceUnits, block.targetSections);
 
     for (const localId of [...questions.keys()].sort((a, b) => a - b)) {
       const question = questions.get(localId);
@@ -232,11 +302,20 @@ function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
         throw new Error(`Type mismatch in ${chapterLabel} block for question ${localId}`);
       }
       const normalized = normalizeQuestion(`**${localId}. ${question.body}`, question.type);
+      const correctAnswers = answerIdsFor(question.type, answer.body);
+      const sourceIds = bestSourceIdsForQuestion(
+        referenceUnits,
+        block.targetSections,
+        normalized.stem,
+        normalized.options,
+        correctAnswers,
+        stripMarkdown(answer.body),
+      );
       grouped[question.type].push({
         type: question.type,
         stem: normalized.stem,
         options: normalized.options,
-        correctAnswers: answerIdsFor(question.type, answer.body),
+        correctAnswers,
         explanation: stripMarkdown(answer.body),
         sourceIds,
       });

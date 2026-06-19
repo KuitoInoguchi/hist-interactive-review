@@ -184,6 +184,10 @@ describe("generated quiz data", () => {
         expect(referenceIds.has(sourceId), `chapter 5 Q${question.id} ${sourceId}`).toBe(true);
       }
     }
+
+    expect(chapterFiveQuestions.find((question) => question.id === 56)?.sourceIds).toEqual(["ref-c5-s88-l591-list"]);
+    expect(chapterFiveQuestions.find((question) => question.id === 58)?.sourceIds).toEqual(["ref-c5-s89-l601-list"]);
+    expect(chapterFiveQuestions.find((question) => question.id === 59)?.sourceIds).toEqual(["ref-c5-s90-l608-list"]);
   });
 
   it("provides download links for completed chapters and reference material", () => {
