@@ -27,11 +27,15 @@ export function ReferencePane({ activeSourceIds, collapsed, downloads, focusRequ
 
     container
       .querySelectorAll(".active-source")
-      .forEach((element) => element.classList.remove("active-source"));
+      .forEach((element) => {
+        element.classList.remove("active-source");
+        element.removeAttribute("data-tour");
+      });
 
     for (const sourceId of activeSourceIds) {
       const target = container.querySelector(`#${CSS.escape(sourceId)}`);
       target?.classList.add("active-source");
+      target?.setAttribute("data-tour", "active-source");
     }
 
     const focusActiveSource = () => {

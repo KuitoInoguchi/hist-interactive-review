@@ -40,7 +40,7 @@ import {
   resolveTheme,
   themeModeLabels,
 } from "./lib/theme";
-import { shouldAutoStartOnboarding, startOnboarding } from "./lib/onboarding";
+import { shouldAutoStartOnboarding, startOnboarding, type OnboardingApi } from "./lib/onboarding";
 import type { Question, QuizAttempt } from "./types";
 
 const chaptersPayload = chaptersData as {
@@ -95,6 +95,19 @@ type SavedQuizState = {
 type ResetSnapshot = {
   chapterId: string;
   progress: ChapterProgress;
+};
+
+type OnboardingSnapshot = {
+  activeMobilePage: 0 | 1;
+  gradingMode: GradingMode;
+  lastResetSnapshot: ResetSnapshot | null;
+  openMenu: string | null;
+  progressByChapter: Record<string, ChapterProgress>;
+  questionPanelPinned: boolean;
+  referenceCollapsed: boolean;
+  resetSelectionIds: number[];
+  resetSelectionMode: boolean;
+  selectedChapterId: string;
 };
 
 const HELP_DIALOG_ANIMATION_MS = 180;
@@ -177,6 +190,8 @@ function PopupMenu({
   menuKey,
   onToggle,
   openMenu,
+  tourContent,
+  tourTrigger,
 }: {
   children: ReactNode;
   className?: string;
@@ -185,6 +200,8 @@ function PopupMenu({
   menuKey: string;
   onToggle: (menuKey: string) => void;
   openMenu: string | null;
+  tourContent?: string;
+  tourTrigger?: string;
 }) {
   const isOpen = openMenu === menuKey;
   return (
@@ -193,13 +210,14 @@ function PopupMenu({
         aria-controls={id}
         aria-expanded={isOpen}
         className="secondary-button popup-summary"
+        data-tour={tourTrigger}
         onClick={() => onToggle(menuKey)}
         type="button"
       >
         {label}
       </button>
       {isOpen ? (
-        <div className="popup-options" id={id} role="menu">
+        <div className="popup-options" data-tour={tourContent} id={id} role="menu">
           {children}
         </div>
       ) : null}
@@ -236,6 +254,8 @@ function DownloadMenu({
       menuKey={menuKey}
       onToggle={onToggle}
       openMenu={openMenu}
+      tourContent="download-menu-content"
+      tourTrigger="download-menu-trigger"
     >
       {markdown ? (
         <a download href={assetUrl(markdown)!} role="menuitem">
@@ -282,10 +302,13 @@ function ModeMenu({
       menuKey={menuKey}
       onToggle={onToggle}
       openMenu={openMenu}
+      tourContent="mode-menu-content"
+      tourTrigger="mode-menu-trigger"
     >
       {(Object.keys(modeLabels) as GradingMode[]).map((mode) => (
         <button
           className={`mode-option ${gradingMode === mode ? "is-active" : ""}`}
+          data-tour={`mode-option-${mode}`}
           key={mode}
           onClick={() => onChange(mode)}
           role="menuitem"
@@ -505,6 +528,7 @@ export default function App() {
   const [helpOpen, setHelpOpen] = useState(false);
   const [helpClosing, setHelpClosing] = useState(false);
   const helpCloseTimeoutRef = useRef<number | null>(null);
+  const onboardingSnapshotRef = useRef<OnboardingSnapshot | null>(null);
 
   const currentChapter = selectableChapters.find((chapter) => chapter.id === selectedChapterId) ?? selectableChapters[0];
   const questions = currentChapter.questions;
@@ -528,6 +552,10 @@ export default function App() {
   const isXuetongChapter = currentChapter.id === xuetongChapter.id;
   const resolvedTheme = resolveTheme(themeMode, themeNow);
   const canUndoReset = lastResetSnapshot?.chapterId === currentChapter.id;
+  const demoChapter = selectableChapters.find(
+    (chapter) => chapter.available && chapter.questions.some((question) => question.sourceIds.length > 0),
+  );
+  const demoQuestion = demoChapter?.questions.find((question) => question.sourceIds.length > 0);
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -564,7 +592,7 @@ export default function App() {
   useEffect(() => {
     if (!isAvailable || !shouldAutoStartOnboarding()) return;
     const timeout = window.setTimeout(() => {
-      startOnboarding();
+      startGuidedOnboarding();
     }, 800);
     return () => window.clearTimeout(timeout);
   }, [isAvailable]);
@@ -767,9 +795,272 @@ export default function App() {
     }, HELP_DIALOG_ANIMATION_MS);
   }
 
+  function cloneProgressByChapter(progress: Record<string, ChapterProgress>): Record<string, ChapterProgress> {
+    return Object.fromEntries(
+      Object.entries(progress).map(([chapterId, chapterProgress]) => [
+        chapterId,
+        {
+          currentIndex: chapterProgress.currentIndex,
+          selectedByQuestion: { ...chapterProgress.selectedByQuestion },
+          attempts: { ...chapterProgress.attempts },
+          flaggedQuestionIds: [...chapterProgress.flaggedQuestionIds],
+          activeSourceIds: [...chapterProgress.activeSourceIds],
+        },
+      ]),
+    );
+  }
+
+  function cloneResetSnapshot(snapshot: ResetSnapshot | null): ResetSnapshot | null {
+    if (!snapshot) return null;
+    return {
+      chapterId: snapshot.chapterId,
+      progress: {
+        currentIndex: snapshot.progress.currentIndex,
+        selectedByQuestion: { ...snapshot.progress.selectedByQuestion },
+        attempts: { ...snapshot.progress.attempts },
+        flaggedQuestionIds: [...snapshot.progress.flaggedQuestionIds],
+        activeSourceIds: [...snapshot.progress.activeSourceIds],
+      },
+    };
+  }
+
+  function saveOnboardingSnapshot() {
+    if (onboardingSnapshotRef.current) return;
+    onboardingSnapshotRef.current = {
+      activeMobilePage,
+      gradingMode,
+      lastResetSnapshot: cloneResetSnapshot(lastResetSnapshot),
+      openMenu,
+      progressByChapter: cloneProgressByChapter(progressByChapter),
+      questionPanelPinned,
+      referenceCollapsed,
+      resetSelectionIds: [...resetSelectionIds],
+      resetSelectionMode,
+      selectedChapterId,
+    };
+  }
+
+  function resetDemoProgress(
+    question: Question,
+    baseProgress: ChapterProgress = normalizeProgress(progressByChapter[demoChapter?.id ?? ""]),
+  ): ChapterProgress {
+    const selectedByQuestion = { ...baseProgress.selectedByQuestion };
+    const attempts = { ...baseProgress.attempts };
+    delete selectedByQuestion[question.id];
+    delete attempts[question.id];
+    return {
+      ...baseProgress,
+      currentIndex: demoChapter?.questions.findIndex((item) => item.id === question.id) ?? 0,
+      selectedByQuestion,
+      attempts,
+      flaggedQuestionIds: baseProgress.flaggedQuestionIds.filter((questionId) => questionId !== question.id),
+      activeSourceIds: [],
+    };
+  }
+
+  function prepareOnboardingDemo() {
+    if (!demoChapter || !demoQuestion) return;
+    saveOnboardingSnapshot();
+    setSelectedChapterId(demoChapter.id);
+    setProgressByChapter((previous) => ({
+      ...previous,
+      [demoChapter.id]: resetDemoProgress(demoQuestion, normalizeProgress(previous[demoChapter.id])),
+    }));
+    setGradingMode("manual");
+    setReferenceCollapsed(false);
+    setActiveMobilePage(0);
+    setOpenMenu(null);
+    setQuestionPanelPinned(false);
+    setResetSelectionMode(false);
+    setResetSelectionIds([]);
+    setLastResetSnapshot(null);
+    document
+      .querySelectorAll<HTMLDetailsElement>("details.expandable-menu[open]")
+      .forEach((element) => element.removeAttribute("open"));
+  }
+
+  function updateDemoProgress(updater: (progress: ChapterProgress) => ChapterProgress) {
+    if (!demoChapter) return;
+    setProgressByChapter((previous) => {
+      const progress = normalizeProgress(previous[demoChapter.id]);
+      return {
+        ...previous,
+        [demoChapter.id]: updater(progress),
+      };
+    });
+  }
+
+  function selectOnboardingDemoAnswer() {
+    if (!demoQuestion) return;
+    const answer = demoQuestion.correctAnswers[0] ?? demoQuestion.options[0]?.id;
+    if (!answer) return;
+    updateDemoProgress((progress) => {
+      const nextProgress = {
+        ...progress,
+        selectedByQuestion: { ...progress.selectedByQuestion, [demoQuestion.id]: [answer] },
+      };
+      if (gradingMode !== "instant" || demoQuestion.type === "multiple") return nextProgress;
+      return {
+        ...nextProgress,
+        attempts: {
+          ...nextProgress.attempts,
+          [demoQuestion.id]: {
+            questionId: demoQuestion.id,
+            selectedAnswers: [answer],
+            isCorrect: areAnswersEqual([answer], demoQuestion.correctAnswers),
+            submittedAt: new Date().toISOString(),
+          },
+        },
+        activeSourceIds: demoQuestion.sourceIds,
+      };
+    });
+  }
+
+  function selectAndGradeOnboardingDemoAnswer() {
+    if (!demoQuestion) return;
+    const answer = demoQuestion.correctAnswers[0] ?? demoQuestion.options[0]?.id;
+    if (!answer) return;
+    updateDemoProgress((progress) => ({
+      ...progress,
+      selectedByQuestion: { ...progress.selectedByQuestion, [demoQuestion.id]: [answer] },
+      attempts: {
+        ...progress.attempts,
+        [demoQuestion.id]: {
+          questionId: demoQuestion.id,
+          selectedAnswers: [answer],
+          isCorrect: areAnswersEqual([answer], demoQuestion.correctAnswers),
+          submittedAt: new Date().toISOString(),
+        },
+      },
+      activeSourceIds: demoQuestion.sourceIds,
+    }));
+  }
+
+  function submitOnboardingDemoAnswer() {
+    if (!demoQuestion) return;
+    const fallbackAnswer = demoQuestion.correctAnswers[0] ?? demoQuestion.options[0]?.id;
+    if (!fallbackAnswer) return;
+    updateDemoProgress((progress) => {
+      const answers = progress.selectedByQuestion[demoQuestion.id] ?? [fallbackAnswer];
+      if (progress.attempts[demoQuestion.id]) {
+        return {
+          ...progress,
+          activeSourceIds: demoQuestion.sourceIds,
+        };
+      }
+      return {
+        ...progress,
+        selectedByQuestion: { ...progress.selectedByQuestion, [demoQuestion.id]: answers },
+        attempts: {
+          ...progress.attempts,
+          [demoQuestion.id]: {
+            questionId: demoQuestion.id,
+            selectedAnswers: answers,
+            isCorrect: areAnswersEqual(answers, demoQuestion.correctAnswers),
+            submittedAt: new Date().toISOString(),
+          },
+        },
+        activeSourceIds: demoQuestion.sourceIds,
+      };
+    });
+  }
+
+  function resetOnboardingDemoQuestion() {
+    if (!demoChapter || !demoQuestion) return;
+    setProgressByChapter((previous) => ({
+      ...previous,
+      [demoChapter.id]: resetDemoProgress(demoQuestion, normalizeProgress(previous[demoChapter.id])),
+    }));
+  }
+
+  function toggleOnboardingDemoFlag() {
+    if (!demoQuestion) return;
+    updateDemoProgress((progress) => {
+      const isFlagged = progress.flaggedQuestionIds.includes(demoQuestion.id);
+      return {
+        ...progress,
+        flaggedQuestionIds: isFlagged
+          ? progress.flaggedQuestionIds.filter((questionId) => questionId !== demoQuestion.id)
+          : [...progress.flaggedQuestionIds, demoQuestion.id],
+      };
+    });
+  }
+
+  function showOnboardingKnowledgePoint() {
+    if (!demoQuestion) return;
+    updateDemoProgress((progress) => ({
+      ...progress,
+      activeSourceIds: demoQuestion.sourceIds,
+    }));
+    scrollToMobilePage(1, { focusReference: true });
+  }
+
+  function openOnboardingDownloadMenu() {
+    const menuKey = window.matchMedia("(max-width: 760px)").matches ? "mobile-download" : "desktop-download";
+    openVisibleChapterMenu();
+    setOpenMenu(menuKey);
+  }
+
+  function openOnboardingModeMenu() {
+    const menuKey = window.matchMedia("(max-width: 760px)").matches ? "mobile-mode" : "desktop-mode";
+    openVisibleChapterMenu();
+    setOpenMenu(menuKey);
+  }
+
+  function openVisibleChapterMenu() {
+    const isMobile = window.matchMedia("(max-width: 760px)").matches;
+    const selector = isMobile ? ".mobile-course-menu" : ".chapter-selector-panel";
+    document.querySelector<HTMLDetailsElement>(selector)?.setAttribute("open", "");
+  }
+
+  function restoreOnboardingSnapshot() {
+    const snapshot = onboardingSnapshotRef.current;
+    if (!snapshot) return;
+    onboardingSnapshotRef.current = null;
+    setSelectedChapterId(snapshot.selectedChapterId);
+    setProgressByChapter(snapshot.progressByChapter);
+    setReferenceCollapsed(snapshot.referenceCollapsed);
+    setActiveMobilePage(snapshot.activeMobilePage);
+    setGradingMode(snapshot.gradingMode);
+    setOpenMenu(snapshot.openMenu);
+    setQuestionPanelPinned(snapshot.questionPanelPinned);
+    setResetSelectionMode(snapshot.resetSelectionMode);
+    setResetSelectionIds(snapshot.resetSelectionIds);
+    setLastResetSnapshot(snapshot.lastResetSnapshot);
+    window.setTimeout(() => {
+      const layout = layoutRef.current;
+      layout?.scrollTo({
+        left: snapshot.activeMobilePage * layout.clientWidth,
+        behavior: "instant",
+      });
+    }, 0);
+  }
+
+  function createOnboardingApi(): OnboardingApi {
+    return {
+      openDownloadMenu: openOnboardingDownloadMenu,
+      openModeMenu: openOnboardingModeMenu,
+      prepareDemo: prepareOnboardingDemo,
+      resetDemoQuestion: resetOnboardingDemoQuestion,
+      restoreAfterTour: restoreOnboardingSnapshot,
+      selectDemoAnswer: selectOnboardingDemoAnswer,
+      selectAndGradeDemoAnswer: selectAndGradeOnboardingDemoAnswer,
+      setDemoGradingMode: changeGradingMode,
+      showDemoKnowledgePoint: showOnboardingKnowledgePoint,
+      submitDemoAnswer: submitOnboardingDemoAnswer,
+      toggleDemoFlag: toggleOnboardingDemoFlag,
+    };
+  }
+
+  function startGuidedOnboarding() {
+    if (!demoChapter || !demoQuestion) return;
+    prepareOnboardingDemo();
+    window.setTimeout(() => startOnboarding({ api: createOnboardingApi() }), 0);
+  }
+
   function replayOnboarding() {
     closeHelpDialog();
-    window.setTimeout(() => startOnboarding(), HELP_DIALOG_ANIMATION_MS + 60);
+    window.setTimeout(() => startGuidedOnboarding(), HELP_DIALOG_ANIMATION_MS + 60);
   }
 
   function toggleMenu(menuKey: string) {
@@ -1211,9 +1502,14 @@ export default function App() {
             {currentQuestion.options.map((option) => {
               const selected = selectedAnswers.includes(option.id);
               const optionType = currentQuestion.type === "multiple" ? "checkbox" : "radio";
+              const isDemoAnswerOption =
+                currentChapter.id === demoChapter?.id &&
+                currentQuestion.id === demoQuestion?.id &&
+                option.id === (demoQuestion.correctAnswers[0] ?? demoQuestion.options[0]?.id);
               return (
                 <label
                   className={`option-row ${selected ? "is-selected" : ""}`}
+                  data-tour={isDemoAnswerOption ? "demo-answer-option" : undefined}
                   key={option.id}
                 >
                   <input
@@ -1243,6 +1539,7 @@ export default function App() {
             <button
               aria-label={currentQuestionFlagged ? "取消记不清" : "记不清"}
               className={`secondary-button flag-button ${currentQuestionFlagged ? "is-active" : ""}`}
+              data-tour="flag-button"
               onClick={toggleCurrentQuestionFlag}
               title={currentQuestionFlagged ? "取消记不清" : "记不清"}
               type="button"
@@ -1251,6 +1548,7 @@ export default function App() {
             </button>
             <button
               className="primary-button"
+              data-tour="submit-button"
               disabled={!currentAttempt && selectedAnswers.length === 0}
               onClick={currentAttempt ? resetCurrentQuestion : submitCurrentQuestion}
               type="button"
@@ -1279,7 +1577,10 @@ export default function App() {
           </div>
 
           {currentAttempt ? (
-            <aside className={`feedback-card ${currentAttempt.isCorrect ? "is-correct" : "is-wrong"}`}>
+            <aside
+              className={`feedback-card ${currentAttempt.isCorrect ? "is-correct" : "is-wrong"}`}
+              data-tour="feedback-card"
+            >
               <div className="feedback-title">
                 <Trophy size={18} />
                 {currentAttempt.isCorrect ? "回答正确" : "回答错误"}
@@ -1295,6 +1596,7 @@ export default function App() {
               {currentQuestion.sourceIds.length > 0 ? (
                 <button
                   className="secondary-button knowledge-button"
+                  data-tour="knowledge-button"
                   onClick={() => scrollToMobilePage(1, { focusReference: true })}
                   type="button"
                 >

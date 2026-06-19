@@ -3,12 +3,47 @@ import "driver.js/dist/driver.css";
 
 export const ONBOARDING_STORAGE_KEY = "interactive-review:onboarding-v1-completed";
 
+export type OnboardingApi = {
+  openDownloadMenu: () => void;
+  openModeMenu: () => void;
+  prepareDemo: () => void;
+  resetDemoQuestion: () => void;
+  restoreAfterTour: () => void;
+  selectAndGradeDemoAnswer: () => void;
+  selectDemoAnswer: () => void;
+  setDemoGradingMode: (mode: "instant" | "manual") => void;
+  showDemoKnowledgePoint: () => void;
+  submitDemoAnswer: () => void;
+  toggleDemoFlag: () => void;
+};
+
 function isMobileViewport() {
   return window.matchMedia("(max-width: 760px)").matches;
 }
 
 function getTourElement(selector: string): Element {
-  return document.querySelector(selector) ?? document.body;
+  const elements = Array.from(document.querySelectorAll(selector));
+  return (
+    elements.find((element) => {
+      const rect = element.getBoundingClientRect();
+      const style = window.getComputedStyle(element);
+      return rect.width > 0 && rect.height > 0 && style.visibility !== "hidden" && style.display !== "none";
+    }) ??
+    elements[0] ??
+    document.body
+  );
+}
+
+function deferTourRefresh(activeDriver: Driver, delay = 80) {
+  window.setTimeout(() => activeDriver.refresh(), delay);
+}
+
+function advanceAfterAction(activeDriver: Driver, action?: () => void, delay = 40) {
+  action?.();
+  window.setTimeout(() => {
+    activeDriver.moveNext();
+    deferTourRefresh(activeDriver);
+  }, delay);
 }
 
 function closeFloatingDetails() {
@@ -36,82 +71,198 @@ function showReferencePane() {
   layout.scrollTo({ left: layout.clientWidth, behavior: "smooth" });
 }
 
-function createTourSteps(): DriveStep[] {
+function openChapterMenu() {
+  const menu = getTourElement('[data-tour="chapter-menu"]');
+  if (menu instanceof HTMLDetailsElement) {
+    menu.setAttribute("open", "");
+  }
+}
+
+function createTourSteps(api: OnboardingApi): DriveStep[] {
   return [
     {
-      element: () => getTourElement('[data-tour="chapter-menu"]'),
-      popover: {
-        title: "选择章节",
-        description: "从这里切换章节、判题模式、主题和下载资料。移动端点章节标题即可展开菜单。",
-        side: "bottom",
-        align: "start",
-      },
-    },
-    {
       element: () => getTourElement('[data-tour="question-card"]'),
+      onHighlightStarted: () => {
+        closeFloatingDetails();
+        showQuizPane();
+      },
       popover: {
-        title: "阅读题目并作答",
-        description: "题干和选项都在答题卡中。单选、判断题点选一个答案；多选题可以选择多个选项。",
+        title: "用一个题目快速试一遍",
+        description: "导览会临时切到一题可定位资料的演示题。结束或跳过后，会恢复你原来的章节、题号和作答进度。",
         side: "top",
         align: "center",
       },
     },
     {
-      element: () => getTourElement('[data-tour="question-actions"]'),
+      element: () => getTourElement('[data-tour="demo-answer-option"]'),
       popover: {
-        title: "提交与标记",
-        description: "中间按钮用于提交；判题后会变成重置本题。书签图标表示记不清，一键批改会提交所有已选择但未判题的题目。",
+        title: "先选一个答案",
+        description: "这一步演示普通作答。点下一步后，系统会替你选择演示答案。",
         side: "top",
         align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          advanceAfterAction(activeDriver, api.selectDemoAnswer);
+        },
       },
     },
     {
-      element: () => getTourElement('[data-tour="reference-entry"]'),
-      onHighlightStarted: showReferencePane,
+      element: () => getTourElement('[data-tour="submit-button"]'),
       popover: {
-        title: "查看资料",
-        description: "移动端可点击底部圆点或左右滑动进入资料页；判题后也可以点“查看本题知识点”跳到高亮段落。",
+        title: "提交后立即定位知识点",
+        description: "提交后不仅会显示对错，还会把这道题对应的资料段落高亮出来。",
         side: "top",
         align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          advanceAfterAction(activeDriver, api.submitDemoAnswer);
+        },
       },
     },
     {
-      element: () => getTourElement('[data-tour="question-panel"]'),
+      element: () => getTourElement('[data-tour="feedback-card"]'),
+      popover: {
+        title: "判题反馈",
+        description: isMobileViewport()
+          ? "移动端可以点“查看本题知识点”，直接跳到资料页里的高亮段落。"
+          : "桌面端右侧资料会同步高亮这道题对应的知识点。",
+        side: "top",
+        align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          api.showDemoKnowledgePoint();
+          window.setTimeout(() => {
+            activeDriver.moveNext();
+            deferTourRefresh(activeDriver, 420);
+          }, 80);
+        },
+      },
+    },
+    {
+      element: () => getTourElement('[data-tour="active-source"]'),
+      onHighlightStarted: () => {
+        showReferencePane();
+      },
+      popover: {
+        title: "对应知识点会高亮",
+        description: "高亮段落就是这道题命中的复习资料位置。刷题时可以把题目和知识点直接对上。",
+        side: "bottom",
+        align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          showQuizPane();
+          api.openModeMenu();
+          window.setTimeout(() => {
+            activeDriver.moveNext();
+            deferTourRefresh(activeDriver, 220);
+          }, 80);
+        },
+      },
+    },
+    {
+      element: () => getTourElement('[data-tour="mode-menu-trigger"]'),
       onHighlightStarted: () => {
         showQuizPane();
-        openQuestionPanel();
+        api.openModeMenu();
       },
       popover: {
-        title: "题号面板",
-        description: "这里可以快速跳题。题号区域露出下一行的一截，表示还能继续上下滑动查看更多题号。",
+        title: "切换判题模式",
+        description: "这里可以在“提交后判题”和“点选即判”之间切换。下一步会先切到点选即判。",
         side: "bottom",
         align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          advanceAfterAction(activeDriver);
+        },
       },
     },
     {
-      element: () => getTourElement('[data-tour="question-panel-tools"]'),
-      onHighlightStarted: openQuestionPanel,
+      element: () => getTourElement('[data-tour="mode-option-instant"]'),
+      onHighlightStarted: openChapterMenu,
       popover: {
-        title: "题号面板工具",
-        description: "重置可先选择题目再确认；全部会重置整章；撤销能恢复最近一次重置。书本图标可让题号面板常驻。",
-        side: "left",
+        title: "点选即判",
+        description: "这个模式下，单选和判断题点选后会立刻判题。下一步会重置演示题并试一次。",
+        side: "bottom",
         align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          advanceAfterAction(activeDriver, () => {
+            api.setDemoGradingMode("instant");
+            api.resetDemoQuestion();
+            api.selectAndGradeDemoAnswer();
+          });
+        },
       },
     },
     {
-      element: () => getTourElement('[data-tour="theme-toggle"]'),
+      element: () => getTourElement('[data-tour="mode-option-manual"]'),
+      onHighlightStarted: openChapterMenu,
       popover: {
-        title: "夜间模式",
-        description: "右下角月亮/太阳按钮可以快速切换主题。默认会按 UTC+8 的 20:00 到 06:00 自动启用夜间模式。",
-        side: "left",
+        title: "回到提交后判题",
+        description: "如果想先选完、再统一提交，就用提交后判题。下一步会切回来继续演示其他工具。",
+        side: "bottom",
+        align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          advanceAfterAction(activeDriver, () => {
+            api.setDemoGradingMode("manual");
+            closeFloatingDetails();
+          });
+        },
+      },
+    },
+    {
+      element: () => getTourElement('[data-tour="flag-button"]'),
+      onHighlightStarted: showQuizPane,
+      popover: {
+        title: "标记记不准",
+        description: "遇到拿不稳的题，可以用书签标记，之后在题号面板里会保留这个状态。",
+        side: "top",
+        align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          advanceAfterAction(activeDriver, api.toggleDemoFlag);
+        },
+      },
+    },
+    {
+      element: () => getTourElement('[data-tour="submit-button"]'),
+      popover: {
+        title: "重置本题",
+        description: "题目提交后，中间按钮会变成重置本题，用来重新作答当前题。",
+        side: "top",
+        align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          advanceAfterAction(activeDriver, () => {
+            api.resetDemoQuestion();
+            api.openDownloadMenu();
+          });
+        },
+      },
+    },
+    {
+      element: () => getTourElement('[data-tour="download-menu-trigger"]'),
+      onHighlightStarted: () => {
+        showQuizPane();
+        api.openDownloadMenu();
+      },
+      popover: {
+        title: "下载资料",
+        description: "章节习题和复习资料可以从下载菜单取走，方便离线整理。",
+        side: "bottom",
+        align: "center",
+        onNextClick: (_element, _step, { driver: activeDriver }) => {
+          advanceAfterAction(activeDriver, api.openDownloadMenu);
+        },
+      },
+    },
+    {
+      element: () => getTourElement('[data-tour="download-menu-content"]'),
+      popover: {
+        title: "选择下载格式",
+        description: "有 md 和 PDF 两类入口；某些章节若资料暂缺，会在这里直接提示。",
+        side: "bottom",
         align: "center",
       },
     },
     {
       element: () => getTourElement('[data-tour="help-button"]'),
+      onHighlightStarted: closeFloatingDetails,
       popover: {
-        title: "随时查看帮助",
-        description: "忘记按钮含义时，点问号打开帮助面板；也可以从那里重新播放这段导览。",
+        title: "随时回来看",
+        description: "忘记某个按钮含义时，点右下角问号打开帮助面板，也可以从那里重新播放导览。",
         side: "left",
         align: "center",
       },
@@ -127,13 +278,14 @@ export function markOnboardingCompleted() {
   window.localStorage.setItem(ONBOARDING_STORAGE_KEY, "true");
 }
 
-export function startOnboarding(options: { onFinish?: () => void } = {}): Driver {
+export function startOnboarding(options: { api: OnboardingApi; onFinish?: () => void }): Driver {
   showQuizPane();
   let finished = false;
   function finishOnce() {
     if (finished) return;
     finished = true;
     closeFloatingDetails();
+    options.api.restoreAfterTour();
     markOnboardingCompleted();
     options.onFinish?.();
   }
@@ -157,7 +309,7 @@ export function startOnboarding(options: { onFinish?: () => void } = {}): Driver
     showProgress: true,
     stagePadding: 6,
     stageRadius: 2,
-    steps: createTourSteps(),
+    steps: createTourSteps(options.api),
   });
   tour.drive();
   return tour;

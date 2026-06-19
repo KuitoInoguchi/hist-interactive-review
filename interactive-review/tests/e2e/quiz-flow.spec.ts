@@ -19,6 +19,11 @@ async function closeQuestionPanelIfMobile(page: Page, isMobile: boolean) {
   }
 }
 
+async function advanceTour(page: Page, title: string) {
+  await page.locator(".driver-popover-next-btn").click({ force: true });
+  await expect(page.locator(".driver-popover")).toContainText(title);
+}
+
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
   await page.evaluate(() => window.localStorage.clear());
@@ -342,7 +347,7 @@ test("first visit automatically starts onboarding and stores completion", async 
   await page.reload();
 
   await expect(page.locator(".driver-popover")).toBeVisible();
-  await expect(page.locator(".driver-popover")).toContainText("选择章节");
+  await expect(page.locator(".driver-popover")).toContainText("用一个题目快速试一遍");
   await page.locator(".driver-popover-close-btn").click();
   await expect
     .poll(() => page.evaluate(() => window.localStorage.getItem("interactive-review:onboarding-v1-completed")))
@@ -362,7 +367,55 @@ test("help panel explains controls and can replay onboarding", async ({ page }) 
 
   await page.getByRole("button", { name: "重新开始导览" }).click();
   await expect(page.locator(".driver-popover")).toBeVisible();
-  await expect(page.locator(".driver-popover")).toContainText("选择章节");
+  await expect(page.locator(".driver-popover")).toContainText("用一个题目快速试一遍");
+});
+
+test("interactive onboarding demos quiz features and restores progress", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop-only state restoration path");
+
+  await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").filter({ hasText: "第二章习题" }).click();
+  await openQuestionPanel(page);
+  await page.getByRole("button", { name: "3", exact: true }).click();
+  await page.locator(".option-row").filter({ hasText: "《天朝田亩制度》" }).click();
+
+  await page.getByRole("button", { name: "打开帮助" }).click();
+  await page.getByRole("button", { name: "重新开始导览" }).click();
+
+  await expect(page.locator(".driver-popover")).toContainText("用一个题目快速试一遍");
+  await expect(page.getByRole("heading", { name: "第一章习题" })).toBeVisible();
+
+  await advanceTour(page, "先选一个答案");
+  await advanceTour(page, "提交后立即定位知识点");
+  await expect(page.locator(".option-row.is-selected")).toContainText("资本-帝国主义侵略势力");
+
+  await advanceTour(page, "判题反馈");
+  await expect(page.getByText("回答正确")).toBeVisible();
+  await expect(page.locator("#ref-c1-s6-l46-list")).toHaveClass(/active-source/);
+
+  await advanceTour(page, "对应知识点会高亮");
+  await expect(page.locator('[data-tour="active-source"]')).toHaveClass(/active-source/);
+
+  await advanceTour(page, "切换判题模式");
+  await advanceTour(page, "点选即判");
+  await advanceTour(page, "回到提交后判题");
+  await expect(page.locator(".summary-grid div").filter({ hasText: "已提交" })).toContainText("1");
+
+  await advanceTour(page, "标记记不准");
+  await advanceTour(page, "重置本题");
+  await expect(page.getByRole("button", { name: "取消记不清" })).toBeVisible();
+
+  await advanceTour(page, "下载资料");
+  await expect(page.getByRole("button", { name: /提交答案/ })).toBeDisabled();
+
+  await advanceTour(page, "选择下载格式");
+  await expect(page.locator('[data-tour="download-menu-content"]')).toContainText("下载为 md 格式");
+
+  await page.locator(".driver-popover-close-btn").click();
+  await expect(page.getByRole("heading", { name: "第二章习题" })).toBeVisible();
+  await expect(page.locator(".question-meta")).toContainText("3 / 131");
+  await expect(page.locator(".option-row.is-selected")).toContainText("《天朝田亩制度》");
+  await expect(page.locator(".summary-grid div").filter({ hasText: "已提交" })).toContainText("0");
 });
 
 test("mobile help panel scrolls internally without moving the quiz pane", async ({ page, isMobile }) => {
@@ -394,6 +447,25 @@ test("mobile help panel scrolls internally without moving the quiz pane", async 
   expect(scrollState!.helpScrollHeight).toBeGreaterThan(scrollState!.helpClientHeight);
   expect(scrollState!.helpAfter).toBeGreaterThan(scrollState!.helpBefore);
   expect(scrollState!.quizAfter).toBe(scrollState!.quizBefore);
+});
+
+test("mobile onboarding points to the knowledge button and reference highlight", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile-only behavior");
+
+  await page.getByRole("button", { name: "打开帮助" }).click();
+  await page.getByRole("button", { name: "重新开始导览" }).click();
+
+  await advanceTour(page, "先选一个答案");
+  await advanceTour(page, "提交后立即定位知识点");
+  await advanceTour(page, "判题反馈");
+  await expect(page.locator('[data-tour="knowledge-button"]')).toBeVisible();
+
+  await advanceTour(page, "对应知识点会高亮");
+  await expect(page.locator(".mobile-page-dots button").nth(1)).toHaveClass(/is-active/);
+  await expect(page.locator('[data-tour="active-source"]')).toHaveClass(/active-source/);
+
+  await page.locator(".driver-popover-close-btn").click();
+  await expect(page.locator(".mobile-page-dots button").nth(0)).toHaveClass(/is-active/);
 });
 
 test("mobile layout can switch to the reference pane", async ({ page, isMobile }) => {

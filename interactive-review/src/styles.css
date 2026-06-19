@@ -1196,6 +1196,8 @@ body.help-dialog-open {
   background: var(--color-surface);
   color: var(--color-text);
   box-shadow: 0 18px 48px var(--shadow-floating);
+  z-index: 10002;
+  pointer-events: auto;
 }
 
 .app-tour-popover .driver-popover-title {
