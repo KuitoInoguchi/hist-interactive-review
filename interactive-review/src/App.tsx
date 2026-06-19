@@ -1,5 +1,17 @@
-import { BookOpen, ChevronLeft, ChevronRight, Download, RotateCcw, Send, Trophy } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import {
+  BookOpen,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  Eye,
+  ListChecks,
+  RotateCcw,
+  Send,
+  SlidersHorizontal,
+  Trophy,
+} from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ReferencePane } from "./components/ReferencePane";
 import chaptersData from "./generated/chapters.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
@@ -67,44 +79,6 @@ function emptyProgress(): ChapterProgress {
   };
 }
 
-function gradeSelectedQuestions(
-  questions: Question[],
-  progress: ChapterProgress,
-  activeQuestionId?: number,
-): ChapterProgress {
-  const pendingQuestions = questions.filter((question) => {
-    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
-    return selectedAnswers.length > 0 && !progress.attempts[question.id];
-  });
-
-  if (pendingQuestions.length === 0) {
-    return progress;
-  }
-
-  const nextAttempts = { ...progress.attempts };
-  const submittedAt = new Date().toISOString();
-
-  for (const question of pendingQuestions) {
-    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
-    nextAttempts[question.id] = {
-      questionId: question.id,
-      selectedAnswers,
-      isCorrect: areAnswersEqual(selectedAnswers, question.correctAnswers),
-      submittedAt,
-    };
-  }
-
-  const activeQuestion = activeQuestionId
-    ? pendingQuestions.find((question) => question.id === activeQuestionId)
-    : undefined;
-
-  return {
-    ...progress,
-    attempts: nextAttempts,
-    activeSourceIds: activeQuestion ? activeQuestion.sourceIds : progress.activeSourceIds,
-  };
-}
-
 function assetUrl(path: string | null): string | null {
   if (!path) return null;
   const base = import.meta.env.BASE_URL;
@@ -149,6 +123,7 @@ function DownloadMenu({
 }
 
 export default function App() {
+  const layoutRef = useRef<HTMLDivElement>(null);
   const savedState = useMemo(readSavedState, []);
   const initialChapterId = chapters.some((chapter) => chapter.id === savedState.selectedChapterId)
     ? (savedState.selectedChapterId as string)
@@ -158,6 +133,8 @@ export default function App() {
     savedState.progressByChapter ?? { [defaultChapterId]: emptyProgress() },
   );
   const [referenceCollapsed, setReferenceCollapsed] = useState(savedState.referenceCollapsed ?? false);
+  const [activeMobilePage, setActiveMobilePage] = useState<0 | 1>(0);
+  const [referenceFocusRequest, setReferenceFocusRequest] = useState(0);
 
   const currentChapter = chapters.find((chapter) => chapter.id === selectedChapterId) ?? chapters[0];
   const questions = currentChapter.questions;
@@ -172,10 +149,6 @@ export default function App() {
   const submittedCount = Object.keys(attempts).length;
   const correctCount = Object.values(attempts).filter((attempt) => attempt.isCorrect).length;
   const isAvailable = currentChapter.available && questions.length > 0;
-  const pendingReviewCount = questions.filter((question) => {
-    const answers = selectedByQuestion[question.id] ?? [];
-    return answers.length > 0 && !attempts[question.id];
-  }).length;
 
   const groupedCounts = useMemo(() => {
     return questions.reduce(
@@ -275,14 +248,66 @@ export default function App() {
     });
   }
 
-  function gradeAllSelectedQuestions() {
-    updateCurrentProgress((progress) => gradeSelectedQuestions(questions, progress, currentQuestion?.id));
+  function scrollToMobilePage(page: 0 | 1, options: { focusReference?: boolean } = {}) {
+    setReferenceCollapsed(false);
+    setActiveMobilePage(page);
+    if (options.focusReference) {
+      setReferenceFocusRequest((request) => request + 1);
+    }
+    const layout = layoutRef.current;
+    if (!layout) return;
+    layout.scrollTo({
+      left: page * layout.clientWidth,
+      behavior: "smooth",
+    });
+  }
+
+  function handleLayoutScroll() {
+    const layout = layoutRef.current;
+    if (!layout) return;
+    const page = layout.scrollLeft > layout.clientWidth / 2 ? 1 : 0;
+    setActiveMobilePage(page);
   }
 
   return (
     <main className="app-shell">
-      <div className="learning-layout">
+      <div className="learning-layout" ref={layoutRef} onScroll={handleLayoutScroll}>
       <section className="quiz-pane">
+        <details className="mobile-course-menu">
+          <summary>
+            <span>{currentChapter.title}</span>
+            <ChevronDown size={16} />
+          </summary>
+          <div className="mobile-course-popover">
+            <section className="mobile-menu-group" aria-label="选择章节">
+              <p>选择章节</p>
+              <div className="mobile-chapter-list">
+                {chapters.map((chapter) => (
+                  <button
+                    className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""} ${
+                      chapter.available ? "" : "is-disabled"
+                    }`}
+                    key={chapter.id}
+                    onClick={() => chooseChapter(chapter.id)}
+                    type="button"
+                  >
+                    <span>{chapter.title}</span>
+                  </button>
+                ))}
+              </div>
+            </section>
+            <button className="secondary-button mobile-mode-button" type="button">
+              <SlidersHorizontal size={17} />
+              判题模式：提交后判题
+            </button>
+            <DownloadMenu
+              label="下载习题"
+              markdown={currentChapter.downloads.markdown}
+              pdf={currentChapter.downloads.pdf}
+            />
+          </div>
+        </details>
+
         <header className="app-header">
           <div>
             <p className="eyebrow">中国近现代史纲要</p>
@@ -342,6 +367,32 @@ export default function App() {
           </div>
         </section>
 
+        {isAvailable ? (
+          <details className="question-nav-panel">
+            <summary>
+              <ListChecks size={18} />
+              <span>
+                题号面板 · {currentIndex + 1}/{questions.length}
+              </span>
+            </summary>
+            <nav className="question-nav" aria-label="题号导航">
+              {questions.map((question, index) => (
+                <button
+                  className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
+                    attempts[question.id],
+                    (selectedByQuestion[question.id] ?? []).length > 0,
+                  )}`}
+                  key={question.id}
+                  onClick={() => jumpToQuestion(index)}
+                  type="button"
+                >
+                  {question.id}
+                </button>
+              ))}
+            </nav>
+          </details>
+        ) : null}
+
         {isAvailable && currentQuestion ? (
         <section className="question-card">
           <div className="question-meta">
@@ -384,7 +435,7 @@ export default function App() {
               type="button"
             >
               <ChevronLeft size={18} />
-              上一题
+              <span className="action-label">上一题</span>
             </button>
             <button
               className="primary-button"
@@ -393,7 +444,7 @@ export default function App() {
               type="button"
             >
               <Send size={18} />
-              提交答案
+              <span className="action-label">提交答案</span>
             </button>
             <button
               className="secondary-button"
@@ -401,7 +452,7 @@ export default function App() {
               onClick={() => jumpToQuestion(Math.min(questions.length - 1, currentIndex + 1))}
               type="button"
             >
-              下一题
+              <span className="action-label">下一题</span>
               <ChevronRight size={18} />
             </button>
           </div>
@@ -420,6 +471,16 @@ export default function App() {
                   ? `已在右侧资料中高亮 ${currentQuestion.sourceIds.length} 处对应知识点。`
                   : "当前题暂未绑定资料段落。"}
               </p>
+              {currentQuestion.sourceIds.length > 0 ? (
+                <button
+                  className="secondary-button knowledge-button"
+                  onClick={() => scrollToMobilePage(1, { focusReference: true })}
+                  type="button"
+                >
+                  <Eye size={18} />
+                  查看本题知识点
+                </button>
+              ) : null}
             </aside>
           ) : null}
         </section>
@@ -430,36 +491,6 @@ export default function App() {
           </section>
         )}
 
-        {isAvailable ? (
-        <>
-          <nav className="question-nav" aria-label="题号导航">
-            {questions.map((question, index) => (
-              <button
-                className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
-                  attempts[question.id],
-                  (selectedByQuestion[question.id] ?? []).length > 0,
-                )}`}
-                key={question.id}
-                onClick={() => jumpToQuestion(index)}
-                type="button"
-              >
-                {question.id}
-              </button>
-            ))}
-          </nav>
-          <div className="batch-actions">
-            <button
-              className="secondary-button"
-              disabled={pendingReviewCount === 0}
-              onClick={gradeAllSelectedQuestions}
-              type="button"
-            >
-              <Trophy size={18} />
-              一键批改
-            </button>
-          </div>
-        </>
-        ) : null}
       </section>
       <section className="reference-shell">
         <button
@@ -474,8 +505,23 @@ export default function App() {
           activeSourceIds={activeSourceIds}
           collapsed={referenceCollapsed}
           downloads={chaptersPayload.referenceDownloads}
+          focusRequest={referenceFocusRequest}
         />
       </section>
+      </div>
+      <div className="mobile-page-dots" aria-label="页面位置">
+        <button
+          aria-label="答题区域"
+          className={activeMobilePage === 0 ? "is-active" : ""}
+          onClick={() => scrollToMobilePage(0)}
+          type="button"
+        />
+        <button
+          aria-label="资料区域"
+          className={activeMobilePage === 1 ? "is-active" : ""}
+          onClick={() => scrollToMobilePage(1, { focusReference: true })}
+          type="button"
+        />
       </div>
       <footer className="site-footer">
         <span>
