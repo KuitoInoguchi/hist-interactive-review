@@ -4,6 +4,13 @@ function questionChip(page: Page, questionId: number) {
   return page.locator(".question-nav .question-chip").nth(questionId - 1);
 }
 
+async function openQuestionPanel(page: Page) {
+  const panel = page.locator(".question-nav-panel");
+  if ((await panel.getAttribute("open")) === null) {
+    await panel.locator("summary").click();
+  }
+}
+
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
   await page.evaluate(() => window.localStorage.clear());
@@ -40,6 +47,7 @@ test("progress survives refresh and reset clears the attempt", async ({ page, is
 test("question chip becomes pending after selecting an unsubmitted answer", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop chapter selector behavior");
 
+  await openQuestionPanel(page);
   const questionThreeChip = questionChip(page, 3);
 
   await questionThreeChip.click();
@@ -49,6 +57,7 @@ test("question chip becomes pending after selecting an unsubmitted answer", asyn
 });
 
 test("flagged questions stay highlighted even after grading", async ({ page }) => {
+  await openQuestionPanel(page);
   const questionOneChip = questionChip(page, 1);
   const flagButton = page.getByRole("button", { name: "记不清" });
 
@@ -85,6 +94,7 @@ test("flagging works with legacy saved progress from older chapters", async ({ p
   await page.reload();
 
   const flagButton = page.getByRole("button", { name: "记不清" });
+  await openQuestionPanel(page);
   const questionOneChip = page.getByRole("button", { name: "1", exact: true });
 
   await flagButton.click();
@@ -98,7 +108,9 @@ test("flagging works with legacy saved progress from older chapters", async ({ p
 test("batch grading submits all selected unanswered questions", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop question navigation behavior");
 
-  const batchButton = page.locator(".batch-actions").getByRole("button", { name: /一键批改/ });
+  await expect(page.locator(".question-nav-panel")).not.toHaveAttribute("open", "");
+  await openQuestionPanel(page);
+  const batchButton = page.locator(".question-actions").getByRole("button", { name: /一键批改/ });
 
   await expect(batchButton).toBeDisabled();
 
@@ -122,6 +134,7 @@ test("batch grading submits all selected unanswered questions", async ({ page, i
 test("switching to a graded question syncs reference highlight", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop reference pane behavior");
 
+  await openQuestionPanel(page);
   await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
   await expect(page.locator("#ref-c1-s6-l46-list")).toHaveClass(/active-source/);
@@ -141,6 +154,7 @@ test("switching to a graded question syncs reference highlight", async ({ page, 
 test("switching graded questions scrolls the reference pane without moving the page", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop page scroll behavior");
 
+  await openQuestionPanel(page);
   await page.locator(".option-row").filter({ hasText: "资本-帝国主义侵略势力" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
   await questionChip(page, 2).click();
@@ -225,6 +239,7 @@ test("chapter 5 question mapping jumps to the matched source block", async ({ pa
 
   await page.locator(".chapter-selector-panel > summary").click();
   await page.locator(".chapter-option").filter({ hasText: "第五章习题" }).click();
+  await openQuestionPanel(page);
 
   await page.getByRole("button", { name: "56", exact: true }).click();
   await page.locator(".option-row").filter({ hasText: "必须坚持独立自主解决中国革命实际问题" }).click();

@@ -125,44 +125,6 @@ function emptyProgress(): ChapterProgress {
   };
 }
 
-function gradeSelectedQuestions(
-  questions: Question[],
-  progress: ChapterProgress,
-  activeQuestionId?: number,
-): ChapterProgress {
-  const pendingQuestions = questions.filter((question) => {
-    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
-    return selectedAnswers.length > 0 && !progress.attempts[question.id];
-  });
-
-  if (pendingQuestions.length === 0) {
-    return progress;
-  }
-
-  const nextAttempts = { ...progress.attempts };
-  const submittedAt = new Date().toISOString();
-
-  for (const question of pendingQuestions) {
-    const selectedAnswers = progress.selectedByQuestion[question.id] ?? [];
-    nextAttempts[question.id] = {
-      questionId: question.id,
-      selectedAnswers,
-      isCorrect: areAnswersEqual(selectedAnswers, question.correctAnswers),
-      submittedAt,
-    };
-  }
-
-  const activeQuestion = activeQuestionId
-    ? pendingQuestions.find((question) => question.id === activeQuestionId)
-    : undefined;
-
-  return {
-    ...progress,
-    attempts: nextAttempts,
-    activeSourceIds: activeQuestion ? activeQuestion.sourceIds : progress.activeSourceIds,
-  };
-}
-
 function assetUrl(path: string | null): string | null {
   if (!path) return null;
   const base = import.meta.env.BASE_URL;
@@ -334,10 +296,6 @@ export default function App() {
   const submittedCount = Object.keys(attempts).length;
   const correctCount = Object.values(attempts).filter((attempt) => attempt.isCorrect).length;
   const isAvailable = currentChapter.available && questions.length > 0;
-  const pendingReviewCount = questions.filter((question) => {
-    const answers = selectedByQuestion[question.id] ?? [];
-    return answers.length > 0 && !attempts[question.id];
-  }).length;
   const currentQuestionFlagged = currentQuestion ? flaggedQuestionIdSet.has(currentQuestion.id) : false;
   const isXuetongChapter = currentChapter.id === xuetongChapter.id;
 
@@ -517,10 +475,6 @@ export default function App() {
     });
   }
 
-  function gradeAllSelectedQuestions() {
-    updateCurrentProgress((progress) => gradeSelectedQuestions(questions, progress, currentQuestion?.id));
-  }
-
   function scrollToMobilePage(page: 0 | 1, options: { focusReference?: boolean } = {}) {
     setReferenceCollapsed(false);
     setActiveMobilePage(page);
@@ -668,7 +622,7 @@ export default function App() {
         </section>
 
         {isAvailable ? (
-          <details className="question-nav-panel expandable-menu" open>
+          <details className="question-nav-panel expandable-menu">
             <summary>
               <ListChecks size={18} />
               <span>
@@ -692,17 +646,6 @@ export default function App() {
                 </button>
               ))}
             </nav>
-            <div className="batch-actions">
-              <button
-                className="secondary-button"
-                disabled={pendingReviewCount === 0}
-                onClick={gradeAllSelectedQuestions}
-                type="button"
-              >
-                <Trophy size={18} />
-                一键批改
-              </button>
-            </div>
           </details>
         ) : null}
 
