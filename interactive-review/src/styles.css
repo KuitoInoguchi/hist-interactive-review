@@ -878,21 +878,25 @@ h1 {
     position: relative;
     z-index: 20;
     display: block;
-    margin-bottom: 8px;
-    border: 1px solid #d9e1ee;
-    background: #ffffff;
-    box-shadow: 0 6px 18px rgba(24, 34, 53, 0.06);
+    margin-bottom: 6px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .mobile-course-menu > summary {
-    display: flex;
-    min-height: 40px;
+    display: inline-flex;
+    min-height: 32px;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
+    max-width: 100%;
+    padding: 0 12px;
+    border: 1px solid #d9e1ee;
+    background: #ffffff;
     color: #18395f;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
     list-style: none;
   }
@@ -903,6 +907,11 @@ h1 {
 
   .mobile-course-menu[open] > summary svg {
     transform: rotate(180deg);
+  }
+
+  .mobile-course-menu > summary svg {
+    width: 15px;
+    height: 15px;
   }
 
   .mobile-course-popover {
@@ -982,26 +991,36 @@ h1 {
   }
 
   .question-nav-panel {
-    margin: 0 0 8px;
-    border-color: #d9e1ee;
+    margin: 0 0 6px;
+    border: 0;
+    background: transparent;
   }
 
   .question-nav-panel > summary {
-    min-height: 38px;
+    width: max-content;
+    max-width: 100%;
+    min-height: 32px;
+    margin: 0 auto;
+    padding: 0 12px;
+    border: 1px solid #d9e1ee;
+    background: #ffffff;
     font-size: 15px;
   }
 
   .question-nav-toggle {
-    width: 22px;
-    height: 22px;
-    padding: 4px;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
   }
 
   .question-nav-panel .question-nav {
     grid-template-columns: repeat(auto-fill, minmax(34px, 1fr));
     max-height: 168px;
     overflow: auto;
+    margin-top: 6px;
     padding: 8px;
+    border: 1px solid #d9e1ee;
+    background: #ffffff;
     gap: 6px;
   }
 
