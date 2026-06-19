@@ -202,10 +202,10 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await expect(page.locator("#ref-c2-s26-l163-list")).toHaveClass(/active-source/);
 
   await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
-  await expect(page.locator('a[href="/docs/chapter-2/chapter-2.md"]')).toContainText("下载为 md 格式");
-  await expect(page.locator('a[href="/docs/chapter-2/chapter-2.pdf"]')).toContainText("下载为 PDF 格式");
-  await expect(page.locator('a[href="/docs/中国近现代史纲要 复习.md"]')).toContainText("下载为 md 格式");
-  await expect(page.locator('a[href="/docs/中国近现代史纲要复4习.pdf"]')).toContainText("下载为 PDF 格式");
+  await expect(page.locator('a[href$="/docs/chapter-2/chapter-2.md"]')).toContainText("下载为 md 格式");
+  await expect(page.locator('a[href$="/docs/chapter-2/chapter-2.pdf"]')).toContainText("下载为 PDF 格式");
+  await expect(page.locator('a[href$="/docs/中国近现代史纲要 复习.md"]')).toContainText("下载为 md 格式");
+  await expect(page.locator('a[href$="/docs/中国近现代史纲要复4习.pdf"]')).toContainText("下载为 PDF 格式");
 
   await page.keyboard.press("Escape");
   await page.locator(".chapter-selector-panel > summary").click();
@@ -213,7 +213,7 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await expect(page.getByRole("heading", { name: "第三章习题" })).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("85");
   await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
-  await expect(page.locator('a[href="/docs/chapter-3/chapter-3.md"]')).toContainText("下载为 md 格式");
+  await expect(page.locator('a[href$="/docs/chapter-3/chapter-3.md"]')).toContainText("下载为 md 格式");
   await page.keyboard.press("Escape");
   await page.locator(".option-row").filter({ hasText: "颁布《钦定宪法大纲》" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
@@ -225,7 +225,7 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await expect(page.getByRole("heading", { name: "第四章习题" })).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("84");
   await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
-  await expect(page.locator('a[href="/docs/chapter-4/chapter-4.md"]')).toContainText("下载为 md 格式");
+  await expect(page.locator('a[href$="/docs/chapter-4/chapter-4.md"]')).toContainText("下载为 md 格式");
   await page.keyboard.press("Escape");
   await page.locator(".option-row").filter({ hasText: "《青年杂志》" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
@@ -237,7 +237,7 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await expect(page.getByRole("heading", { name: "第五章习题" })).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("84");
   await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
-  await expect(page.locator('a[href="/docs/chapter-5/chapter-5.md"]')).toContainText("下载为 md 格式");
+  await expect(page.locator('a[href$="/docs/chapter-5/chapter-5.md"]')).toContainText("下载为 md 格式");
   await page.keyboard.press("Escape");
   await page.locator(".option-row").filter({ hasText: "张学良宣布东北易帜" }).click();
   await page.getByRole("button", { name: /提交答案/ }).click();
