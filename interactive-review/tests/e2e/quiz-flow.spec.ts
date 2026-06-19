@@ -124,8 +124,22 @@ test("chapter switching, coming-soon chapters, and download links work", async (
     await page.getByLabel("选择章节").click();
   }
   await page.locator(".chapter-option").filter({ hasText: "第三章习题" }).click();
-  await expect(page.getByText("敬请期待")).toBeVisible();
   await expect(page.getByRole("heading", { name: "第三章习题" })).toBeVisible();
+  await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("85");
+  await expect(page.locator('a[href="/docs/chapter-3/chapter-3.md"]')).toContainText("下载为 md 格式");
+  await page.locator(".option-row").filter({ hasText: "颁布《钦定宪法大纲》" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+  await expect(page.locator("#ref-c3-s46-l291-list")).toHaveClass(/active-source/);
+
+  await page.locator(".chapter-option").filter({ hasText: "第四章习题" }).click();
+  await expect(page.getByRole("heading", { name: "第四章习题" })).toBeVisible();
+  await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("84");
+  await expect(page.locator('a[href="/docs/chapter-4/chapter-4.md"]')).toContainText("下载为 md 格式");
+  await page.locator(".option-row").filter({ hasText: "《青年杂志》" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+  await expect(page.locator("#ref-c4-s63-l410-list")).toHaveClass(/active-source/);
 
   if (isMobile) {
     await page.getByLabel("选择章节").click();
