@@ -11,6 +11,8 @@ const chapterTwoSource = resolve(rootDir, "reference", "chapter_2.md");
 const chapterThreeSource = resolve(rootDir, "reference", "chapter_3.md");
 const chapterFourSource = resolve(rootDir, "reference", "chapter_4.md");
 const chapterFiveSource = resolve(rootDir, "reference", "chapter_5.md");
+const chapterSixSource = resolve(rootDir, "reference", "chapter_6.md");
+const chapterSevenSource = resolve(rootDir, "reference", "chapter_7.md");
 const referenceSource = resolve(rootDir, "reference", "中国近现代史纲要 复习.md");
 
 const chapterOneQuestionsPath = resolve(generatedDir, "questions.json");
@@ -131,8 +133,22 @@ function stripPromptTail(text) {
     "需要继续",
     " 准备好进入",
     "准备好进入",
+    " 准备好开启",
+    "准备好开启",
     " 接下来你想",
     "接下来你想",
+    " 恭喜你",
+    "恭喜你",
+    " 🎉",
+    "🎉",
+    " 这12道题",
+    "这12道题",
+    " 这25道题",
+    "这25道题",
+    " 这部分的逻辑",
+    "这部分的逻辑",
+    " 我们接下来",
+    "我们接下来",
     " ---",
     "---",
   ];
@@ -164,7 +180,18 @@ function parseAnswers(answerText) {
 }
 
 function targetSectionsForBlock(blockText) {
-  return [...blockText.matchAll(/第(\d+)题/g)].map((match) => Number(match[1]));
+  const sectionNumbers = [];
+  for (const match of blockText.matchAll(/第(\d+(?:\s*[、,，]\s*\d+)+)题/g)) {
+    sectionNumbers.push(...match[1].split(/[、,，]/).map((value) => Number(value.trim())));
+  }
+  for (const match of blockText.matchAll(/第(\d+)(?:\s*[-—–至]\s*(\d+))?题/g)) {
+    const start = Number(match[1]);
+    const end = Number(match[2] ?? match[1]);
+    for (let sectionNo = start; sectionNo <= end; sectionNo += 1) {
+      sectionNumbers.push(sectionNo);
+    }
+  }
+  return [...new Set(sectionNumbers)];
 }
 
 function iterQuizBlocks(markdown) {
@@ -331,12 +358,13 @@ function sourceIdsForQuestion(question, answer, normalized, referenceUnits, sect
   return [...new Set(selected)];
 }
 
-function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
+function parseGeneratedChapter(markdown, referenceUnits, chapterLabel, blockSectionOverrides = {}) {
   const grouped = { single: [], multiple: [], judge: [] };
 
-  for (const block of iterQuizBlocks(markdown)) {
+  for (const [blockIndex, block] of iterQuizBlocks(markdown).entries()) {
     const questions = parseQuestions(block.before);
     const answers = parseAnswers(block.answerPart);
+    const sectionNumbers = block.targetSections.length > 0 ? block.targetSections : blockSectionOverrides[blockIndex + 1] ?? [];
 
     for (const localId of [...questions.keys()].sort((a, b) => a - b)) {
       const question = questions.get(localId);
@@ -347,7 +375,7 @@ function parseGeneratedChapter(markdown, referenceUnits, chapterLabel) {
       }
       const normalized = normalizeQuestion(`**${localId}. ${question.body}`, question.type);
       const correctAnswers = answerIdsFor(question.type, answer.body);
-      const sourceIds = sourceIdsForQuestion(question, answer, normalized, referenceUnits, block.targetSections);
+      const sourceIds = sourceIdsForQuestion(question, answer, normalized, referenceUnits, sectionNumbers);
       grouped[question.type].push({
         type: question.type,
         stem: normalized.stem,
@@ -423,6 +451,10 @@ const chapterTwo = parseGeneratedChapter(readFileSync(chapterTwoSource, "utf8"),
 const chapterThree = parseGeneratedChapter(readFileSync(chapterThreeSource, "utf8"), referenceUnits, "chapter 3");
 const chapterFour = parseGeneratedChapter(readFileSync(chapterFourSource, "utf8"), referenceUnits, "chapter 4");
 const chapterFive = parseGeneratedChapter(readFileSync(chapterFiveSource, "utf8"), referenceUnits, "chapter 5");
+const chapterSix = parseGeneratedChapter(readFileSync(chapterSixSource, "utf8"), referenceUnits, "chapter 6", {
+  4: [99, 100, 101],
+});
+const chapterSeven = parseGeneratedChapter(readFileSync(chapterSevenSource, "utf8"), referenceUnits, "chapter 7");
 
 if (chapterTwo.questions.length !== 131) {
   throw new Error(`Unexpected chapter 2 count: ${chapterTwo.questions.length}`);
@@ -436,23 +468,35 @@ if (chapterFour.questions.length !== 84) {
 if (chapterFive.questions.length !== 84) {
   throw new Error(`Unexpected chapter 5 count: ${chapterFive.questions.length}`);
 }
+if (chapterSix.questions.length !== 203) {
+  throw new Error(`Unexpected chapter 6 count: ${chapterSix.questions.length}`);
+}
+if (chapterSeven.questions.length !== 77) {
+  throw new Error(`Unexpected chapter 7 count: ${chapterSeven.questions.length}`);
+}
 
 const chapterOneDir = resolve(docsDir, "chapter-1");
 const chapterTwoDir = resolve(docsDir, "chapter-2");
 const chapterThreeDir = resolve(docsDir, "chapter-3");
 const chapterFourDir = resolve(docsDir, "chapter-4");
 const chapterFiveDir = resolve(docsDir, "chapter-5");
+const chapterSixDir = resolve(docsDir, "chapter-6");
+const chapterSevenDir = resolve(docsDir, "chapter-7");
 mkdirSync(chapterOneDir, { recursive: true });
 mkdirSync(chapterTwoDir, { recursive: true });
 mkdirSync(chapterThreeDir, { recursive: true });
 mkdirSync(chapterFourDir, { recursive: true });
 mkdirSync(chapterFiveDir, { recursive: true });
+mkdirSync(chapterSixDir, { recursive: true });
+mkdirSync(chapterSevenDir, { recursive: true });
 
 const chapterOneMarkdownDownload = resolve(chapterOneDir, "chapter-1.md");
 const chapterTwoMarkdownDownload = resolve(chapterTwoDir, "chapter-2.md");
 const chapterThreeMarkdownDownload = resolve(chapterThreeDir, "chapter-3.md");
 const chapterFourMarkdownDownload = resolve(chapterFourDir, "chapter-4.md");
 const chapterFiveMarkdownDownload = resolve(chapterFiveDir, "chapter-5.md");
+const chapterSixMarkdownDownload = resolve(chapterSixDir, "chapter-6.md");
+const chapterSevenMarkdownDownload = resolve(chapterSevenDir, "chapter-7.md");
 writeFileSync(chapterOneMarkdownDownload, readFileSync(chapterOneSource, "utf8"));
 writeFileSync(
   chapterTwoMarkdownDownload,
@@ -469,6 +513,14 @@ writeFileSync(
 writeFileSync(
   chapterFiveMarkdownDownload,
   serializeChapterMarkdown("第五章 选择题 判断题", chapterFive.grouped, chapterFive.questions),
+);
+writeFileSync(
+  chapterSixMarkdownDownload,
+  serializeChapterMarkdown("第六章 选择题 判断题", chapterSix.grouped, chapterSix.questions),
+);
+writeFileSync(
+  chapterSevenMarkdownDownload,
+  serializeChapterMarkdown("第七章 选择题 判断题", chapterSeven.grouped, chapterSeven.questions),
 );
 
 const referenceMarkdownDownload = resolve(docsDir, basename(referenceSource));
@@ -529,6 +581,26 @@ const regularCompletedByChapter = new Map([
       },
     },
   ],
+  [
+    6,
+    {
+      questions: chapterSix.questions,
+      downloads: {
+        markdown: "/docs/chapter-6/chapter-6.md",
+        pdf: null,
+      },
+    },
+  ],
+  [
+    7,
+    {
+      questions: chapterSeven.questions,
+      downloads: {
+        markdown: "/docs/chapter-7/chapter-7.md",
+        pdf: null,
+      },
+    },
+  ],
 ]);
 const xuetongCompletedByChapter = new Map();
 
@@ -571,7 +643,7 @@ writeFileSync(
   )}\n`,
 );
 
-for (const chapter of chapters.slice(0, 5)) {
+for (const chapter of chapters.slice(0, 7)) {
   const counts = countsFor(chapter.questions);
   console.log(
     `Chapter ${chapter.id}: ${chapter.questions.length} questions (${counts.single}/${counts.multiple}/${counts.judge})`,
