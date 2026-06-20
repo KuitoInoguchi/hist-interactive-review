@@ -184,6 +184,9 @@ function targetSectionsForBlock(blockText) {
   for (const match of blockText.matchAll(/第(\d+(?:\s*[、,，]\s*\d+)+)题/g)) {
     sectionNumbers.push(...match[1].split(/[、,，]/).map((value) => Number(value.trim())));
   }
+  for (const match of blockText.matchAll(/[、,，]\s*(\d+)\s*题/g)) {
+    sectionNumbers.push(Number(match[1]));
+  }
   for (const match of blockText.matchAll(/第(\d+)(?:\s*[-—–至]\s*(\d+))?题/g)) {
     const start = Number(match[1]);
     const end = Number(match[2] ?? match[1]);
