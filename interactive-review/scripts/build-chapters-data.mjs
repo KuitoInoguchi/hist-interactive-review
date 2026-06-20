@@ -18,6 +18,7 @@ const referenceSource = resolve(rootDir, "reference", "中国近现代史纲要 
 const chapterOneQuestionsPath = resolve(generatedDir, "questions.json");
 const referenceUnitsPath = resolve(generatedDir, "referenceUnits.json");
 const chaptersOutputPath = resolve(generatedDir, "chapters.json");
+const chapterSourceMapsPath = resolve(appDir, "src", "data", "chapterSourceMaps.json");
 
 const typeOrder = ["single", "multiple", "judge"];
 const typeTitles = {
@@ -438,6 +439,41 @@ function countsFor(questions) {
   );
 }
 
+function applyFixedSourceMap(chapterId, questions, sourceMap, referenceUnits, sectionRange) {
+  if (!sourceMap) throw new Error(`Missing fixed source map for ${chapterId}`);
+  const expectedKeys = questions.map((question) => String(question.id));
+  const actualKeys = Object.keys(sourceMap);
+  if (actualKeys.length !== expectedKeys.length || expectedKeys.some((key) => !sourceMap[key])) {
+    throw new Error(`Fixed source map question set does not match ${chapterId}`);
+  }
+
+  const unitsById = new Map(referenceUnits.map((unit) => [unit.id, unit]));
+  for (const question of questions) {
+    const fixed = sourceMap[String(question.id)];
+    if (fixed.stem !== question.stem) {
+      throw new Error(`Fixed source map stem drift in ${chapterId} Q${question.id}`);
+    }
+    if (!Array.isArray(fixed.sourceIds) || fixed.sourceIds.length === 0) {
+      throw new Error(`Fixed source map is empty in ${chapterId} Q${question.id}`);
+    }
+    if (new Set(fixed.sourceIds).size !== fixed.sourceIds.length) {
+      throw new Error(`Fixed source map has duplicates in ${chapterId} Q${question.id}`);
+    }
+
+    for (const sourceId of fixed.sourceIds) {
+      const unit = unitsById.get(sourceId);
+      if (!unit) throw new Error(`Unknown source ${sourceId} in ${chapterId} Q${question.id}`);
+      if (unit.sectionNo < sectionRange[0] || unit.sectionNo > sectionRange[1]) {
+        throw new Error(`Out-of-range source ${sourceId} in ${chapterId} Q${question.id}`);
+      }
+      if (unit.kind === "heading" || /^(记住|了解|优先|自行)/.test(unit.plainText)) {
+        throw new Error(`Imprecise source ${sourceId} in ${chapterId} Q${question.id}`);
+      }
+    }
+    question.sourceIds = [...fixed.sourceIds];
+  }
+}
+
 function copyIfExists(source, target) {
   if (!existsSync(source)) return null;
   mkdirSync(dirname(target), { recursive: true });
@@ -450,6 +486,7 @@ mkdirSync(docsDir, { recursive: true });
 
 const chapterOneQuestions = JSON.parse(readFileSync(chapterOneQuestionsPath, "utf8"));
 const referenceUnits = JSON.parse(readFileSync(referenceUnitsPath, "utf8"));
+const chapterSourceMaps = JSON.parse(readFileSync(chapterSourceMapsPath, "utf8"));
 const chapterTwo = parseGeneratedChapter(readFileSync(chapterTwoSource, "utf8"), referenceUnits, "chapter 2");
 const chapterThree = parseGeneratedChapter(readFileSync(chapterThreeSource, "utf8"), referenceUnits, "chapter 3");
 const chapterFour = parseGeneratedChapter(readFileSync(chapterFourSource, "utf8"), referenceUnits, "chapter 4");
@@ -458,6 +495,8 @@ const chapterSix = parseGeneratedChapter(readFileSync(chapterSixSource, "utf8"),
   4: [99, 100, 101],
 });
 const chapterSeven = parseGeneratedChapter(readFileSync(chapterSevenSource, "utf8"), referenceUnits, "chapter 7");
+applyFixedSourceMap("regular-6", chapterSix.questions, chapterSourceMaps["regular-6"], referenceUnits, [91, 114]);
+applyFixedSourceMap("regular-7", chapterSeven.questions, chapterSourceMaps["regular-7"], referenceUnits, [118, 129]);
 
 if (chapterTwo.questions.length !== 131) {
   throw new Error(`Unexpected chapter 2 count: ${chapterTwo.questions.length}`);
