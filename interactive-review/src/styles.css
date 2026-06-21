@@ -999,13 +999,23 @@ h1 {
   gap: 2px;
 }
 
-.site-footer a {
+.site-footer a,
+.footer-button-link {
   color: var(--color-accent-strong);
   font-weight: 800;
   text-decoration: none;
 }
 
-.site-footer a:hover {
+.footer-button-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.site-footer a:hover,
+.footer-button-link:hover {
   text-decoration: underline;
 }
 
@@ -1188,6 +1198,54 @@ body.help-dialog-open {
   justify-content: flex-end;
   border-top: 1px solid var(--color-border);
   border-bottom: 0;
+}
+
+.donation-dialog {
+  width: min(560px, 100%);
+}
+
+.donation-dialog-content {
+  gap: 18px;
+}
+
+.donation-message {
+  margin: 0;
+  color: var(--color-heading);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+.donation-qr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.donation-qr-card {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.donation-qr-card h3 {
+  margin: 0;
+  color: var(--color-accent-strong);
+  font-size: 16px;
+}
+
+.donation-qr-placeholder {
+  display: grid;
+  min-height: 190px;
+  place-items: center;
+  padding: 16px;
+  border: 1px dashed var(--color-border-strong);
+  background:
+    linear-gradient(135deg, transparent 0 48%, var(--color-border) 48% 52%, transparent 52% 100%),
+    var(--color-surface-soft);
+  color: var(--color-muted);
+  font-weight: 800;
+  text-align: center;
 }
 
 .app-tour-popover {
@@ -1810,6 +1868,18 @@ body.help-dialog-open {
   .help-dialog-content {
     gap: 12px;
     padding: 12px;
+  }
+
+  .donation-message {
+    font-size: 16px;
+  }
+
+  .donation-qr-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .donation-qr-placeholder {
+    min-height: 150px;
   }
 
   .help-section dl > div {

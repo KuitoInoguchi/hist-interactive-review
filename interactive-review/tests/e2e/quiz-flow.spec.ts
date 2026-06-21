@@ -340,6 +340,24 @@ test("footer links to the project repository", async ({ page }) => {
   await expect(moreMaterialsLink).toHaveAttribute("href", "https://my.feishu.cn/wiki/AatBwiDa7ig7RJkzdlocLm1cnTh");
 });
 
+test("footer donation entry opens placeholder payment dialog", async ({ page }) => {
+  await page.getByRole("button", { name: "支持资料开源" }).click();
+
+  const dialog = page.getByRole("dialog", { name: "赠送一点 Token" });
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toContainText("支持资料开源！给开发者赠送一点Token（¥0.01到¥1.00就可以哦！）");
+  await expect(dialog).toContainText("微信收款码暂未配置");
+  await expect(dialog).toContainText("支付宝收款码暂未配置");
+
+  await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
+
+  await page.getByRole("button", { name: "支持资料开源" }).click();
+  await expect(dialog).toBeVisible();
+  await page.locator(".donation-overlay").click({ position: { x: 8, y: 8 } });
+  await expect(dialog).toHaveCount(0);
+});
+
 test("automatic theme follows UTC+8 night hours when no manual choice is saved", async ({ page }) => {
   await page.addInitScript(() => {
     const fixedTime = Date.UTC(2026, 0, 1, 12, 0);
