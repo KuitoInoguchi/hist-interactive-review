@@ -340,14 +340,14 @@ test("footer links to the project repository", async ({ page }) => {
   await expect(moreMaterialsLink).toHaveAttribute("href", "https://my.feishu.cn/wiki/AatBwiDa7ig7RJkzdlocLm1cnTh");
 });
 
-test("footer donation entry opens placeholder payment dialog", async ({ page }) => {
+test("footer donation entry opens payment qr dialog", async ({ page }) => {
   await page.getByRole("button", { name: "支持资料开源" }).click();
 
   const dialog = page.getByRole("dialog", { name: "赠送一点 Token" });
   await expect(dialog).toBeVisible();
   await expect(dialog).toContainText("支持资料开源！给开发者赠送一点Token（¥0.01到¥1.00就可以哦！）");
-  await expect(dialog).toContainText("微信收款码暂未配置");
-  await expect(dialog).toContainText("支付宝收款码暂未配置");
+  await expect(dialog.getByRole("img", { name: "微信收款码" })).toHaveAttribute("src", /\/donate\/wechat\.png$/);
+  await expect(dialog.getByRole("img", { name: "支付宝收款码" })).toHaveAttribute("src", /\/donate\/alipay\.jpg$/);
 
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);

@@ -16,6 +16,7 @@ render_exam*/
 # Local document artifacts
 *.docx
 *.pdf
+interactive-review/public/donate/
 
 # Environment files
 .env

@@ -1201,7 +1201,7 @@ body.help-dialog-open {
 }
 
 .donation-dialog {
-  width: min(560px, 100%);
+  width: min(760px, 100%);
 }
 
 .donation-dialog-content {
@@ -1232,6 +1232,16 @@ body.help-dialog-open {
   margin: 0;
   color: var(--color-accent-strong);
   font-size: 16px;
+}
+
+.donation-qr-image {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--color-border);
+  background: #fff;
 }
 
 .donation-qr-placeholder {

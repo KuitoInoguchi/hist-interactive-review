@@ -510,7 +510,34 @@ function HelpDialog({
   );
 }
 
+function DonationQrCard({ alt, label, src }: { alt: string; label: string; src: string | null }) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  return (
+    <section className="donation-qr-card">
+      <h3>{label}</h3>
+      {imageFailed || !src ? (
+        <div className="donation-qr-placeholder">{label}收款码暂未配置</div>
+      ) : (
+        <img
+          className="donation-qr-image"
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onError={() => setImageFailed(true)}
+        />
+      )}
+    </section>
+  );
+}
+
 function DonationDialog({ isClosing, onClose }: { isClosing: boolean; onClose: () => void }) {
+  const paymentCodes = [
+    { alt: "微信收款码", label: "微信", src: assetUrl("/donate/wechat.png") },
+    { alt: "支付宝收款码", label: "支付宝", src: assetUrl("/donate/alipay.jpg") },
+  ];
+
   return (
     <div className={`help-overlay donation-overlay ${isClosing ? "is-closing" : ""}`} onClick={onClose}>
       <section
@@ -536,11 +563,8 @@ function DonationDialog({ isClosing, onClose }: { isClosing: boolean; onClose: (
             支持资料开源！给开发者赠送一点Token（¥0.01到¥1.00就可以哦！）
           </p>
           <div className="donation-qr-grid" aria-label="收款码">
-            {(["微信", "支付宝"] as const).map((platform) => (
-              <section className="donation-qr-card" key={platform}>
-                <h3>{platform}</h3>
-                <div className="donation-qr-placeholder">{platform}收款码暂未配置</div>
-              </section>
+            {paymentCodes.map((paymentCode) => (
+              <DonationQrCard {...paymentCode} key={paymentCode.label} />
             ))}
           </div>
         </div>
