@@ -192,6 +192,38 @@ function assetUrl(path: string | null): string | null {
   return `${base}${path.replace(/^\//, '')}`;
 }
 
+const donationPaymentCodes = [
+  { alt: "微信收款码", label: "微信", path: "/donate/wechat.png" },
+  { alt: "支付宝收款码", label: "支付宝", path: "/donate/alipay.jpg" },
+] as const;
+
+function donationPaymentCodeUrls() {
+  return donationPaymentCodes.map((code) => ({ ...code, src: assetUrl(code.path) }));
+}
+
+function scheduleDonationImagePreload() {
+  const preload = () => {
+    for (const { src } of donationPaymentCodeUrls()) {
+      if (!src) continue;
+      const image = new Image();
+      image.decoding = "async";
+      image.src = src;
+    }
+  };
+  const idleWindow = window as Window & {
+    cancelIdleCallback?: (handle: number) => void;
+    requestIdleCallback?: (callback: () => void, options?: { timeout?: number }) => number;
+  };
+
+  if (idleWindow.requestIdleCallback) {
+    const idleId = idleWindow.requestIdleCallback(preload, { timeout: 2500 });
+    return () => idleWindow.cancelIdleCallback?.(idleId);
+  }
+
+  const timeoutId = window.setTimeout(preload, 1200);
+  return () => window.clearTimeout(timeoutId);
+}
+
 function PopupMenu({
   children,
   className = "",
@@ -533,10 +565,7 @@ function DonationQrCard({ alt, label, src }: { alt: string; label: string; src: 
 }
 
 function DonationDialog({ isClosing, onClose }: { isClosing: boolean; onClose: () => void }) {
-  const paymentCodes = [
-    { alt: "微信收款码", label: "微信", src: assetUrl("/donate/wechat.png") },
-    { alt: "支付宝收款码", label: "支付宝", src: assetUrl("/donate/alipay.jpg") },
-  ];
+  const paymentCodes = donationPaymentCodeUrls();
 
   return (
     <div className={`help-overlay donation-overlay ${isClosing ? "is-closing" : ""}`} onClick={onClose}>
@@ -669,6 +698,10 @@ export default function App() {
     const interval = window.setInterval(() => setThemeNow(new Date()), 60_000);
     return () => window.clearInterval(interval);
   }, [themeMode]);
+
+  useEffect(() => {
+    return scheduleDonationImagePreload();
+  }, []);
 
   useEffect(() => {
     if (!isAvailable || !shouldAutoStartOnboarding()) return;
