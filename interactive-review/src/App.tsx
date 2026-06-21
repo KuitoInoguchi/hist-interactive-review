@@ -192,6 +192,38 @@ function assetUrl(path: string | null): string | null {
   return `${base}${path.replace(/^\//, '')}`;
 }
 
+const donationPaymentCodes = [
+  { alt: "微信收款码", label: "微信", path: "/donate/wechat.png" },
+  { alt: "支付宝收款码", label: "支付宝", path: "/donate/alipay.jpg" },
+] as const;
+
+function donationPaymentCodeUrls() {
+  return donationPaymentCodes.map((code) => ({ ...code, src: assetUrl(code.path) }));
+}
+
+function scheduleDonationImagePreload() {
+  const preload = () => {
+    for (const { src } of donationPaymentCodeUrls()) {
+      if (!src) continue;
+      const image = new Image();
+      image.decoding = "async";
+      image.src = src;
+    }
+  };
+  const idleWindow = window as Window & {
+    cancelIdleCallback?: (handle: number) => void;
+    requestIdleCallback?: (callback: () => void, options?: { timeout?: number }) => number;
+  };
+
+  if (idleWindow.requestIdleCallback) {
+    const idleId = idleWindow.requestIdleCallback(preload, { timeout: 2500 });
+    return () => idleWindow.cancelIdleCallback?.(idleId);
+  }
+
+  const timeoutId = window.setTimeout(preload, 1200);
+  return () => window.clearTimeout(timeoutId);
+}
+
 function PopupMenu({
   children,
   className = "",
@@ -510,6 +542,71 @@ function HelpDialog({
   );
 }
 
+function DonationQrCard({ alt, label, src }: { alt: string; label: string; src: string | null }) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  return (
+    <section className="donation-qr-card">
+      <h3>{label}</h3>
+      {imageFailed || !src ? (
+        <div className="donation-qr-placeholder">{label}收款码暂未配置</div>
+      ) : (
+        <img
+          className="donation-qr-image"
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onError={() => setImageFailed(true)}
+        />
+      )}
+    </section>
+  );
+}
+
+function DonationDialog({ isClosing, onClose }: { isClosing: boolean; onClose: () => void }) {
+  const paymentCodes = donationPaymentCodeUrls();
+
+  return (
+    <div className={`help-overlay donation-overlay ${isClosing ? "is-closing" : ""}`} onClick={onClose}>
+      <section
+        aria-labelledby="donation-dialog-title"
+        aria-modal="true"
+        className={`help-dialog donation-dialog ${isClosing ? "is-closing" : ""}`}
+        onClick={(event) => event.stopPropagation()}
+        onTouchMove={(event) => event.stopPropagation()}
+        onWheel={(event) => event.stopPropagation()}
+        role="dialog"
+      >
+        <header className="help-dialog-header">
+          <div>
+            <p className="eyebrow">支持开源</p>
+            <h2 id="donation-dialog-title">赠送一点 Token</h2>
+          </div>
+          <button aria-label="关闭捐赠说明" className="icon-button" onClick={onClose} type="button">
+            <X size={18} />
+          </button>
+        </header>
+        <div className="help-dialog-content donation-dialog-content">
+          <p className="donation-message">
+            支持资料开源！给开发者赠送一点Token（¥0.01到¥1.00就可以哦！）
+          </p>
+          <div className="donation-qr-grid" aria-label="收款码">
+            {paymentCodes.map((paymentCode) => (
+              <DonationQrCard {...paymentCode} key={paymentCode.label} />
+            ))}
+          </div>
+        </div>
+        <footer className="help-dialog-actions">
+          <button className="secondary-button" onClick={onClose} type="button">
+            关闭
+          </button>
+        </footer>
+      </section>
+    </div>
+  );
+}
+
 export default function App() {
   const layoutRef = useRef<HTMLDivElement>(null);
   const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
@@ -538,6 +635,9 @@ export default function App() {
   const [helpOpen, setHelpOpen] = useState(false);
   const [helpClosing, setHelpClosing] = useState(false);
   const helpCloseTimeoutRef = useRef<number | null>(null);
+  const [donationOpen, setDonationOpen] = useState(false);
+  const [donationClosing, setDonationClosing] = useState(false);
+  const donationCloseTimeoutRef = useRef<number | null>(null);
   const onboardingSnapshotRef = useRef<OnboardingSnapshot | null>(null);
 
   const currentChapter = selectableChapters.find((chapter) => chapter.id === selectedChapterId) ?? selectableChapters[0];
@@ -600,6 +700,10 @@ export default function App() {
   }, [themeMode]);
 
   useEffect(() => {
+    return scheduleDonationImagePreload();
+  }, []);
+
+  useEffect(() => {
     if (!isAvailable || !shouldAutoStartOnboarding()) return;
     const timeout = window.setTimeout(() => {
       startGuidedOnboarding();
@@ -608,26 +712,30 @@ export default function App() {
   }, [isAvailable]);
 
   useEffect(() => {
-    if (!helpOpen) return;
+    if (!helpOpen && !donationOpen) return;
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
         closeHelpDialog();
+        closeDonationDialog();
       }
     }
     document.addEventListener("keydown", closeOnEscape);
     return () => document.removeEventListener("keydown", closeOnEscape);
-  }, [helpOpen]);
+  }, [donationOpen, helpOpen]);
 
   useEffect(() => {
-    const dialogVisible = helpOpen || helpClosing;
+    const dialogVisible = helpOpen || helpClosing || donationOpen || donationClosing;
     document.body.classList.toggle("help-dialog-open", dialogVisible);
     return () => document.body.classList.remove("help-dialog-open");
-  }, [helpClosing, helpOpen]);
+  }, [donationClosing, donationOpen, helpClosing, helpOpen]);
 
   useEffect(() => {
     return () => {
       if (helpCloseTimeoutRef.current !== null) {
         window.clearTimeout(helpCloseTimeoutRef.current);
+      }
+      if (donationCloseTimeoutRef.current !== null) {
+        window.clearTimeout(donationCloseTimeoutRef.current);
       }
     };
   }, []);
@@ -802,6 +910,25 @@ export default function App() {
     helpCloseTimeoutRef.current = window.setTimeout(() => {
       setHelpClosing(false);
       helpCloseTimeoutRef.current = null;
+    }, HELP_DIALOG_ANIMATION_MS);
+  }
+
+  function openDonationDialog() {
+    if (donationCloseTimeoutRef.current !== null) {
+      window.clearTimeout(donationCloseTimeoutRef.current);
+      donationCloseTimeoutRef.current = null;
+    }
+    setDonationClosing(false);
+    setDonationOpen(true);
+  }
+
+  function closeDonationDialog() {
+    if (!donationOpen || donationClosing) return;
+    setDonationClosing(true);
+    setDonationOpen(false);
+    donationCloseTimeoutRef.current = window.setTimeout(() => {
+      setDonationClosing(false);
+      donationCloseTimeoutRef.current = null;
     }, HELP_DIALOG_ANIMATION_MS);
   }
 
@@ -1698,6 +1825,9 @@ export default function App() {
       {helpOpen || helpClosing ? (
         <HelpDialog isClosing={helpClosing} onClose={closeHelpDialog} onStartTour={replayOnboarding} />
       ) : null}
+      {donationOpen || donationClosing ? (
+        <DonationDialog isClosing={donationClosing} onClose={closeDonationDialog} />
+      ) : null}
       <footer className="site-footer">
         <span>
           联系我（们）/反馈问题/提供建议：<a href="mailto:kt_i@qq.com">kt_i@qq.com</a>
@@ -1713,6 +1843,11 @@ export default function App() {
           <a href="https://my.feishu.cn/wiki/AatBwiDa7ig7RJkzdlocLm1cnTh" rel="noreferrer" target="_blank">
             飞书资料
           </a>
+        </span>
+        <span>
+          <button className="footer-button-link" onClick={openDonationDialog} type="button">
+            支持资料开源
+          </button>
         </span>
       </footer>
     </main>

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import questions from "../src/generated/questions.json";
 import chaptersPayload from "../src/generated/chapters.json";
 import referenceUnits from "../src/generated/referenceUnits.json";
+import chapterSourceMaps from "../src/data/chapterSourceMaps.json";
 import sourceMap from "../src/data/sourceMap.json";
 import type { Question } from "../src/types";
 
@@ -87,6 +88,8 @@ describe("generated quiz data", () => {
       "regular-3",
       "regular-4",
       "regular-5",
+      "regular-6",
+      "regular-7",
     ]);
   });
 
@@ -197,12 +200,45 @@ describe("generated quiz data", () => {
     ]);
   });
 
+  it.each([
+    ["regular-6", 203, { single: 79, multiple: 61, judge: 63 }],
+    ["regular-7", 77, { single: 31, multiple: 25, judge: 21 }],
+  ] as const)("contains the expected %s question counts and fixed source links", (chapterId, total, expectedCounts) => {
+    const chapter = chapters.find((item) => item.id === chapterId);
+    expect(chapter).toBeDefined();
+    const chapterQuestions = chapter?.questions ?? [];
+    const counts = chapterQuestions.reduce(
+      (acc, question) => {
+        acc[question.type] += 1;
+        return acc;
+      },
+      { single: 0, multiple: 0, judge: 0 },
+    );
+    const fixedMap = chapterSourceMaps[chapterId];
+
+    expect(chapterQuestions).toHaveLength(total);
+    expect(counts).toEqual(expectedCounts);
+    expect(Object.keys(fixedMap)).toHaveLength(total);
+    for (const question of chapterQuestions) {
+      const fixed = fixedMap[String(question.id) as keyof typeof fixedMap];
+      expect(fixed.stem, `${chapterId} Q${question.id} stem`).toBe(question.stem);
+      expect(question.sourceIds, `${chapterId} Q${question.id} sourceIds`).toEqual(fixed.sourceIds);
+      expect(question.correctAnswers.length, `${chapterId} Q${question.id} correctAnswers`).toBeGreaterThan(0);
+      expect(question.explanation.length, `${chapterId} Q${question.id} explanation`).toBeGreaterThan(0);
+      for (const sourceId of question.sourceIds) {
+        expect(referenceIds.has(sourceId), `${chapterId} Q${question.id} ${sourceId}`).toBe(true);
+      }
+    }
+  });
+
   it("keeps generated source mappings specific for completed generated chapters", () => {
     const minimumsByChapter = new Map([
       ["regular-2", { sourceIds: 50, sourceSets: 50, multiSourceMultiple: 8 }],
       ["regular-3", { sourceIds: 45, sourceSets: 45, multiSourceMultiple: 10 }],
       ["regular-4", { sourceIds: 50, sourceSets: 50, multiSourceMultiple: 14 }],
       ["regular-5", { sourceIds: 45, sourceSets: 45, multiSourceMultiple: 14 }],
+      ["regular-6", { sourceIds: 65, sourceSets: 70, multiSourceMultiple: 15 }],
+      ["regular-7", { sourceIds: 30, sourceSets: 30, multiSourceMultiple: 4 }],
     ]);
 
     for (const [chapterId, minimums] of minimumsByChapter) {
@@ -243,6 +279,14 @@ describe("generated quiz data", () => {
     });
     expect(chapters[4].downloads).toEqual({
       markdown: "/docs/chapter-5/chapter-5.md",
+      pdf: null,
+    });
+    expect(chapters[5].downloads).toEqual({
+      markdown: "/docs/chapter-6/chapter-6.md",
+      pdf: null,
+    });
+    expect(chapters[6].downloads).toEqual({
+      markdown: "/docs/chapter-7/chapter-7.md",
       pdf: null,
     });
     expect(

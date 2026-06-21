@@ -245,10 +245,61 @@ test("chapter switching, coming-soon chapters, and download links work", async (
   await expect(page.locator("#ref-c5-s80-l537-list")).toHaveClass(/active-source/);
 
   await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").filter({ hasText: "第六章习题" }).click();
+  await expect(page.getByRole("heading", { name: "第六章习题" })).toBeVisible();
+  await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("203");
+  await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
+  await expect(page.locator('a[href$="/docs/chapter-6/chapter-6.md"]')).toContainText("下载为 md 格式");
+  await page.keyboard.press("Escape");
+
+  await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").filter({ hasText: "第七章习题" }).click();
+  await expect(page.getByRole("heading", { name: "第七章习题" })).toBeVisible();
+  await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("77");
+  await page.locator(".header-actions").getByRole("button", { name: /下载习题/ }).click();
+  await expect(page.locator('a[href$="/docs/chapter-7/chapter-7.md"]')).toContainText("下载为 md 格式");
+  await page.keyboard.press("Escape");
+
+  await page.locator(".chapter-selector-panel > summary").click();
   await page.locator(".chapter-option").filter({ hasText: "（学习通）" }).click();
   await expect(page.getByRole("heading", { name: "（学习通）" })).toBeVisible();
   await expect(page.getByText("如果你的任课老师在学习通发布了题目，请在学习通上完成哦。")).toBeVisible();
   await expect(page.locator(".summary-grid div").filter({ hasText: "总题数" })).toContainText("0");
+});
+
+test("chapter 6 and 7 fixed mappings highlight every matched source block", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop reference pane behavior");
+
+  await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").filter({ hasText: "第六章习题" }).click();
+  await openQuestionPanel(page);
+  await page.getByRole("button", { name: "98", exact: true }).click();
+  await page.locator(".option-row").filter({ hasText: "李宗仁——在台儿庄战役中取得大捷" }).click();
+  await page.locator(".option-row").filter({ hasText: "佟麟阁、赵登禹——在北平南苑战斗中先后阵亡" }).click();
+  await page.locator(".option-row").filter({ hasText: "谢晋元——率孤军据守四行仓库" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+  await expect(page.locator("#ref-c5-s98-l659-list")).toHaveClass(/active-source/);
+  await expect(page.locator("#ref-c5-s98-l660-list")).toHaveClass(/active-source/);
+
+  await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").filter({ hasText: "第七章习题" }).click();
+  await openQuestionPanel(page);
+  await page.getByRole("button", { name: "33", exact: true }).click();
+  await page.locator(".option-row").filter({ hasText: "中国民主建国会" }).click();
+  await page.locator(".option-row").filter({ hasText: "中国民主促进会" }).click();
+  await page.locator(".option-row").filter({ hasText: "台湾民主自治同盟" }).click();
+  await page.locator(".option-row").filter({ hasText: "九三学社" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+  await expect(page.getByText("回答正确")).toBeVisible();
+  for (const sourceId of [
+    "ref-c6-s121-l783-list",
+    "ref-c6-s121-l784-list",
+    "ref-c6-s121-l788-list",
+    "ref-c6-s121-l787-list",
+  ]) {
+    await expect(page.locator(`#${sourceId}`)).toHaveClass(/active-source/);
+  }
 });
 
 test("chapter 5 question mapping jumps to the matched source block", async ({ page, isMobile }) => {
@@ -287,6 +338,24 @@ test("footer links to the project repository", async ({ page }) => {
   await expect(repositoryLink).toHaveAttribute("href", "https://github.com/KuitoInoguchi/hist-interactive-review");
   await expect(moreMaterialsLink).toBeVisible();
   await expect(moreMaterialsLink).toHaveAttribute("href", "https://my.feishu.cn/wiki/AatBwiDa7ig7RJkzdlocLm1cnTh");
+});
+
+test("footer donation entry opens payment qr dialog", async ({ page }) => {
+  await page.getByRole("button", { name: "支持资料开源" }).click();
+
+  const dialog = page.getByRole("dialog", { name: "赠送一点 Token" });
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toContainText("支持资料开源！给开发者赠送一点Token（¥0.01到¥1.00就可以哦！）");
+  await expect(dialog.getByRole("img", { name: "微信收款码" })).toHaveAttribute("src", /\/donate\/wechat\.png$/);
+  await expect(dialog.getByRole("img", { name: "支付宝收款码" })).toHaveAttribute("src", /\/donate\/alipay\.jpg$/);
+
+  await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
+
+  await page.getByRole("button", { name: "支持资料开源" }).click();
+  await expect(dialog).toBeVisible();
+  await page.locator(".donation-overlay").click({ position: { x: 8, y: 8 } });
+  await expect(dialog).toHaveCount(0);
 });
 
 test("automatic theme follows UTC+8 night hours when no manual choice is saved", async ({ page }) => {
