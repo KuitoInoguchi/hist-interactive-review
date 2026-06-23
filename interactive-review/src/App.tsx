@@ -34,6 +34,16 @@ import { ReferencePane } from "./components/ReferencePane";
 import chaptersData from "./generated/chapters.json";
 import { answerListLabel, areAnswersEqual } from "./lib/answerCheck";
 import {
+  buildFlaggedReviewBankEntries,
+  buildWrongReviewBankEntries,
+  getReviewBankSourceLabel,
+  removeQuestionFromFlaggedBank,
+  removeQuestionFromWrongBank,
+  REVIEW_BANK_FLAGGED_ID,
+  REVIEW_BANK_WRONG_ID,
+  type ReviewBankQuestionEntry,
+} from "./lib/reviewBanks";
+import {
   THEME_STORAGE_KEY,
   type ResolvedTheme,
   type ThemeMode,
@@ -42,7 +52,7 @@ import {
   themeModeLabels,
 } from "./lib/theme";
 import { shouldAutoStartOnboarding, startOnboarding, type OnboardingApi } from "./lib/onboarding";
-import type { Question, QuizAttempt } from "./types";
+import type { ChapterProgress, Question, QuizAttempt } from "./types";
 
 const chaptersPayload = chaptersData as {
   chapters: Array<{
@@ -59,6 +69,26 @@ const chaptersPayload = chaptersData as {
 };
 const chapters = chaptersPayload.chapters;
 const regularChapters = chapters.filter((chapter) => chapter.kind === "regular");
+const flaggedReviewChapter = {
+  id: REVIEW_BANK_FLAGGED_ID,
+  kind: "review-flagged" as const,
+  chapterNo: 8,
+  numeral: "记",
+  title: "记不清题库",
+  available: true,
+  questions: [] as Question[],
+  downloads: { markdown: null, pdf: null },
+};
+const wrongReviewChapter = {
+  id: REVIEW_BANK_WRONG_ID,
+  kind: "review-wrong" as const,
+  chapterNo: 9,
+  numeral: "错",
+  title: "错题库",
+  available: true,
+  questions: [] as Question[],
+  downloads: { markdown: null, pdf: null },
+};
 const xuetongChapter = {
   id: "xuetong",
   kind: "xuetong" as const,
@@ -69,7 +99,7 @@ const xuetongChapter = {
   questions: [] as Question[],
   downloads: { markdown: null, pdf: null },
 };
-const selectableChapters = [...regularChapters, xuetongChapter];
+const selectableChapters = [...regularChapters, flaggedReviewChapter, wrongReviewChapter, xuetongChapter];
 const defaultChapterId = chapters[0]?.id ?? "regular-1";
 const STORAGE_KEY = "interactive-review:multi-chapter-progress";
 const modeLabels = {
@@ -80,19 +110,20 @@ const modeLabels = {
 type GradingMode = keyof typeof modeLabels;
 const DEFAULT_GRADING_MODE: GradingMode = "per-question-submit";
 
-type ChapterProgress = {
-  currentIndex: number;
-  selectedByQuestion: Record<number, string[]>;
-  attempts: Record<number, QuizAttempt>;
-  flaggedQuestionIds: number[];
-  activeSourceIds: string[];
-};
-
 type SavedQuizState = {
   selectedChapterId: string;
   progressByChapter: Record<string, ChapterProgress>;
   referenceCollapsed: boolean;
   gradingMode: GradingMode;
+};
+
+type QuestionViewEntry = {
+  question: Question;
+  sourceChapterId: string;
+  sourceChapterNo: number;
+  sourceChapterTitle: string;
+  sourceQuestionId: number;
+  reviewBankId?: typeof REVIEW_BANK_FLAGGED_ID | typeof REVIEW_BANK_WRONG_ID;
 };
 
 type ResetSnapshot = {
@@ -641,22 +672,71 @@ export default function App() {
   const onboardingSnapshotRef = useRef<OnboardingSnapshot | null>(null);
 
   const currentChapter = selectableChapters.find((chapter) => chapter.id === selectedChapterId) ?? selectableChapters[0];
-  const questions = currentChapter.questions;
+  const isFlaggedReviewBank = currentChapter.id === REVIEW_BANK_FLAGGED_ID;
+  const isWrongReviewBank = currentChapter.id === REVIEW_BANK_WRONG_ID;
+  const isDynamicReviewBank = isFlaggedReviewBank || isWrongReviewBank;
   const currentProgress = progressByChapter[currentChapter.id] ?? emptyProgress();
-  const currentIndex = Math.min(currentProgress.currentIndex, Math.max(questions.length - 1, 0));
-  const selectedByQuestion = currentProgress.selectedByQuestion;
-  const attempts = currentProgress.attempts;
-  const flaggedQuestionIds = currentProgress.flaggedQuestionIds;
+  const flaggedReviewEntries = useMemo(
+    () => buildFlaggedReviewBankEntries(chapters, progressByChapter),
+    [progressByChapter],
+  );
+  const wrongReviewEntries = useMemo(
+    () => buildWrongReviewBankEntries(chapters, progressByChapter),
+    [progressByChapter],
+  );
+  const questionEntries = useMemo<QuestionViewEntry[]>(() => {
+    if (isFlaggedReviewBank) {
+      return flaggedReviewEntries.map((entry) => ({
+        question: entry.question,
+        sourceChapterId: entry.sourceChapterId,
+        sourceChapterNo: entry.sourceChapterNo,
+        sourceChapterTitle: entry.sourceChapterTitle,
+        sourceQuestionId: entry.sourceQuestionId,
+        reviewBankId: entry.reviewBankId,
+      }));
+    }
+    if (isWrongReviewBank) {
+      return wrongReviewEntries.map((entry) => ({
+        question: entry.question,
+        sourceChapterId: entry.sourceChapterId,
+        sourceChapterNo: entry.sourceChapterNo,
+        sourceChapterTitle: entry.sourceChapterTitle,
+        sourceQuestionId: entry.sourceQuestionId,
+        reviewBankId: entry.reviewBankId,
+      }));
+    }
+    return currentChapter.questions.map((question) => ({
+      question,
+      sourceChapterId: currentChapter.id,
+      sourceChapterNo: currentChapter.chapterNo,
+      sourceChapterTitle: currentChapter.title,
+      sourceQuestionId: question.id,
+    }));
+  }, [currentChapter, flaggedReviewEntries, isFlaggedReviewBank, isWrongReviewBank, wrongReviewEntries]);
+  const questions = questionEntries.map((entry) => entry.question);
+  const currentIndex = Math.min(currentProgress.currentIndex, Math.max(questionEntries.length - 1, 0));
+  const currentEntry = questionEntries[currentIndex];
+  const currentQuestion = currentEntry?.question;
+  const currentQuestionProgress = currentEntry
+    ? normalizeProgress(progressByChapter[currentEntry.sourceChapterId])
+    : emptyProgress();
+  const selectedByQuestion = currentQuestionProgress.selectedByQuestion;
+  const attempts = currentQuestionProgress.attempts;
+  const flaggedQuestionIds = currentQuestionProgress.flaggedQuestionIds;
   const flaggedQuestionIdSet = new Set(flaggedQuestionIds);
   const activeSourceIds = currentProgress.activeSourceIds;
-  const currentQuestion = questions[currentIndex];
   const currentAttempt = currentQuestion ? attempts[currentQuestion.id] : undefined;
   const selectedAnswers = currentQuestion ? selectedByQuestion[currentQuestion.id] ?? [] : [];
-  const pendingQuestions = questions.filter(
-    (question) => !attempts[question.id] && (selectedByQuestion[question.id] ?? []).length > 0,
-  );
-  const submittedCount = Object.keys(attempts).length;
-  const correctCount = Object.values(attempts).filter((attempt) => attempt.isCorrect).length;
+  const pendingQuestions = questionEntries.filter((entry) => {
+    const progress = normalizeProgress(progressByChapter[entry.sourceChapterId]);
+    return !progress.attempts[entry.question.id] && (progress.selectedByQuestion[entry.question.id] ?? []).length > 0;
+  });
+  const submittedCount = questionEntries.filter((entry) =>
+    Boolean(normalizeProgress(progressByChapter[entry.sourceChapterId]).attempts[entry.question.id]),
+  ).length;
+  const correctCount = questionEntries.filter((entry) =>
+    Boolean(normalizeProgress(progressByChapter[entry.sourceChapterId]).attempts[entry.question.id]?.isCorrect),
+  ).length;
   const isAvailable = currentChapter.available && questions.length > 0;
   const currentQuestionFlagged = currentQuestion ? flaggedQuestionIdSet.has(currentQuestion.id) : false;
   const isXuetongChapter = currentChapter.id === xuetongChapter.id;
@@ -668,14 +748,14 @@ export default function App() {
   const demoQuestion = demoChapter?.questions.find((question) => question.sourceIds.length > 0);
 
   const groupedCounts = useMemo(() => {
-    return questions.reduce(
-      (counts, question) => {
-        counts[question.type] += 1;
+    return questionEntries.reduce(
+      (counts, entry) => {
+        counts[entry.question.type] += 1;
         return counts;
       },
       { single: 0, multiple: 0, judge: 0 },
     );
-  }, [questions]);
+  }, [questionEntries]);
 
   useEffect(() => {
     const state: SavedQuizState = {
@@ -774,6 +854,16 @@ export default function App() {
     });
   }
 
+  function updateQuestionSourceProgress(sourceChapterId: string, updater: (progress: ChapterProgress) => ChapterProgress) {
+    setProgressByChapter((previous) => {
+      const progress = normalizeProgress(previous[sourceChapterId]);
+      return {
+        ...previous,
+        [sourceChapterId]: updater(progress),
+      };
+    });
+  }
+
   function chooseChapter(chapterId: string) {
     setSelectedChapterId(chapterId);
     setResetSelectionMode(false);
@@ -791,11 +881,13 @@ export default function App() {
     }
   }
 
-  function setSelected(question: Question, optionId: string) {
-    if (attempts[question.id]) return;
+  function setSelected(questionEntry: QuestionViewEntry, optionId: string) {
+    const question = questionEntry.question;
+    const sourceProgress = normalizeProgress(progressByChapter[questionEntry.sourceChapterId]);
+    if (sourceProgress.attempts[question.id]) return;
 
     let nextSelectedAnswers: string[] = [];
-    updateCurrentProgress((progress) => {
+    updateQuestionSourceProgress(questionEntry.sourceChapterId, (progress) => {
       const current = progress.selectedByQuestion[question.id] ?? [];
       if (question.type === "multiple") {
         const next = current.includes(optionId)
@@ -815,19 +907,21 @@ export default function App() {
     });
 
     if (gradingMode === "instant-on-select" && question.type !== "multiple") {
-      submitQuestionWithAnswers(question, nextSelectedAnswers);
+      submitQuestionWithAnswers(questionEntry, nextSelectedAnswers);
     }
   }
 
   function submitCurrentQuestion() {
-    if (!currentQuestion || selectedAnswers.length === 0 || currentAttempt) return;
-    submitQuestionWithAnswers(currentQuestion, selectedAnswers);
+    if (!currentEntry || !currentQuestion || selectedAnswers.length === 0 || currentAttempt) return;
+    submitQuestionWithAnswers(currentEntry, selectedAnswers);
   }
 
-  function submitQuestionWithAnswers(question: Question, answers: string[]) {
-    if (answers.length === 0 || attempts[question.id]) return;
+  function submitQuestionWithAnswers(questionEntry: QuestionViewEntry, answers: string[]) {
+    const question = questionEntry.question;
+    const sourceProgress = normalizeProgress(progressByChapter[questionEntry.sourceChapterId]);
+    if (answers.length === 0 || sourceProgress.attempts[question.id]) return;
     const isCorrect = areAnswersEqual(answers, question.correctAnswers);
-    updateCurrentProgress((progress) => ({
+    updateQuestionSourceProgress(questionEntry.sourceChapterId, (progress) => ({
       ...progress,
       attempts: {
         ...progress.attempts,
@@ -840,35 +934,51 @@ export default function App() {
       },
       activeSourceIds: question.sourceIds,
     }));
+    if (questionEntry.sourceChapterId !== currentChapter.id) {
+      updateCurrentProgress((progress) => ({
+        ...progress,
+        activeSourceIds: question.sourceIds,
+      }));
+    }
   }
 
   function submitPendingQuestions() {
     if (pendingQuestions.length === 0) return;
-    updateCurrentProgress((progress) => {
-      const nextAttempts = { ...progress.attempts };
-      for (const question of questions) {
-        const answers = progress.selectedByQuestion[question.id] ?? [];
-        if (answers.length === 0 || nextAttempts[question.id]) continue;
-        nextAttempts[question.id] = {
-          questionId: question.id,
-          selectedAnswers: answers,
-          isCorrect: areAnswersEqual(answers, question.correctAnswers),
-          submittedAt: new Date().toISOString(),
+    const submittedAt = new Date().toISOString();
+    setProgressByChapter((previous) => {
+      const next = { ...previous };
+      for (const entry of pendingQuestions) {
+        const progress = normalizeProgress(next[entry.sourceChapterId]);
+        const answers = progress.selectedByQuestion[entry.question.id] ?? [];
+        if (answers.length === 0 || progress.attempts[entry.question.id]) continue;
+        next[entry.sourceChapterId] = {
+          ...progress,
+          attempts: {
+            ...progress.attempts,
+            [entry.question.id]: {
+              questionId: entry.question.id,
+              selectedAnswers: answers,
+              isCorrect: areAnswersEqual(answers, entry.question.correctAnswers),
+              submittedAt,
+            },
+          },
         };
       }
-      const focusedQuestion = questions[progress.currentIndex];
-      return {
-        ...progress,
-        attempts: nextAttempts,
-        activeSourceIds: focusedQuestion ? focusedQuestion.sourceIds : progress.activeSourceIds,
-      };
+      const focusedQuestion = currentEntry?.question;
+      if (focusedQuestion) {
+        next[currentChapter.id] = {
+          ...normalizeProgress(next[currentChapter.id]),
+          activeSourceIds: focusedQuestion.sourceIds,
+        };
+      }
+      return next;
     });
   }
 
   function toggleCurrentQuestionFlag() {
-    if (!currentQuestion) return;
+    if (!currentEntry || !currentQuestion) return;
 
-    updateCurrentProgress((progress) => {
+    updateQuestionSourceProgress(currentEntry.sourceChapterId, (progress) => {
       const isFlagged = progress.flaggedQuestionIds.includes(currentQuestion.id);
       return {
         ...progress,
@@ -1302,12 +1412,36 @@ export default function App() {
 
   function jumpToQuestion(index: number) {
     updateCurrentProgress((progress) => {
-      const question = questions[index];
-      const attempt = question ? progress.attempts[question.id] : undefined;
+      const entry = questionEntries[index];
+      const question = entry?.question;
+      const attempt = question && entry
+        ? normalizeProgress(progressByChapter[entry.sourceChapterId]).attempts[question.id]
+        : undefined;
       return {
         ...progress,
         currentIndex: index,
         activeSourceIds: attempt ? question.sourceIds : progress.activeSourceIds,
+      };
+    });
+  }
+
+  function removeCurrentReviewBankQuestion() {
+    if (!currentEntry?.reviewBankId) return;
+
+    setProgressByChapter((previous) => {
+      if (currentEntry.reviewBankId === REVIEW_BANK_FLAGGED_ID) {
+        return removeQuestionFromFlaggedBank(previous, currentEntry.sourceChapterId, currentEntry.question.id);
+      }
+      return removeQuestionFromWrongBank(previous, currentEntry.sourceChapterId, currentEntry.question.id);
+    });
+
+    updateCurrentProgress((progress) => {
+      const nextLength = Math.max(questionEntries.length - 1, 0);
+      const nextIndex = nextLength === 0 ? 0 : Math.min(progress.currentIndex, nextLength - 1);
+      return {
+        ...progress,
+        currentIndex: nextIndex,
+        activeSourceIds: [],
       };
     });
   }
@@ -1504,6 +1638,18 @@ export default function App() {
                     </button>
                   ))}
                 </div>
+                <div className="mobile-review-bank-list">
+                  {[flaggedReviewChapter, wrongReviewChapter].map((chapter) => (
+                    <button
+                      className={`chapter-option ${chapter.id === currentChapter.id ? "is-active" : ""}`}
+                      key={chapter.id}
+                      onClick={() => chooseChapter(chapter.id)}
+                      type="button"
+                    >
+                      <span>{chapter.title}</span>
+                    </button>
+                  ))}
+                </div>
                 <button
                   className={`chapter-option mobile-xuetong-option ${
                     xuetongChapter.id === currentChapter.id ? "is-active" : ""
@@ -1576,16 +1722,18 @@ export default function App() {
               <div className="question-nav-popover">
                 <div className="question-nav-scroll">
                   <nav className="question-nav" aria-label="题号导航">
-                    {questions.map((question, index) => {
+                    {questionEntries.map((entry, index) => {
+                      const question = entry.question;
+                      const progress = normalizeProgress(progressByChapter[entry.sourceChapterId]);
                       const isResetSelected = resetSelectionIds.includes(question.id);
                       return (
                         <button
                           className={`question-chip ${index === currentIndex ? "is-active" : ""} ${questionStatusClass(
-                            attempts[question.id],
-                            (selectedByQuestion[question.id] ?? []).length > 0,
-                            flaggedQuestionIdSet.has(question.id),
+                            progress.attempts[question.id],
+                            (progress.selectedByQuestion[question.id] ?? []).length > 0,
+                            progress.flaggedQuestionIds.includes(question.id),
                           )} ${isResetSelected ? "is-reset-selected" : ""}`}
-                          key={question.id}
+                          key={`${entry.sourceChapterId}-${question.id}-${entry.reviewBankId ?? "chapter"}`}
                           onClick={() => (resetSelectionMode ? toggleResetSelection(question.id) : jumpToQuestion(index))}
                           type="button"
                         >
@@ -1645,6 +1793,10 @@ export default function App() {
             </span>
           </div>
 
+          {currentEntry?.reviewBankId ? (
+            <p className="question-source-label">{getReviewBankSourceLabel(currentEntry)}</p>
+          ) : null}
+
           <h2>{currentQuestion.id}. {currentQuestion.stem}</h2>
 
           <div className="options-list">
@@ -1665,7 +1817,7 @@ export default function App() {
                     checked={selected}
                     disabled={Boolean(currentAttempt)}
                     name={`question-${currentQuestion.id}`}
-                    onChange={() => setSelected(currentQuestion, option.id)}
+                    onChange={() => currentEntry && setSelected(currentEntry, option.id)}
                     type={optionType}
                   />
                   <span className="option-id">{option.id === "true" || option.id === "false" ? "" : option.id}</span>
@@ -1715,6 +1867,12 @@ export default function App() {
               <ListChecks size={18} />
               <span className="action-label">一键批改</span>
             </button>
+            {currentEntry?.reviewBankId ? (
+              <button className="secondary-button remove-button" onClick={removeCurrentReviewBankQuestion} type="button">
+                <X size={18} />
+                <span className="action-label">移除</span>
+              </button>
+            ) : null}
             <button
               className="secondary-button"
               disabled={currentIndex === questions.length - 1}
@@ -1759,7 +1917,12 @@ export default function App() {
         </section>
         ) : (
           <section className="question-card coming-soon" aria-label="敬请期待">
-            {isXuetongChapter ? (
+            {isDynamicReviewBank ? (
+              <>
+                <h2>当前题库为空</h2>
+                <p>{isFlaggedReviewBank ? "还没有被标记为记不清的题目。" : "还没有需要复习的错题。"}</p>
+              </>
+            ) : isXuetongChapter ? (
               <p>如果你的任课老师在学习通发布了题目，请在学习通上完成哦。</p>
             ) : (
               <>

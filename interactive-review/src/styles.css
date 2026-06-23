@@ -878,6 +878,19 @@ h1 {
   box-shadow: inset 0 0 0 2px var(--color-warning-strong);
 }
 
+.question-source-label {
+  margin: 0 0 8px;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.remove-button {
+  border-color: var(--color-warning);
+  color: var(--color-warning-text);
+}
+
 .reference-shell {
   position: sticky;
   top: 18px;
@@ -1525,6 +1538,13 @@ body.help-dialog-open {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
     gap: 6px;
+  }
+
+  .mobile-review-bank-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 6px;
   }
 
   .mobile-course-popover .chapter-option {

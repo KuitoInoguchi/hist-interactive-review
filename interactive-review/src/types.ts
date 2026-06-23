@@ -23,3 +23,11 @@ export type QuizAttempt = {
 };
 
 export type GradingMode = "instant-on-select" | "per-question-submit" | "batch-submit";
+
+export type ChapterProgress = {
+  currentIndex: number;
+  selectedByQuestion: Record<number, string[]>;
+  attempts: Record<number, QuizAttempt>;
+  flaggedQuestionIds: number[];
+  activeSourceIds: string[];
+};

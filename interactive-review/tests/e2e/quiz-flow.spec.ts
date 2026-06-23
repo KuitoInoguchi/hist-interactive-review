@@ -122,6 +122,35 @@ test("flagging works with legacy saved progress from older chapters", async ({ p
   await expect(questionOneChip).toHaveClass(/is-flagged/);
 });
 
+test("flagged review bank shows source label and supports manual removal", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop chapter selector behavior");
+
+  await page.locator(".question-actions .flag-button").click();
+
+  await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").nth(7).click();
+
+  await expect(page.locator(".question-source-label")).toContainText("第一章 · 1");
+
+  await page.locator(".question-actions .remove-button").click();
+  await expect(page.locator(".question-card.coming-soon")).toBeVisible();
+});
+
+test("wrong review bank shows source label and supports manual removal", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop chapter selector behavior");
+
+  await page.locator(".option-row").filter({ hasText: "中国的封建势力" }).click();
+  await page.getByRole("button", { name: /提交答案/ }).click();
+
+  await page.locator(".chapter-selector-panel > summary").click();
+  await page.locator(".chapter-option").nth(8).click();
+
+  await expect(page.locator(".question-source-label")).toContainText("第一章 · 1");
+
+  await page.locator(".question-actions .remove-button").click();
+  await expect(page.locator(".question-card.coming-soon")).toBeVisible();
+});
+
 test("batch grading submits all selected unanswered questions", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop question navigation behavior");
 
